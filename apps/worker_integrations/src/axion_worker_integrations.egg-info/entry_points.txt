@@ -1,0 +1,2 @@
+[console_scripts]
+axion-worker-integrations = worker_integrations.main:main

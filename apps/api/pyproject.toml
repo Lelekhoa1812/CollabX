@@ -1,0 +1,22 @@
+[project]
+name = "axion-api"
+version = "0.1.0"
+requires-python = ">=3.13,<3.14"
+dependencies = [
+  "axion-contracts",
+  "axion-domain",
+  "axion-infrastructure",
+  "axion-observability",
+  "fastapi==0.124.2",
+  "uvicorn[standard]==0.38.0",
+]
+
+[project.scripts]
+axion-api = "axion_api.main:main"
+
+[build-system]
+requires = ["setuptools>=80"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]

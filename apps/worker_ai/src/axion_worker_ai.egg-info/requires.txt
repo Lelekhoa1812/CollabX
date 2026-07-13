@@ -1,0 +1,5 @@
+axion-infrastructure
+axion-observability
+langchain==0.3.27
+langchain-openai==0.3.35
+langsmith==0.3.45

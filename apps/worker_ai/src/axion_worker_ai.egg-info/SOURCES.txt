@@ -1,0 +1,9 @@
+pyproject.toml
+src/axion_worker_ai.egg-info/PKG-INFO
+src/axion_worker_ai.egg-info/SOURCES.txt
+src/axion_worker_ai.egg-info/dependency_links.txt
+src/axion_worker_ai.egg-info/entry_points.txt
+src/axion_worker_ai.egg-info/requires.txt
+src/axion_worker_ai.egg-info/top_level.txt
+src/worker_ai/main.py
+src/worker_ai/py.typed

@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://axion.local/schemas/event-envelope.schema.json",
+  "type": "object",
+  "required": ["event_id", "schema_name", "schema_version", "occurred_at", "tenant_id", "classification", "correlation_id", "payload"],
+  "additionalProperties": false,
+  "properties": {
+    "event_id": { "type": "string", "format": "uuid" },
+    "schema_name": { "type": "string" },
+    "schema_version": { "type": "integer", "minimum": 1 },
+    "occurred_at": { "type": "string", "format": "date-time" },
+    "tenant_id": { "type": "string", "format": "uuid" },
+    "project_id": { "type": ["string", "null"], "format": "uuid" },
+    "classification": { "enum": ["PUBLIC", "INTERNAL", "CONFIDENTIAL", "RESTRICTED"] },
+    "correlation_id": { "type": "string" },
+    "causation_id": { "type": ["string", "null"] },
+    "payload": { "type": "object" }
+  }
+}
+

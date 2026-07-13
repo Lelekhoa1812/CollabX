@@ -1,0 +1,9 @@
+Metadata-Version: 2.4
+Name: axion-worker-ai
+Version: 0.1.0
+Requires-Python: <3.14,>=3.13
+Requires-Dist: axion-infrastructure
+Requires-Dist: axion-observability
+Requires-Dist: langchain==0.3.27
+Requires-Dist: langchain-openai==0.3.35
+Requires-Dist: langsmith==0.3.45

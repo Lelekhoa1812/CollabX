@@ -1,0 +1,2 @@
+[console_scripts]
+axion-api = axion_api.main:main

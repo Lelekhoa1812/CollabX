@@ -1,0 +1,21 @@
+[project]
+name = "axion-worker-ai"
+version = "0.1.0"
+requires-python = ">=3.13,<3.14"
+dependencies = [
+  "axion-infrastructure",
+  "axion-observability",
+  "langchain==0.3.27",
+  "langchain-openai==0.3.35",
+  "langsmith==0.3.45",
+]
+
+[project.scripts]
+axion-worker-ai = "worker_ai.main:main"
+
+[build-system]
+requires = ["setuptools>=80"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]

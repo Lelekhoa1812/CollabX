@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://axion.local/schemas/problem-details.schema.json",
+  "type": "object",
+  "required": ["title", "status", "detail", "code"],
+  "additionalProperties": false,
+  "properties": {
+    "type": { "type": "string" },
+    "title": { "type": "string" },
+    "status": { "type": "integer", "minimum": 400, "maximum": 599 },
+    "detail": { "type": "string" },
+    "code": { "type": "string" },
+    "instance": { "type": ["string", "null"] },
+    "correlation_id": { "type": ["string", "null"] },
+    "errors": { "type": "array", "items": { "type": "object" } }
+  }
+}
+

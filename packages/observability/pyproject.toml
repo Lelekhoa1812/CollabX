@@ -1,0 +1,17 @@
+[project]
+name = "axion-observability"
+version = "0.1.0"
+requires-python = ">=3.13,<3.14"
+dependencies = [
+  "axion-domain",
+  "opentelemetry-api==1.39.1",
+  "opentelemetry-sdk==1.39.1",
+  "pydantic==2.13.4",
+]
+
+[build-system]
+requires = ["setuptools>=80"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
