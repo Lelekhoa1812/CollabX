@@ -1,2 +1,0 @@
-[console_scripts]
-axion-worker-ai = worker_ai.main:main

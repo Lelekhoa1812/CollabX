@@ -1,48 +1,20 @@
-# Axion Stakeholder CRM
+# CollabX
 
-Axion Stakeholder CRM is an AI-assisted consulting operating system for governed discovery, analysis, requirements, evidence, delivery handover and controlled change. This repository implements the TASK-001 to TASK-010 foundation from the project blueprint.
+CollabX is a domain-learning Senior Business Analyst system: a governed intelligence layer between a business and the software teams, products, and vendors that serve it.
 
-## Local Ports
+This repository is intentionally documentation-only. The previous implementation was retired on 11 August 2026 because it encoded infrastructure before the product thesis, intelligence model, evaluation contract, and domain-learning loop were proven.
 
-| Service | Port |
-|---|---:|
-| FastAPI API | 8000 |
-| React/Vite workbench | 5173 |
-| PostgreSQL | 55432 |
-| Redis | 56379 |
-| Temporal | 17233 |
-| Azurite Blob/Queue/Table | 10000/10001/10002 |
-| Mailpit SMTP/UI | 1025/8025 |
+CollabX is not a chatbot, autonomous requirements writer, or collection of role prompts. It is an evidence-centred system that conducts progressive discovery, maintains a temporal model of enterprise meaning, challenges ambiguity, turns intent into testable designs and interactive prototypes, and keeps the chain from source to decision to delivered outcome inspectable.
 
-## Quick Start
+Start with [documentation control](docs/governance/document-control.md) and the [documentation map](docs/README.md), then read the [vision and success contract](docs/product/vision.md), [complete capability map](docs/product/end-to-end-capability-map.md), [AWS platform](docs/architecture/aws-platform.md), and [delivery roadmap](docs/delivery/roadmap.md).
 
-```bash
-make bootstrap
-docker compose up -d
-make migrate seed
-uv run axion-api
-pnpm --filter @axion/web dev --host 0.0.0.0 --port 5173
-```
+## Non-negotiable outcome
 
-Run verification:
+CollabX earns the label “Senior BA” only when controlled studies show that it can improve discovery coverage, requirement quality, traceability, contradiction detection, stakeholder alignment, and realised solution value without hiding uncertainty or displacing accountable human decisions.
 
-```bash
-make verify
-python scripts/real_ai_check.py
-python scripts/real_langchain_check.py
-```
+## Repository state
 
-The local `.env` uses the supplied Azure Foundry deployments and LangSmith tracing. Hard tasks route to `AZURE_OPENAI_LLM`, medium tasks to `AZURE_OPENAI_MLM`, and easy tasks to `AZURE_OPENAI_SLM`. The LangChain check runs real model calls and emits LangSmith traces when tenant policy permits it.
-
-## Foundation Contents
-
-- TASK-001 governance: ADRs, architecture views, traceability matrix and validator.
-- TASK-002 monorepo: uv workspace, pnpm workspace, API/web shells, containers and developer commands.
-- TASK-003 configuration: typed Pydantic settings, secret references, feature flags and config check.
-- TASK-004 contracts: canonical Appendix A states, value objects, problem details, event schemas and OpenAPI export.
-- TASK-005 local stack: PostgreSQL, Redis, Temporal, Azurite, Mailpit, provider fakes and deterministic seed data.
-- TASK-006 CI/CD: GitHub workflow and release manifest schema.
-- TASK-007 Azure IaC: Bicep modules and environment compositions.
-- TASK-008 observability: health endpoints, redaction and operations runbook.
-- TASK-009 PostgreSQL: baseline schemas, identity/audit tables, RLS example and migration checker.
-- TASK-010 identity: Entra-oriented token validation contracts, encrypted session codec and identity persistence baseline.
+- Product code: deliberately absent.
+- Legacy Markdown: fully replaced.
+- Architecture status: proposed and falsifiable, not prematurely “locked”.
+- Next release: Research Foundation R0; no production build begins before its gates pass.

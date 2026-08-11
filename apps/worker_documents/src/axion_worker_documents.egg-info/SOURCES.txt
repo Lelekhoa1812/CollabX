@@ -1,8 +1,0 @@
-pyproject.toml
-src/axion_worker_documents.egg-info/PKG-INFO
-src/axion_worker_documents.egg-info/SOURCES.txt
-src/axion_worker_documents.egg-info/dependency_links.txt
-src/axion_worker_documents.egg-info/entry_points.txt
-src/axion_worker_documents.egg-info/requires.txt
-src/axion_worker_documents.egg-info/top_level.txt
-src/worker_documents/main.py

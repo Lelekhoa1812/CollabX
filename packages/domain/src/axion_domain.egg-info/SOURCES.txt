@@ -1,9 +1,0 @@
-pyproject.toml
-src/axion_domain/__init__.py
-src/axion_domain/states.py
-src/axion_domain/value_objects.py
-src/axion_domain.egg-info/PKG-INFO
-src/axion_domain.egg-info/SOURCES.txt
-src/axion_domain.egg-info/dependency_links.txt
-src/axion_domain.egg-info/requires.txt
-src/axion_domain.egg-info/top_level.txt

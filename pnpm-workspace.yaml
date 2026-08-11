@@ -1,7 +1,0 @@
-packages:
-  - apps/web
-  - packages/ui
-onlyBuiltDependencies:
-  - esbuild
-allowBuilds:
-  esbuild: true

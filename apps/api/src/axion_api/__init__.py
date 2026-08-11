@@ -1,2 +1,0 @@
-"""FastAPI composition root."""
-

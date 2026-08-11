@@ -1,2 +1,0 @@
-axion-domain
-pydantic==2.13.4

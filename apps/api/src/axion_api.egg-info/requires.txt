@@ -1,6 +1,0 @@
-axion-contracts
-axion-domain
-axion-infrastructure
-axion-observability
-fastapi==0.124.2
-uvicorn[standard]==0.38.0

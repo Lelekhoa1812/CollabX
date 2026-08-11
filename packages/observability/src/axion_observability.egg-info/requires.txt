@@ -1,4 +1,0 @@
-axion-domain
-opentelemetry-api==1.39.1
-opentelemetry-sdk==1.39.1
-pydantic==2.13.4

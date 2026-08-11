@@ -1,2 +1,0 @@
-[console_scripts]
-axion-worker-documents = worker_documents.main:main

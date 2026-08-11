@@ -1,8 +1,0 @@
-pyproject.toml
-src/axion_observability/__init__.py
-src/axion_observability/redaction.py
-src/axion_observability.egg-info/PKG-INFO
-src/axion_observability.egg-info/SOURCES.txt
-src/axion_observability.egg-info/dependency_links.txt
-src/axion_observability.egg-info/requires.txt
-src/axion_observability.egg-info/top_level.txt
