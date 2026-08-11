@@ -1,6 +1,6 @@
 # Governance, assumptions, and risk register
 
-Status: normative · Baseline: `design-v2` · Effective: 2026-08-11 · Owner: risk council · Review: quarterly
+Status: normative · Baseline: `design-v3` · Effective: 2026-08-11 · Owner: risk council · Review: quarterly
 
 ## Decision rights
 
@@ -22,6 +22,18 @@ Product council owns outcomes/scope; architecture council owns technical standar
 | Ontology upkeep exceeds value | growing steward queue/cost | domain-pack ROI metrics | maintenance cost exceeds avoided rework |
 | Regulatory/residency failure | unknown subprocessors/location | data maps, regional cells, contracts | unresolved prohibited transfer |
 | Evaluation gaming/leakage | test gains without pilot gains | hidden sets, temporal splits, outcome tracking | repeated offline/field divergence |
+| Provider/configuration mismatch | local Azure result presented as Bedrock/production qualification | provider profile, manifest and cross-provider conformance | unattributable run or unqualified fallback |
+| Operationally incomplete SaaS | features pass but support/offboarding/rights/billing cannot operate | ER readiness assessment and lifecycle rehearsal | critical lifecycle path lacks owner/evidence |
+| Identity lifecycle failure | leaver/delegation retains access | SCIM/revocation SLA, access review and negative authority suite | privileged orphaned access |
+| Metering or entitlement error | provider/customer usage does not reconcile | immutable usage ledger, quota and billing fixtures | cross-tenant charge or material variance |
+| Low adoption or unsafe reliance | low correction/source inspection, shadow processes | training competency, adoption/trust telemetry, customer success | critical over-reliance or sustained target-journey abandonment |
+| Supplier concentration/exit failure | model/identity/connector cannot be substituted or exported | conformance ports, exit rehearsal, manual degradation | critical supplier change without viable continuity |
+| Research participant harm/bias | dropout/complaint or unrepresented affected group | consent, sampling, adverse-event stop, independent review | material harm or invalid critical sample |
+| Executive UI creates false certainty | polished brief/dashboard hides evidence, dissent or metric limits | semantic status, evidence drill-down, comprehension study | approval based on misleading status/metric |
+| Generated prototype anchors intent | visual polish drives agreement before task evidence | fidelity ladder, competing variants, X05 and explicit assumptions | valid correction yield falls or anchoring harm rises |
+| Coding agent corrupts customer work | broad/stale patch overwrites unrelated change | exact-base patch, dirty-state preservation, diff/rollback and repository CI | any unrelated change loss or scope escape |
+| Generated code supply-chain/exfiltration | dependency, script or preview leaks data/credentials | pinned sandbox, no ambient credentials/network, scans and CSP | sandbox escape, unapproved network or secret exposure |
+| Multi-agent code conflict | specialists overlap or manufacture agreement | bounded scope, merge ownership, conflict reducer and ablation | unresolved overlapping semantic/code patch |
 
 ## Assumption ledger
 
@@ -34,6 +46,9 @@ Product council owns outcomes/scope; architecture council owns technical standar
 | Interactive prototypes improve intent clarity | medium | X05 |
 | Buyers value traceability enough to tolerate governance | medium | willingness-to-pay/usability study |
 | Domain learning transfers between engagements safely | low | held-out project transfer study |
+| Current Azure deployment results predict the selected AWS production route | low | replay provider-neutral release suite against Bedrock; do not assume equivalence |
+| Customers can operate required stewardship/support controls | low | M5 onboarding, service exercise and measured burden |
+| Usage-based costs can be attributed and priced sustainably | low | M5 provider reconciliation and unit-economics study |
 
 ## Change control
 

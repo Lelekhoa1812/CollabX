@@ -1,6 +1,8 @@
 # Discovery and interactive prototyping experience
 
-Status: normative · Baseline: `design-v2` · Effective: 2026-08-11 · Owner: product and design councils
+Status: normative · Baseline: `design-v3` · Effective: 2026-08-11 · Owner: product and design councils
+
+The governed implementation of mock data, progressive fidelity, intent questioning, prototype/code generation, context/tool/patch handling and multi-agent validation is specified in [experience generation and governed coding agent](../intelligence/experience-generation-and-coding-agent.md).
 
 ## Experience thesis
 

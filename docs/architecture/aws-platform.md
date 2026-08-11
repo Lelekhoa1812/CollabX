@@ -1,6 +1,6 @@
 # AWS enterprise platform architecture
 
-Status: provisional normative · Baseline: `design-v2` · Effective: 2026-08-11 · Owner: cloud architecture council
+Status: provisional normative · Baseline: `design-v3` · Effective: 2026-08-11 · Owner: cloud architecture council
 
 Validate service availability, quotas and pricing in each target Region before ADR acceptance.
 
@@ -79,6 +79,7 @@ Only CloudFront and the ALB are internet-reachable. Application, worker, databas
 | AI models | Bedrock Converse/InvokeModel via VPC endpoint | own gateway, model routing, context, contracts, evaluation and fallback |
 | Safety | Bedrock Guardrails plus CollabX policy/evidence gates | Guardrails are defence in depth; contextual grounding has use-case limitations; automated reasoning is detect-only |
 | Document AI | Textract; Transcribe/MediaConvert as needed | confidence thresholds, exact anchors, human verification, consent/retention |
+| Preview/code sandbox | isolated ephemeral ECS/Batch workers and separate restricted preview origin | no ambient credentials/general network; exact repository base/path/dirty-state; pinned dependencies; resource/expiry limits; scanned output and structured tool/patch receipts |
 | Secrets/keys | Secrets Manager, KMS, ACM Private CA if needed | per-service roles, rotation, key policy, tenant CMK tier |
 | Identity | Cognito federation/CIAM or customer IdP; IAM Identity Center for workforce | immutable tenant binding, SCIM/JIT, step-up MFA, session revocation |
 | Authorisation | Engine-neutral PDP + RLS; Verified Permissions is the favoured managed candidate | T2.06 compares AVP/embedded Cedar/OPA; PEP in every ingress/service/tool |
@@ -114,6 +115,8 @@ Presigned upload URLs are short-lived and bind tenant, expected content type/siz
 ## Model plane
 
 Use Bedrock as the first provider behind a `ModelGateway`; allow approved external providers only through a controlled egress adapter. Bedrock provider model vendors do not have access to customer prompts/completions in Bedrock deployment accounts, but CollabX remains responsible for configuration and data minimisation ([Bedrock data protection](https://docs.aws.amazon.com/bedrock/latest/userguide/data-protection.html)).
+
+The current local research/evaluation profile is Azure OpenAI-compatible, not Bedrock. It exercises the provider-neutral contract using the variables defined in [model provider and environment profiles](../engineering/model-provider-and-environment-profiles.md). Its results qualify only the exact Azure deployments and capability manifests tested. Before AWS production, the same conformance, safety, quality, residency, quota, latency and cost suites must pass against the selected Bedrock model route; equivalence is never assumed.
 
 Model invocation logging of full content is disabled by default because it can copy prompts, completions and documents to CloudWatch/S3. Emit application-owned metadata traces; enable restricted sampling only with purpose, classification, expiry and dedicated KMS bucket. AWS documents that invocation logging can capture full payloads and is disabled by default ([invocation logging](https://docs.aws.amazon.com/bedrock/latest/userguide/model-invocation-logging.html)).
 

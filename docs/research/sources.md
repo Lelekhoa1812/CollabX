@@ -1,6 +1,6 @@
 # Research sources and evidence notes
 
-Status: reference · Baseline: `design-v2` · Reviewed: 2026-08-11 · Owner: research council
+Status: reference · Baseline: `design-v3` · Reviewed: 2026-08-11 · Owner: research council
 
 Reviewed 11 August 2026. Prefer primary specifications and vendor documentation for capability facts; vendor features are candidates, not independent proof of suitability. Revalidate before implementation.
 
@@ -26,6 +26,13 @@ Reviewed 11 August 2026. Prefer primary specifications and vendor documentation 
 - [W3C PROV-O](https://www.w3.org/TR/prov-o/), [SKOS](https://www.w3.org/TR/skos-reference/) and [SHACL](https://www.w3.org/TR/shacl/) — provenance, vocabularies and graph constraints.
 - [OpenTelemetry semantic conventions](https://opentelemetry.io/docs/specs/semconv/) and [GenAI attributes](https://opentelemetry.io/docs/specs/semconv/registry/attributes/gen-ai/) — telemetry naming, maturity and sensitive-content cautions.
 - [Model Context Protocol authorisation](https://modelcontextprotocol.io/specification/2025-06-18/basic/authorization) — connector/tool delegated authorisation baseline.
+
+## Frontend, accessibility and secure generated software
+
+- [W3C WCAG 2.2](https://www.w3.org/TR/WCAG22/) — normative accessibility success criteria and full-page/responsive conformance baseline.
+- [WAI-ARIA Authoring Practices Guide](https://www.w3.org/WAI/ARIA/apg/) — non-normative keyboard/role/state implementation patterns for complex widgets; test with assistive-technology users.
+- [Core Web Vitals](https://web.dev/articles/vitals) — current LCP, INP and CLS definitions, p75 assessment and field-versus-lab measurement guidance; revalidate metric lifecycle quarterly.
+- [NIST SP 800-218 Secure Software Development Framework](https://csrc.nist.gov/pubs/sp/800/218/final) — secure SDLC practices applied equally to human and agent-generated software.
 
 ## AWS enterprise platform
 

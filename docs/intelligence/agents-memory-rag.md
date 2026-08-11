@@ -1,6 +1,8 @@
 # Agent, memory, context, and retrieval design
 
-Status: normative · Baseline: `design-v2` · Effective: 2026-08-11 · Owner: AI and architecture councils
+Status: normative · Baseline: `design-v3` · Effective: 2026-08-11 · Owner: AI and architecture councils
+
+This document governs BA cognitive runs. Frontend/prototype generation and repository patching use the same bounded-agent principles plus the stricter context, tool and patch contracts in [experience generation and governed coding agent](experience-generation-and-coding-agent.md).
 
 ## Agent topology
 
@@ -40,6 +42,8 @@ Loop:
 6. Run critic/counterexample search for material outputs.
 7. Repair within explicit iteration/cost/time limits.
 8. Return proposals, unresolved uncertainty, and recommended next question.
+
+For experience-building tasks the lead agent may delegate research/intent, experience architecture, frontend, contract/data, security, accessibility and test/visual reviews only when their inputs/outputs and merge ownership are independent. Repository/file access is never inherited merely because a child task exists.
 
 Terminal reasons are success, needs-human, needs-evidence, policy-denied, budget-exhausted, cancelled, unsafe, or failed. “Keep thinking” is not a control strategy.
 

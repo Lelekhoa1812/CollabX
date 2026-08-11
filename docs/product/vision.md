@@ -1,6 +1,6 @@
 # Vision and success contract
 
-Status: normative · Baseline: `design-v2` · Effective: 2026-08-11 · Owner: product council
+Status: normative · Baseline: `design-v3` · Effective: 2026-08-11 · Owner: product council
 
 ## The job
 
@@ -21,6 +21,7 @@ It recommends; authorised humans decide. It learns through explicit proposals an
 | Product/BA | Evidence is fragmented | One temporal, cited, conflict-aware work graph |
 | Designer | Feedback arrives after build | Live, reversible prototypes tied to requirements |
 | Engineer/vendor | Ambiguous handoff | Typed contracts, rules, NFRs, examples, and open questions |
+| Client product/design team | Intent is trapped in documents and static mockups | Progressive mock experience and governed, test-backed code patches |
 | Risk/compliance | AI outputs are opaque | Provenance, approvals, policy gates, and replayable runs |
 
 ## Capability model
@@ -86,6 +87,7 @@ Targets are hypotheses until benchmarked. A fluent demo, output volume, or token
 8. Prefer one capable agent plus tools; introduce specialist agents only when evaluation proves value.
 9. Progressive autonomy is earned per action class and reversible by default.
 10. Uncertainty is structured data, never hidden in polished prose.
+11. Generated experience and code remain inspectable change proposals: user need, rationale, trace, tests and rollback travel together.
 
 ## Explicit non-goals
 
@@ -95,6 +97,7 @@ Targets are hypotheses until benchmarked. A fluent demo, output volume, or token
 - Storing all knowledge in a vector database or knowledge graph.
 - Letting agents publish baselines, contact stakeholders, or mutate source systems without authority.
 - Building a general project-management suite before the BA intelligence loop is proven.
+- Acting as an unrestricted autonomous software developer, silently rewriting customer repositories, or treating a generated prototype as production approval.
 
 ## Falsification conditions
 

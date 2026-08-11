@@ -1,6 +1,6 @@
 # CollabX design corpus
 
-Status: normative · Baseline: `design-v2` · Effective: 2026-08-11 · Owner: product/architecture council
+Status: normative · Baseline: `design-v3` · Effective: 2026-08-11 · Owner: product/architecture council
 
 Read [documentation control and precedence](governance/document-control.md) before using this corpus for implementation. It identifies normative, provisional, delivery, research and historical documents and resolves authority when statements overlap.
 
@@ -9,12 +9,13 @@ Read [documentation control and precedence](governance/document-control.md) befo
 | Reader | Sequence |
 |---|---|
 | Founder/product | [Vision](product/vision.md) → [BA operating model](product/ba-operating-model.md) → [Full capability map](product/end-to-end-capability-map.md) → [Roadmap](delivery/roadmap.md) |
-| BA/product/design | [Artefacts and gates](product/artefacts-traceability-and-gates.md) → [Facilitation](product/conversation-survey-and-facilitation.md) → [Experience](experience/discovery-and-prototyping.md) → [Information architecture](experience/information-architecture-and-design-system.md) |
+| BA/product/design | [Artefacts and gates](product/artefacts-traceability-and-gates.md) → [Facilitation](product/conversation-survey-and-facilitation.md) → [Enterprise frontend](experience/enterprise-frontend-experience.md) → [Discovery/prototyping](experience/discovery-and-prototyping.md) → [Information architecture](experience/information-architecture-and-design-system.md) |
 | Architect | [System architecture](architecture/system-architecture.md) → [Data model](architecture/data-and-knowledge-model.md) → [Integrations](architecture/integration-and-interoperability.md) → [AWS platform](architecture/aws-platform.md) → [AWS operations](architecture/aws-security-resilience-operations.md) |
-| AI engineer | [Agents/memory/RAG](intelligence/agents-memory-rag.md) → [Model-agent lifecycle](intelligence/model-agent-and-evaluation-lifecycle.md) → [Evaluation](research/evaluation-and-experiments.md) |
+| AI engineer | [Agents/memory/RAG](intelligence/agents-memory-rag.md) → [Experience/coding agent](intelligence/experience-generation-and-coding-agent.md) → [Model-agent lifecycle](intelligence/model-agent-and-evaluation-lifecycle.md) → [Evaluation](research/evaluation-and-experiments.md) |
 | Software engineer | [Implementation blueprint](engineering/implementation-blueprint.md) → [API/event/state catalogue](engineering/api-event-and-state-catalogue.md) → [Engineering controls](engineering/contracts-observability-security.md) → [NFRs](engineering/non-functional-requirements.md) → [Verification](engineering/verification-strategy.md) |
-| Risk/research | [Document control](governance/document-control.md) → [Enterprise controls](governance/enterprise-control-framework.md) → [Technology decisions](research/technology-decisions.md) → [Research sources](research/sources.md) → [Risk register](governance/risk-register.md) → [Gap audit](research/gap-and-coverage-audit.md) → [Completion audit](research/completion-audit.md) |
-| Delivery/AI coding agent | [Roadmap](delivery/roadmap.md) → [Build sequence](delivery/build-sequence-and-dependency-graph.md) → [AI playbook](delivery/ai-implementation-playbook.md) → [Backlog](delivery/backlog.md) |
+| Risk/research | [Document control](governance/document-control.md) → [Enterprise controls](governance/enterprise-control-framework.md) → [Enterprise readiness](governance/enterprise-readiness-model.md) → [Current gap assessment](research/enterprise-gap-assessment.md) → [Technology decisions](research/technology-decisions.md) → [Risk register](governance/risk-register.md) |
+| Delivery/AI coding agent | [Roadmap](delivery/roadmap.md) → [Milestones 1–5](milestones/milestone_1.md) → [Build sequence](delivery/build-sequence-and-dependency-graph.md) → [AI playbook](delivery/ai-implementation-playbook.md) → [Backlog](delivery/backlog.md) |
+| Model/evaluation operator | [Provider and environment profiles](engineering/model-provider-and-environment-profiles.md) → [Model lifecycle](intelligence/model-agent-and-evaluation-lifecycle.md) → [Evaluation](research/evaluation-and-experiments.md) → [Verification](engineering/verification-strategy.md) |
 
 The scope of the destructive redesign is recorded in the [reset manifest](governance/reset-manifest.md).
 
@@ -43,6 +44,8 @@ flowchart TD
 6. Markdown links are checked in CI when implementation begins. Dated sources are revalidated quarterly.
 7. Implementation agents follow the build sequence and task dossier; prose principles never override typed contracts or accepted ADRs.
 8. Document status and precedence are defined only by the document-control registry; historical audits never override active specifications.
+9. Enterprise readiness is an operating-evidence state, not a feature checklist; milestone completion requires the signed evidence gate.
+10. Real-model evidence names the provider profile, deployment alias, dataset and release manifest; local Azure configuration never implicitly qualifies the AWS production candidate.
 
 ## Canonical vocabulary
 

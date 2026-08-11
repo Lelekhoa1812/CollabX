@@ -1,8 +1,12 @@
 # Non-functional requirements and service objectives
 
-Status: normative · Baseline: `design-v2` · Effective: 2026-08-11 · Owner: product and reliability councils
+Status: normative · Baseline: `design-v3` · Effective: 2026-08-11 · Owner: product and reliability councils
 
 Targets below are initial product contracts to validate under production-shaped load. Tenant agreements may select stricter tiers. Percentiles use rolling windows and exclude only documented planned maintenance.
+
+## Measurement contract
+
+Every reported SLI, evaluation or business metric defines numerator, denominator, unit, direction, aggregation, population/slice, time window, exclusions, missing-data treatment, source/lineage, owner and alert/decision threshold. Percentiles report sample size and tail segmentation; probabilistic quality reports uncertainty and critical-failure counts. A dashboard without this dictionary is not release evidence. Experimental milestone thresholds refine a named study; they do not silently change production SLOs.
 
 ## Availability and durability
 
@@ -25,6 +29,7 @@ Targets below are initial product contracts to validate under production-shaped 
 | PERF-05 | conversational first streamed token p95 | <3 s when provider healthy; progress within 500 ms |
 | PERF-06 | canvas interaction | ≥50 fps typical; virtualise large graphs/tables |
 | PERF-07 | long operations | async acknowledgement <1 s with resumable progress/cancel |
+| PERF-08 | field web responsiveness/stability | INP p75 ≤200 ms and CLS p75 ≤0.1, segmented mobile/desktop; current Core Web Vitals lifecycle revalidated quarterly |
 
 Measure separately by cell, tenant tier, capability, device/network, payload and provider. Never hide tail latency in averages.
 
@@ -55,6 +60,17 @@ Measure separately by cell, tenant tier, capability, device/network, payload and
 - Critical contradiction recall, temporal correctness, elicitation and requirement thresholds follow the evaluation contract; no aggregate score masks a critical slice.
 - Users can inspect source, uncertainty, agent/tool/version and correct/reject every proposal.
 - Model, prompt, retrieval, tool, guardrail and domain-pack changes are independently versioned and rollback-capable.
+- Every real-model result identifies provider profile, deployment alias, API/model version when returned, capability manifest, dataset, run count, token/cost/latency and grader versions; missing attribution invalidates the result.
+- Required real-model suites fail closed if the declared deployment is unavailable; fallback may be evaluated only as its own qualified route.
+
+## Service operations and lifecycle
+
+- Each production tier publishes support hours, incident severity, response/communication targets, maintenance, dependency exclusions and customer responsibilities.
+- Production SEV-1 detection/triage is staffed for the service tier; every page has owner, current runbook and customer/regulatory assessment path.
+- Automated identity deprovisioning targets ≤15 minutes from an authoritative SCIM/administrator event; privileged revocation is verified end to end.
+- Tenant provisioning/offboarding, canonical export/import, legal hold, rights and derived deletion have measured completion/error backlogs and reconciliation.
+- Usage attribution is idempotent and tenant-correct; production billing reconciliation variance target is ≤1% by billable unit and period.
+- Critical operational/control evidence has owner and expiry; expired evidence blocks promotion of the affected capability.
 
 ## Accessibility and inclusive UX
 
@@ -63,6 +79,14 @@ Measure separately by cell, tenant tier, capability, device/network, payload and
 - Captions/transcript correction and non-audio alternative; no timing-only or drag-only task.
 - Plain language, locale/timezone/calendar/number support, translation trace to canonical concepts.
 - Automated checks on every PR, manual assistive-technology tests each release and affected-user studies before pilot.
+
+## Frontend experience quality
+
+- Role-critical journeys, page catalogue and quality targets follow the [enterprise frontend specification](../experience/enterprise-frontend-experience.md); no page ships without all applicable loading/empty/stale/denied/error/offline/recovery states.
+- Local interaction feedback occurs within 100 ms; frontend work avoids >50 ms main-thread tasks at p75 on the declared target device unless chunked/yielded with evidence.
+- 100% critical journeys have browser E2E, keyboard and manual assistive-technology evidence; visual snapshots cover supported viewport, theme, locale and representative data state.
+- Generated L4/L5 frontends meet host PERF, security, privacy, accessibility, architectural and bundle budgets; a sandbox prototype receives no production-readiness inference.
+- Client analytics have event schema, purpose, consent/notice where required, field allowlist and denominator; no session replay on sensitive fields.
 
 ## Reliability and correctness
 

@@ -1,6 +1,6 @@
 # Evaluation and experiment program
 
-Status: research control · Baseline: `design-v2` · Effective: 2026-08-11 · Owner: research and evaluation council
+Status: research control · Baseline: `design-v3` · Effective: 2026-08-11 · Owner: research and evaluation council
 
 ## Research doctrine
 
@@ -36,6 +36,8 @@ Split by organisation/domain/time to prevent leakage. Maintain public synthetic 
 | Retrieval | Recall@k, nDCG, citation precision/recall, ACL leakage | counterevidence and old-version trap |
 | Agents/tools | task success, redundant work, tool correctness, loop termination, side effects | partial failure/replay |
 | Human factors | trust calibration, control, fatigue, inclusion, correction ease | low-power stakeholder |
+| Enterprise frontend | role task success/time/error, status/authority comprehension, evidence access, navigation/context recovery, accessibility, visual coherence | executive decision, time-poor participant, deep BA work |
+| Experience/code generation | intent/trace coverage, question relevance/burden, valid correction yield, mock coherence, patch precision, code/visual/a11y/security quality, reviewer effort | vague brief, stale/dirty repository and permission/failure states |
 | Outcome | rework, cycle time, defects, adoption, realised value | 30/90-day post-release |
 
 LLM-as-judge is a noisy measurement instrument: calibrate against human labels, use multiple order-randomised graders, test bias, and never let it alone approve a release.
@@ -55,6 +57,8 @@ An experiment can mature across phases without changing its hypothesis ID. Recor
 | X07-A | A durable-workflow/cognitive-runtime split is feasible | minimal interrupt/resume, replay, retry and duplicate-signal spike | deterministic replay and no duplicate acknowledged effect | select a provisional runtime and record constraints |
 | X07-B | The provisional runtime is production-operable | production-shaped kill/redeploy, history upgrade, cancellation, recovery and operator exercise | no lost state or duplicate effect; upgrade and recovery objectives pass | accept, replace or constrain the runtime split |
 | X08 | Memory promotion is safe/useful | longitudinal correction and poisoning suite | high retention, low false-memory rate | tune approval/promotion |
+| X09 | A coherent evidence-first frontend improves executive, participant and professional work | role-based tasks against document/dashboard and generic-workbench baselines | better comprehension/task success/context recovery with no accessibility or burden regression | accept page/design system or simplify |
+| X10 | Progressive intent/Q&A plus governed code tools outperform one-shot/manual experience generation | ambiguous briefs through L1–L5; manual, generic generator and CollabX; stale/hostile repositories | higher valid-correction/trace/patch quality at lower cycle/review time with zero critical patch/effect failure | qualify fidelity/tool/topology per task |
 
 ## Adversarial suite
 
@@ -62,7 +66,7 @@ Include indirect prompt injection, malicious connector descriptions, poisoned me
 
 ## Quality gates
 
-R0 research gate: corpus/rubrics, preregistered X01–X06 thin feasibility results and X07-A evidence exist. R1 foundation: isolation, provenance, bitemporal versioning, contracts and X07-B production qualification pass. R2 intelligence: confirmatory X02/X03/X06/X08 evidence and a grounded single-agent loop beat the strong RAG baseline on their declared critical slices. R3 collaboration: confirmatory X01/X04/X05 elicitation and prototype studies pass. R4 pilot: end-to-end business outcome and safety gates pass. Production autonomy remains action-class-specific.
+R0 research gate: corpus/rubrics, preregistered X01–X06/X09–X10 thin feasibility results and X07-A evidence exist. R1 foundation: isolation, provenance, bitemporal versioning, contracts, frontend/code-workspace substrate and X07-B production qualification pass. R2 intelligence: confirmatory X02/X03/X06/X08/X10 evidence and grounded bounded agent loops beat strong baselines on declared critical slices. R3 collaboration: confirmatory X01/X04/X05/X09/X10 elicitation, frontend and prototype/code-generation studies pass. R4 pilot: end-to-end business, frontend, generated-change outcome and safety gates pass. Production autonomy remains action-class-specific.
 
 ## Scientific hygiene
 

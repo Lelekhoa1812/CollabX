@@ -1,6 +1,6 @@
 # Documentation control and precedence
 
-Status: normative · Baseline: `design-v2` · Effective: 2026-08-11 · Owner: product and architecture councils
+Status: normative · Baseline: `design-v3` · Effective: 2026-08-11 · Owner: product and architecture councils
 
 This registry determines which document governs when two statements overlap. File modification time, detail level, or confident wording does not establish authority.
 
@@ -40,6 +40,7 @@ Within one level, the more specific document governs only within its declared sc
 | Facilitation | `../product/conversation-survey-and-facilitation.md` | Normative | interview/survey/session behaviour |
 | Experience | `../experience/discovery-and-prototyping.md` | Normative | discovery/prototype interaction contract |
 | Information architecture | `../experience/information-architecture-and-design-system.md` | Normative | navigation, design system and trust UX |
+| Enterprise frontend | `../experience/enterprise-frontend-experience.md` | Normative | complete frontend page surface, visual/interaction quality, role journeys and UX gates |
 | Logical architecture | `../architecture/system-architecture.md` | Normative | provider-neutral boundaries and runtime separation |
 | Data/knowledge | `../architecture/data-and-knowledge-model.md` | Normative | source of truth, time, provenance and semantic lifecycle |
 | Integration | `../architecture/integration-and-interoperability.md` | Normative | connector, MCP and synchronisation boundaries |
@@ -47,21 +48,26 @@ Within one level, the more specific document governs only within its declared sc
 | AWS operations | `../architecture/aws-security-resilience-operations.md` | Normative | AWS security, availability, DR, SRE and FinOps |
 | Agents/memory/RAG | `../intelligence/agents-memory-rag.md` | Normative | cognitive topology, memory, context, retrieval and tools |
 | Model/agent lifecycle | `../intelligence/model-agent-and-evaluation-lifecycle.md` | Normative | release unit, routing, guards, evaluation and drift |
+| Experience/coding agent | `../intelligence/experience-generation-and-coding-agent.md` | Normative | progressive UI generation, mock data, coding-agent context/state/tools/patches and qualification |
 | Implementation structure | `../engineering/implementation-blueprint.md` | Normative | repository, bounded contexts and coding boundaries |
 | API/events/states | `../engineering/api-event-and-state-catalogue.md` | Normative | interface style, envelopes and state vocabularies |
 | Engineering controls | `../engineering/contracts-observability-security.md` | Normative | contracts, prompts, telemetry and threat controls |
 | NFRs/SLOs | `../engineering/non-functional-requirements.md` | Normative | sole numeric service-objective catalogue |
 | Verification | `../engineering/verification-strategy.md` | Normative | test/evaluation/release evidence |
+| Model/environment profiles | `../engineering/model-provider-and-environment-profiles.md` | Normative | real-model configuration, provider boundaries and reproducibility |
 | Enterprise controls | `enterprise-control-framework.md` | Normative | governance, assurance and AI risk classes |
+| Enterprise readiness | `enterprise-readiness-model.md` | Normative | customer/service lifecycle, operational readiness, support, commercial and adoption controls |
 | Risk register | `risk-register.md` | Normative | active risks and assumptions; review quarterly |
 | Technology choices | `../research/technology-decisions.md` | Provisional normative | decision candidates/status/gates; accepted ADR later supersedes row |
 | Evaluation | `../research/evaluation-and-experiments.md` | Research control | experiment IDs, methods and release gates |
 | Roadmap | `../delivery/roadmap.md` | Delivery control | R0–R5 outcome phases and gates |
+| Milestones | `../milestones/milestone_1.md` through `milestone_5.md` | Delivery control | executable five-stage tasks, acceptance, metrics and evidence commands |
 | Portfolio backlog | `../delivery/backlog.md` | Delivery control | 48 portfolio epics mapped to trains |
-| Build sequence | `../delivery/build-sequence-and-dependency-graph.md` | Delivery control | 144 implementation work packages and dependency order |
+| Build sequence | `../delivery/build-sequence-and-dependency-graph.md` | Delivery control | 160 implementation work packages and dependency order |
 | AI delivery | `../delivery/ai-implementation-playbook.md` | Delivery control | mandatory task execution protocol |
 | Sources | `../research/sources.md` | Reference | research provenance; volatile sources revalidate quarterly |
 | Gap audit | `../research/gap-and-coverage-audit.md` | Historical | `design-v2` gap snapshot; active decisions live in technology registry |
+| Enterprise gap assessment | `../research/enterprise-gap-assessment.md` | Research control | current enterprise gap findings, dispositions and milestone crosswalk |
 | Completion audit | `../research/completion-audit.md` | Historical | `design-v2` verification snapshot only |
 | Reset manifest | `reset-manifest.md` | Historical | destructive-reset record and recovery note |
 

@@ -1,6 +1,6 @@
 # Verification and quality strategy
 
-Status: normative · Baseline: `design-v2` · Effective: 2026-08-11 · Owner: quality and engineering councils
+Status: normative · Baseline: `design-v3` · Effective: 2026-08-11 · Owner: quality and engineering councils
 
 ## Test pyramid plus evaluation lattice
 
@@ -17,6 +17,9 @@ Deterministic correctness and probabilistic quality are different systems. CI te
 | E2E | representative journeys and browser/accessibility across role/tenant boundaries |
 | Evaluation | gold BA capability, retrieval, agent, safety, human and field outcomes |
 | Operational | load/soak/chaos, backup/restore/DR, deploy/rollback, quota and cost |
+| Service lifecycle | provision, federation/SCIM, support incident, rights/hold, metering, export/import and offboarding |
+| Frontend/product | component states, browser journeys, role usability, visual/responsive/localised quality, RUM and analytics correctness |
+| Generated experience/code | intent/trace, mock-data integrity, sandbox, exact-base patch, repository CI and independent visual/security/accessibility critique |
 
 ## Non-negotiable suites
 
@@ -30,6 +33,11 @@ Deterministic correctness and probabilistic quality are different systems. CI te
 - Accessibility: automated plus manual keyboard/screen-reader/zoom/contrast/reflow/cognitive testing.
 - Security: SAST/SCA/secret/IaC/container/API/DAST and adversarial AI suites.
 - Resilience: AZ, database, queue, model, IdP, connector, deploy and Region scenarios.
+- Real-model conformance: redacted preflight, structured outputs, error/rate-limit/cancel, routing/fallback, reproducibility and cost attribution against each qualified deployment.
+- Customer lifecycle: synthetic contract-to-provision, role training, support/escalation, plan/quota change, suspension, canonical exit and verified disposition.
+- Documentation integrity: internal/external link policy, header/registry reachability, unique IDs/task counts, terminology, code fences/Mermaid, placeholders, secret patterns and runnable-command inventory.
+- Frontend state matrix: every critical page in normal, empty, loading, partial, stale, denied, validation, conflict, error, offline and recovery states where applicable.
+- Generated patch integrity: stale base, dirty/unrelated user change, path/scope escape, malformed patch, partial apply, failing test, rollback and prohibited commit/push/deploy.
 
 ## Test data
 
@@ -48,6 +56,8 @@ Model concurrent live sessions, streaming connections, autosaves, document burst
 5. Shadow: candidate model/prompt/graph on policy-permitted traffic with no effects.
 6. Canary: tenant/internal cohort, SLO/evaluation alarms and automatic technical rollback.
 7. Promote: human release authority validates evidence manifest; bake and observe.
+
+Real-model suites are split into a small required preflight/smoke gate and governed full evaluation jobs. Missing credentials may skip opt-in local smoke only; they cannot turn a required milestone evaluation green. The result explicitly reports `passed`, `failed`, `blocked`, or `not_applicable`—never an ambiguous skip.
 
 ## Quality evidence manifest
 

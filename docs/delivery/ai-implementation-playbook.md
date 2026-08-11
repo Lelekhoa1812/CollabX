@@ -1,6 +1,6 @@
 # AI implementation-agent playbook
 
-Status: delivery control · Baseline: `design-v2` · Effective: 2026-08-11 · Owner: engineering council
+Status: delivery control · Baseline: `design-v3` · Effective: 2026-08-11 · Owner: engineering council
 
 This is the mandatory execution protocol for future coding agents. It prevents locally plausible code from diverging from CollabX architecture.
 
@@ -36,6 +36,12 @@ Avoid horizontal phases that build every database table, then every endpoint, th
 ## AI-specific change sequence
 
 Dataset/rubric first → baseline result → candidate prompt/graph/tool/model → offline and adversarial evaluations → expert review → shadow → canary → approval. Never tune on the hidden release set. Do not commit model-generated semantic memory, change prompts, or swap model aliases directly in production.
+
+## Frontend and repository-change addendum
+
+For frontend or generated-code work, read the [enterprise frontend specification](../experience/enterprise-frontend-experience.md) and [experience-generation/coding-agent specification](../intelligence/experience-generation-and-coding-agent.md). The dossier also records target role/job/journey/page; applicable normal/empty/loading/partial/stale/denied/conflict/error/offline/recovery states; viewport/theme/locale/accessibility matrix; exact repository/ref/base revision and dirty state; instruction/context manifest; allowed paths/tools/network/effects; mock-data schema/seed; semantic/visual/code delta; screenshots; patch receipts; and revert.
+
+Inspect established routes, components, tokens, schemas and tests before generating equivalents. Patch exact scoped files against a known base, preserve unrelated user changes, and keep commit/push/PR/deploy as distinct explicitly authorised actions. Validation includes rendered-browser inspection and manual keyboard/assistive-technology evidence for critical journeys; type/lint/unit success alone is incomplete.
 
 ## Required task dossier
 

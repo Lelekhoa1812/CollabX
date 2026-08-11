@@ -1,6 +1,6 @@
 # API, event, and state catalogue
 
-Status: normative · Baseline: `design-v2` · Effective: 2026-08-11 · Owner: engineering council
+Status: normative · Baseline: `design-v3` · Effective: 2026-08-11 · Owner: engineering council
 
 ## API style
 
@@ -19,12 +19,21 @@ REST resources for commands/queries, SSE for durable output streams, WebSocket o
 | `/surveys` | draft/publish/campaign/respond/close/analyse |
 | `/requirements` | create/verify/validate/prioritise/trace/change |
 | `/prototypes` | create/version/render/compare/events/findings |
+| `/experience-projects` | brief/intent/journey/IA/fidelity/workspace/readiness |
+| `/mock-data-packs` | schema/seed/scenarios/validate/version/publish |
+| `/change-sets` | propose/diff/rebase/approve/apply/revert/evidence |
+| `/build-runs` | start/status/stream/cancel/tools/validation/artefacts |
 | `/decisions` | propose/options/decide/revisit |
 | `/reviews` | queue/comment/disposition/approve/waive |
 | `/agent-runs` | start/status/stream/cancel/trace/replay-safe-inspection |
 | `/domain-packs` | branch/propose/test/review/release/rollback |
 | `/connections` | authorise/scope/test/sync/revoke/reconcile |
 | `/evaluations` | dataset/experiment/run/result/release-evidence |
+| `/service-tiers` | catalogue, SLO/support/residency/model/limits and change publication |
+| `/support-cases` | create/triage/escalate/communicate/resolve/problem-link |
+| `/usage-records` | query/reconcile/dispute/export; immutable ingestion is internal only |
+| `/rights-requests` | access/correct/restrict/delete/hold/export/verify |
+| `/offboarding-jobs` | suspend/export/revoke/retain/delete/certify |
 
 Never expose generic CRUD for authority-sensitive transitions. `POST /requirements/{id}:approve` is a command with policy/invariants; a generic patch to `status` is forbidden.
 
@@ -54,9 +63,13 @@ Never expose generic CRUD for authority-sensitive transitions. `POST /requiremen
 | collaboration | `session.started`, `utterance.corrected`, `question.answered`, `recap.confirmed`, `survey.completed` |
 | analysis | `requirement.verified`, `decision.made`, `risk.escalated`, `option.selected` |
 | prototype | `prototype.versioned`, `scenario.observed`, `finding.confirmed` |
+| experience build | `intent.updated`, `question.answered`, `mock_data.versioned`, `change_set.proposed`, `patch.applied`, `validation.failed`, `build.completed` |
 | intelligence | `run.started`, `tool.denied`, `run.interrupted`, `proposal.produced`, `run.terminated` |
 | integration | `connection.authorised`, `sync.checkpointed`, `mapping.failed`, `connection.revoked` |
 | evaluation | `experiment.completed`, `regression.detected`, `release.approved`, `release.rolled_back` |
+| service | `case.opened`, `incident.declared`, `status.published`, `problem.created`, `change.authorised` |
+| commercial | `entitlement.changed`, `quota.reached`, `usage.recorded`, `usage.reconciled`, `billing_dispute.opened` |
+| privacy/records | `rights_request.received`, `legal_hold.changed`, `export.completed`, `offboarding.certified` |
 
 Consumers must be idempotent and tolerate unknown additive fields. Event names do not include implementation (“postgres_row_created”) or commands (“create_requirement”). Corrections append compensating/new facts.
 
@@ -72,6 +85,13 @@ Consumers must be idempotent and tolerate unknown additive fields. Event names d
 | Baseline | preparing → gate_failed/ready → approving → published → superseded/revoked |
 | Connection | draft → authorising → active/degraded → revoked/expired/error → deleted |
 | Deletion job | requested → legal_policy_check → approved/denied → executing → verifying → certified/partial_failure |
+| Support case | new → triaged → investigating/waiting_customer/waiting_supplier → resolved → closed/reopened |
+| Incident | detected → declared → contained → recovering → monitoring → resolved → review_open → closed |
+| Rights request | received → identity_scope_check → approved/denied/clarification → executing → quality_review → fulfilled/partially_fulfilled |
+| Offboarding | requested → suspension_planned → export_ready → access_revoked → retention_hold_applied → deletion_verifying → certified/exception |
+| Experience project | framing → clarifying → journey_ready → prototyping → validating → baseline_ready → repository_ready/research_only/closed |
+| Change set | drafting → proposed → conflict/validating → failed/ready_for_review → approved/rejected → applied → reverted/superseded |
+| Build run | queued → inspecting → clarifying/planning → patching → validating → critic_review → repairing/waiting_human → succeeded/failed/cancelled/budget_exhausted/policy_denied |
 
 Every terminal/transition definition is maintained as a shared enum/schema, not duplicated strings.
 

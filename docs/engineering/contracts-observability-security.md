@@ -1,6 +1,6 @@
 # Contracts, prompts, observability, and security
 
-Status: normative · Baseline: `design-v2` · Effective: 2026-08-11 · Owner: engineering and security councils
+Status: normative · Baseline: `design-v3` · Effective: 2026-08-11 · Owner: engineering and security councils
 
 ## Contract-first boundary
 
@@ -61,6 +61,10 @@ SLOs use burn-rate alerts. Agent “success” telemetry never substitutes for o
 | Prototype code execution | ephemeral sandbox, no secrets, network deny, resource/time limits |
 | Model/provider failure | gateway, circuit breaker, fallback policy, graceful human workflow |
 | Insider misuse | least privilege, separation of duties, immutable audit, anomaly detection |
+| Repository instruction/scope injection | instruction hierarchy, untrusted-content boundary, exact path/base policy and tool validation |
+| Generated patch corruption | dirty-state preservation, exact-base apply, semantic/code diff, tests, rollback and human review |
+| Preview/build exfiltration | ephemeral sandbox, no ambient credentials/network, CSP/origin isolation, secret/dependency scan |
+| False validation evidence | signed tool receipts, pinned environment, raw result integrity and independent critical review |
 
 Use STRIDE per boundary plus misuse/abuse cases for AI. Map controls to NIST AI RMF Govern/Map/Measure/Manage and the Generative AI Profile ([NIST AI RMF](https://www.nist.gov/itl/ai-risk-management-framework)). Threat modelling and privacy impact assessment are release artefacts, not end-stage reviews.
 

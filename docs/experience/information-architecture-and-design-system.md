@@ -1,6 +1,8 @@
 # Information architecture and design-system contract
 
-Status: normative · Baseline: `design-v2` · Effective: 2026-08-11 · Owner: design council
+Status: normative · Baseline: `design-v3` · Effective: 2026-08-11 · Owner: design council
+
+This document owns navigation and design-system semantics. The full role/page catalogue, visual character, cross-user journeys, responsive behaviours and measurable frontend release gates are defined in the [enterprise frontend experience specification](enterprise-frontend-experience.md).
 
 ## Product navigation
 
@@ -19,6 +21,8 @@ flowchart TD
 ```
 
 Conversation is available contextually but is not top-level information architecture. Every chat claim opens its structured item and source; every canvas item opens history, relations and authority.
+
+Experience generation is a governed mode within `Prototype` and `Deliver`, not a disconnected top-level “AI builder”. The same intent, scenario, evidence, prototype version and change set move from mock exploration to authorised repository patch; administration of model/tool/sandbox policy remains under `Administration`.
 
 ## Core page anatomy
 

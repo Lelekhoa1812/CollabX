@@ -1,6 +1,6 @@
 # Technology decision candidate registry
 
-Status: provisional normative · Baseline: `design-v2` · Effective: 2026-08-11 · Owner: architecture council
+Status: provisional normative · Baseline: `design-v3` · Effective: 2026-08-11 · Owner: architecture council
 
 These rows govern initial spikes, not procurement or production acceptance. `Candidate` means implementation may explore behind the named port; `Provisional` permits foundation work within the stated limits; `Accepted` requires an ADR and evidence. An accepted ADR supersedes its row through the document-control registry.
 
@@ -21,8 +21,8 @@ These rows govern initial spikes, not procurement or production acceptance. `Can
 | TD-011 | Messaging | SQS/EventBridge behind ports + transactional outbox | Kafka | Provisional | ordering, replay, throughput and operational evidence |
 | TD-012 | Telemetry | OpenTelemetry/ADOT | vendor SDK supplement | Provisional | correlation, redaction, overhead and export portability |
 | TD-013 | Policy decision point | engine-neutral PDP interface + PostgreSQL RLS | Amazon Verified Permissions, embedded Cedar, OPA | Candidate | T2.06 compares semantics, latency, policy lifecycle, local testing, quotas and tenant models |
-| TD-014 | UI | React + accessible design system + canvas adapters | server-rendered/hybrid | Candidate | bundle, device, accessibility and collaborative-editing studies |
-| TD-015 | Rendering | isolated ephemeral container/sandbox | managed sandbox service | Provisional | hostile-input escape, network/secret isolation, startup and cost tests |
+| TD-014 | UI | React + accessible design system + canvas adapters | server-rendered/hybrid | Candidate | X09 page/journey coherence, bundle/Core Web Vitals, device, accessibility and collaborative-editing evidence |
+| TD-015 | Rendering/code workspace | isolated ephemeral container/worktree with separate preview origin, exact-base patch tools and no ambient credentials/network | managed sandbox/development service | Provisional | X10 hostile-input/path/base/dirty-state, dependency, network/secret isolation, startup and cost tests |
 | TD-016 | Application topology | modular monolith + isolated workers | extracted services/serverless | Provisional | extract only for measured scale, fault, ownership or release-frequency pressure |
 | TD-017 | AWS compute | ECS Fargate across three AZs | EKS, Lambda, EC2 ECS | Candidate | T0.09/T1 operational, streaming, sandbox, scale and cost spike |
 | TD-018 | AWS database | Aurora PostgreSQL provisioned + RDS Proxy | RDS PostgreSQL, future Aurora modes | Candidate | X06 plus failover/extension/backup/DR/connection evidence |
@@ -32,6 +32,8 @@ These rows govern initial spikes, not procurement or production acceptance. `Can
 | TD-022 | AWS PDP backend | TD-013 interface; AVP is favoured managed candidate | embedded Cedar, OPA | Candidate | same T2.06 comparison; AWS specificity cannot bypass TD-013 |
 | TD-023 | AWS delivery | CDK/CloudFormation + signed ECS blue/green | Terraform, EKS GitOps | Candidate | team skill, plan/test, drift, rollback and portability spike |
 | TD-024 | Customer identity | engine-neutral CIAM/federation port | Cognito, external CIAM/customer IdP | Candidate | federation, SCIM, branding, Region, recovery and enterprise-policy study |
+| TD-025 | Experience/code workspace | owned structured inspect/patch/validate gateway over the isolated workspace | remote customer runner or managed cloud development environment | Candidate | X10 sandbox/path/network/secret/dirty-state safety, framework coverage, latency/cost and customer repository policy |
+| TD-026 | Generated UI design-system adaptation | inspect/reuse host tokens/components behind typed adapter; owned minimal baseline only for greenfield | screenshot-to-code or generator-owned component library | Candidate | X09/X10 visual coherence, accessibility, patch precision, component reuse and upgrade evidence |
 
 ## Resolved conflicts
 
@@ -60,3 +62,5 @@ Build CollabX differentiation: epistemic/temporal work graph, adaptive elicitati
 - OpenTelemetry trace across runtime boundaries without sensitive content.
 - RLS, S3, search/cache/queue and connector tenant-isolation red team.
 - Canonical knowledge export/import portability.
+- Enterprise frontend Tier-A/Tier-B route/state/component and X09 role-journey qualification.
+- Experience-intent/mock-data/context/patch contracts and X10 stale/hostile repository qualification.

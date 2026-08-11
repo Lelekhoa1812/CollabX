@@ -1,10 +1,10 @@
 # Model, agent, prompt, and evaluation lifecycle
 
-Status: normative · Baseline: `design-v2` · Effective: 2026-08-11 · Owner: AI risk and engineering councils
+Status: normative · Baseline: `design-v3` · Effective: 2026-08-11 · Owner: AI risk and engineering councils
 
 ## Release unit
 
-An agent capability release is an immutable manifest of: capability graph, node/tool versions, system/prompt components, output schemas, model routing/fallback, guardrail/policy versions, context/retrieval policy, domain-pack compatibility, budgets, evaluation dataset/result, threat assessment and rollback target. Changing any element creates a new candidate release.
+An agent capability release is an immutable manifest of: capability graph, node/tool versions, system/prompt components, output schemas, model routing/fallback, guardrail/policy versions, context/retrieval policy, domain-pack compatibility, design-system/repository adapter and sandbox image where applicable, budgets, evaluation dataset/result, threat assessment and rollback target. Changing any element creates a new candidate release.
 
 ## Lifecycle
 

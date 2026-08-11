@@ -1,6 +1,6 @@
 # Implementation blueprint
 
-Status: normative · Baseline: `design-v2` · Effective: 2026-08-11 · Owner: engineering and architecture councils
+Status: normative · Baseline: `design-v3` · Effective: 2026-08-11 · Owner: engineering and architecture councils
 
 This document constrains future code generation. It defines dependency direction and delivery mechanics; it is not product code.
 
@@ -15,6 +15,7 @@ collabx/
 │   ├── worker-intelligence/ # cognitive graphs, retrieval, model calls
 │   ├── worker-ingestion/    # source parsing/extraction/index projections
 │   ├── worker-render/       # sandbox dispatcher; no business credentials
+│   ├── worker-code/         # isolated repository inspect/patch/validate jobs; no implicit external effects
 │   └── worker-connectors/   # external integration adapters
 ├── packages/
 │   ├── domain/              # pure aggregates, value types, transition rules
@@ -23,6 +24,7 @@ collabx/
 │   ├── policy/              # PEP/PDP types and action catalogue
 │   ├── knowledge/           # provenance, temporal, relation/impact algorithms
 │   ├── intelligence/        # framework-neutral run/tool/context interfaces
+│   ├── experience-build/    # intent, prototype graph, mock data, change-set and validation domain
 │   ├── evaluation/          # datasets, graders, experiment/release evidence
 │   ├── observability/       # safe telemetry conventions
 │   ├── testkit/             # factories, clocks, IDs, fake ports, invariant suites
@@ -51,10 +53,13 @@ Python packages use `src` layout, locked reproducible environments, strict typin
 | Knowledge | knowledge item/version, assertion, relation, conflict, domain pack | semantic proposal/release |
 | Analysis | goal, process, rule, requirement, design, option, risk, decision | item-specific transitions |
 | Prototype | prototype/version/element/state/transition/finding | publish/feedback |
+| Experience build | experience project, intent graph, mock data, workspace binding, change set, build/validation run | fidelity progression and patch proposal lifecycle |
 | Intelligence | run, step, context manifest, tool receipt, memory proposal | bounded run ledger |
 | Integration | connection, credential ref, cursor, mapping, webhook/inbox | sync/reconciliation |
 | Evaluation | dataset, case, experiment, result, release evidence | immutable experiment |
 | Operations | incident, audit export, deletion job, usage/cost allocation | control workflows |
+| Service management | service tier, support case, incident/problem/change, status notice, runbook | customer/service lifecycle |
+| Commercial | plan, entitlement, usage ledger, quota, allocation, invoice evidence | metering and commercial reconciliation |
 
 Contexts communicate through application ports and versioned events. Direct cross-context table writes are prohibited. Start in one database with schema-per-context and one deployable application; boundaries exist before service extraction.
 
@@ -102,6 +107,10 @@ Framework adapters implement this interface. Nodes are pure transforms or invoke
 
 Feature slices use generated clients, query cache for server state and an explicit local-edit buffer. Collaborative edits use server-assigned versions and conflict UI; do not silently last-write-wins. Stable entity/element IDs support deep links and annotations. Streams are resumable from sequence/cursor. Canvas layouts are user projections separate from semantic graph. Every workflow has empty/loading/partial/stale/permission/error/offline/retry states and keyboard/screen-reader behaviour.
 
+The [enterprise frontend experience](../experience/enterprise-frontend-experience.md) governs routes, role journeys, visual/interaction semantics and UI qualification. The [experience-generation/coding-agent specification](../intelligence/experience-generation-and-coding-agent.md) governs generated frontend and repository patches. Code workers operate only on an authorised snapshot/worktree, apply structured exact-base patches, preserve unrelated changes and emit validation/tool receipts; external version-control or deployment effects require separate commands and authority.
+
 ## Definition of implementation-ready
 
 A work item must link to capability, user journey, domain objects/transitions, command/query/API/event schemas, authority and tenant model, data classification/retention, UI states, algorithm/prompt/tool policy, failure/idempotency/concurrency, telemetry/SLO, migration/rollback, unit/contract/integration/E2E/security/accessibility/evaluation tests, and acceptance examples. If any is unknown, the task is a spike or specification task—not implementation.
+
+For customer-facing or production work, implementation-ready also requires service tier, support/incident owner, entitlement/metering effect, customer communication, training/adoption impact, portability/offboarding and evidence expiry. These may be explicitly non-applicable with rationale; they may not be silently omitted.

@@ -1,6 +1,6 @@
 # System architecture
 
-Status: normative · Baseline: `design-v2` · Effective: 2026-08-11 · Owner: architecture council
+Status: normative · Baseline: `design-v3` · Effective: 2026-08-11 · Owner: architecture council
 
 ## Architectural thesis
 
@@ -38,7 +38,7 @@ flowchart LR
   AG --> OBS
 ```
 
-Trust boundaries exist at browser/API, tenant, connector, model provider, worker sandbox, object rendering, and telemetry export. Source content is untrusted even when internal; instructions within it are data, never executable authority.
+Trust boundaries exist at browser/API, tenant, connector, model provider, customer/repository workspace, worker sandbox, preview origin, object rendering, and telemetry export. Source and repository content are untrusted even when internal; instructions within them are scoped data, never authority to bypass platform security or the authorised change boundary.
 
 ## Logical components
 
@@ -49,6 +49,8 @@ Trust boundaries exist at browser/API, tenant, connector, model provider, worker
 | Knowledge service | claims, concepts, relations, evidence, temporal versions, retrieval | raw binaries |
 | Elicitation service | plans, sessions, questions, coverage, fatigue/consent | final approval |
 | Artefact/prototype service | projections, generated variants, annotations, diffs | source-of-truth requirements |
+| Experience-generation service | intent/route/component/state graph, mock data, fidelity/change sets and validation evidence | silent approval or unrestricted repository access |
+| Code-workspace gateway | authorised repository snapshot, scoped inspect/patch/validate tools and receipts | business meaning, credentials or implicit commit/push/deploy authority |
 | Policy/tool gateway | identity, authorisation, budgets, schemas, idempotency, receipts | agent reasoning |
 | Durable runtime | timers, retries, signals, compensation, long-lived lifecycle | semantic reasoning |
 | Cognitive runtime | bounded plan/act/critique graph and specialist delegation | business authority |
@@ -106,6 +108,7 @@ flowchart TB
 - Checkpoints reference versioned prompts, tools, models, policies, schema and context manifest.
 - Cancellation, deadlines, budgets, retries, circuit breakers, backpressure, and dead-letter recovery are first-class.
 - Restore testing, not backup existence, establishes recoverability.
+- Prototype and repository-generation runs bind exact base revision, context/instruction manifest, tool policy, patch receipts and validation; no agent may commit, push, deploy or contact external systems by implication.
 
 ## Reliability objectives
 

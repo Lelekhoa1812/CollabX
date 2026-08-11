@@ -1,6 +1,6 @@
 # Artefacts, traceability, and decision gates
 
-Status: normative · Baseline: `design-v2` · Effective: 2026-08-11 · Owner: product and BA councils
+Status: normative · Baseline: `design-v3` · Effective: 2026-08-11 · Owner: product and BA councils
 
 ## Canonical artefact families
 
@@ -14,6 +14,7 @@ Artefacts are projections of canonical versioned items, not independent document
 | Strategy | current/future state, cause, options, business case, change | outcomes, assumptions, decisions |
 | Requirements | requirements, scenarios, acceptance, NFRs, architecture | sources, goals, designs, tests |
 | Experience | journey, service blueprint, wireframe/prototype, findings | scenarios, elements, requirements |
+| Experience build | intent graph, mock-data pack, route/component/state graph, code change set, visual/validation evidence | journeys, requirements, design system, repository revision, tests |
 | Delivery | release slices, dependencies, RAID, implementation questions | baseline, work items, test evidence |
 | Governance | reviews, approvals, waivers, baselines, change requests | authority, item versions, impact |
 | Evaluation | measures, observations, limitations, recommendations | outcome, release, domain learning |

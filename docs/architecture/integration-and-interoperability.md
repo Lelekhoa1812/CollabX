@@ -1,6 +1,6 @@
 # Integration and interoperability architecture
 
-Status: normative · Baseline: `design-v2` · Effective: 2026-08-11 · Owner: architecture council
+Status: normative · Baseline: `design-v3` · Effective: 2026-08-11 · Owner: architecture council
 
 ## Connector principle
 
@@ -56,6 +56,7 @@ Choose one ownership rule per field/entity: source-owned, CollabX-owned, or expl
 - Data/catalog/process: databases, APIs, data catalogues and process repositories through read-only views first.
 - Identity: OIDC/SAML federation and SCIM provisioning/deprovisioning; tenant mapping cannot rely on email domain alone.
 - Export: OpenAPI/AsyncAPI/JSON Schema, BPMN, CSV/XLSX, DOCX/PDF, trace manifests and audit streams.
+- Code/design workspaces: GitHub/GitLab/Azure Repos and design-system/package registries through read/patch/PR-capable adapters; bind exact repository/ref/revision, path policy and approval. Start read-only or isolated worktree; never inherit a user’s unrestricted repository or CI/deployment authority.
 
 ## MCP and agent tools
 
@@ -68,6 +69,8 @@ TLS, provider signature, timestamp/replay window, body-size/type limits, source/
 ## Reconciliation
 
 Scheduled and on-demand jobs compare remote inventory/version/hash with connector ledger and canonical mappings. Outcomes: consistent, remote-ahead, local-ahead, divergent, missing, unauthorised or mapping-invalid. Reconciliation is mandatory after token restoration, webhook gap, outage, mapping upgrade and bulk change.
+
+Repository reconciliation compares the authorised base revision, inspected-file hashes, applied patch, generated artefacts and current remote ref. A changed base invalidates pending patch approval. Merge/commit/push/PR/deploy are distinct side effects with distinct receipts and authority.
 
 ## Connector certification
 

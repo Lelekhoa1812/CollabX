@@ -1,6 +1,6 @@
 # End-to-end BA-agent capability map
 
-Status: normative · Baseline: `design-v2` · Effective: 2026-08-11 · Owner: product council
+Status: normative · Baseline: `design-v3` · Effective: 2026-08-11 · Owner: product council
 
 This is the product boundary an implementation must satisfy. A capability is not complete until its user experience, domain model, authority, failure modes, telemetry and evaluation evidence exist.
 
@@ -159,6 +159,30 @@ This is the product boundary an implementation must satisfy. A capability is not
 - Audit export, eDiscovery/legal hold, data-subject access/correction/deletion.
 - Usage, entitlements, budgets, billing allocation and service status.
 
+## 16. Enterprise service and customer lifecycle
+
+- Use-case qualification, service tier/contract/responsibility selection and prohibited-use screening.
+- Repeatable tenant provisioning, configuration acceptance, data migration, administrator setup and role-based competency training.
+- Customer success plans linking adoption, review burden, support, risk, value hypothesis and renewal/retirement decisions.
+- Service catalogue, severity/support/on-call/status/maintenance, incident/problem/change and customer communications.
+- Supplier/subprocessor inventory, due diligence, outage/deprecation handling, portability and exit.
+- Entitlement and immutable usage metering, provider/customer reconciliation, quota/overage/suspension and billing-dispute evidence.
+- Data-rights, eDiscovery/legal-hold, canonical export/import, tenant suspension/offboarding and verified disposition.
+- System/accessibility/control evidence cards, customer assurance, limitation/change notices and continuous review.
+
+## 17. Experience generation and governed code collaboration
+
+- Progressive intention graph linking outcome, user/job, scenario, state, component, data/API, metric, evidence and decision.
+- Mixed progressive Q&A: free-form, MCQ, multi-select, checklist, ranking, scale, scenario task, evidence request and semantic-diff confirmation.
+- Journey, IA, wireframe, stateful mock, contract prototype, sandbox thin slice and authorised repository patch fidelity levels.
+- Coherent synthetic mock-data packs covering happy, empty, loading, stale, permission, error, exception, boundary, locale and accessibility states.
+- Context manifest combining scoped instructions, repository/architecture, journeys/requirements/evidence, code patterns, tools, budgets and validation.
+- Coding-agent inspect/clarify/plan/design/patch/validate/critic/repair/present lifecycle with explicit terminal reasons.
+- Structured tool gateway and patch receipts; exact-base conflict, unrelated-change preservation, rollback and no implicit commit/push/deploy.
+- Bounded research, experience, frontend, contract, security, accessibility and testing specialists only when decomposition/ablation proves benefit.
+- Integrated prototype viewport, intent/Q&A, route/component/state inspector, change rationale, validation evidence and feedback trace.
+- Browser E2E, visual, accessibility, security/privacy, performance, product-study and repository-integrity qualification.
+
 ## Cross-capability quality contract
 
-Every capability supplies: accessible responsive UX; API/event/schema; tenant/authority enforcement; provenance and bitemporal behaviour; audit; content classification/retention; idempotency/concurrency; failure/recovery; observability/SLO; cost quota; internationalisation; import/export; test fixtures; adversarial evaluation; runbook; and upgrade/rollback path.
+Every capability supplies: accessible responsive UX; API/event/schema; tenant/authority enforcement; provenance and bitemporal behaviour; audit; content classification/retention; idempotency/concurrency; failure/recovery; observability/SLO; cost quota; internationalisation; import/export; test fixtures; adversarial evaluation; service/support ownership; customer exit; and upgrade/rollback path.
