@@ -6,76 +6,169 @@
 <title>Settings · CollabX</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
 <style>
 :root {
   --ink: #242424;
   --ink-2: #424242;
   --muted: #616161;
   --line: #e0e0e0;
-  --line-strong: #d1d1d1;
+  --line-strong: #c7c7c7;
   --canvas: #f5f5f5;
   --surface: #ffffff;
   --surface-2: #fafafa;
+  --surface-3: #f0f0f0;
+  --surface-inset: #f0f0f0;
   --brand: #0f6cbd;
   --brand-soft: #e8f3fc;
   --brand-hover: #115ea3;
+  --brand-deep: #0b4a86;
   --ok: #0e700e;
   --ok-bg: #dff6dd;
   --warn: #8a3707;
   --warn-bg: #fff4ce;
   --bad: #b10e1c;
   --bad-bg: #fde7e9;
-  --ai: #5b5fc7;
-  --ai-bg: #f0f0ff;
-  --radius: 4px;
+  --ai: #2f4b7c;
+  --ai-bg: #f3f6fa;
+  --ai-line: #c5d0de;
+  --radius: 2px;
+  --radius-lg: 4px;
+  --radius-sm: 2px;
   --nav: 220px;
   --assistant: 340px;
-  --shadow: 0 1px 2px rgba(0,0,0,.06), 0 0 2px rgba(0,0,0,.04);
-  --font: "Segoe UI", "Segoe UI Variable", system-ui, -apple-system, sans-serif;
+  --shadow-1: 0 0 2px rgba(0,0,0,.12), 0 1px 2px rgba(0,0,0,.06);
+  --shadow-2: 0 2px 8px rgba(0,0,0,.1), 0 0 1px rgba(0,0,0,.08);
+  --shadow-3: 0 8px 24px rgba(0,0,0,.16), 0 2px 6px rgba(0,0,0,.08);
+  --font: "Source Sans 3", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --mono: "IBM Plex Mono", "Cascadia Mono", ui-monospace, Consolas, monospace;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-7: 32px;
+  --space-8: 48px;
+  --text-xs: 11px;
+  --text-sm: 12px;
+  --text-md: 14px;
+  --text-lg: 16px;
+  --text-xl: 20px;
+  --text-2xl: 24px;
+  --text-3xl: 28px;
+  --ease: cubic-bezier(.33,0,0,1);
+  --dur: 120ms;
+  --focus: 0 0 0 1px var(--surface), 0 0 0 3px var(--brand);
+  --topbar: 48px;
 }
 *, *::before, *::after { box-sizing: border-box; }
-html { font-size: 14px; }
+html { font-size: var(--text-md); scroll-behavior: smooth; }
+html.large-text { font-size: 16px; }
 body {
   margin: 0; font-family: var(--font); color: var(--ink);
-  background: var(--canvas); line-height: 1.45; -webkit-font-smoothing: antialiased;
+  background: var(--canvas); line-height: 1.43; -webkit-font-smoothing: antialiased;
+  font-feature-settings: "ss01" 0, "liga" 1;
 }
+body.demo-resetting { opacity: .55; transition: opacity var(--dur) var(--ease); }
 a { color: var(--brand); text-decoration: none; }
 a:hover { text-decoration: underline; }
 button, input, select, textarea { font: inherit; color: inherit; }
-h1,h2,h3 { margin: 0 0 .4rem; font-weight: 600; letter-spacing: -0.01em; color: var(--ink); }
-h1 { font-size: 1.5rem; }
-h2 { font-size: 1.125rem; }
-h3 { font-size: 1rem; }
+button { cursor: pointer; }
+h1,h2,h3 { margin: 0 0 .35rem; font-weight: 600; letter-spacing: -0.015em; color: var(--ink); line-height: 1.28; }
+h1 { font-size: var(--text-xl); font-weight: 600; }
+h2 { font-size: 15px; font-weight: 600; }
+h3 { font-size: 14px; font-weight: 600; }
 p { margin: 0 0 .75rem; color: var(--muted); }
+.text-primary { color: var(--ink) !important; }
+.text-muted { color: var(--muted) !important; }
+.text-sm { font-size: var(--text-sm); }
+.text-xs { font-size: var(--text-xs); }
+.mt-0 { margin-top: 0 !important; }
+.mt-2 { margin-top: var(--space-2) !important; }
+.mt-3 { margin-top: var(--space-3) !important; }
+.mt-4 { margin-top: var(--space-4) !important; }
+.mb-0 { margin-bottom: 0 !important; }
+.w-full { width: 100%; }
+.max-560 { max-width: 560px; }
+.max-720 { max-width: 720px; }
+.max-860 { max-width: 860px; }
+.max-980 { max-width: 980px; }
+.mx-auto { margin-left: auto; margin-right: auto; }
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+}
+.skip-link {
+  position: absolute; left: 12px; top: -48px; z-index: 200;
+  background: var(--brand); color: #fff; padding: 8px 12px; border-radius: var(--radius);
+  transition: top var(--dur) var(--ease);
+}
+.skip-link:focus { top: 12px; outline: none; box-shadow: var(--focus); }
+:focus-visible { outline: none; box-shadow: var(--focus); }
+.ico {
+  width: 16px; height: 16px; display: inline-flex; align-items: center; justify-content: center;
+  flex: 0 0 auto; line-height: 0; vertical-align: middle;
+}
+.ico svg { width: 16px; height: 16px; display: block; }
+.ico-lg { width: 18px; height: 18px; }
+.ico-lg svg { width: 18px; height: 18px; }
+.ico-xl { width: 24px; height: 24px; }
+.ico-xl svg { width: 24px; height: 24px; }
 
 .app { min-height: 100vh; display: flex; flex-direction: column; }
 .topbar {
-  height: 48px; display: flex; align-items: center; gap: 10px;
-  padding: 0 12px; background: #1b1a19; color: #fff; position: sticky; top: 0; z-index: 50;
+  height: var(--topbar); display: flex; align-items: center; gap: 10px;
+  padding: 0 12px; background: #1b1a19;
+  color: #fff; position: sticky; top: 0; z-index: 60; border-bottom: 1px solid #2d2c2b;
 }
-.topbar .logo { font-weight: 700; color: #fff; text-decoration: none; letter-spacing: .02em; }
+.topbar .logo {
+  display: inline-flex; align-items: center; gap: 8px; font-weight: 600; color: #fff;
+  text-decoration: none; letter-spacing: 0; font-size: 14px;
+}
+.topbar .logo-mark {
+  width: 20px; height: 20px; border-radius: 2px;
+  background: var(--brand);
+  display: grid; place-items: center; font-size: 10px; font-weight: 700; letter-spacing: 0;
+}
 .topbar .portal {
-  display: inline-flex; background: #2d2c2b; border-radius: 999px; padding: 2px; gap: 2px;
+  display: inline-flex; background: #2d2c2b; border-radius: 2px; padding: 2px; gap: 0;
 }
 .topbar .portal a {
-  color: #c8c6c4; text-decoration: none; padding: 4px 12px; border-radius: 999px; font-size: 12px; font-weight: 600;
+  color: #c8c6c4; text-decoration: none; padding: 4px 10px; border-radius: 2px;
+  font-size: 12px; font-weight: 600; transition: background var(--dur) var(--ease), color var(--dur) var(--ease);
 }
 .topbar .portal a.active { background: #fff; color: #242424; }
-.topbar .crumb { color: #c8c6c4; font-size: 12px; }
+.topbar .portal a:hover:not(.active) { color: #fff; text-decoration: none; }
+.topbar .crumb { color: #c8c6c4; font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 280px; }
 .topbar .spacer { flex: 1; }
-.topbar .search {
-  width: min(280px, 36vw); background: #2d2c2b; border: 1px solid #3b3a39; color: #fff;
-  border-radius: var(--radius); padding: 6px 10px;
+.topbar .search-btn {
+  display: inline-flex; align-items: center; gap: 8px; min-width: min(240px, 30vw);
+  background: #2d2c2b; border: 1px solid #3b3a39; color: #c8c6c4;
+  border-radius: 2px; padding: 6px 10px; text-align: left;
+  transition: border-color var(--dur) var(--ease), background var(--dur) var(--ease);
 }
-.topbar .icon {
-  background: transparent; border: 0; color: #fff; cursor: pointer; padding: 6px 8px; border-radius: var(--radius);
+.topbar .search-btn:hover { background: #323130; border-color: #605e5c; }
+.topbar .search-btn kbd {
+  margin-left: auto; font-size: 10px; border: 1px solid #484644; border-radius: 2px;
+  padding: 1px 4px; color: #a19f9d; font-family: var(--font);
 }
-.topbar .icon:hover { background: #2d2c2b; }
+.topbar .icon-btn {
+  background: transparent; border: 0; color: #fff; cursor: pointer; width: 32px; height: 32px;
+  border-radius: 2px; display: inline-grid; place-items: center; position: relative;
+  transition: background var(--dur) var(--ease); padding: 0;
+}
+.topbar .icon-btn:hover { background: #2d2c2b; }
+.topbar .icon-btn .pulse {
+  position: absolute; top: 6px; right: 6px; width: 6px; height: 6px; border-radius: 50%;
+  background: #d13438; box-shadow: 0 0 0 2px #1b1a19;
+}
 .topbar .avatar {
-  width: 28px; height: 28px; border-radius: 50%; background: #0f6cbd; display: grid; place-items: center;
-  font-size: 12px; font-weight: 700;
+  width: 28px; height: 28px; border-radius: 50%;
+  background: var(--brand);
+  display: grid; place-items: center; font-size: 11px; font-weight: 600;
 }
+.nav-toggle { display: none; }
 
 .shell { display: grid; grid-template-columns: var(--nav) 1fr; flex: 1; min-height: 0; }
 .shell.with-assistant { grid-template-columns: var(--nav) 1fr var(--assistant); }
@@ -84,211 +177,633 @@ p { margin: 0 0 .75rem; color: var(--muted); }
 
 .nav {
   background: var(--surface); border-right: 1px solid var(--line);
-  padding: 12px 8px; position: sticky; top: 48px; height: calc(100vh - 48px); overflow: auto;
+  padding: 14px 10px; position: sticky; top: var(--topbar); height: calc(100vh - var(--topbar)); overflow: auto;
 }
 .nav .label {
-  font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted);
-  padding: 10px 10px 6px;
+  font-size: var(--text-xs); text-transform: uppercase; letter-spacing: .04em; color: var(--muted);
+  padding: 14px 10px 6px; font-weight: 600;
 }
 .nav a {
-  display: flex; align-items: center; gap: 10px; padding: 8px 10px; border-radius: var(--radius);
-  color: var(--ink-2); text-decoration: none; margin-bottom: 2px;
+  display: flex; align-items: center; gap: 10px; padding: 9px 10px; border-radius: var(--radius);
+  color: var(--ink-2); text-decoration: none; margin-bottom: 2px; font-weight: 500;
+  transition: background var(--dur) var(--ease), color var(--dur) var(--ease);
 }
-.nav a:hover { background: var(--surface-2); text-decoration: none; }
-.nav a.active { background: var(--brand-soft); color: var(--brand); font-weight: 600; }
-.nav .dot {
-  width: 8px; height: 8px; border-radius: 50%; background: currentColor; opacity: .55; flex: 0 0 auto;
+.nav a:hover { background: var(--surface-3); text-decoration: none; }
+.nav a.active {
+  background: var(--brand-soft); color: var(--brand-deep); font-weight: 600;
+  box-shadow: inset 3px 0 0 var(--brand);
 }
+.nav a .ico { opacity: .75; }
+.nav a.active .ico { opacity: 1; color: var(--brand); }
 
-.main { padding: 20px 24px 48px; min-width: 0; }
-.page-head { display: flex; justify-content: space-between; gap: 16px; align-items: flex-start; margin-bottom: 16px; flex-wrap: wrap; }
-.page-head .lead { max-width: 720px; color: var(--muted); margin: 0; }
-.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.main { padding: 22px 28px 56px; min-width: 0; animation: fadeRise .28s var(--ease); }
+.page-head { display: flex; justify-content: space-between; gap: 16px; align-items: flex-start; margin-bottom: 18px; flex-wrap: wrap; }
+.page-head .lead { max-width: 720px; color: var(--muted); margin: 0; font-size: 14.5px; }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
 
 .assistant {
-  background: var(--surface); border-left: 1px solid var(--line); padding: 14px;
-  position: sticky; top: 48px; height: calc(100vh - 48px); overflow: auto;
+  background: var(--surface);
+  border-left: 1px solid var(--line); padding: 14px;
+  position: sticky; top: var(--topbar); height: calc(100vh - var(--topbar)); overflow: auto;
+  display: none; flex-direction: column; gap: 10px;
 }
-.assistant h2 { font-size: 13px; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); }
+.shell.with-assistant .assistant { display: flex; }
+.assistant .assistant-head {
+  display: flex; justify-content: space-between; align-items: center; gap: 8px;
+}
+.assistant .assistant-title {
+  display: inline-flex; align-items: center; gap: 6px; font-size: 13px;
+  letter-spacing: 0; color: var(--ink); font-weight: 600; margin: 0;
+}
+.assistant .assistant-title .ico { color: var(--ai); }
+.assistant .context-chip {
+  font-size: var(--text-sm); color: var(--ink); background: var(--surface-2);
+  border: 1px solid var(--line); border-radius: var(--radius); padding: 10px 12px;
+}
+.assistant .thread { display: flex; flex-direction: column; gap: 10px; flex: 1; min-height: 0; }
+.assistant .msg {
+  border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 10px 12px;
+  background: var(--surface);
+}
+.assistant .msg.agent { border-color: var(--ai-line); background: var(--ai-bg); }
+.assistant .msg.user { background: var(--surface-2); }
+.assistant .msg .who {
+  display: flex; align-items: center; gap: 6px; font-size: var(--text-xs);
+  font-weight: 600; color: var(--muted); margin-bottom: 4px; text-transform: uppercase; letter-spacing: .03em;
+}
+.assistant .msg.agent .who { color: var(--ai); }
+.assistant .ask-wrap { margin-top: auto; }
 .assistant .ask {
-  width: 100%; min-height: 72px; border: 1px solid var(--line-strong); border-radius: var(--radius);
-  padding: 10px; resize: vertical; background: var(--surface-2);
+  width: 100%; min-height: 64px; border: 1px solid var(--line-strong); border-radius: var(--radius);
+  padding: 10px; resize: vertical; background: var(--surface);
+  transition: border-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
 }
+.assistant .ask:focus { border-color: var(--brand); box-shadow: 0 0 0 2px rgba(15,108,189,.18); outline: none; }
+.assistant .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
+.assistant .chip {
+  border: 1px solid var(--line); background: #fff; color: var(--ink-2);
+  border-radius: 2px; padding: 4px 8px; font-size: 11px; font-weight: 600;
+}
+.assistant .chip:hover { background: var(--surface-2); border-color: var(--brand); color: var(--brand); }
 
 .btn {
   display: inline-flex; align-items: center; justify-content: center; gap: 6px;
   border: 1px solid var(--line-strong); background: var(--surface); color: var(--ink);
-  border-radius: var(--radius); padding: 8px 14px; font-weight: 600; cursor: pointer;
-  text-decoration: none; box-shadow: var(--shadow);
+  border-radius: var(--radius); padding: 7px 12px; font-weight: 600; cursor: pointer;
+  text-decoration: none; box-shadow: none; font-size: 13px; line-height: 1.2;
+  letter-spacing: 0; transition: background var(--dur) var(--ease), border-color var(--dur) var(--ease);
 }
 .btn:hover { background: var(--surface-2); text-decoration: none; }
+.btn:active { background: var(--surface-3); }
 .btn.primary { background: var(--brand); border-color: var(--brand); color: #fff; }
-.btn.primary:hover { background: var(--brand-hover); }
+.btn.primary:hover { background: var(--brand-hover); border-color: var(--brand-hover); }
 .btn.danger { background: var(--bad-bg); border-color: #f1aeb5; color: var(--bad); }
 .btn.ghost { box-shadow: none; background: transparent; }
-.btn.sm { padding: 4px 10px; font-size: 12px; }
+.hero .btn.ghost { color: #fff; border-color: rgba(255,255,255,.4); }
+.hero .btn.ghost:hover { background: rgba(255,255,255,.08); }
+.hero .btn:not(.primary):not(.ghost) { background: #fff; color: var(--ink); }
+.btn.sm { padding: 5px 10px; font-size: 12px; }
 .btn:disabled { opacity: .5; cursor: not-allowed; }
+.btn .ico { margin: 0; }
 
 .card {
-  background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
-  padding: 16px; box-shadow: var(--shadow); margin-bottom: 12px;
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-lg);
+  padding: 16px; box-shadow: none; margin-bottom: 12px;
 }
+.card:hover { box-shadow: none; }
 .card.tight { padding: 12px; }
+.card.raised { border-color: var(--line); box-shadow: var(--shadow-1); }
+.card.inset { background: var(--surface-2); box-shadow: none; }
+.card.accent { border-color: #b4d6f4; background: #f7fbfe; }
+.card.ai-border { border-color: var(--ai-line); }
 .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
 .stack { display: flex; flex-direction: column; gap: 8px; }
+.stack-lg { display: flex; flex-direction: column; gap: 14px; }
 .row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.row-between { display: flex; gap: 12px; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; }
 .muted { color: var(--muted); }
 .divider { height: 1px; background: var(--line); margin: 12px 0; }
 
 .badge {
   display: inline-flex; align-items: center; gap: 4px; font-size: 11px; font-weight: 600;
-  padding: 2px 8px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface-2); color: var(--ink-2);
+  padding: 2px 7px; border-radius: 2px; border: 1px solid var(--line);
+  background: var(--surface-2); color: var(--ink-2); white-space: nowrap; line-height: 1.3;
 }
+.badge .ico { width: 12px; height: 12px; }
+.badge .ico svg { width: 12px; height: 12px; }
 .badge.draft { background: var(--surface); }
 .badge.review { background: var(--warn-bg); border-color: #efd29a; color: var(--warn); }
 .badge.approved { background: var(--ok-bg); border-color: #9fd49f; color: var(--ok); }
 .badge.disputed { background: var(--warn-bg); border-color: #efd29a; color: var(--warn); }
 .badge.needed { background: var(--bad-bg); border-color: #f1aeb5; color: var(--bad); }
-.badge.ai { background: var(--ai-bg); border-color: #c9c9f0; color: var(--ai); }
+.badge.ai { background: var(--ai-bg); border-color: var(--ai-line); color: var(--ai); }
 .badge.info { background: var(--brand-soft); border-color: #b4d6f4; color: var(--brand); }
 .badge.block { background: var(--bad-bg); border-color: #f1aeb5; color: var(--bad); }
+.badge.live {
+  background: #ecfdf3; border-color: #abefc6; color: #067647;
+}
 
 table.data { width: 100%; border-collapse: collapse; background: var(--surface); }
-table.data th, table.data td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+table.data th, table.data td { text-align: left; padding: 11px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
 table.data th {
-  font-size: 11px; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); background: var(--surface-2);
+  font-size: var(--text-xs); text-transform: uppercase; letter-spacing: .04em; color: var(--muted); background: var(--surface-2);
 }
+table.data tr { transition: background var(--dur) var(--ease); }
 table.data tr:hover td { background: #fcfcfc; }
+table.data tr.selected td { background: var(--brand-soft); }
 
 .attention {
-  border: 1px solid #b4d6f4; background: linear-gradient(180deg, #f7fbfe, #fff);
-  border-radius: var(--radius); padding: 14px; margin-bottom: 12px;
+  border: 1px solid #b4d6f4; background: #f7fbfe;
+  border-radius: var(--radius-lg); padding: 14px; margin-bottom: 12px;
+  position: relative; overflow: hidden;
+}
+.attention::before {
+  content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--brand);
 }
 .attention h2 { margin-bottom: 4px; }
 .suggestion {
-  border: 1px solid #c9c9f0; background: var(--ai-bg); border-radius: var(--radius); padding: 14px; margin: 12px 0;
+  border: 1px solid var(--ai-line); background: var(--ai-bg);
+  border-radius: var(--radius-lg); padding: 12px 14px; margin: 12px 0; position: relative;
 }
-.suggestion .meta { display: flex; justify-content: space-between; gap: 8px; align-items: center; margin-bottom: 8px; }
+.suggestion::before {
+  content: ""; position: absolute; inset: 0 auto 0 0; width: 3px; background: var(--ai);
+}
+.suggestion .meta { display: flex; justify-content: space-between; gap: 8px; align-items: center; margin-bottom: 8px; flex-wrap: wrap; }
 .source {
-  display: flex; gap: 8px; padding: 8px 10px; border: 1px solid var(--line); border-radius: var(--radius);
-  background: var(--surface-2); font-size: 12.5px; margin: 6px 0;
+  display: flex; gap: 10px; align-items: flex-start; padding: 10px 12px; border: 1px solid var(--line); border-radius: var(--radius);
+  background: var(--surface-2); font-size: 12px; margin: 6px 0;
 }
-.source strong { color: var(--ink); }
-.tabs { display: flex; gap: 0; border-bottom: 1px solid var(--line); margin-bottom: 12px; overflow-x: auto; }
-.tabs button {
-  background: none; border: 0; border-bottom: 2px solid transparent; padding: 10px 12px;
+.source:hover { border-color: var(--line-strong); background: #fff; }
+.source .ico { color: var(--brand); margin-top: 1px; }
+.source strong { color: var(--ink); display: block; font-size: 12px; }
+.activity {
+  display: flex; flex-direction: column; gap: 0; position: relative; padding-left: 4px;
+}
+.activity-item {
+  display: grid; grid-template-columns: 18px 1fr; gap: 10px; padding: 8px 0 12px;
+  position: relative;
+}
+.activity-item::before {
+  content: ""; position: absolute; left: 8px; top: 22px; bottom: 0; width: 2px; background: var(--line);
+}
+.activity-item:last-child::before { display: none; }
+.activity-dot {
+  width: 14px; height: 14px; border-radius: 50%; margin-top: 3px;
+  border: 2px solid var(--brand); background: #fff; z-index: 1;
+}
+.activity-item.done .activity-dot { background: var(--ok); border-color: var(--ok); }
+.activity-item.active .activity-dot {
+  background: var(--ai); border-color: var(--ai);
+  box-shadow: 0 0 0 4px rgba(91,95,199,.18);
+  animation: pulseSoft 1.6s ease-in-out infinite;
+}
+.activity-item.blocked .activity-dot { background: var(--bad); border-color: var(--bad); }
+
+.tabs {
+  display: flex; gap: 0; border-bottom: 1px solid var(--line); margin-bottom: 14px; overflow-x: auto;
+  scrollbar-width: thin;
+}
+.tabs [role="tab"] {
+  background: none; border: 0; border-bottom: 2px solid transparent; padding: 11px 13px;
   cursor: pointer; color: var(--muted); white-space: nowrap; font-weight: 600;
+  transition: color var(--dur) var(--ease), border-color var(--dur) var(--ease);
 }
-.tabs button.active { color: var(--ink); border-bottom-color: var(--brand); }
-.panel { display: none; }
+.tabs [role="tab"][aria-selected="true"] { color: var(--ink); border-bottom-color: var(--brand); }
+.tabs [role="tab"]:hover { color: var(--ink); }
+.panel { display: none; animation: fadeRise .22s var(--ease); }
 .panel.active { display: block; }
 .list-item {
   display: flex; justify-content: space-between; gap: 12px; align-items: flex-start;
-  padding: 12px 0; border-bottom: 1px solid var(--line);
+  padding: 13px 0; border-bottom: 1px solid var(--line);
 }
 .list-item:last-child { border-bottom: 0; }
-.kpi { font-size: 1.5rem; font-weight: 700; color: var(--ink); }
-.kpi-label { font-size: 12px; color: var(--muted); }
+.kpi {
+  font-size: 1.55rem; font-weight: 700; color: var(--ink); letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+.kpi-label { font-size: 12px; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: .04em; }
 .wire {
-  border: 1px solid var(--ink-2); background: #fafafa; border-radius: var(--radius); padding: 14px;
+  border: 1px dashed var(--ink-2); background:
+    linear-gradient(180deg, #fff, #f7f7f7);
+  border-radius: var(--radius); padding: 16px; position: relative;
 }
 .wire .bar { height: 10px; width: 36%; background: #d1d1d1; border-radius: 2px; margin-bottom: 12px; }
 .wire .block { height: 52px; background: #ebebeb; border-radius: 2px; margin-bottom: 10px; }
-.code {
-  font-family: ui-monospace, "Cascadia Mono", Consolas, monospace; font-size: 12px;
-  background: #1b1a19; color: #f3f2f1; padding: 12px; border-radius: var(--radius); overflow: auto; white-space: pre;
+.mock-frame {
+  border: 1px solid var(--line-strong); border-radius: var(--radius-lg); overflow: hidden;
+  background: var(--surface); box-shadow: var(--shadow-1);
 }
+.mock-frame .mock-chrome {
+  display: flex; align-items: center; gap: 8px; padding: 8px 12px;
+  background: var(--surface-3); border-bottom: 1px solid var(--line); font-size: 12px; color: var(--muted);
+}
+.mock-frame .mock-chrome .dots { display: flex; gap: 4px; }
+.mock-frame .mock-chrome .dots span { width: 8px; height: 8px; border-radius: 50%; background: #c8c6c4; }
+.mock-body { padding: 14px; }
+.code {
+  font-family: var(--mono); font-size: 12px;
+  background: #1b1a19; color: #f3f2f1; padding: 14px; border-radius: var(--radius);
+  overflow: auto; white-space: pre; line-height: 1.55;
+}
+.code .add { color: #9fd4a3; }
 .toast {
   position: fixed; bottom: 20px; right: 20px; background: #242424; color: #fff;
-  padding: 12px 14px; border-radius: var(--radius); z-index: 100; display: none; max-width: 340px;
-  box-shadow: 0 8px 24px rgba(0,0,0,.2);
+  padding: 12px 14px; border-radius: var(--radius); z-index: 120; display: none; max-width: 360px;
+  box-shadow: var(--shadow-3); align-items: flex-start; gap: 10px;
 }
-.toast.show { display: block; }
+.toast.show { display: flex; animation: slideIn .25s var(--ease); }
+.toast .toast-body { flex: 1; }
 .modal-backdrop {
-  position: fixed; inset: 0; background: rgba(0,0,0,.4); display: none; align-items: center; justify-content: center;
-  z-index: 90; padding: 20px;
+  position: fixed; inset: 0; background: rgba(27,26,25,.45); display: none; align-items: center; justify-content: center;
+  z-index: 110; padding: 20px; backdrop-filter: blur(2px);
 }
-.modal-backdrop.show { display: flex; }
+.modal-backdrop.show { display: flex; animation: fadeIn .18s var(--ease); }
 .modal {
-  background: var(--surface); border-radius: 8px; max-width: 520px; width: 100%; padding: 20px;
-  border: 1px solid var(--line); box-shadow: 0 16px 40px rgba(0,0,0,.2);
+  background: var(--surface); border-radius: var(--radius-lg); max-width: 540px; width: 100%; padding: 22px;
+  border: 1px solid var(--line); box-shadow: var(--shadow-3); animation: fadeRise .22s var(--ease);
 }
 .modal .acts { display: flex; justify-content: flex-end; gap: 8px; margin-top: 16px; }
 .hero {
-  background: #1b1a19; color: #f3f2f1; border-radius: 8px; padding: 36px 28px; margin-bottom: 20px;
+  position: relative; overflow: hidden;
+  background: #1b1a19;
+  color: #f3f2f1; border-radius: var(--radius-lg); padding: 32px 28px; margin-bottom: 16px;
+  border: 1px solid #2d2c2b;
 }
-.hero h1 { color: #fff; font-size: 1.9rem; }
-.hero p { color: #c8c6c4; max-width: 640px; }
+.hero h1 { color: #fff; font-size: var(--text-2xl); letter-spacing: -0.02em; max-width: 22ch; font-weight: 600; }
+.hero p { color: #c8c6c4; max-width: 620px; font-size: 14px; line-height: 1.5; }
+.hero .hero-actions { margin-top: 16px; }
 .choice {
-  display: block; border: 1px solid var(--line); border-radius: 8px; padding: 18px; background: var(--surface);
-  text-decoration: none; color: inherit; box-shadow: var(--shadow); height: 100%;
+  display: block; border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 18px;
+  background: var(--surface); text-decoration: none; color: inherit;
+  height: 100%; transition: border-color var(--dur) var(--ease);
 }
 .choice:hover { border-color: var(--brand); text-decoration: none; }
-.choice h2 { color: var(--brand); }
+.choice h2 { color: var(--brand); display: flex; align-items: center; gap: 8px; font-size: 16px; }
+.story-rail {
+  display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 8px; margin-top: 14px;
+}
+.story-step {
+  display: flex; flex-direction: column; gap: 6px; padding: 12px; border-radius: var(--radius);
+  border: 1px solid var(--line); background: var(--surface); text-decoration: none; color: inherit;
+  min-height: 96px; transition: border-color var(--dur) var(--ease);
+}
+.story-step:hover { border-color: var(--brand); text-decoration: none; }
+.story-step .n {
+  width: 20px; height: 20px; border-radius: 2px; display: grid; place-items: center;
+  background: var(--brand-soft); color: var(--brand); font-size: 11px; font-weight: 700;
+}
+.story-step.done .n { background: var(--ok-bg); color: var(--ok); }
+.story-step.current {
+  border-color: var(--brand); background: var(--brand-soft);
+}
+.progress-strip {
+  border: 1px solid var(--ai-line); background: var(--ai-bg); border-radius: var(--radius);
+  padding: 10px 12px; margin: 8px 0;
+}
+.progress-strip .meta { display: flex; justify-content: space-between; gap: 8px; font-size: 12px; color: var(--ink-2); font-weight: 600; }
+.progress {
+  height: 4px; background: var(--surface-3); border-radius: 2px; overflow: hidden; margin: 8px 0 0;
+}
+.progress > span {
+  display: block; height: 100%; background: var(--brand);
+  border-radius: 2px; transition: width .45s var(--ease);
+}
+.progress.indeterminate > span {
+  width: 35% !important; animation: indeterminate 1.2s ease-in-out infinite;
+}
+.compare { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.compare .side {
+  border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 14px; background: var(--surface);
+  box-shadow: var(--shadow-1);
+}
+.compare .side.disputed {
+  border-color: #efd29a; background: linear-gradient(180deg, #fffdf5, #fff);
+}
+.diff {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 8px;
+}
+.diff .before, .diff .after {
+  border-radius: var(--radius); padding: 10px; font-size: 12.5px; border: 1px solid var(--line);
+}
+.diff .before { background: #faf9f8; }
+.diff .after { background: var(--ok-bg); border-color: #9fd49f; }
+.receipt {
+  border: 1px solid #9fd49f; background: linear-gradient(180deg, #f3fbf3, #fff);
+  border-radius: var(--radius-lg); padding: 16px; margin: 12px 0;
+}
+.field { margin: 10px 0; }
+.field label { display: block; font-size: 12px; color: var(--muted); margin-bottom: 4px; font-weight: 600; }
+.field input, .field select, .field textarea {
+  width: 100%; padding: 10px 11px; border: 1px solid var(--line-strong); border-radius: var(--radius); background: #fff;
+  transition: border-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+}
+.field input:focus, .field select:focus, .field textarea:focus {
+  border-color: var(--brand); box-shadow: 0 0 0 3px rgba(15,108,189,.15); outline: none;
+}
+.option-card {
+  display: flex; gap: 10px; align-items: flex-start; padding: 12px 14px;
+  border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface);
+  cursor: pointer; transition: border-color var(--dur) var(--ease), background var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+}
+.option-card:hover { border-color: var(--brand); }
+.option-card:has(input:checked) {
+  border-color: var(--brand); background: var(--brand-soft); box-shadow: 0 0 0 3px rgba(15,108,189,.12);
+}
+.option-card input { margin-top: 3px; }
+.metric-note {
+  font-size: 12px; color: var(--muted); border-left: 3px solid var(--line-strong); padding-left: 10px; margin-top: 8px;
+}
+.drawer-backdrop {
+  position: fixed; inset: 0; background: rgba(27,26,25,.4); display: none; z-index: 90;
+}
+.drawer-backdrop.show { display: block; }
+.nav-drawer, .assistant-drawer-mode {
+  /* activated via media queries / JS */
+}
+.demo-banner {
+  display: flex; justify-content: space-between; gap: 12px; align-items: center; flex-wrap: wrap;
+  padding: 10px 14px; background: #fff; border: 1px solid var(--line); border-radius: var(--radius);
+  margin-bottom: 14px; box-shadow: var(--shadow-1);
+}
+.demo-banner strong { color: var(--ink); }
+.confidence {
+  display: inline-flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 600;
+  padding: 2px 7px; border-radius: 2px; background: var(--surface-2); border: 1px solid var(--line);
+}
+.confidence.high { color: var(--ok); background: var(--ok-bg); border-color: #9fd49f; }
+.confidence.low { color: var(--warn); background: var(--warn-bg); border-color: #efd29a; }
+.provenance {
+  display: inline-flex; align-items: center; gap: 5px; font-size: 11px; color: var(--muted);
+  background: var(--surface-inset); border-radius: 2px; padding: 2px 7px;
+}
 .review-bar {
   display: none; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; padding: 8px 10px;
   background: #fff4ce; border: 1px solid #efd29a; border-radius: var(--radius); font-size: 12px;
 }
 body.review-mode .review-bar { display: flex; }
 .overlay {
-  position: fixed; inset: 0; background: rgba(0,0,0,.35); display: none; z-index: 80; align-items: flex-start; justify-content: center; padding-top: 72px;
+  position: fixed; inset: 0; background: rgba(0,0,0,.38); display: none; z-index: 100;
+  align-items: flex-start; justify-content: center; padding-top: 72px;
 }
-.overlay.show { display: flex; }
+.overlay.show { display: flex; animation: fadeIn .16s var(--ease); }
 .overlay .panel-box {
-  width: min(720px, 92vw); background: var(--surface); border-radius: 8px; border: 1px solid var(--line);
-  box-shadow: 0 16px 40px rgba(0,0,0,.2); padding: 16px;
+  width: min(760px, 92vw); background: var(--surface); border-radius: var(--radius-lg); border: 1px solid var(--line);
+  box-shadow: var(--shadow-3); padding: 16px; animation: fadeRise .2s var(--ease);
 }
-.field { margin: 10px 0; }
-.field label { display: block; font-size: 12px; color: var(--muted); margin-bottom: 4px; }
-.field input, .field select, .field textarea {
-  width: 100%; padding: 9px 10px; border: 1px solid var(--line-strong); border-radius: var(--radius); background: #fff;
+.search-group { margin: 12px 0; }
+.search-group h3 { font-size: 12px; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); margin-bottom: 6px; }
+.search-hit {
+  display: block; padding: 10px 12px; border-radius: var(--radius); border: 1px solid transparent;
+  text-decoration: none; color: inherit; transition: background var(--dur) var(--ease), border-color var(--dur) var(--ease);
 }
-.compare {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+.search-hit:hover, .search-hit[aria-selected="true"] {
+  background: var(--brand-soft); border-color: #b4d6f4; text-decoration: none;
 }
-.compare .side { border: 1px solid var(--line); border-radius: var(--radius); padding: 12px; background: var(--surface); }
-.compare .side.disputed { border-color: #efd29a; background: #fffdf5; }
-.progress {
-  height: 6px; background: var(--surface-2); border-radius: 99px; overflow: hidden; margin: 8px 0;
+.alert-panel .alert-item {
+  display: grid; grid-template-columns: 18px 1fr auto; gap: 10px; align-items: start;
+  padding: 12px 0; border-bottom: 1px solid var(--line);
 }
-.progress > span { display: block; height: 100%; background: var(--brand); }
-.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
+.alert-panel .alert-item:last-child { border-bottom: 0; }
+.typing {
+  display: inline-flex; gap: 4px; align-items: center; height: 14px;
+}
+.typing span {
+  width: 5px; height: 5px; border-radius: 50%; background: var(--ai);
+  animation: bounce 1s ease-in-out infinite;
+}
+.typing span:nth-child(2) { animation-delay: .15s; }
+.typing span:nth-child(3) { animation-delay: .3s; }
+.stream-cursor::after {
+  content: "▋"; margin-left: 2px; color: var(--ai); animation: blink 1s step-end infinite;
+}
+.hidden { display: none !important; }
+[data-state-panel] { animation: fadeRise .22s var(--ease); }
 
-@media (max-width: 1100px) {
-  .shell, .shell.with-assistant { grid-template-columns: 1fr; }
-  .nav, .assistant { position: static; height: auto; border: 0; border-bottom: 1px solid var(--line); }
-  .grid-3, .compare { grid-template-columns: 1fr 1fr; }
+.learn-meter {
+  display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin: 12px 0;
+}
+.learn-stage {
+  border: 1px solid var(--line); border-radius: var(--radius); padding: 10px;
+  background: var(--surface-2); min-height: 78px;
+  transition: border-color var(--dur) var(--ease), background var(--dur) var(--ease), transform var(--dur) var(--ease);
+}
+.learn-stage .n { font-size: 11px; font-weight: 700; color: var(--muted); }
+.learn-stage strong { display: block; margin: 4px 0 2px; font-size: 13px; }
+.learn-stage.active {
+  border-color: var(--ai); background: linear-gradient(180deg, #f7f7ff, #fff);
+  box-shadow: 0 0 0 3px rgba(91,95,199,.12); transform: translateY(-1px);
+}
+.learn-stage.done { border-color: #9fd49f; background: #f3fbf3; }
+.memory-board { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+.memory-lane {
+  border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 12px; background: var(--surface);
+  min-height: 140px;
+}
+.memory-lane h3 { display: flex; align-items: center; gap: 6px; font-size: 13px; margin-bottom: 8px; }
+.memory-item {
+  border: 1px solid var(--line); border-radius: var(--radius); padding: 8px 10px; margin-bottom: 8px;
+  background: var(--surface-2); font-size: 12.5px; animation: fadeRise .25s var(--ease);
+}
+.memory-item.semantic { border-color: var(--ai-line); background: var(--ai-bg); }
+.memory-item.confirmed { border-color: #9fd49f; background: #f3fbf3; }
+.insight-feed { display: flex; flex-direction: column; gap: 8px; }
+.insight-pill {
+  display: flex; gap: 10px; align-items: flex-start; padding: 10px 12px;
+  border-radius: var(--radius); border: 1px solid var(--line); background: var(--surface);
+}
+.insight-pill .when { font-size: 11px; color: var(--muted); white-space: nowrap; }
+.proto-studio { display: grid; grid-template-columns: 1.2fr .8fr; gap: 12px; }
+.proto-viewport {
+  border: 1px solid var(--line-strong); border-radius: var(--radius-lg); overflow: hidden;
+  background: #e9eef5; min-height: 420px; box-shadow: var(--shadow-2);
+}
+.proto-viewport .proto-top {
+  display: flex; align-items: center; gap: 8px; padding: 8px 12px;
+  background: #1b1a19; color: #c8c6c4; font-size: 12px;
+}
+.proto-viewport .proto-top .url {
+  flex: 1; background: #2d2c2b; border-radius: 2px; padding: 4px 8px; color: #fff;
+}
+.proto-app {
+  margin: 16px; background: #fff; border-radius: 4px; border: 1px solid #d7d7d7;
+  box-shadow: var(--shadow-1); overflow: hidden; min-height: 340px;
+}
+.proto-app header {
+  display: flex; justify-content: space-between; align-items: center; gap: 8px;
+  padding: 12px 14px; border-bottom: 1px solid var(--line); background: #f8fafc;
+}
+.proto-app .claim-id { font-family: var(--mono); font-size: 12px; color: var(--muted); }
+.proto-app .body { padding: 16px; }
+.proto-app .risk-banner {
+  display: none; margin-bottom: 12px; padding: 10px 12px; border-radius: var(--radius);
+  background: var(--warn-bg); border: 1px solid #efd29a; color: var(--warn); font-size: 13px; font-weight: 600;
+}
+.proto-app.risk-high .risk-banner { display: block; }
+.proto-app .action-grid { display: grid; gap: 10px; margin-top: 14px; }
+.proto-app .action-tile {
+  border: 1px solid var(--line); border-radius: var(--radius); padding: 12px; text-align: left;
+  background: #fff; transition: border-color var(--dur) var(--ease), background var(--dur) var(--ease);
+}
+.proto-app .action-tile:hover { border-color: var(--brand); background: var(--brand-soft); }
+.proto-app .action-tile.primary { border-color: var(--brand); background: var(--brand-soft); }
+.proto-app.oncall-strong .action-tile.oncall {
+  border-color: var(--brand); background: var(--brand-soft);
+}
+.proto-app .reason-field { display: none; margin-top: 10px; }
+.proto-app.oncall-strong .reason-field { display: block; }
+.adjust-rail .adjust-chip {
+  display: flex; justify-content: space-between; gap: 8px; align-items: center;
+  width: 100%; text-align: left; margin-bottom: 8px; padding: 10px 12px;
+  border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface);
+}
+.adjust-rail .adjust-chip.active {
+  border-color: var(--brand); background: var(--brand-soft);
+}
+.version-rail { display: flex; gap: 8px; flex-wrap: wrap; margin: 8px 0 12px; }
+.version-pill {
+  border: 1px solid var(--line); border-radius: 2px; padding: 4px 9px;
+  font-size: 12px; background: var(--surface-2); cursor: pointer;
+}
+.version-pill.active { border-color: var(--brand); background: var(--brand-soft); color: var(--brand-deep); font-weight: 600; }
+.session-phase {
+  display: inline-flex; align-items: center; gap: 6px; padding: 3px 8px;
+  border-radius: 2px; background: var(--surface-2); color: var(--ink-2); border: 1px solid var(--line);
+  font-size: 11px; font-weight: 600;
+}
+.growth-timeline {
+  display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; margin-top: 12px;
+}
+.growth-beat {
+  border: 1px solid var(--line); border-radius: var(--radius); padding: 12px; background: var(--surface);
+  min-height: 110px; position: relative;
+}
+.growth-beat .day { font-size: 11px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: .03em; }
+.growth-beat.active {
+  border-color: var(--brand); background: var(--brand-soft);
+}
+.growth-beat.done { border-color: #9fd49f; background: #f3fbf3; }
+.growth-beat.done.active { border-color: var(--brand); }
+.proto-nav {
+  display: flex; gap: 6px; flex-wrap: wrap; margin: 0 0 12px;
+}
+.proto-nav .version-pill.active { border-color: var(--ai); background: var(--ai-bg); color: var(--ai); }
+.proto-queue-item {
+  display: flex; justify-content: space-between; gap: 8px; padding: 10px 0;
+  border-bottom: 1px solid var(--line); font-size: 13px;
+}
+.proto-receipt-box {
+  margin-top: 12px; padding: 12px; border-radius: var(--radius); background: var(--ok-bg);
+  border: 1px solid #9fd49f; color: var(--ok); font-size: 13px;
+}
+.q-step { display: none; animation: fadeRise .24s var(--ease); }
+.q-step.active { display: block; }
+
+@media (max-width: 980px) {
+  .learn-meter, .memory-board, .proto-studio, .growth-timeline { grid-template-columns: 1fr; }
+}
+
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes fadeRise {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes pulseSoft {
+  0%, 100% { opacity: 1; }
+  50% { opacity: .55; }
+}
+@keyframes indeterminate {
+  0% { transform: translateX(-120%); }
+  100% { transform: translateX(320%); }
+}
+@keyframes bounce {
+  0%, 80%, 100% { transform: translateY(0); opacity: .4; }
+  40% { transform: translateY(-4px); opacity: 1; }
+}
+@keyframes blink { 50% { opacity: 0; } }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important; animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important; scroll-behavior: auto !important;
+  }
+}
+
+@media (max-width: 1180px) {
+  .shell.with-assistant { grid-template-columns: var(--nav) 1fr; }
+  .assistant {
+    position: fixed; top: var(--topbar); right: 0; width: min(380px, 92vw); height: calc(100vh - var(--topbar));
+    z-index: 95; transform: translateX(105%); transition: transform .24s var(--ease);
+    box-shadow: var(--shadow-3); border-left: 1px solid var(--ai-line);
+    display: flex;
+  }
+  .shell.with-assistant .assistant { transform: translateX(0); }
+  .story-rail { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .grid-4 { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 980px) {
+  .shell, .shell.with-assistant, .shell.no-nav.with-assistant { grid-template-columns: 1fr; }
+  .nav {
+    position: fixed; top: var(--topbar); left: 0; width: min(280px, 86vw); height: calc(100vh - var(--topbar));
+    z-index: 95; transform: translateX(-105%); transition: transform .24s var(--ease);
+    box-shadow: var(--shadow-3); border-right: 1px solid var(--line);
+  }
+  body.nav-open .nav { transform: translateX(0); }
+  .nav-toggle { display: inline-grid; }
+  .grid-3, .compare, .diff { grid-template-columns: 1fr 1fr; }
+  .story-rail { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
 @media (max-width: 760px) {
-  .grid-2, .grid-3, .compare { grid-template-columns: 1fr; }
-  .topbar .search, .topbar .crumb { display: none; }
+  .grid-2, .grid-3, .grid-4, .compare, .diff { grid-template-columns: 1fr; }
+  .topbar .search-btn, .topbar .crumb { display: none; }
   .main { padding: 16px; }
+  .hero { padding: 28px 20px; }
+  .hero h1 { font-size: 1.7rem; max-width: none; }
+  .story-rail { grid-template-columns: 1fr 1fr; }
 }
 </style>
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 <div class="app">
   <header class="topbar">
-    <a class="logo" href="00_portal_home.html">CollabX</a>
+    <button class="icon-btn nav-toggle" type="button" aria-label="Open navigation" onclick="toggleNav()"><span class="ico-lg" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4.5 6.5h11M4.5 10h11M4.5 13.5h11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span></button>
+    <a class="logo" href="00_portal_home.html"><span class="logo-mark">CX</span> CollabX</a>
     <div class="portal" aria-label="Portal switcher">
       <a href="02_business_home.html" class="active">Business</a>
       <a href="10_developer_home.html" class="">Build</a>
     </div>
     <span class="crumb">Meridian Mutual · Overnight claim exceptions</span>
     <div class="spacer"></div>
-    <input class="search" type="search" placeholder="Search (Ctrl K)" onclick="toggleSearch(true)" readonly />
-    <button class="icon" type="button" onclick="toggleAssistant()" title="Assistant">Assistant</button>
-    <a class="icon" href="02_business_home.html" title="Notifications">Alerts</a>
-    <div class="avatar" title="Signed in">JL</div>
+    <button class="search-btn" type="button" onclick="toggleSearch(true)" aria-label="Search">
+      <span class="ico" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="4.75" stroke="currentColor" stroke-width="1.5"/><path d="m13 13 3.2 3.2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span> <span>Search</span> <kbd>⌘K</kbd>
+    </button>
+    <button class="icon-btn" type="button" onclick="toggleAssistant()" aria-label="Assistant" title="Assistant"><span class="ico-lg" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M6.2 12.8A4.3 4.3 0 0 1 10 5.5a4.3 4.3 0 0 1 3.8 7.3l.9 2.7-2.8-.8A4.3 4.3 0 0 1 6.2 12.8Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><circle cx="8.3" cy="10" r=".7" fill="currentColor"/><circle cx="11.7" cy="10" r=".7" fill="currentColor"/></svg></span></button>
+    <button class="icon-btn" type="button" onclick="openAlerts()" aria-label="Alerts" title="Alerts"><span class="ico-lg" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 3.8a5.2 5.2 0 0 1 5.2 5.2v2.1l1.1 2.1H3.7l1.1-2.1V9A5.2 5.2 0 0 1 10 3.8Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M8.4 15.4a1.8 1.8 0 0 0 3.2 0" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></span><span class="pulse"></span></button>
+    <div class="avatar" title="Signed in as JL">JL</div>
   </header>
   <div class="shell">
-    <nav class="nav" aria-label="Business"><a href="02_business_home.html" class=""><span class="dot"></span>Home</a><a href="03_business_initiative.html" class=""><span class="dot"></span>Initiative</a><a href="05_business_understand.html" class=""><span class="dot"></span>Understand</a><a href="06_business_solution.html" class=""><span class="dot"></span>Design</a><a href="07_business_decision.html" class=""><span class="dot"></span>Decide</a><a href="08_business_track.html" class=""><span class="dot"></span>Track</a><div class="label">More</div>
-     <a href="04_business_contribute.html">Contribute</a>
-     <a href="09_business_admin.html">Settings</a>
-     <a href="10_developer_home.html">Open Build</a>
-     <a href="00_portal_home.html">Portal home</a></nav>
-    <main class="main">
+    <nav class="nav" aria-label="Business"><a href="02_business_home.html" class=""><span class="ico" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3.5 8.5 10 3l6.5 5.5V16a1 1 0 0 1-1 1h-3.5v-4.5h-4V17H4.5a1 1 0 0 1-1-1V8.5Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg></span>Home</a><a href="03_business_initiative.html" class=""><span class="ico" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 16.5V4.5h.8l7.2 4.2L5.8 12.8" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M5 4.5v12" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></span>Initiative</a><a href="05_business_understand.html" class=""><span class="ico" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="5.25" stroke="currentColor" stroke-width="1.4"/><path d="m13.2 13.2 3.3 3.3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></span>Understand</a><a href="06_business_solution.html" class=""><span class="ico" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><rect x="3.5" y="4.5" width="13" height="11" rx="1.5" stroke="currentColor" stroke-width="1.4"/><path d="M3.5 8h13M8 8v7.5" stroke="currentColor" stroke-width="1.4"/></svg></span>Design</a><a href="07_business_decision.html" class=""><span class="ico" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 10.5 8.2 13.7 15 6.3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Decide</a><a href="08_business_track.html" class=""><span class="ico" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3.5 14.5 7.5 10l3 3 6-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Track</a><div class="label">More</div>
+     <a href="04_business_contribute.html"><span class="ico" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 15.5v-2.2A3.3 3.3 0 0 1 7.3 10h5.4A3.3 3.3 0 0 1 16 13.3v2.2M10 9.2a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" stroke="currentColor" stroke-width="1.4"/></svg></span> Contribute</a>
+     <a href="09_business_admin.html"><span class="ico" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="2.4" stroke="currentColor" stroke-width="1.4"/><path d="M10 3.5v1.6M10 14.9v1.6M3.5 10h1.6M14.9 10h1.6M5.4 5.4l1.1 1.1M13.5 13.5l1.1 1.1M14.6 5.4l-1.1 1.1M6.5 13.5l-1.1 1.1" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></span> Settings</a>
+     <a href="10_developer_home.html"><span class="ico" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m10 3.2 6.3 3.4v6.8L10 16.8 3.7 13.4V6.6L10 3.2Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M10 16.8V10M3.9 6.8 10 10l6.1-3.2" stroke="currentColor" stroke-width="1.4"/></svg></span> Open Build</a>
+     <a href="00_portal_home.html"><span class="ico" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3.5 8.5 10 3l6.5 5.5V16a1 1 0 0 1-1 1h-3.5v-4.5h-4V17H4.5a1 1 0 0 1-1-1V8.5Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg></span> Portal home</a></nav>
+    <main class="main" id="main">
+      <div class="demo-banner">
+  <div class="row">
+    <span class="badge live"><span class="ico" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4.8 10.2 8.3 13.6 15.2 6.4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Demo</span>
+    <strong>Assistant drafts. People decide.</strong>
+    <span class="session-phase">Progress <span data-learning-score>8%</span> · <span data-session-phase>listen</span></span>
+  </div>
+  <div class="row">
+    <button class="btn sm ghost" type="button" onclick="resetDemo()"><span class="ico" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M15.2 8.2A5.4 5.4 0 1 1 14 5.6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><path d="M15.5 3.8v4.2h-4.2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Reset</button>
+  </div>
+</div>
       <div class="review-bar" role="toolbar" aria-label="Reviewer states">
   <span>Reviewer mode</span>
   <button class="btn sm" type="button" onclick="setReviewState('normal')">Normal</button>
@@ -297,7 +812,7 @@ body.review-mode .review-bar { display: flex; }
   <button class="btn sm" type="button" onclick="setReviewState('error')">Error</button>
   <button class="btn sm" type="button" onclick="setReviewState('stale')">Stale</button>
 </div>
-<div data-state-panel="loading" hidden class="card"><p>Loading. Your draft is kept.</p><div class="progress"><span style="width:40%"></span></div></div>
+<div data-state-panel="loading" hidden class="card"><p class="text-primary mb-0">Loading. Your draft is kept.</p><div class="progress mt-3"><span style="width:40%"></span></div></div>
 <div data-state-panel="empty" hidden class="card"><h2>Nothing here yet</h2><p>Start with the next useful action for this page.</p></div>
 <div data-state-panel="error" hidden class="card"><h2>Something went wrong</h2><p>Your last saved answer is still here. Try again or ask support.</p></div>
 <div data-state-panel="stale" hidden class="card"><h2>This page is out of date</h2><p>Refresh before you approve anything.</p><button class="btn primary" type="button" onclick="setReviewState('normal')">Refresh</button></div>
@@ -307,55 +822,59 @@ body.review-mode .review-bar { display: flex; }
             <h1>Settings</h1>
             <p class="lead">Manage people, connections, data policy, assistant controls, support, and privacy in one place.</p>
           </div>
-          <div class="actions"><button class="btn danger" type="button" onclick="openModal('revoke-modal')">Review a risky change</button></div>
+          <div class="actions"><button class="btn danger" type="button" onclick="openModal('revoke-modal')"><span class="ico" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 3.5 17 16H3L10 3.5Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M10 8v3.8M10 14h.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span> Review risk</button></div>
         </div>
         
-    <div class="tabs">
-      <button class="active" type="button" onclick="switchTab('a','people',this)">People and access</button>
-      <button type="button" onclick="switchTab('a','connections',this)">Connections</button>
-      <button type="button" onclick="switchTab('a','policy',this)">Data policy</button>
-      <button type="button" onclick="switchTab('a','assistant',this)">Assistant controls</button>
-      <button type="button" onclick="switchTab('a','support',this)">Support</button>
-      <button type="button" onclick="switchTab('a','privacy',this)">Privacy</button>
+    <div class="tabs" role="tablist" aria-label="Settings" data-tabs="a">
+      <button role="tab" aria-selected="true" class="active" type="button" data-tab-target="people" onclick="switchTab('a','people',this)">People and access</button>
+      <button role="tab" aria-selected="false" type="button" data-tab-target="connections" onclick="switchTab('a','connections',this)">Connections</button>
+      <button role="tab" aria-selected="false" type="button" data-tab-target="policy" onclick="switchTab('a','policy',this)">Data policy</button>
+      <button role="tab" aria-selected="false" type="button" data-tab-target="assistant" onclick="switchTab('a','assistant',this)">Assistant controls</button>
+      <button role="tab" aria-selected="false" type="button" data-tab-target="support" onclick="switchTab('a','support',this)">Support</button>
+      <button role="tab" aria-selected="false" type="button" data-tab-target="privacy" onclick="switchTab('a','privacy',this)">Privacy</button>
     </div>
-    <div class="panel active card" data-tab-group="a" data-tab="people">
+    <div class="panel active card" data-tab-group="a" data-tab="people" role="tabpanel">
       <table class="data"><thead><tr><th>Group</th><th>Access</th><th>Status</th></tr></thead>
       <tbody>
-        <tr><td>Business analysts</td><td>Business portal</td><td><span class="badge approved">Synced</span></td></tr>
-        <tr><td>Sponsors</td><td>Decide and track</td><td><span class="badge approved">Synced</span></td></tr>
-        <tr><td>Engineers</td><td>Build portal</td><td><span class="badge approved">Synced</span></td></tr>
+        <tr><td>Business analysts</td><td>Business portal</td><td><span class="badge approved"><span class="ico" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4.8 10.2 8.3 13.6 15.2 6.4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Synced</span></td></tr>
+        <tr><td>Sponsors</td><td>Decide and track</td><td><span class="badge approved"><span class="ico" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4.8 10.2 8.3 13.6 15.2 6.4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Synced</span></td></tr>
+        <tr><td>Engineers</td><td>Build portal</td><td><span class="badge approved"><span class="ico" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4.8 10.2 8.3 13.6 15.2 6.4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Synced</span></td></tr>
       </tbody></table>
     </div>
-    <div class="panel card" data-tab-group="a" data-tab="connections">
+    <div class="panel card" data-tab-group="a" data-tab="connections" role="tabpanel" hidden>
       <table class="data"><thead><tr><th>Connection</th><th>Status</th><th>Used for</th></tr></thead>
       <tbody>
-        <tr><td>Work tracking</td><td><span class="badge approved">Healthy</span></td><td>Delivery packages</td></tr>
-        <tr><td>Code hosting</td><td><span class="badge review">Needs attention</span></td><td>Claims service repository</td></tr>
-        <tr><td>Policy library</td><td><span class="badge approved">Healthy</span></td><td>Source documents</td></tr>
+        <tr><td>Work tracking</td><td><span class="badge approved"><span class="ico" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4.8 10.2 8.3 13.6 15.2 6.4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Healthy</span></td><td>Delivery packages</td></tr>
+        <tr><td>Code hosting</td><td><span class="badge review"><span class="ico" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="6.5" stroke="currentColor" stroke-width="1.4"/><path d="M10 6.6V10l2.5 1.6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></span> Index stale</span></td><td>Claims service repository</td></tr>
+        <tr><td>Policy library</td><td><span class="badge approved"><span class="ico" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4.8 10.2 8.3 13.6 15.2 6.4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Healthy</span></td><td>Source documents</td></tr>
       </tbody></table>
     </div>
-    <div class="panel card" data-tab-group="a" data-tab="policy">
-      <p style="color:var(--ink)">Keep records for 7 years. Store Australian customer data in Australia. Ask for a fresh confirmation before high risk approvals.</p>
+    <div class="panel card" data-tab-group="a" data-tab="policy" role="tabpanel" hidden>
+      <p class="text-primary">Keep records for 7 years. Store Australian customer data in Australia. Ask for a fresh confirmation before high risk approvals.</p>
     </div>
-    <div class="panel card" data-tab-group="a" data-tab="assistant">
+    <div class="panel card" data-tab-group="a" data-tab="assistant" role="tabpanel" hidden>
       <table class="data"><thead><tr><th>Capability</th><th>Status</th><th>Control</th></tr></thead>
       <tbody>
-        <tr><td>Question helper</td><td><span class="badge approved">On</span></td><td><button class="btn sm" type="button">Pilot rollout</button></td></tr>
-        <tr><td>Design helper</td><td><span class="badge review">Limited pilot</span></td><td><button class="btn sm" type="button">View test results</button></td></tr>
-        <tr><td>Code helper</td><td><span class="badge draft">Shadow only</span></td><td><button class="btn sm danger" type="button" onclick="toast('Capability turned off')">Turn off capability</button></td></tr>
+        <tr><td>Question helper</td><td><span class="badge approved"><span class="ico" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4.8 10.2 8.3 13.6 15.2 6.4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span> On</span></td><td><button class="btn sm" type="button" onclick="toast('Pilot rollout details opened')">Pilot rollout</button></td></tr>
+        <tr><td>Design helper</td><td><span class="badge review"><span class="ico" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="6.5" stroke="currentColor" stroke-width="1.4"/><path d="M10 6.6V10l2.5 1.6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></span> Limited pilot</span></td><td><button class="btn sm" type="button" onclick="toast('Design helper test results opened')">View test results</button></td></tr>
+        <tr><td>Code helper</td><td><span class="badge draft"><span class="ico" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="6.5" stroke="currentColor" stroke-width="1.4"/><path d="M10 9v4.2M10 6.5h.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span> Shadow only</span></td><td><button class="btn sm danger" type="button" onclick="toast('Capability turned off for this demo')">Turn off capability</button></td></tr>
       </tbody></table>
+      <div class="suggestion mt-3">
+        <div class="meta"><span class="badge ai"><span class="ico" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 4v3M10 13v3M4 10h3M13 10h3M6.2 6.2l2.1 2.1M11.7 11.7l2.1 2.1M13.8 6.2l-2.1 2.1M8.3 11.7l-2.1 2.1" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></span> Waiting draft</span></div>
+        <p class="text-primary mb-0">No drafts waiting for promotion. Corrections stay in session notes until a steward reviews them.</p>
+      </div>
     </div>
-    <div class="panel card" data-tab-group="a" data-tab="support">
+    <div class="panel card" data-tab-group="a" data-tab="support" role="tabpanel" hidden>
       <h3>Code hosting connection needs attention</h3>
       <p>Indexing is slow. Content stays hidden from support. Safe actions: reconnect, reindex, or publish a status note.</p>
       <button class="btn sm" type="button" onclick="toast('Status note drafted without private content')">Publish status note</button>
     </div>
-    <div class="panel card" data-tab-group="a" data-tab="privacy">
-      <div class="list-item"><div><strong>Export request for Maya Ortiz</strong><div class="muted">In progress</div></div><button class="btn sm" type="button">View progress</button></div>
+    <div class="panel card" data-tab-group="a" data-tab="privacy" role="tabpanel" hidden>
+      <div class="list-item"><div><strong>Export request for Maya Ortiz</strong><div class="muted">In progress</div></div><button class="btn sm" type="button" onclick="toast('Export progress opened')">View progress</button></div>
       <div class="list-item"><div><strong>Delete personal preferences</strong><div class="muted">Ready for confirmation</div></div><button class="btn sm danger" type="button" onclick="toast('Deletion confirmed. Certificate available.')">Confirm delete</button></div>
     </div>
-    <div class="modal-backdrop" id="revoke-modal"><div class="modal">
-      <h2>Confirm before you continue</h2>
+    <div class="modal-backdrop" id="revoke-modal" aria-hidden="true"><div class="modal" role="dialog" aria-modal="true" aria-labelledby="revoke-title">
+      <h2 id="revoke-title">Confirm before you continue</h2>
       <p>Turning off the code hosting connection stops indexing and cancels open code tasks. You can reconnect later.</p>
       <div class="acts">
         <button class="btn" type="button" onclick="closeModal('revoke-modal')">Cancel</button>
@@ -364,24 +883,85 @@ body.review-mode .review-bar { display: flex; }
     </div></div>
       </div>
     </main>
-    
+    <aside class="assistant" aria-label="Assistant">
+  <div class="assistant-head">
+    <h2 class="assistant-title"><span class="ico" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M6.2 12.8A4.3 4.3 0 0 1 10 5.5a4.3 4.3 0 0 1 3.8 7.3l.9 2.7-2.8-.8A4.3 4.3 0 0 1 6.2 12.8Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><circle cx="8.3" cy="10" r=".7" fill="currentColor"/><circle cx="11.7" cy="10" r=".7" fill="currentColor"/></svg></span> Assistant</h2>
+    <button class="btn sm ghost" type="button" onclick="toggleAssistant(false)">Hide</button>
+  </div>
+  <div class="context-chip">Explain assistant capability boundaries and kill switches. Never bypass admin confirmation.</div>
+  <div class="progress-strip" id="assistant-progress" hidden>
+    <div class="meta"><span id="assistant-stage">Working</span><span id="assistant-elapsed">0s</span></div>
+    <div class="progress indeterminate"><span></span></div>
+  </div>
+  <div class="thread" id="assistant-thread"></div>
+  <div class="ask-wrap">
+    <div class="chips">
+      <button class="chip" type="button" data-ask="What evidence supports the overnight park path?">Sources</button>
+      <button class="chip" type="button" data-ask="What is still uncertain?">What's missing?</button>
+      <button class="chip" type="button" data-ask="Who should decide this?">Who decides?</button>
+    </div>
+    <textarea class="ask" id="assistant-ask" placeholder="Ask a question…"></textarea>
+    <div class="row mt-2">
+      <button class="btn sm primary" type="button" id="assistant-send">Ask</button>
+      <button class="btn sm" type="button" onclick="showAssistantSources()">Sources</button>
+      <button class="btn sm ghost" type="button" id="assistant-cancel" hidden>Cancel</button>
+    </div>
+  </div>
+</aside>
+<template id="assistant-template">
+  <div class="assistant-head">
+    <h2 class="assistant-title"><span class="ico" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M6.2 12.8A4.3 4.3 0 0 1 10 5.5a4.3 4.3 0 0 1 3.8 7.3l.9 2.7-2.8-.8A4.3 4.3 0 0 1 6.2 12.8Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><circle cx="8.3" cy="10" r=".7" fill="currentColor"/><circle cx="11.7" cy="10" r=".7" fill="currentColor"/></svg></span> Assistant</h2>
+    <button class="btn sm ghost" type="button" onclick="toggleAssistant(false)">Hide</button>
+  </div>
+  <div class="context-chip">Explain assistant capability boundaries and kill switches. Never bypass admin confirmation.</div>
+  <div class="progress-strip" id="assistant-progress" hidden>
+    <div class="meta"><span id="assistant-stage">Working</span><span id="assistant-elapsed">0s</span></div>
+    <div class="progress indeterminate"><span></span></div>
+  </div>
+  <div class="thread" id="assistant-thread"></div>
+  <div class="ask-wrap">
+    <div class="chips">
+      <button class="chip" type="button" data-ask="What evidence supports the overnight park path?">Sources</button>
+      <button class="chip" type="button" data-ask="What is still uncertain?">What's missing?</button>
+      <button class="chip" type="button" data-ask="Who should decide this?">Who decides?</button>
+    </div>
+    <textarea class="ask" id="assistant-ask" placeholder="Ask a question…"></textarea>
+    <div class="row mt-2">
+      <button class="btn sm primary" type="button" id="assistant-send">Ask</button>
+      <button class="btn sm" type="button" onclick="showAssistantSources()">Sources</button>
+      <button class="btn sm ghost" type="button" id="assistant-cancel" hidden>Cancel</button>
+    </div>
+  </div></template>
   </div>
 </div>
-<div class="overlay" id="search-overlay" role="dialog" aria-label="Search">
+<div class="drawer-backdrop" id="drawer-backdrop" onclick="toggleNav(false); toggleAssistant(false)"></div>
+<div class="overlay" id="search-overlay" role="dialog" aria-modal="true" aria-label="Search" aria-hidden="true">
   <div class="panel-box">
-    <div class="row" style="justify-content:space-between">
+    <div class="row-between">
       <h2>Search</h2>
-      <button class="btn sm ghost" type="button" onclick="toggleSearch(false)">Close</button>
+      <button class="btn sm ghost" type="button" onclick="toggleSearch(false)"><span class="ico" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m6.2 6.2 7.6 7.6M13.8 6.2l-7.6 7.6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span> Close</button>
     </div>
-    <input class="field" style="width:100%;padding:10px;border:1px solid var(--line-strong);border-radius:4px;margin:8px 0 12px" placeholder="Search initiatives, people, sources, decisions" />
-    <div class="stack">
-      <a href="05_business_understand.html"><strong>Disputed overnight rule</strong><div class="muted">Why matched: policy and interview disagree</div></a>
-      <a href="07_business_decision.html"><strong>Decision needed from Priya</strong><div class="muted">Why matched: waiting for sign-off</div></a>
-      <a href="10_developer_home.html"><strong>Delivery package for overnight exceptions</strong><div class="muted">Why matched: expected behaviour and done checks</div></a>
+    <div class="field">
+      <label for="global-search">Search initiatives, people, sources, decisions</label>
+      <input id="global-search" type="search" placeholder="Try disputed overnight rule" />
+    </div>
+    <div class="search-group">
+      <h3>Work</h3>
+      <a class="search-hit" href="05_business_understand.html"><strong>Disputed overnight rule</strong><div class="muted">Why matched: policy and interview disagree</div></a>
+      <a class="search-hit" href="07_business_decision.html"><strong>Decision needed from Priya Shah</strong><div class="muted">Why matched: waiting for sign-off</div></a>
+    </div>
+    <div class="search-group">
+      <h3>Sources</h3>
+      <a class="search-hit" href="05_business_understand.html"><strong>Claims operations policy §4.2</strong><div class="muted">Why matched: 4 hour supervisor rule</div></a>
+    </div>
+    <div class="search-group">
+      <h3>Build</h3>
+      <a class="search-hit" href="10_developer_home.html"><strong>Delivery package for overnight exceptions</strong><div class="muted">Why matched: expected behaviour and done checks</div></a>
+      <a class="search-hit" href="12_developer_review.html"><strong>Missing timer test</strong><div class="muted">Why matched: Missing test blocks merge</div></a>
     </div>
   </div>
 </div>
-<div id="toast" class="toast" role="status"></div>
+<div id="toast" class="toast" role="status"><span class="ico"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4.8 10.2 8.3 13.6 15.2 6.4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div class="toast-body"></div></div>
 <script>
 const MOCK = {
   "org": "Meridian Mutual",
@@ -392,9 +972,223 @@ const MOCK = {
   "ba": "Jordan Lee",
   "engineer": "Alex Chen",
   "participant": "Maya Ortiz",
-  "expectedBehaviour": "After 8 pm with no supervisor online, an adjuster can park a claim until morning or contact on-call when leakage risk is high.",
-  "doneCheck": "Parking a claim pauses only the internal supervisor timer. Customer response time keeps running unless an approved exception is logged."
+  "riskLead": "Sam Okonkwo",
+  "expectedBehaviour": "After 8 pm with no supervisor online, an adjuster can park a claim until morning or contact on-call when overnight risk is high.",
+  "doneCheck": "Parking a claim pauses only the internal supervisor timer. Customer response time keeps running unless an approved exception is logged.",
+  "packageVersion": "PKG-2026.08.12-03",
+  "baselineHours": 18,
+  "pilotHours": 6.2,
+  "targetHours": 4,
+  "claimId": "FNOL-88421",
+  "policyPassage": "Exceptions that require supervisor approval must be resolved within 4 hours of creation.",
+  "interviewDate": "28 July 2026",
+  "demoSteps": [
+    {
+      "id": "contribute",
+      "label": "Frontline input",
+      "href": "04_business_contribute.html"
+    },
+    {
+      "id": "understand",
+      "label": "Compare sources",
+      "href": "05_business_understand.html"
+    },
+    {
+      "id": "design",
+      "label": "Test a preview",
+      "href": "06_business_solution.html"
+    },
+    {
+      "id": "decide",
+      "label": "Sign decisions",
+      "href": "07_business_decision.html"
+    },
+    {
+      "id": "build",
+      "label": "Open package",
+      "href": "10_developer_home.html"
+    },
+    {
+      "id": "review",
+      "label": "Block bad merge",
+      "href": "12_developer_review.html"
+    },
+    {
+      "id": "track",
+      "label": "See results",
+      "href": "08_business_track.html"
+    }
+  ],
+  "learningStages": [
+    {
+      "id": "listen",
+      "label": "Collect",
+      "detail": "Answers and corrections"
+    },
+    {
+      "id": "structure",
+      "label": "Sort",
+      "detail": "Turn talk into draft rules"
+    },
+    {
+      "id": "prototype",
+      "label": "Preview",
+      "detail": "Build a testable overnight path"
+    },
+    {
+      "id": "govern",
+      "label": "Approve",
+      "detail": "Human sign-off"
+    },
+    {
+      "id": "deliver",
+      "label": "Hand off",
+      "detail": "Give Build the approved package"
+    }
+  ],
+  "phaseLabels": {
+    "listen": "Collect",
+    "structure": "Sort",
+    "prototype": "Preview",
+    "govern": "Approve",
+    "deliver": "Hand off"
+  }
 };
+const DEMO_KEY = "collabx-demo-v2";
+
+const DEFAULT_STATE = {
+  contributed: false,
+  contributeStep: 1,
+  contributionAnswer: "park",
+  leakageAnswer: "low-park",
+  timerAnswer: "internal-only",
+  draftUsed: {},
+  notRight: {},
+  decisionSigned: false,
+  approvedItems: [],
+  packageVersion: null,
+  testAdded: false,
+  patchProposed: false,
+  mergeBlocked: true,
+  clarificationAnswered: true,
+  assistantOpen: false,
+  demoStep: "contribute",
+  alertsSeen: false,
+  largeText: false,
+  language: "en-AU",
+  sessionPhase: "listen",
+  learningScore: 8,
+  insights: [],
+  episodic: [
+    { id: "e0", when: "Mon", text: "Initiative brief accepted by " + MOCK.sponsor, kind: "human" }
+  ],
+  semanticCandidates: [],
+  semanticConfirmed: [],
+  prospective: [
+    { id: "p0", text: "Night shift coverage still missing", status: "open" },
+    { id: "p1", text: "Overnight volume claim needs a source", status: "open" }
+  ],
+  prototype: {
+    version: "mock-v1",
+    labelPark: "Park until morning",
+    labelOncall: "Contact on-call",
+    oncallStrong: false,
+    riskBanner: false,
+    reasonRequired: false,
+    confirmed: false,
+    adjustments: [],
+    generated: false
+  },
+  rememberedForBuild: []
+};
+
+function loadState() {
+  try {
+    const raw = localStorage.getItem(DEMO_KEY);
+    if (!raw) return JSON.parse(JSON.stringify(DEFAULT_STATE));
+    return deepMerge(JSON.parse(JSON.stringify(DEFAULT_STATE)), JSON.parse(raw));
+  } catch {
+    return JSON.parse(JSON.stringify(DEFAULT_STATE));
+  }
+}
+
+function deepMerge(base, patch) {
+  if (!patch || typeof patch !== "object") return base;
+  for (const [k, v] of Object.entries(patch)) {
+    if (v && typeof v === "object" && !Array.isArray(v) && base[k] && typeof base[k] === "object" && !Array.isArray(base[k])) {
+      base[k] = deepMerge(base[k], v);
+    } else {
+      base[k] = v;
+    }
+  }
+  return base;
+}
+
+function saveState(patch) {
+  const next = deepMerge(loadState(), { ...patch, updatedAt: new Date().toISOString() });
+  try { localStorage.setItem(DEMO_KEY, JSON.stringify(next)); } catch {}
+  return next;
+}
+
+function addInsight(text, opts = {}) {
+  const st = loadState();
+  const item = {
+    id: "i" + Date.now() + Math.floor(Math.random() * 99),
+    when: opts.when || "Just now",
+    text,
+    source: opts.source || "session",
+    kind: opts.kind || "ai"
+  };
+  const insights = [...(st.insights || []), item].slice(-12);
+  const episodic = [...(st.episodic || []), { id: item.id, when: item.when, text, kind: item.kind }].slice(-14);
+  const learningScore = Math.min(100, (st.learningScore || 0) + (opts.score || 8));
+  const next = saveState({ insights, episodic, learningScore, sessionPhase: opts.phase || st.sessionPhase });
+  refreshDemoChrome();
+  return next;
+}
+
+function proposeSemantic(text) {
+  const st = loadState();
+  if ((st.semanticCandidates || []).some((x) => x.text === text) || (st.semanticConfirmed || []).some((x) => x.text === text)) {
+    return st;
+  }
+  const semanticCandidates = [...(st.semanticCandidates || []), {
+    id: "s" + Date.now(),
+    text,
+    status: "candidate"
+  }];
+  return saveState({ semanticCandidates, sessionPhase: "structure", learningScore: Math.min(100, st.learningScore + 6) });
+}
+
+function confirmSemantic(id) {
+  const st = loadState();
+  const item = (st.semanticCandidates || []).find((x) => x.id === id);
+  if (!item) return;
+  const semanticCandidates = st.semanticCandidates.filter((x) => x.id !== id);
+  const semanticConfirmed = [...(st.semanticConfirmed || []), { ...item, status: "confirmed" }];
+  saveState({
+    semanticCandidates,
+    semanticConfirmed,
+    learningScore: Math.min(100, st.learningScore + 10),
+    rememberedForBuild: [...new Set([...(st.rememberedForBuild || []), item.text])]
+  });
+  addInsight("Confirmed draft: " + item.text, { kind: "human", score: 4, phase: "structure" });
+  toast("Saved as confirmed meaning. The assistant may reuse it; only people approve.");
+}
+
+function rejectSemantic(id) {
+  const st = loadState();
+  saveState({ semanticCandidates: (st.semanticCandidates || []).filter((x) => x.id !== id) });
+  addInsight("Rejected a draft. Correction kept for this demo.", { kind: "human", score: 2 });
+  toast("Candidate rejected. It will not be promoted.");
+}
+
+function resetDemo() {
+  try { localStorage.removeItem(DEMO_KEY); } catch {}
+  document.body.classList.add("demo-resetting");
+  toast("Demo reset. Reloading…");
+  setTimeout(() => location.href = "00_portal_home.html", 500);
+}
 
 function toast(msg) {
   let t = document.getElementById("toast");
@@ -402,40 +1196,83 @@ function toast(msg) {
     t = document.createElement("div");
     t.id = "toast";
     t.className = "toast";
+    t.setAttribute("role", "status");
+    t.innerHTML = '<span class="ico">' + "<svg viewBox=\"0 0 20 20\" fill=\"none\" aria-hidden=\"true\"><path d=\"M4.8 10.2 8.3 13.6 15.2 6.4\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>" + '</span><div class="toast-body"></div>';
     document.body.appendChild(t);
   }
-  t.textContent = msg;
+  const body = t.querySelector(".toast-body") || t;
+  body.textContent = msg;
   t.classList.add("show");
   clearTimeout(t._timer);
-  t._timer = setTimeout(() => t.classList.remove("show"), 2600);
+  t._timer = setTimeout(() => t.classList.remove("show"), 2800);
 }
 
 function switchTab(group, name, btn) {
-  document.querySelectorAll("[data-tab-group='" + group + "']").forEach((p) => {
-    p.classList.toggle("active", p.getAttribute("data-tab") === name);
+  const panels = document.querySelectorAll("[data-tab-group='" + group + "']");
+  panels.forEach((p) => {
+    const on = p.getAttribute("data-tab") === name;
+    p.classList.toggle("active", on);
+    p.hidden = !on;
+    p.setAttribute("aria-hidden", on ? "false" : "true");
   });
-  if (btn && btn.parentElement) {
-    btn.parentElement.querySelectorAll("button").forEach((b) => b.classList.remove("active"));
-    btn.classList.add("active");
-  }
+  const tabs = btn ? btn.parentElement.querySelectorAll('[role="tab"]') : document.querySelectorAll('[data-tabs="' + group + '"] [role="tab"]');
+  tabs.forEach((b) => {
+    const selected = b === btn || b.getAttribute("data-tab-target") === name;
+    b.classList.toggle("active", selected);
+    b.setAttribute("aria-selected", selected ? "true" : "false");
+    b.tabIndex = selected ? 0 : -1;
+  });
 }
 
+function setupTabs() {
+  document.querySelectorAll(".tabs").forEach((tablist) => {
+    const tabs = [...tablist.querySelectorAll('[role="tab"]')];
+    tabs.forEach((tab, idx) => {
+      tab.addEventListener("keydown", (e) => {
+        let next = null;
+        if (e.key === "ArrowRight") next = tabs[(idx + 1) % tabs.length];
+        if (e.key === "ArrowLeft") next = tabs[(idx - 1 + tabs.length) % tabs.length];
+        if (e.key === "Home") next = tabs[0];
+        if (e.key === "End") next = tabs[tabs.length - 1];
+        if (next) {
+          e.preventDefault();
+          next.focus();
+          next.click();
+        }
+      });
+    });
+  });
+}
+
+let lastFocus = null;
 function openModal(id) {
   const m = document.getElementById(id);
-  if (m) m.classList.add("show");
+  if (!m) return;
+  lastFocus = document.activeElement;
+  m.classList.add("show");
+  m.setAttribute("aria-hidden", "false");
+  const focusable = m.querySelector("button, [href], input, select, textarea");
+  if (focusable) focusable.focus();
 }
 function closeModal(id) {
   const m = document.getElementById(id);
-  if (m) m.classList.remove("show");
+  if (!m) return;
+  m.classList.remove("show");
+  m.setAttribute("aria-hidden", "true");
+  if (lastFocus) lastFocus.focus();
 }
 
 function useDraft(id) {
   const el = document.getElementById(id);
   if (el) {
     const b = el.querySelector(".badge.ai");
-    if (b) { b.className = "badge draft"; b.textContent = "Draft"; }
+    if (b) { b.className = "badge draft"; b.innerHTML = "<span class=\"ico\" aria-hidden=\"true\"><svg viewBox=\"0 0 20 20\" fill=\"none\" aria-hidden=\"true\"><circle cx=\"10\" cy=\"10\" r=\"6.5\" stroke=\"currentColor\" stroke-width=\"1.4\"/><path d=\"M10 9v4.2M10 6.5h.01\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\"/></svg></span> Draft"; }
   }
+  const st = loadState();
+  st.draftUsed[id] = true;
+  saveState({ draftUsed: st.draftUsed });
   toast("Saved as a draft. It is not approved yet.");
+  refreshDemoChrome();
 }
 
 function notRight(id) {
@@ -443,8 +1280,11 @@ function notRight(id) {
   const el = document.getElementById(id);
   if (el) {
     const b = el.querySelector(".badge");
-    if (b) { b.className = "badge disputed"; b.textContent = "Needs correction"; }
+    if (b) { b.className = "badge disputed"; b.innerHTML = "<span class=\"ico\" aria-hidden=\"true\"><svg viewBox=\"0 0 20 20\" fill=\"none\" aria-hidden=\"true\"><path d=\"M10 3.5 17 16H3L10 3.5Z\" stroke=\"currentColor\" stroke-width=\"1.4\" stroke-linejoin=\"round\"/><path d=\"M10 8v3.8M10 14h.01\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\"/></svg></span> Needs correction"; }
   }
+  const st = loadState();
+  st.notRight[id] = true;
+  saveState({ notRight: st.notRight });
 }
 
 function denyAction(reason) {
@@ -456,17 +1296,286 @@ function toggleSearch(force) {
   if (!o) return;
   const show = force === true || (force !== false && !o.classList.contains("show"));
   o.classList.toggle("show", show);
+  o.setAttribute("aria-hidden", show ? "false" : "true");
   if (show) {
+    lastFocus = document.activeElement;
     const input = o.querySelector("input");
     if (input) input.focus();
+  } else if (lastFocus) lastFocus.focus();
+}
+
+function ensureAssistantPane() {
+  let aside = document.querySelector(".assistant");
+  if (aside) return aside;
+  const shell = document.querySelector(".shell");
+  if (!shell) return null;
+  aside = document.createElement("aside");
+  aside.className = "assistant";
+  aside.setAttribute("aria-label", "Assistant");
+  aside.innerHTML = document.getElementById("assistant-template")
+    ? document.getElementById("assistant-template").innerHTML
+    : defaultAssistantHTML("Help with " + MOCK.initiative + ".");
+  shell.appendChild(aside);
+  wireAssistant(aside);
+  return aside;
+}
+
+function defaultAssistantHTML(context) {
+  return `
+  <div class="assistant-head">
+    <h2 class="assistant-title"><span class="ico" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M6.2 12.8A4.3 4.3 0 0 1 10 5.5a4.3 4.3 0 0 1 3.8 7.3l.9 2.7-2.8-.8A4.3 4.3 0 0 1 6.2 12.8Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><circle cx="8.3" cy="10" r=".7" fill="currentColor"/><circle cx="11.7" cy="10" r=".7" fill="currentColor"/></svg></span> Assistant</h2>
+    <button class="btn sm ghost" type="button" onclick="toggleAssistant(false)">Hide</button>
+  </div>
+  <div class="context-chip">${context}</div>
+  <div class="progress-strip" id="assistant-progress" hidden>
+    <div class="meta"><span id="assistant-stage">Working</span><span id="assistant-elapsed">0s</span></div>
+    <div class="progress indeterminate"><span></span></div>
+  </div>
+  <div class="thread" id="assistant-thread"></div>
+  <div class="ask-wrap">
+    <div class="chips">
+      <button class="chip" type="button" data-ask="What evidence supports the overnight park path?">Sources</button>
+      <button class="chip" type="button" data-ask="What is still uncertain?">What's missing?</button>
+      <button class="chip" type="button" data-ask="Who should decide this?">Who decides?</button>
+    </div>
+    <textarea class="ask" id="assistant-ask" placeholder="Ask a question…"></textarea>
+    <div class="row mt-2">
+      <button class="btn sm primary" type="button" id="assistant-send">Ask</button>
+      <button class="btn sm" type="button" onclick="showAssistantSources()">Sources</button>
+      <button class="btn sm ghost" type="button" id="assistant-cancel" hidden>Cancel</button>
+    </div>
+  </div>`;
+}
+
+function wireAssistant(root) {
+  if (!root || root._wired) return;
+  root._wired = true;
+  const thread = root.querySelector("#assistant-thread");
+  if (thread && !thread.children.length) {
+    seedAssistantThread(thread);
+  }
+  root.querySelectorAll("[data-ask]").forEach((chip) => {
+    chip.addEventListener("click", () => askAssistant(chip.getAttribute("data-ask")));
+  });
+  const send = root.querySelector("#assistant-send");
+  if (send) send.addEventListener("click", () => {
+    const ask = root.querySelector("#assistant-ask");
+    askAssistant(ask && ask.value ? ask.value : "Summarise the recommended next step.");
+    if (ask) ask.value = "";
+  });
+  const cancel = root.querySelector("#assistant-cancel");
+  if (cancel) cancel.addEventListener("click", () => cancelAssistantTask());
+}
+
+function memorySummary(st) {
+  const confirmed = (st.semanticConfirmed || []).map((x) => x.text);
+  const candidates = (st.semanticCandidates || []).map((x) => x.text);
+  return {
+    confirmed,
+    candidates,
+    insights: (st.insights || []).length,
+    score: st.learningScore || 0,
+    phase: st.sessionPhase || "listen",
+    proto: st.prototype || {}
+  };
+}
+
+function seedAssistantThread(thread) {
+  const st = loadState();
+  const mem = memorySummary(st);
+  const phaseLabel = (MOCK.phaseLabels && MOCK.phaseLabels[mem.phase]) || mem.phase;
+  let found = MOCK.issue;
+  let next = "Keep the disagreement visible, then open Decide for " + MOCK.sponsor + ".";
+  let uncertain = "How often overnight risk is truly high. Volume claims stay out of scope for now.";
+  let grown = "Early stage. I have the brief and policy, but not yet frontline answers.";
+  if (mem.confirmed.length || mem.candidates.length) {
+    found = mem.confirmed[0] || mem.candidates[0];
+    grown = "I have " + mem.insights + " notes so far and " + mem.confirmed.length + " confirmed drafts (" + mem.score + "% progress).";
+  }
+  if (mem.proto.generated && !mem.proto.confirmed) {
+    next = "Adjust the overnight preview, then confirm a version before Decide.";
+  } else if (mem.proto.confirmed && !st.decisionSigned) {
+    next = "Preview " + mem.proto.version + " is ready. Open Decide for " + MOCK.sponsor + ".";
+  } else if (st.decisionSigned) {
+    next = "The approved package is ready for Build. I can explain expected behaviour, but I cannot force a merge.";
+    grown = "Path so far: frontline answers → confirmed drafts → preview " + (mem.proto.version || "mock") + " → signed package " + (st.packageVersion || MOCK.packageVersion) + ".";
+  } else if (mem.candidates.length && !mem.confirmed.length) {
+    next = "On Understand, keep or reject waiting drafts before Design reuses them.";
+  }
+  thread.innerHTML = `
+    <div class="msg agent">
+      <div class="who"><span class="ico" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 4v3M10 13v3M4 10h3M13 10h3M6.2 6.2l2.1 2.1M11.7 11.7l2.1 2.1M13.8 6.2l-2.1 2.1M8.3 11.7l-2.1 2.1" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></span> Assistant · ${phaseLabel}</div>
+      <div class="text-primary">${grown}</div>
+      <div class="stack mt-2">
+        <div class="source"><span class="ico" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 4.5h7l3 3V15.5H5V4.5Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M12 4.5V7.5h3" stroke="currentColor" stroke-width="1.4"/></svg></span><div><strong>Finding</strong><div class="muted">${found}</div></div></div>
+        <div class="source"><span class="ico" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="6.5" stroke="currentColor" stroke-width="1.4"/><path d="M10 9v4.2M10 6.5h.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span><div><strong>Why it matters</strong><div class="muted">It blocks a clear overnight path and keeps informal workarounds in place.</div></div></div>
+        <div class="source"><span class="ico" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 4.5h7l3 3V15.5H5V4.5Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M12 4.5V7.5h3" stroke="currentColor" stroke-width="1.4"/></svg></span><div><strong>Sources used</strong><div class="muted">Policy §4.2 · ${MOCK.participant} · ${mem.confirmed.length} confirmed / ${mem.candidates.length} waiting</div></div></div>
+        <div class="source"><span class="ico" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 3.5 17 16H3L10 3.5Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M10 8v3.8M10 14h.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span><div><strong>Still open</strong><div class="muted">${uncertain}</div></div></div>
+        <div class="source"><span class="ico" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M8 5.75v8.5L14.75 10 8 5.75Z" fill="currentColor"/></svg></span><div><strong>Next step</strong><div class="muted">${next}</div></div></div>
+        <div class="source"><span class="ico" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="7.2" r="2.6" stroke="currentColor" stroke-width="1.4"/><path d="M4.8 15.4c.8-2.3 2.7-3.5 5.2-3.5s4.4 1.2 5.2 3.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></span><div><strong>Decision owner</strong><div class="muted">${MOCK.sponsor}</div></div></div>
+      </div>
+    </div>`;
+  const chips = thread.closest(".assistant") && thread.closest(".assistant").querySelector(".chips");
+  if (chips) {
+    const phaseChips = mem.proto.generated
+      ? ["What did the preview use from confirmed drafts?", "What is still uncertain?", "Who should decide this?"]
+      : mem.confirmed.length
+      ? ["What have you learned so far?", "What evidence supports the overnight park path?", "Who should decide this?"]
+      : ["What evidence supports the overnight park path?", "What is still uncertain?", "Who should decide this?"];
+    chips.innerHTML = phaseChips.map((q) => {
+      const label = q.length > 28 ? q.slice(0, 26) + "…" : q;
+      return '<button class="chip" type="button" data-ask="' + q.replace(/"/g, "&quot;") + '">' + label + "</button>";
+    }).join("");
+    chips.querySelectorAll("[data-ask]").forEach((chip) => chip.addEventListener("click", () => askAssistant(chip.getAttribute("data-ask"))));
   }
 }
 
-function toggleAssistant() {
+let assistantTimer = null;
+let assistantElapsed = 0;
+function setAssistantProgress(show, stage) {
+  const strip = document.getElementById("assistant-progress");
+  const cancel = document.getElementById("assistant-cancel");
+  if (!strip) return;
+  strip.hidden = !show;
+  if (cancel) cancel.hidden = !show;
+  if (!show) {
+    clearInterval(assistantTimer);
+    assistantTimer = null;
+    assistantElapsed = 0;
+    return;
+  }
+  const stageEl = document.getElementById("assistant-stage");
+  const elapsedEl = document.getElementById("assistant-elapsed");
+  if (stageEl) stageEl.textContent = stage || "Working";
+  clearInterval(assistantTimer);
+  assistantElapsed = 0;
+  assistantTimer = setInterval(() => {
+    assistantElapsed += 1;
+    if (elapsedEl) elapsedEl.textContent = assistantElapsed + "s";
+  }, 1000);
+}
+
+function cancelAssistantTask() {
+  setAssistantProgress(false);
+  toast("Assistant task cancelled. Partial draft kept.");
+}
+
+function askAssistant(question) {
+  ensureAssistantPane();
+  const thread = document.getElementById("assistant-thread");
+  if (!thread) { toast("Assistant reply added as a draft suggestion"); return; }
+  const user = document.createElement("div");
+  user.className = "msg user";
+  user.innerHTML = '<div class="who">You</div><div class="text-primary"></div>';
+  user.querySelector(".text-primary").textContent = question;
+  thread.appendChild(user);
+
+  const pending = document.createElement("div");
+  pending.className = "msg agent";
+  pending.innerHTML = '<div class="who"><span class="ico" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 4v3M10 13v3M4 10h3M13 10h3M6.2 6.2l2.1 2.1M11.7 11.7l2.1 2.1M13.8 6.2l-2.1 2.1M8.3 11.7l-2.1 2.1" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></span> Assistant</div><div class="typing"><span></span><span></span><span></span></div>';
+  thread.appendChild(pending);
+  thread.scrollTop = thread.scrollHeight;
+  setAssistantProgress(true, "Retrieving sources");
+
+  const reply = buildAssistantReply(question);
+  let step = 0;
+  const stages = ["Retrieving sources", "Comparing perspectives", "Drafting answer"];
+  const stageTimer = setInterval(() => {
+    step += 1;
+    if (step < stages.length) setAssistantProgress(true, stages[step]);
+  }, 450);
+
+  setTimeout(() => {
+    clearInterval(stageTimer);
+    setAssistantProgress(false);
+    pending.innerHTML = '<div class="who"><span class="ico" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 4v3M10 13v3M4 10h3M13 10h3M6.2 6.2l2.1 2.1M11.7 11.7l2.1 2.1M13.8 6.2l-2.1 2.1M8.3 11.7l-2.1 2.1" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></span> Assistant</div><div class="text-primary stream-cursor"></div>' + reply.meta;
+    const target = pending.querySelector(".text-primary");
+    let i = 0;
+    const text = reply.text;
+    const typer = setInterval(() => {
+      i += 2;
+      target.textContent = text.slice(0, i);
+      thread.scrollTop = thread.scrollHeight;
+      if (i >= text.length) {
+        clearInterval(typer);
+        target.classList.remove("stream-cursor");
+      }
+    }, 16);
+  }, 1100);
+}
+
+function buildAssistantReply(q) {
+  const lower = (q || "").toLowerCase();
+  const st = loadState();
+  const mem = memorySummary(st);
+  const phaseLabel = (MOCK.phaseLabels && MOCK.phaseLabels[mem.phase]) || mem.phase;
+  if (lower.includes("learned") || lower.includes("so far") || lower.includes("progress") || lower.includes("memory") || lower.includes("draft")) {
+    const lines = mem.confirmed.length
+      ? mem.confirmed.map((t, i) => (i + 1) + ". " + t).join(" ")
+      : "Nothing confirmed yet — only waiting drafts or early notes.";
+    return {
+      text: "Progress " + mem.score + "% · " + phaseLabel + ". Confirmed drafts: " + lines + " I only improve when people keep, reject, or adjust my drafts.",
+      meta: '<div class="row mt-2"><span class="confidence high"><span class="ico" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4.8 10.2 8.3 13.6 15.2 6.4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Session-aware</span><span class="provenance">' + mem.insights + " notes captured</span></div>"
+    };
+  }
+  if (lower.includes("prototype") || lower.includes("inherit") || lower.includes("preview") || lower.includes("mock")) {
+    if (!mem.proto.generated) {
+      return {
+        text: "No preview yet. After drafts are confirmed, Design can build an interactive overnight screen and keep adjusting it with you.",
+        meta: '<div class="row mt-2"><a class="btn sm primary" href="06_business_solution.html">Open Design</a></div>'
+      };
+    }
+    return {
+      text: "Preview " + mem.proto.version + " uses " + Math.max(mem.confirmed.length, 1) + " confirmed drafts. On-call is " + (mem.proto.oncallStrong ? "a clear action with a reason" : "still soft") + ". Confirming a preview is not business approval.",
+      meta: '<div class="row mt-2"><span class="badge ai"><span class="ico" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 4v3M10 13v3M4 10h3M13 10h3M6.2 6.2l2.1 2.1M11.7 11.7l2.1 2.1M13.8 6.2l-2.1 2.1M8.3 11.7l-2.1 2.1" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></span> Not live code</span><span class="provenance">' + (mem.proto.confirmed ? "Ready for Decide" : "Needs confirmation") + "</span></div>"
+    };
+  }
+  if (lower.includes("uncertain") || lower.includes("missing")) {
+    return {
+      text: "Still open: overnight volume and how often overnight risk is truly high. Those claims stay out of the decision brief for now.",
+      meta: '<div class="row mt-2"><span class="confidence low"><span class="ico" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 3.5 17 16H3L10 3.5Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M10 8v3.8M10 14h.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span> Low confidence</span><span class="provenance">Needs a source</span></div>'
+    };
+  }
+  if (lower.includes("who") || lower.includes("decide")) {
+    return {
+      text: MOCK.sponsor + " owns overnight rules. I can prepare options and remember corrections, but I cannot approve them.",
+      meta: '<div class="row mt-2"><span class="badge info"><span class="ico" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="7.2" r="2.6" stroke="currentColor" stroke-width="1.4"/><path d="M4.8 15.4c.8-2.3 2.7-3.5 5.2-3.5s4.4 1.2 5.2 3.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></span> People approve</span></div>'
+    };
+  }
+  if (lower.includes("evidence") || lower.includes("source")) {
+    const memLine = mem.confirmed[0] || "Frontline practice still waiting for confirmation";
+    return {
+      text: "Two sources support the disagreement: claims policy §4.2, the " + MOCK.interviewDate + " interview with " + MOCK.participant + ", plus draft: " + memLine + ".",
+      meta: '<div class="stack mt-2"><div class="source"><span class="ico" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 4.5h7l3 3V15.5H5V4.5Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M12 4.5V7.5h3" stroke="currentColor" stroke-width="1.4"/></svg></span><div><strong>Policy passage</strong><div class="muted">' + MOCK.policyPassage + '</div></div></div><div class="source"><span class="ico" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 4.5h7l3 3V15.5H5V4.5Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M12 4.5V7.5h3" stroke="currentColor" stroke-width="1.4"/></svg></span><div><strong>Confirmed draft</strong><div class="muted">' + memLine + '</div></div></div></div>'
+    };
+  }
+  return {
+    text: mem.confirmed.length
+      ? "Based on confirmed drafts, keep the 4 hour rule in business hours and add a formal overnight park path with a clear on-call option. I will not average the disagreement away."
+      : "Suggested next step: keep the 4 hour rule in business hours, and add a formal overnight park path with a clear on-call option. I will not average the disagreement away.",
+    meta: '<div class="row mt-2"><span class="confidence high"><span class="ico" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4.8 10.2 8.3 13.6 15.2 6.4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Supported by sources</span><button class="btn sm" type="button" onclick="toast(\'Opened sources\')">Open sources</button></div>'
+  };
+}
+
+function showAssistantSources() {
+  askAssistant("What evidence supports the overnight park path?");
+}
+
+function toggleAssistant(force) {
   const shell = document.querySelector(".shell");
   if (!shell) return;
-  shell.classList.toggle("with-assistant");
-  toast(shell.classList.contains("with-assistant") ? "Assistant opened" : "Assistant closed");
+  ensureAssistantPane();
+  const show = force === true || (force !== false && !shell.classList.contains("with-assistant"));
+  shell.classList.toggle("with-assistant", show);
+  document.getElementById("drawer-backdrop")?.classList.toggle("show", show && window.matchMedia("(max-width: 1180px)").matches);
+  saveState({ assistantOpen: show });
+  toast(show ? "Assistant opened" : "Assistant closed");
+}
+
+function toggleNav(force) {
+  const show = force === true || (force !== false && !document.body.classList.contains("nav-open"));
+  document.body.classList.toggle("nav-open", show);
+  document.getElementById("drawer-backdrop")?.classList.toggle("show", show);
 }
 
 function setReviewState(name) {
@@ -476,10 +1585,552 @@ function setReviewState(name) {
   toast("Review state: " + name);
 }
 
+function markDemoStep(step) {
+  saveState({ demoStep: step });
+  refreshDemoChrome();
+}
+
+function refreshDemoChrome() {
+  const st = loadState();
+  if (st.largeText) document.documentElement.classList.add("large-text");
+  else document.documentElement.classList.remove("large-text");
+
+  document.querySelectorAll("[data-demo-step]").forEach((el) => {
+    const id = el.getAttribute("data-demo-step");
+    el.classList.toggle("current", id === st.demoStep);
+    el.classList.toggle("done", isStepDone(id, st));
+  });
+
+  document.querySelectorAll("[data-if]").forEach((el) => {
+    const key = el.getAttribute("data-if");
+    let on = !!st[key];
+    if (key.includes(".")) {
+      on = key.split(".").reduce((acc, part) => (acc == null ? acc : acc[part]), st);
+      on = !!on;
+    }
+    el.classList.toggle("hidden", !on);
+  });
+  document.querySelectorAll("[data-unless]").forEach((el) => {
+    const key = el.getAttribute("data-unless");
+    let on = !!st[key];
+    if (key.includes(".")) {
+      on = key.split(".").reduce((acc, part) => (acc == null ? acc : acc[part]), st);
+      on = !!on;
+    }
+    el.classList.toggle("hidden", on);
+  });
+
+  document.querySelectorAll("[data-package-version]").forEach((el) => {
+    el.textContent = st.packageVersion || MOCK.packageVersion + " (draft)";
+  });
+  document.querySelectorAll("[data-learning-score]").forEach((el) => {
+    el.textContent = String(st.learningScore || 0) + "%";
+  });
+  document.querySelectorAll("[data-proto-version]").forEach((el) => {
+    el.textContent = (st.prototype && st.prototype.version) || "mock-v1";
+  });
+  document.querySelectorAll("[data-session-phase]").forEach((el) => {
+    const phase = st.sessionPhase || "listen";
+    el.textContent = (MOCK.phaseLabels && MOCK.phaseLabels[phase]) || phase;
+  });
+
+  const alertDot = document.querySelector(".topbar .pulse");
+  if (alertDot) alertDot.style.display = st.alertsSeen ? "none" : "block";
+
+  renderLearningMeter(st);
+  renderMemoryBoard(st);
+  renderInsightFeed(st);
+  renderContributeStep(st);
+  renderPrototype(st);
+  renderRememberedBuild(st);
+  renderGrowthTimeline(st);
+  renderBeforeAfter(st);
+}
+
+function isStepDone(id, st) {
+  if (id === "contribute") return st.contributed;
+  if (id === "understand") return st.draftUsed["u-suggest"] || st.contributed;
+  if (id === "design") return !!(st.prototype && (st.prototype.confirmed || st.prototype.generated)) || st.draftUsed["design-suggest"];
+  if (id === "decide") return st.decisionSigned;
+  if (id === "build") return st.decisionSigned;
+  if (id === "review") return st.testAdded === false && st.decisionSigned;
+  if (id === "track") return st.decisionSigned;
+  return false;
+}
+
+function renderLearningMeter(st) {
+  const root = document.getElementById("learn-meter");
+  if (!root) return;
+  const order = ["listen", "structure", "prototype", "govern", "deliver"];
+  const current = st.sessionPhase || "listen";
+  const idx = order.indexOf(current);
+  root.innerHTML = (MOCK.learningStages || []).map((stage, i) => {
+    const cls = i < idx ? "done" : i === idx ? "active" : "";
+    return '<div class="learn-stage ' + cls + '"><div class="n">Stage ' + (i + 1) + '</div><strong>' + stage.label + '</strong><div class="muted text-xs">' + stage.detail + '</div></div>';
+  }).join("");
+}
+
+function renderMemoryBoard(st) {
+  const episodic = document.getElementById("memory-episodic");
+  const candidates = document.getElementById("memory-candidates");
+  const confirmed = document.getElementById("memory-confirmed");
+  const prospective = document.getElementById("memory-prospective");
+  if (episodic) {
+    episodic.innerHTML = (st.episodic || []).slice().reverse().slice(0, 6).map((e) =>
+      '<div class="memory-item"><div class="muted text-xs">' + e.when + ' · ' + e.kind + '</div><div class="text-primary">' + e.text + '</div></div>'
+    ).join("") || '<div class="muted text-sm">No episode yet. Answer a question to begin.</div>';
+  }
+  if (candidates) {
+    candidates.innerHTML = (st.semanticCandidates || []).map((c) =>
+      '<div class="memory-item semantic"><div class="text-primary">' + c.text + '</div><div class="row mt-2">' +
+      '<button class="btn sm primary" type="button" onclick="confirmSemantic(\'' + c.id + '\')">Keep</button>' +
+      '<button class="btn sm" type="button" onclick="rejectSemantic(\'' + c.id + '\')">Reject</button></div></div>'
+    ).join("") || '<div class="muted text-sm">Nothing waiting. Corrections create drafts here.</div>';
+  }
+  if (confirmed) {
+    confirmed.innerHTML = (st.semanticConfirmed || []).map((c) =>
+      '<div class="memory-item confirmed"><div class="text-primary">' + c.text + '</div><div class="muted text-xs">Confirmed · ready for Design and Build</div></div>'
+    ).join("") || '<div class="muted text-sm">Nothing confirmed yet. People confirm drafts.</div>';
+  }
+  if (prospective) {
+    prospective.innerHTML = (st.prospective || []).map((p) =>
+      '<div class="memory-item"><div class="text-primary">' + p.text + '</div><div class="muted text-xs">Still open</div></div>'
+    ).join("");
+  }
+}
+
+function renderInsightFeed(st) {
+  const feed = document.getElementById("insight-feed");
+  if (!feed) return;
+  const items = (st.insights || []).slice().reverse().slice(0, 8);
+  feed.innerHTML = items.map((i) =>
+    '<div class="insight-pill"><div class="when">' + i.when + '</div><div><strong class="text-primary">' + i.text + '</strong><div class="muted text-xs">' + i.source + ' · ' + i.kind + '</div></div></div>'
+  ).join("") || '<div class="muted">No new notes in this browser session yet.</div>';
+}
+
+function renderContributeStep(st) {
+  const step = st.contributeStep || 1;
+  document.querySelectorAll(".q-step").forEach((el) => {
+    const n = Number(el.getAttribute("data-q"));
+    el.classList.toggle("active", n === step);
+  });
+  const crumb = document.getElementById("contribute-crumb");
+  if (crumb) crumb.textContent = "Contribution · adaptive session · Q" + Math.min(step, 3) + " of 3";
+  const bar = document.getElementById("contribute-progress");
+  if (bar) bar.style.width = Math.min(step, 3) * 33 + (step > 3 ? 1 : 0) + "%";
+  const pct = document.getElementById("contribute-pct");
+  if (pct) pct.textContent = Math.min(100, Math.min(step, 3) * 33) + "%";
+  const adapt = document.getElementById("adapt-note");
+  if (adapt) {
+    if (step === 2) adapt.textContent = "Follow-up: because you described overnight parking, I will ask about overnight risk next.";
+    else if (step === 3) adapt.textContent = "Follow-up: timer behaviour matters for the Build done check.";
+    else if (step > 3) adapt.textContent = "Session complete. Drafts are ready for analyst review.";
+    else adapt.textContent = "Starting broad. Later questions will narrow based on your answers.";
+  }
+}
+
+function advanceContribute(answerKey, value) {
+  const st = loadState();
+  const step = st.contributeStep || 1;
+  const patch = { contributeStep: step + 1 };
+  if (answerKey) patch[answerKey] = value;
+  let insight = "";
+  let semantic = "";
+  if (step === 1) {
+    insight = "Captured practice: overnight claims are usually parked.";
+    semantic = "After 8 pm, claims may be parked until the morning supervisor queue.";
+  } else if (step === 2) {
+    insight = "Captured exception: high overnight risk triggers on-call contact.";
+    semantic = "On-call is required when overnight risk is high.";
+  } else if (step === 3) {
+    insight = "Captured timer rule: parking pauses only the internal supervisor timer.";
+    semantic = "Parking pauses only the internal supervisor timer; customer response time keeps running.";
+    patch.contributed = true;
+    patch.demoStep = "understand";
+    patch.sessionPhase = "structure";
+  }
+  saveState(patch);
+  if (insight) addInsight(insight, { source: "Contribute", kind: "human", score: 10, phase: step >= 3 ? "structure" : "listen" });
+  if (semantic) proposeSemantic(semantic);
+  refreshDemoChrome();
+  if (step >= 3) {
+    toast("Answers saved. Opening Understand with new drafts.");
+    setTimeout(() => location.href = "05_business_understand.html", 700);
+  } else {
+    toast("Saved. Next question ready.");
+  }
+}
+
+function submitContribution() {
+  const st = loadState();
+  if ((st.contributeStep || 1) < 3) {
+    toast("Finish the adaptive questions first. The agent is still learning from you.");
+    return;
+  }
+  saveState({ contributed: true, demoStep: "understand", sessionPhase: "structure" });
+  toast("Thanks. Your answers were saved for this demo.");
+  setTimeout(() => location.href = "05_business_understand.html", 500);
+}
+
+function generatePrototype() {
+  const strip = document.getElementById("proto-progress");
+  if (strip) strip.hidden = false;
+  setAssistantProgress(true, "Generating overnight mock");
+  const stages = ["Using confirmed drafts", "Choosing a simple preview", "Building interactive screen"];
+  let i = 0;
+  const t = setInterval(() => {
+    i += 1;
+    if (i < stages.length) setAssistantProgress(true, stages[i]);
+  }, 420);
+  setTimeout(() => {
+    clearInterval(t);
+    setAssistantProgress(false);
+    if (strip) strip.hidden = true;
+    const st = loadState();
+    const remembered = [
+      ...(st.semanticConfirmed || []).map((x) => x.text),
+      ...(st.semanticCandidates || []).map((x) => x.text)
+    ];
+    saveState({
+      sessionPhase: "prototype",
+      demoStep: "design",
+      learningScore: Math.min(100, st.learningScore + 12),
+      prototype: {
+        ...st.prototype,
+        version: "mock-v3",
+        generated: true,
+        confirmed: false,
+        scenario: "low",
+        screen: "decide",
+        oncallStrong: remembered.some((t) => /on-call/i.test(t)),
+        riskBanner: false,
+        reasonRequired: remembered.some((t) => /on-call/i.test(t)),
+        labelOncall: remembered.some((t) => /on-call/i.test(t)) ? "Request on-call" : "Contact on-call",
+        adjustments: ["created from confirmed drafts"]
+      }
+    });
+    addInsight("Created interactive preview mock-v3 from confirmed drafts and open questions.", { source: "Design", kind: "ai", score: 8, phase: "prototype" });
+    toast("Preview ready. Adjust it, then confirm the version.");
+    refreshDemoChrome();
+  }, 1300);
+}
+
+function adjustPrototype(kind) {
+  const st = loadState();
+  const proto = { ...(st.prototype || {}) };
+  const adjustments = [...(proto.adjustments || [])];
+  if (kind === "oncall") {
+    proto.oncallStrong = !proto.oncallStrong;
+    proto.reasonRequired = proto.oncallStrong;
+    proto.labelOncall = proto.oncallStrong ? "Request on-call" : "Contact on-call";
+    adjustments.push(proto.oncallStrong ? "Made on-call a clear action" : "Softened on-call emphasis");
+  } else if (kind === "risk") {
+    proto.riskBanner = !proto.riskBanner;
+    adjustments.push(proto.riskBanner ? "Added high overnight risk banner" : "Hid risk banner");
+  } else if (kind === "labels") {
+    proto.labelPark = proto.labelPark === "Park until morning" ? "Park claim overnight" : "Park until morning";
+    adjustments.push("Adjusted park label wording");
+  }
+  proto.version = proto.confirmed ? "mock-v4" : "mock-v3b";
+  proto.confirmed = false;
+  saveState({ prototype: { ...proto, adjustments: adjustments.slice(-8) }, learningScore: Math.min(100, st.learningScore + 3) });
+  addInsight("Human adjusted prototype: " + adjustments[adjustments.length - 1], { source: "Design", kind: "human", score: 3, phase: "prototype" });
+  toast("Preview updated. Confirm when the behaviour looks right.");
+  refreshDemoChrome();
+}
+
+function confirmPrototype() {
+  const st = loadState();
+  if (!st.prototype || !st.prototype.generated) {
+    toast("Generate a preview first.");
+    return;
+  }
+  saveState({
+    prototype: { ...st.prototype, confirmed: true, version: "mock-v4" },
+    sessionPhase: "govern",
+    demoStep: "decide",
+    learningScore: Math.min(100, st.learningScore + 10),
+    draftUsed: { ...st.draftUsed, "design-suggest": true }
+  });
+  addInsight("Prototype mock-v4 confirmed for decision briefing. Not an approved business rule by itself.", { source: "Design", kind: "human", score: 6, phase: "govern" });
+  toast("Prototype confirmed as mock-v4. Ready for Decide.");
+  refreshDemoChrome();
+}
+
+function setProtoScenario(name) {
+  const st = loadState();
+  if (!st.prototype || !st.prototype.generated) {
+    toast("Generate a preview first.");
+    return;
+  }
+  const high = name === "high";
+  const proto = {
+    ...st.prototype,
+    scenario: name,
+    riskBanner: high,
+    screen: "decide",
+    version: st.prototype.confirmed ? "mock-v5" : "mock-v3c",
+    confirmed: false,
+    adjustments: [...(st.prototype.adjustments || []), high ? "Switched scenario to high overnight risk" : "Switched scenario to low overnight risk"].slice(-8)
+  };
+  saveState({ prototype: proto, learningScore: Math.min(100, st.learningScore + 2) });
+  addInsight("User switched scenario to " + (high ? "high" : "low") + " overnight risk.", { source: "Design", kind: "human", score: 2, phase: "prototype" });
+  toast("Scenario updated. Preview adapted.");
+  refreshDemoChrome();
+}
+
+function setProtoScreen(name) {
+  const st = loadState();
+  if (!st.prototype || !st.prototype.generated) return;
+  saveState({ prototype: { ...st.prototype, screen: name } });
+  refreshDemoChrome();
+}
+
+function fastForwardAgentGrowth() {
+  const matured = {
+    contributed: true,
+    contributeStep: 4,
+    contributionAnswer: "park",
+    leakageAnswer: "low-park",
+    timerAnswer: "internal-only",
+    sessionPhase: "prototype",
+    demoStep: "design",
+    learningScore: 72,
+    insights: [
+      { id: "fx1", when: "Mon", text: "Initiative brief accepted", source: "Decide", kind: "human" },
+      { id: "fx2", when: "Tue", text: "Captured practice: overnight claims are usually parked.", source: "Contribute", kind: "human" },
+      { id: "fx3", when: "Tue", text: "Captured exception: high overnight risk triggers on-call contact.", source: "Contribute", kind: "human" },
+      { id: "fx4", when: "Wed", text: "Confirmed draft: After 8 pm, claims may be parked until the morning supervisor queue.", source: "Understand", kind: "human" },
+      { id: "fx5", when: "Thu", text: "Created interactive preview mock-v3 from confirmed drafts.", source: "Design", kind: "ai" },
+      { id: "fx6", when: "Thu", text: "Human adjusted preview: Made on-call a clear action", source: "Design", kind: "human" }
+    ],
+    episodic: [
+      { id: "e0", when: "Mon", text: "Initiative brief accepted by " + MOCK.sponsor, kind: "human" },
+      { id: "e1", when: "Tue", text: "Maya completed adaptive contribution session", kind: "human" },
+      { id: "e2", when: "Wed", text: "Jordan confirmed two drafts", kind: "human" },
+      { id: "e3", when: "Thu", text: "Assistant created revisable overnight preview", kind: "ai" }
+    ],
+    semanticCandidates: [
+      { id: "sc1", text: "Parking pauses only the internal supervisor timer; customer response time keeps running.", status: "candidate" }
+    ],
+    semanticConfirmed: [
+      { id: "sf1", text: "After 8 pm, claims may be parked until the morning supervisor queue.", status: "confirmed" },
+      { id: "sf2", text: "On-call is required when overnight risk is high.", status: "confirmed" }
+    ],
+    prospective: [
+      { id: "p0", text: "Night shift coverage sample still limited", status: "open" },
+      { id: "p1", text: "Overnight volume claim needs a source", status: "open" }
+    ],
+    prototype: {
+      version: "mock-v3b",
+      labelPark: "Park until morning",
+      labelOncall: "Request on-call",
+      oncallStrong: true,
+      riskBanner: false,
+      reasonRequired: true,
+      confirmed: false,
+      generated: true,
+      scenario: "low",
+      screen: "decide",
+      adjustments: ["created from confirmed drafts", "Made on-call a clear action"]
+    },
+    rememberedForBuild: [
+      "After 8 pm, claims may be parked until the morning supervisor queue.",
+      "On-call is required when overnight risk is high."
+    ]
+  };
+  saveState(matured);
+  toast("Jumped ahead. Open Design to adjust the preview.");
+  refreshDemoChrome();
+  setTimeout(() => { location.href = "06_business_solution.html"; }, 600);
+}
+
+function renderGrowthTimeline(st) {
+  const root = document.getElementById("growth-timeline");
+  if (!root) return;
+  const beats = [
+    { id: "day1", day: "Day 1", title: "Collect", text: "Starts from the initiative brief and policy text.", done: true },
+    { id: "day2", day: "Day 2", title: "Capture", text: "Frontline answers become drafts.", done: !!st.contributed || (st.insights || []).length > 1 },
+    { id: "day3", day: "Day 3", title: "Confirm", text: "Analyst keeps or rejects drafts.", done: (st.semanticConfirmed || []).length > 0 },
+    { id: "day4", day: "Day 4", title: "Preview", text: "Design creates a revisable overnight screen.", done: !!(st.prototype && st.prototype.generated) },
+    { id: "day5", day: "Day 5", title: "Approve", text: "Sponsor signs; Build gets the package.", done: !!st.decisionSigned }
+  ];
+  const current = beats.reduce((acc, b, i) => (b.done ? i : acc), 0);
+  root.innerHTML = beats.map((b, i) => {
+    const cls = b.done ? (i === current ? "active done" : "done") : (i === current + 1 ? "active" : "");
+    return '<div class="growth-beat ' + cls + '"><div class="day">' + b.day + '</div><strong>' + b.title + '</strong><div class="muted text-xs">' + b.text + '</div></div>';
+  }).join("");
+}
+
+function renderBeforeAfter(st) {
+  const root = document.getElementById("agent-before-after");
+  if (!root) return;
+  const early = "Knows policy §4.2. Does not know overnight practice. No preview. No package.";
+  const now = st.decisionSigned
+    ? "Remembers confirmed overnight rules, holds confirmed preview " + ((st.prototype && st.prototype.version) || "mock") + ", and carries signed package " + (st.packageVersion || MOCK.packageVersion) + " into Build."
+    : (st.prototype && st.prototype.generated)
+    ? "Remembers " + (st.semanticConfirmed || []).length + " confirmed items and is iterating preview " + st.prototype.version + " with human adjustments."
+    : (st.semanticConfirmed || []).length
+    ? "Holds confirmed drafts and is ready to create a preview."
+    : st.contributed
+    ? "Captured frontline answers as drafts waiting for confirmation."
+    : early;
+  root.innerHTML = '<div class="compare"><div class="side"><div class="kpi-label">Monday · early</div><p class="text-primary mb-0">' + early + '</p></div><div class="side disputed"><div class="kpi-label">Now · adapted</div><p class="text-primary mb-0">' + now + '</p></div></div>';
+}
+
+function renderPrototype(st) {
+  const app = document.getElementById("proto-app");
+  if (!app) return;
+  const p = st.prototype || {};
+  app.classList.toggle("oncall-strong", !!p.oncallStrong);
+  app.classList.toggle("risk-high", !!p.riskBanner);
+  const park = document.getElementById("proto-label-park");
+  const oncall = document.getElementById("proto-label-oncall");
+  if (park) park.textContent = p.labelPark || "Park until morning";
+  if (oncall) oncall.textContent = p.labelOncall || "Contact on-call";
+  document.querySelectorAll("[data-adjust]").forEach((btn) => {
+    const kind = btn.getAttribute("data-adjust");
+    let active = false;
+    if (kind === "oncall") active = !!p.oncallStrong;
+    if (kind === "risk") active = !!p.riskBanner;
+    btn.classList.toggle("active", active);
+  });
+  document.querySelectorAll("[data-scenario]").forEach((btn) => {
+    btn.classList.toggle("active", (p.scenario || "low") === btn.getAttribute("data-scenario"));
+  });
+  document.querySelectorAll("[data-proto-screen]").forEach((btn) => {
+    btn.classList.toggle("active", (p.screen || "decide") === btn.getAttribute("data-proto-screen"));
+  });
+  document.querySelectorAll("[data-screen-panel]").forEach((panel) => {
+    const on = panel.getAttribute("data-screen-panel") === (p.screen || "decide");
+    panel.classList.toggle("hidden", !on);
+  });
+  const empty = document.getElementById("proto-empty");
+  const studio = document.getElementById("proto-studio");
+  if (empty) empty.classList.toggle("hidden", !!p.generated);
+  if (studio) studio.classList.toggle("hidden", !p.generated);
+  const hist = document.getElementById("proto-adjustments");
+  if (hist) {
+    hist.innerHTML = (p.adjustments || []).slice().reverse().slice(0, 6).map((a) =>
+      '<div class="memory-item"><div class="text-primary">' + a + '</div></div>'
+    ).join("") || '<div class="muted text-sm">No adjustments yet.</div>';
+  }
+  const code = document.getElementById("proto-code");
+  if (code) {
+    code.textContent = [
+      "<!-- Generated preview · " + (p.version || "mock-v1") + " · sandbox only -->",
+      '<section class="overnight-exception" data-scenario="' + (p.scenario || "low") + '">',
+      "  <h1>Claim " + MOCK.claimId + "</h1>",
+      "  <p>Arrived 21:14 · supervisor offline</p>",
+      p.riskBanner ? '  <aside class="risk">High overnight risk</aside>' : "",
+      '  <button data-action="park">' + (p.labelPark || "Park until morning") + "</button>",
+      '  <button data-action="oncall">' + (p.labelOncall || "Contact on-call") + "</button>",
+      p.reasonRequired ? '  <textarea required placeholder="Reason for on-call"></textarea>' : "",
+      "</section>",
+      "",
+      "// Bound to memory:",
+      ...(st.semanticConfirmed || []).map((c) => "// - " + c.text),
+      "",
+      "// Screens: queue → decide → receipt"
+    ].filter(Boolean).join("\n");
+  }
+}
+
+function renderRememberedBuild(st) {
+  const el = document.getElementById("remembered-build");
+  if (!el) return;
+  const items = st.rememberedForBuild || (st.semanticConfirmed || []).map((x) => x.text);
+  el.innerHTML = items.length
+    ? items.map((t) => '<div class="memory-item confirmed"><div class="text-primary">' + t + '</div><div class="muted text-xs">Carried from Business memory</div></div>').join("")
+    : '<div class="muted text-sm">No confirmed business memory yet. Confirm candidates on Understand or Initiative.</div>';
+}
+
+function signDecision() {
+  const selected = [...document.querySelectorAll("[data-sign-item]:checked")].map((el) => el.value);
+  if (!selected.length) {
+    toast("Select at least one item to sign.");
+    return;
+  }
+  const version = MOCK.packageVersion;
+  saveState({
+    decisionSigned: true,
+    approvedItems: selected,
+    packageVersion: version,
+    demoStep: "build",
+    mergeBlocked: true,
+    sessionPhase: "deliver",
+    learningScore: Math.min(100, loadState().learningScore + 8)
+  });
+  addInsight("Decision owner signed selected items. Agent may guide Build but cannot merge or deploy.", { source: "Decide", kind: "human", score: 4, phase: "deliver" });
+  closeModal("sign-modal");
+  const receipt = document.getElementById("decision-receipt");
+  if (receipt) {
+    receipt.classList.remove("hidden");
+    receipt.querySelector("[data-receipt-items]").textContent = selected.join(", ");
+    receipt.querySelector("[data-receipt-version]").textContent = version;
+  }
+  toast("Signed. Approved delivery package " + version + " is ready for Build.");
+  refreshDemoChrome();
+}
+
+function proposePatch() {
+  saveState({ patchProposed: true, demoStep: "review" });
+  addInsight("Bounded patch proposed using remembered overnight timer rule.", { source: "Build", kind: "ai", score: 5, phase: "deliver" });
+  toast("Patch proposed for review with receipt.");
+  refreshDemoChrome();
+}
+
+function addTestDraft() {
+  saveState({ testAdded: true, mergeBlocked: false });
+  toast("Test draft added. Coverage gap can clear after review.");
+  refreshDemoChrome();
+  const badge = document.querySelector("[data-missing-test]");
+  if (badge) {
+    badge.className = "badge review";
+    badge.innerHTML = "<span class=\"ico\" aria-hidden=\"true\"><svg viewBox=\"0 0 20 20\" fill=\"none\" aria-hidden=\"true\"><circle cx=\"10\" cy=\"10\" r=\"6.5\" stroke=\"currentColor\" stroke-width=\"1.4\"/><path d=\"M10 6.6V10l2.5 1.6\" stroke=\"currentColor\" stroke-width=\"1.4\" stroke-linecap=\"round\"/></svg></span> Test added";
+  }
+}
+
+function openAlerts() {
+  saveState({ alertsSeen: true });
+  refreshDemoChrome();
+  const panel = document.getElementById("alerts-panel");
+  if (panel) {
+    panel.scrollIntoView({ behavior: "smooth", block: "start" });
+    panel.classList.add("attention");
+    setTimeout(() => panel.classList.remove("attention"), 1200);
+  } else {
+    location.href = "02_business_home.html#alerts-panel";
+  }
+}
+
+function setLargeText(on) {
+  saveState({ largeText: !!on });
+  refreshDemoChrome();
+  toast(on ? "Larger text on" : "Larger text off");
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   if (new URLSearchParams(location.search).get("review") === "1") {
     document.body.classList.add("review-mode");
   }
+  setupTabs();
+  document.querySelectorAll(".panel").forEach((p) => {
+    if (!p.classList.contains("active")) p.hidden = true;
+  });
+  wireAssistant(document.querySelector(".assistant"));
+  const st = loadState();
+  if (st.assistantOpen && document.querySelector(".shell")) {
+    ensureAssistantPane();
+    document.querySelector(".shell")?.classList.add("with-assistant");
+  }
+  refreshDemoChrome();
+
+  document.querySelectorAll(".modal-backdrop").forEach((backdrop) => {
+    backdrop.addEventListener("click", (e) => {
+      if (e.target === backdrop) closeModal(backdrop.id);
+    });
+  });
 });
 
 document.addEventListener("keydown", (e) => {
@@ -487,7 +2138,17 @@ document.addEventListener("keydown", (e) => {
     e.preventDefault();
     toggleSearch(true);
   }
-  if (e.key === "Escape") toggleSearch(false);
+  if (e.key === "Escape") {
+    const openModalEl = document.querySelector(".modal-backdrop.show");
+    if (openModalEl) { closeModal(openModalEl.id); return; }
+    if (document.getElementById("search-overlay")?.classList.contains("show")) {
+      toggleSearch(false); return;
+    }
+    if (document.body.classList.contains("nav-open")) { toggleNav(false); return; }
+    if (document.querySelector(".shell.with-assistant") && window.matchMedia("(max-width: 1180px)").matches) {
+      toggleAssistant(false);
+    }
+  }
 });
 </script>
 </body>
