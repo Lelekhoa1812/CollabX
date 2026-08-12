@@ -1,6 +1,6 @@
 # Documentation control and precedence
 
-Status: normative · Baseline: `design-v3` · Effective: 2026-08-11 · Owner: product and architecture councils
+Status: normative · Baseline: `design-v4` · Effective: 2026-08-12 · Owner: product and architecture councils
 
 This registry determines which document governs when two statements overlap. File modification time, detail level, or confident wording does not establish authority.
 
@@ -39,8 +39,8 @@ Within one level, the more specific document governs only within its declared sc
 | Artefacts/gates | `../product/artefacts-traceability-and-gates.md` | Normative | artefacts, relations, gates, baselines and change |
 | Facilitation | `../product/conversation-survey-and-facilitation.md` | Normative | interview/survey/session behaviour |
 | Experience | `../experience/discovery-and-prototyping.md` | Normative | discovery/prototype interaction contract |
-| Information architecture | `../experience/information-architecture-and-design-system.md` | Normative | navigation, design system and trust UX |
-| Enterprise frontend | `../experience/enterprise-frontend-experience.md` | Normative | complete frontend page surface, visual/interaction quality, role journeys and UX gates |
+| Information architecture | `../experience/information-architecture-and-design-system.md` | Normative | dual-portal navigation, shared design system and trust UX |
+| Enterprise frontend | `../experience/enterprise-frontend-experience.md` | Normative | Business/Build portal surface catalogue, plain-language journeys, assistant contract and UX gates |
 | Logical architecture | `../architecture/system-architecture.md` | Normative | provider-neutral boundaries and runtime separation |
 | Data/knowledge | `../architecture/data-and-knowledge-model.md` | Normative | source of truth, time, provenance and semantic lifecycle |
 | Integration | `../architecture/integration-and-interoperability.md` | Normative | connector, MCP and synchronisation boundaries |

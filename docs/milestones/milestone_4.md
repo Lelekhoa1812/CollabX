@@ -41,14 +41,14 @@ All T7.01–T8.17 and baseline-readiness T9.01–T9.04 packages are covered.
 
 ## Work plan
 
-### M4.01 — Implement role-based information architecture and design system
+### M4.01 — Implement dual-portal information architecture and design system
 
-1. Build portfolio/engagement navigation, task workspace, inspector, readiness rail and activity panel.
-2. Implement canonical status/authority/evidence/conflict/version components with non-colour semantics.
-3. Support desktop/tablet/mobile and accessible table/tree alternatives to graphs.
-4. Test empty/loading/partial/stale/permission/error/offline/recovery states.
+1. Build Business and Build portal navigation, Home/Initiative/Understand/Design/Decide/Track and Home/Workspace/Review shells, optional assistant pane and confirm-before-continue dialogs.
+2. Implement canonical status/source/disagreement/decision-owner/version components with non-colour semantics and plain-language labels.
+3. Support desktop/tablet/mobile and accessible list/table alternatives to graphs.
+4. Test empty/loading/partial/stale/permission/error/offline/recovery states behind reviewer mode, not in normal chrome.
 
-Accept: all critical screens meet WCAG 2.2 AA automated/manual checks; status meaning is consistent with schemas; no inaccessible graph-only task.
+Accept: all critical surfaces meet WCAG 2.2 AA automated/manual checks; status meaning is consistent with schemas; no inaccessible graph-only task; no normal portal screen exposes more than six primary navigation items.
 
 ### M4.02 — Implement stakeholder, authority and inclusion topology
 
@@ -113,14 +113,14 @@ Accept: branch/property tests pass; zero small-cell identity disclosure; abandon
 
 Accept: critical dissent remains visible through baseline decision; conflicts require explicit disposition; contribution channels meet inclusion requirements.
 
-### M4.09 — Implement analysis workbench and collaborative edit semantics
+### M4.09 — Implement Understand workspace and collaborative edit semantics
 
-1. Render evidence, glossary, temporal knowledge, process/state/rule/data, requirements and traces from canonical versions.
-2. Add version-precondition edits, semantic conflict comparison and stable comments/mentions.
-3. Separate canvas layout/presence from semantic truth/approval.
-4. Add search with pre-ranking ACL/purpose/as-of filters and accessible result explanations.
+1. Render sources, shared terms, temporal knowledge, process/state/rule/data, expected behaviour and why-this-exists links from canonical versions inside the Business Understand surface.
+2. Add version-precondition edits, disagreement comparison and stable comments/mentions.
+3. Separate layout/presence from semantic truth/approval.
+4. Add search overlay with pre-ranking ACL/purpose/as-of filters and accessible result explanations.
 
-Accept: no lost semantic edit under concurrency; search leaks zero inaccessible name/content; every AI proposal opens its source/rationale/version.
+Accept: no lost semantic edit under concurrency; search leaks zero inaccessible name/content; every assistant suggestion opens its source/rationale/version.
 
 ### M4.10 — Implement progressive prototype graph and sandbox
 
@@ -167,21 +167,21 @@ Accept: content mutation invalidates pending approval; unauthorised/self-conflic
 
 Accept: ≥95% critical needs/exceptions discovered; ≥30% stakeholder-time improvement remains a pilot hypothesis but direction/CI is reported; trust calibration and valid-correction yield improve without material burden/anchoring; zero critical harm/accessibility/security failure.
 
-### M4.15 — Deliver the coherent enterprise frontend page surface
+### M4.15 — Deliver the coherent dual-portal frontend surface
 
-1. Deliver every Tier-A route from the [enterprise frontend specification](../experience/enterprise-frontend-experience.md): sign-in/invitation, portfolio, engagement, discovery, session, evidence, analysis, conflict, prototype, requirement/trace, review, baseline and developer question.
-2. Deliver the Tier-B pages required for the pilot roles: executive brief, stakeholders/authority, sessions/surveys, domain pack, options/decision, change impact, delivery, outcome, inbox/search and administration/support/lifecycle.
-3. Enforce page coherence, one-primary-decision hierarchy, role/density modes, evidence inspector, responsive/mobile alternatives, safe deep links and every applicable empty/loading/partial/stale/denied/conflict/error/offline/recovery state.
-4. Validate the executive five-minute, participant two-minute, BA deep-work, frontline prototype and engineer clarification journeys using representative data and users.
+1. Deliver every pilot surface from the [enterprise frontend specification](../experience/enterprise-frontend-experience.md): Access, Business Home, Initiative, Contribute, Understand, Design, Decide, Track, Settings, Build Home, Workspace and Review.
+2. Keep related former Tier A/B work as tabs, drawers and modes inside those surfaces rather than peer top-level pages.
+3. Enforce one-primary-decision hierarchy, role/density modes, source access, responsive/mobile alternatives, safe deep links and every applicable empty/loading/partial/stale/denied/conflict/error/offline/recovery state.
+4. Validate the sponsor five-minute, participant two-minute, BA deep-work, frontline contribute and engineer package journeys using representative data and users.
 
-Accept: ≥95% critical journey completion; ≥90% first-time unassisted completion; ≥95% proposed/confirmed/approved comprehension; evidence found in ≤20 seconds for ≥95% tasks; WCAG 2.2 AA with zero critical/high defect; all PERF frontend targets pass.
+Accept: ≥95% critical journey completion; ≥90% first-time unassisted completion; ≥95% draft/approved/assistant-suggestion comprehension; sources found in ≤20 seconds for ≥95% tasks; WCAG 2.2 AA with zero critical/high defect; all PERF frontend targets pass; no normal portal screen exposes more than six primary navigation items.
 
-### M4.16 — Deliver progressive intention and Q&A studio
+### M4.16 — Deliver progressive intention and Q&A inside Business surfaces
 
-1. Build the integrated brief, intent graph, conversation/question, journey, viewport, structure inspector, change set, validation and run-control workspace.
-2. Render question forms for free-form, MCQ, multi-select, checklist, ranking, scale, scenario and diff confirmation with rationale, “unknown”, add option, skip/defer, privacy and authority routing.
-3. Synchronise collective answers without false consensus; show aligned/divergent/missing perspectives, scope/time/authority conflicts and the next smallest experiment/decision.
-4. Show rationale/motivation, assumption, blocker/risk/conflict, affected trace, validation, contextual dismissible tip and required next decision for every material proposal.
+1. Build assistant-guided Understand and Design surfaces with brief context, intent, questions, journey, viewport, collapsed structure details, change set, validation and run progress.
+2. Render question forms for free-form, MCQ, multi-select, checklist, ranking, scale, scenario and confirmation with rationale, “I am not sure”, add option, skip/defer, privacy and decision-owner routing.
+3. Synchronise collective answers without false consensus; show aligned/divergent/missing perspectives, scope/time/owner conflicts and the next smallest experiment/decision.
+4. Show why it matters, sources, uncertainty, affected linked records, validation and required next decision for every material suggestion.
 
 Accept: 100% format/branch/authority/accessibility fixtures pass; no hard-reject question; ≥80% decision-relevant question rate; users correctly explain why/what-changed/what-needs-decision in ≥90% study tasks.
 
@@ -194,28 +194,28 @@ Accept: 100% format/branch/authority/accessibility fixtures pass; no hard-reject
 
 Accept: 100% material elements traced; mock totals/denominators consistent; same seed/manifest reproduces equivalent state; zero production data/credential/network use; valid correction yield beats static baseline without increased anchoring.
 
-### M4.18 — Deliver governed repository coding-agent mode
+### M4.18 — Deliver governed Build Workspace coding-agent mode
 
 1. Bind an explicitly authorised repository/ref/base revision/path/tool policy and compile the immutable context/instruction/repository/validation manifest including graph snapshot and index generation.
-2. Expose inspect/plan/change-set/patch/diff/rebase/revert/test tools through the gateway; preserve dirty/unrelated work and keep commit/push/PR/deploy separately disabled unless explicitly authorised.
-3. Show file/semantic/visual deltas grouped by user need and rationale, plus assumptions, risks, tests, affected contracts, **AC coverage (mapped/missing)** and rollback before review.
+2. Expose inspect/plan/change-set/patch/diff/rebase/revert/test tools through the gateway inside Build Workspace; preserve dirty/unrelated work and keep commit/push/PR/deploy separately disabled unless explicitly authorised.
+3. Show file/behaviour/visual deltas grouped by user need and rationale, plus assumptions, risks, tests, affected contracts, **requirements coverage (mapped/missing)** and rollback before review.
 4. Exercise production-like bounded slices through exact-base patch for **at least one UI and one non-UI change class**, generated/updated tests, critic/Reviewer findings, bounded repair and human review.
 
-Accept: ≥95% changed lines/files attributable to scope; zero unrelated loss/path escape/unauthorised external effect; stale base cannot silently apply; all required repository/visual/accessibility/security tests pass; reviewer understands bounded change/risk in ≤5 minutes; AC coverage panel accurate on fixtures.
+Accept: ≥95% changed lines/files attributable to scope; zero unrelated loss/path escape/unauthorised external effect; stale base cannot silently apply; all required repository/visual/accessibility/security tests pass; reviewer understands bounded change/risk in ≤5 minutes; coverage panel accurate on fixtures.
 
-### M4.19 — Deliver Review Agent journey and brownfield discovery surfaces
+### M4.19 — Deliver Build Review and code-discovery surfaces
 
-1. Ship PR/MR or change-set review UI with inline findings, severity, AC links, waive-with-reason-code and authority checks.
-2. Ship archaeology run → claim review → domain-model proposal surfaces; users must distinguish code-observed vs inferred (≥90% study tasks).
-3. Bind intent graph ↔ code symbols ↔ tests with trace drill-down ≤20 seconds for ≥95% tasks.
-4. Run confirmatory journey studies including executive, BA, engineer and security reviewers.
+1. Ship change-set Review UI with inline findings, severity, done-check links, exception-with-reason and decision-owner checks.
+2. Ship code-discovery run → claim review → domain-model proposal flows inside Workspace/Review; users must distinguish code-observed vs inferred (≥90% study tasks).
+3. Bind intent ↔ code symbols ↔ tests with drill-down ≤20 seconds for ≥95% tasks.
+4. Run confirmatory journey studies including sponsor, BA, engineer and security reviewers.
 
-Accept: ≥95% seeded AC-gaps surfaced before baseline; zero critical finding dismiss without reason code; brownfield discovery comprehension target met; WCAG 2.2 AA for new surfaces.
+Accept: ≥95% seeded coverage gaps surfaced before approved version; zero critical finding dismiss without reason code; code-discovery comprehension target met; WCAG 2.2 AA for new surfaces.
 
-### M4.20 — Run full frontend and experience-generation E2E qualification
+### M4.20 — Run full dual-portal and experience-generation E2E qualification
 
-1. Run board-quality synthetic story from business outcome through elicited exception, evidence conflict, generated mock, repository patch proposal, **AC-gated review**, scenario feedback, requirement change, approval and delivery question.
-2. Include correction, denial, model/tool failure, cancellation/resume, stale patch, mobile/keyboard/screen-reader/RTL, slow network and tenant isolation.
+1. Run board-quality synthetic story from business outcome through elicited exception, source disagreement, generated mock, repository patch proposal, **requirements coverage review**, scenario feedback, expected-behaviour change, item-level approval and delivery clarification.
+2. Include correction, denial, model/tool failure, cancellation/resume, stale patch, mobile/keyboard/screen-reader/RTL, slow network and organisation isolation.
 3. Execute deterministic and repeated real-model suites with pinned provider, prompts, context, tools, data seed, base repository and graders; compare manual and generic-model baselines.
 4. Inspect screenshots and DOM/accessibility tree across all supported viewports/themes/locales/states, not pixel diffs alone; publish failure examples and limitations.
 

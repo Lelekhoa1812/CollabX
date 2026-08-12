@@ -9,7 +9,7 @@ This document constrains future code generation. It defines dependency direction
 ```text
 collabx/
 ├── apps/
-│   ├── web/                 # React workbench; generated API client only
+│   ├── web/                 # React dual-portal client (Business + Build); generated API client only
 │   ├── api/                 # HTTP/streaming composition and auth PEP
 │   ├── worker-workflow/     # durable workflow activities
 │   ├── worker-intelligence/ # cognitive graphs, retrieval, model calls
@@ -109,7 +109,7 @@ Framework adapters implement this interface. Nodes are pure transforms or invoke
 
 Feature slices use generated clients, query cache for server state and an explicit local-edit buffer. Collaborative edits use server-assigned versions and conflict UI; do not silently last-write-wins. Stable entity/element IDs support deep links and annotations. Streams are resumable from sequence/cursor. Canvas layouts are user projections separate from semantic graph. Every workflow has empty/loading/partial/stale/permission/error/offline/retry states and keyboard/screen-reader behaviour.
 
-The [enterprise frontend experience](../experience/enterprise-frontend-experience.md) governs routes, role journeys, visual/interaction semantics and UI qualification. The [experience-generation/coding-agent specification](../intelligence/experience-generation-and-coding-agent.md) governs generated frontend and repository patches. Code workers operate only on an authorised snapshot/worktree, apply structured exact-base patches, preserve unrelated changes and emit validation/tool receipts; external version-control or deployment effects require separate commands and authority.
+The [enterprise frontend experience](../experience/enterprise-frontend-experience.md) governs dual-portal surfaces, role journeys, visual/interaction semantics and UI qualification. The [experience-generation/coding-agent specification](../intelligence/experience-generation-and-coding-agent.md) governs generated frontend and repository patches. Code workers operate only on an authorised snapshot/worktree, apply structured exact-base patches, preserve unrelated changes and emit validation/tool receipts; external version-control or deployment effects require separate commands and authority.
 
 ## Definition of implementation-ready
 

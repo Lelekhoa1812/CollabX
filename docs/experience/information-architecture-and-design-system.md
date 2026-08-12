@@ -1,77 +1,143 @@
 # Information architecture and design-system contract
 
-Status: normative · Baseline: `design-v3` · Effective: 2026-08-11 · Owner: design council
+Status: normative · Baseline: `design-v4` · Effective: 2026-08-12 · Owner: design council
 
-This document owns navigation and design-system semantics. The full role/page catalogue, visual character, cross-user journeys, responsive behaviours and measurable frontend release gates are defined in the [enterprise frontend experience specification](enterprise-frontend-experience.md).
+This document owns portal navigation, shared shell semantics, and the design system. The complete surface catalogue, role journeys, plain-language standards, and measurable UX gates live in the [enterprise frontend experience specification](enterprise-frontend-experience.md).
 
-## Product navigation
+## Portal information architecture
 
 ```mermaid
 flowchart TD
-  H["Portfolio home"] --> E["Engagement"]
-  E --> O["Overview: outcome, stage, readiness, activity"]
-  E --> D["Discover: stakeholders, plan, sessions, surveys"]
-  E --> K["Understand: evidence, glossary, knowledge, conflicts"]
-  E --> A["Analyse: goals, process, rules, data, requirements, options"]
-  E --> P["Prototype: journeys, screens, scenarios, findings"]
-  E --> G["Govern: decisions, reviews, gates, baselines, change"]
-  E --> L["Deliver: release, questions, deviations, test evidence"]
-  E --> V["Evaluate: measures, limitations, benefits, learning"]
-  H --> ADM["Administration: people, policies, packs, connectors, AI, audit"]
+  Entry["Portal home / Access"] --> Business["Business portal"]
+  Entry --> Build["Build portal"]
+  Business --> BHome["Home"]
+  Business --> BInit["Initiative"]
+  Business --> BUnder["Understand"]
+  Business --> BDesign["Design"]
+  Business --> BDecide["Decide"]
+  Business --> BTrack["Track"]
+  Business --> BSettings["Settings"]
+  Build --> DHome["Delivery package"]
+  Build --> DWork["Workspace"]
+  Build --> DReview["Review"]
+  BDecide -->|"approved delivery package"| DHome
+  DReview -->|"status and clarifications"| BTrack
 ```
 
-Conversation is available contextually but is not top-level information architecture. Every chat claim opens its structured item and source; every canvas item opens history, relations and authority.
+### Business portal
 
-Experience generation is a governed mode within `Prototype` and `Deliver`, not a disconnected top-level “AI builder”. The same intent, scenario, evidence, prototype version and change set move from mock exploration to authorised repository patch; administration of model/tool/sandbox policy remains under `Administration`.
+Primary navigation:
+
+1. Home
+2. Initiative
+3. Understand
+4. Design
+5. Decide
+6. Track
+
+Task deep-links, not permanent rail items: Contribute, Search overlay, Settings.
+
+Understand is the assistant-guided workspace. It combines sources, people, disagreement, policy versus actual work, options, and shared terms as tabs around one selected issue. Design holds journeys and mocks. Decide holds briefs, item-level sign-off, approved versions, and impact. Track holds delivery progress, clarifications, and results.
+
+### Build portal
+
+Primary navigation:
+
+1. Home (delivery package)
+2. Workspace
+3. Review
+
+Workspace combines code discovery, plan, patch, tests, and clarification. Review combines requirements coverage, findings, approved exceptions, and release readiness.
+
+### Portal switcher and handoff
+
+The global header offers Business and Build for authorised users. Switching preserves organisation, initiative, selected object, version, and return path. The handoff object is the approved delivery package, not a file export.
+
+Every cross-portal link states:
+
+- where the user came from
+- which object is shared
+- which version is open
+- whether it is draft or approved
+- how to return
 
 ## Core page anatomy
 
-Global bar: tenant/engagement, search/command, notifications, help/status, user. Engagement header: outcome, stage, baseline, data classification and active context. Main workspace: primary task view. Inspector: source/provenance/version/relations. Readiness rail: blockers, unknowns, coverage, conflicts and next decisions. Activity panel: comments/actions/run state. Panels collapse/reorder while keyboard reading order remains coherent.
+- Global header: product mark, portal switcher, organisation/initiative context, search, Assistant, alerts, user
+- Left navigation: portal-specific, six items or fewer
+- Main workspace: title, lead sentence, one primary action, task content
+- Assistant pane: optional, contextual, collapsible
+- Drawers/disclosures: sources, history, technical details, confirm-before-continue
+
+Do not show a nine-stage lifecycle rail, a thirty-link capability map, or reviewer state toggles in normal product chrome.
 
 ## Interaction vocabulary
 
-| Visual state | Meaning |
+| Business-facing state | Meaning |
 |---|---|
-| neutral outline | candidate/unreviewed |
-| evidence marker | source-linked, not necessarily confirmed |
-| green confirmation | named authority confirmed exact version |
-| amber contested | material disagreement/uncertainty |
-| red blocker | gate prevents named transition |
-| grey superseded | historical; never silently hidden |
-| AI sparkle/label | generated or transformed by AI; no quality implication |
+| Draft | Unreviewed suggestion or working text |
+| Needs review | Waiting for a named person |
+| Approved | Named decision owner approved the exact version |
+| Disputed | Material disagreement remains |
+| Must fix first | Progress is blocked until this is resolved |
+| Source needed | Material claim lacks supporting evidence |
+| Assistant suggestion | Generated or transformed by the assistant; no quality implication |
 
-Colour is redundant with icon/text. “Approved”, “confirmed”, “validated” and “AI-generated” are never visually conflated.
+Colour is redundant with icon and text. Approved, confirmed, and assistant-origin labels are never visually conflated.
 
-## High-UX response contract
+## Assistant placement
 
-- User action receives local feedback <100 ms; server acknowledgment/progress meets NFR targets.
-- Preserve draft across refresh/network loss; show saved/sync/conflict state.
-- Long agent operations expose plan summary, current stage, elapsed/budget, partial safe result, pause/cancel and notification.
-- Errors state what happened, what was preserved, what user can do and correlation ID; never blame user/model generically.
-- Destructive/consequential actions show exact scope and effect; confirmation is proximal and accessible.
-- Empty states teach the next meaningful action; no fake dashboard data.
-- Progressive disclosure keeps routine work simple while evidence, uncertainty and history stay one action away.
-
-## Collaborative editing
-
-Presence indicates who views/edits without implying approval. Edits use version preconditions; non-overlapping structured changes may merge, semantic conflicts require comparison. Comments anchor to stable item/element/version and become stale/resolved explicitly. Mentions create governed notifications, not authority. Offline mode is read/draft-first; consequential transitions require online revalidation.
-
-## Search and command palette
-
-Search respects tenant, purpose, ACL and as-of time before ranking. Results group exact terms, knowledge, evidence, people, artefacts and actions; display source, status, scope/time and why matched. Command actions reflect current permissions and require normal confirmation. Recent history cannot leak inaccessible resource names.
+The assistant is contextual help inside the current object. It is not top-level information architecture and not an autonomous authority. Every claim it makes must open a structured item and source. Canvas or list items open history, relations, and decision owners.
 
 ## Design system
 
-Token layers: primitive → semantic → component → tenant theme. Tenant theming cannot reduce accessibility or change semantic status colours/icons. Components include evidence citation, epistemic badge, version chip, conflict pair, authority avatar, gate summary, agent-run progress, model canvas node/edge, source anchor, review disposition and destructive-action preview. Components have documented keyboard, screen-reader, responsive, localisation, loading and error contracts.
+Token layers: primitive → semantic → component → organisation theme. Organisation theming cannot reduce accessibility or change status colours/icons.
+
+Familiar Microsoft-like composition without proprietary assets:
+
+- Segoe UI / system sans
+- neutral canvas, white surfaces, restrained blue accent
+- 4 to 6px radius, borders before shadows
+- compact command bar, tabs, lists, details panels, drawers
+- dense and comfortable display modes
+
+Required components:
+
+- status badge
+- source citation
+- disagreement pair
+- decision-owner card
+- readiness summary
+- assistant suggestion card
+- confirm-before-continue dialog
+- delivery-package summary
+- requirements coverage table
+- progress strip for long assistant tasks
+
+Each component documents keyboard, screen-reader, responsive, localisation, loading, and error behaviour.
+
+## High-UX response contract
+
+- Local feedback under 100 ms
+- Drafts survive refresh and brief network loss
+- Long assistant tasks expose stage, elapsed time, safe partial output, pause, and cancel
+- Errors say what happened, what was preserved, and what to do next
+- Risky actions use confirm-before-continue with exact effect and reversibility
+- Empty states teach the next useful action
+- Progressive disclosure keeps routine work simple
+
+## Search
+
+Search is an overlay. It respects organisation, purpose, access control, and as-of time before ranking. Results group work items, sources, people, and actions, and show why they matched. Recent history cannot leak inaccessible names.
 
 ## Responsive strategy
 
-Desktop supports multi-panel analysis/canvas. Tablet uses primary view plus drawer. Mobile supports participation, review, notification, evidence reading and lightweight edits; complex graph modelling offers accessible table/tree alternatives, not unusable mini-canvas. Live sessions prioritise question/answer/recap and allow evidence/canvas drill-down.
+Desktop supports navigation plus workspace plus optional assistant. Tablet collapses navigation and uses drawers. Mobile supports Home, Contribute, Decide, alerts, evidence reading, and Review. Complex relationship models become guided lists or tables.
 
-## Trust and explainability UX
+## Trust and explainability
 
-For any proposal show: status, concise rationale, evidence for/against, source authority/freshness, scope/time, uncertainty, agent/model capability version, checks performed, affected items and required human decision. Do not expose chain-of-thought. Users can challenge evidence, correct scope, add counterexample, route to authority or mark “unknown”.
+For any suggestion show status, short rationale, sources for and against, freshness, uncertainty, affected items, and required human decision. Do not expose chain-of-thought. Users can correct scope, add an example, ask the decision owner, or mark that they are not sure.
 
 ## UX evaluation
 
-Measure task success/time/error, comprehension of status/authority, correction success, evidence inspection, trust calibration, question burden, accessibility, collaboration conflict and perceived control. Segment by role, domain expertise, language, disability and device. Design does not pass because stakeholders say the demo “looks good”.
+Measure task success, time, error recovery, status comprehension, correction success, source inspection, trust calibration, question burden, accessibility, and perceived control. Segment by role, expertise, language, disability, and device. Stakeholder praise alone is not a pass.

@@ -16,7 +16,7 @@ flowchart LR
     G["Risk / data / ontology stewards"]
   end
   subgraph CX["CollabX tenant boundary"]
-    UX["Collaborative workbench"]
+    UX["Business and Build portals"]
     API["Application + policy gateway"]
     WF["Durable engagement runtime"]
     AG["Cognitive graph workers"]
@@ -44,7 +44,7 @@ Trust boundaries exist at browser/API, tenant, connector, model provider, custom
 
 | Component | Owns | Must not own |
 |---|---|---|
-| Experience shell | conversations, canvases, source viewer, reviews, prototypes | canonical knowledge |
+| Experience shells | Business and Build portals, assistant pane, source viewer, reviews, mocks | canonical knowledge |
 | Engagement service | tenant/project/authority, work items, baselines, approvals | model-specific state |
 | Knowledge service | claims, concepts, relations, evidence, temporal versions, retrieval | raw binaries |
 | Elicitation service | plans, sessions, questions, coverage, fatigue/consent | final approval |

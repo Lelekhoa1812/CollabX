@@ -19,7 +19,7 @@ This document closes the gap between a capable product design and an operable en
 | ER-09 | Supplier and integration | due diligence, DPA/subprocessors, scopes, quotas, outage/exit, portability and connector certification | supplier register, dependency test, revocation/reconciliation evidence |
 | ER-10 | Financial and commercial | pricing/entitlements, metering, invoice allocation, budgets, margin and overage policy | reconciled usage ledger, unit economics, billing-dispute and quota tests |
 | ER-11 | Delivery and change | controlled environments, signed supply chain, segregation, migration, rollback, release and emergency change | release evidence manifest, rollback drill, change record and approvals |
-| ER-12 | Usability and accessibility | role-based journeys, inclusive research, WCAG, localisation, training and assisted support | independent accessibility audit and affected-user results |
+| ER-12 | Usability and accessibility | dual-portal role-based journeys, inclusive research, WCAG, localisation, training and assisted support | independent accessibility audit and affected-user results |
 | ER-13 | Information governance | document/record classification, approval, publication, legal discovery and disposition | record schedule, export/eDiscovery exercise, disposition evidence |
 | ER-14 | Observability and audit | separable audit/ops/AI/product signals, safe telemetry, customer audit export | end-to-end trace, audit completeness/integrity and redaction tests |
 | ER-15 | Portability and exit | canonical export/import, tenant/provider migration, key and model portability, documented exit | timed export/import and provider failover or approved constraint |

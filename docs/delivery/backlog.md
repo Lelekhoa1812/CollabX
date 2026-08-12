@@ -64,13 +64,13 @@ Identifier namespaces are deliberately distinct: `R0-nn` is research, `F-nn` fou
 
 | ID | Epic | Definition of done | Work-package mapping |
 |---|---|---|---|
-| E-01 | Enterprise workbench and shared analysis room | complete role/page surface keeps dialogue/canvas/evidence/readiness coherent and accessible | T8.01–T8.05, T8.13–T8.14, T8.17 |
+| E-01 | Dual-portal Business/Build experience | complete portal surfaces keep assistant-guided Understand/Design/Decide and Build Workspace/Review coherent and accessible | T8.01–T8.05, T8.13–T8.14, T8.17 |
 | E-02 | Stakeholder topology | authority, expertise, impact and inclusion gaps are actionable | T7.01–T7.02 |
 | E-03 | Elicitation planner | information-gain policy, technique choice, fatigue/consent and stop rules | T7.03 |
 | E-04 | Live/async participation | resume, recap, correction, survey, transcript, collaboration, notification, accessibility and low-bandwidth paths | T7.04–T7.07, T7.09–T7.11 |
 | E-05 | Conflict facilitation | side-by-side claims/evidence and explicit authority decision | T3.08, T7.08 |
 | E-06 | Prototype and governed coding runtime | sandboxed states/transitions/mock data/fidelity plus exact-base repository patch, AC panel, no secrets/implicit effects | T8.06–T8.08, T8.15–T8.17 |
-| E-13 | Review Agent and brownfield discovery UX | AC-coverage journey, archaeology claim review, trace drill-down | T8.18–T8.19 |
+| E-13 | Build Review and code-discovery UX | Requirements coverage journey, code-discovery claim review, why-this-exists drill-down | T8.18–T8.19 |
 | E-07 | Element feedback trace | scenario observation links to requirement/design/evidence and impact | T8.09 |
 | E-08 | Review/approval/baseline | governed artefact rendering, separation of duties, typed waiver, e-signature, immutable bundle and semantic diff | T8.10–T8.12, T9.01–T9.04 |
 | E-09 | Delivery feedback | slicing, decisions, questions, deviations, test evidence and change impacts return to work graph | T9.05–T9.11 |

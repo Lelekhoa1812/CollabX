@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Contribute · CollabX</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600;700&display=swap" rel="stylesheet" />
+<style>
+:root {
+  --ink: #242424;
+  --ink-2: #424242;
+  --muted: #616161;
+  --line: #e0e0e0;
+  --line-strong: #d1d1d1;
+  --canvas: #f5f5f5;
+  --surface: #ffffff;
+  --surface-2: #fafafa;
+  --brand: #0f6cbd;
+  --brand-soft: #e8f3fc;
+  --brand-hover: #115ea3;
+  --ok: #0e700e;
+  --ok-bg: #dff6dd;
+  --warn: #8a3707;
+  --warn-bg: #fff4ce;
+  --bad: #b10e1c;
+  --bad-bg: #fde7e9;
+  --ai: #5b5fc7;
+  --ai-bg: #f0f0ff;
+  --radius: 4px;
+  --nav: 220px;
+  --assistant: 340px;
+  --shadow: 0 1px 2px rgba(0,0,0,.06), 0 0 2px rgba(0,0,0,.04);
+  --font: "Segoe UI", "Segoe UI Variable", system-ui, -apple-system, sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { font-size: 14px; }
+body {
+  margin: 0; font-family: var(--font); color: var(--ink);
+  background: var(--canvas); line-height: 1.45; -webkit-font-smoothing: antialiased;
+}
+a { color: var(--brand); text-decoration: none; }
+a:hover { text-decoration: underline; }
+button, input, select, textarea { font: inherit; color: inherit; }
+h1,h2,h3 { margin: 0 0 .4rem; font-weight: 600; letter-spacing: -0.01em; color: var(--ink); }
+h1 { font-size: 1.5rem; }
+h2 { font-size: 1.125rem; }
+h3 { font-size: 1rem; }
+p { margin: 0 0 .75rem; color: var(--muted); }
+
+.app { min-height: 100vh; display: flex; flex-direction: column; }
+.topbar {
+  height: 48px; display: flex; align-items: center; gap: 10px;
+  padding: 0 12px; background: #1b1a19; color: #fff; position: sticky; top: 0; z-index: 50;
+}
+.topbar .logo { font-weight: 700; color: #fff; text-decoration: none; letter-spacing: .02em; }
+.topbar .portal {
+  display: inline-flex; background: #2d2c2b; border-radius: 999px; padding: 2px; gap: 2px;
+}
+.topbar .portal a {
+  color: #c8c6c4; text-decoration: none; padding: 4px 12px; border-radius: 999px; font-size: 12px; font-weight: 600;
+}
+.topbar .portal a.active { background: #fff; color: #242424; }
+.topbar .crumb { color: #c8c6c4; font-size: 12px; }
+.topbar .spacer { flex: 1; }
+.topbar .search {
+  width: min(280px, 36vw); background: #2d2c2b; border: 1px solid #3b3a39; color: #fff;
+  border-radius: var(--radius); padding: 6px 10px;
+}
+.topbar .icon {
+  background: transparent; border: 0; color: #fff; cursor: pointer; padding: 6px 8px; border-radius: var(--radius);
+}
+.topbar .icon:hover { background: #2d2c2b; }
+.topbar .avatar {
+  width: 28px; height: 28px; border-radius: 50%; background: #0f6cbd; display: grid; place-items: center;
+  font-size: 12px; font-weight: 700;
+}
+
+.shell { display: grid; grid-template-columns: var(--nav) 1fr; flex: 1; min-height: 0; }
+.shell.with-assistant { grid-template-columns: var(--nav) 1fr var(--assistant); }
+.shell.no-nav { grid-template-columns: 1fr; }
+.shell.no-nav.with-assistant { grid-template-columns: 1fr var(--assistant); }
+
+.nav {
+  background: var(--surface); border-right: 1px solid var(--line);
+  padding: 12px 8px; position: sticky; top: 48px; height: calc(100vh - 48px); overflow: auto;
+}
+.nav .label {
+  font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted);
+  padding: 10px 10px 6px;
+}
+.nav a {
+  display: flex; align-items: center; gap: 10px; padding: 8px 10px; border-radius: var(--radius);
+  color: var(--ink-2); text-decoration: none; margin-bottom: 2px;
+}
+.nav a:hover { background: var(--surface-2); text-decoration: none; }
+.nav a.active { background: var(--brand-soft); color: var(--brand); font-weight: 600; }
+.nav .dot {
+  width: 8px; height: 8px; border-radius: 50%; background: currentColor; opacity: .55; flex: 0 0 auto;
+}
+
+.main { padding: 20px 24px 48px; min-width: 0; }
+.page-head { display: flex; justify-content: space-between; gap: 16px; align-items: flex-start; margin-bottom: 16px; flex-wrap: wrap; }
+.page-head .lead { max-width: 720px; color: var(--muted); margin: 0; }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+
+.assistant {
+  background: var(--surface); border-left: 1px solid var(--line); padding: 14px;
+  position: sticky; top: 48px; height: calc(100vh - 48px); overflow: auto;
+}
+.assistant h2 { font-size: 13px; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); }
+.assistant .ask {
+  width: 100%; min-height: 72px; border: 1px solid var(--line-strong); border-radius: var(--radius);
+  padding: 10px; resize: vertical; background: var(--surface-2);
+}
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  border: 1px solid var(--line-strong); background: var(--surface); color: var(--ink);
+  border-radius: var(--radius); padding: 8px 14px; font-weight: 600; cursor: pointer;
+  text-decoration: none; box-shadow: var(--shadow);
+}
+.btn:hover { background: var(--surface-2); text-decoration: none; }
+.btn.primary { background: var(--brand); border-color: var(--brand); color: #fff; }
+.btn.primary:hover { background: var(--brand-hover); }
+.btn.danger { background: var(--bad-bg); border-color: #f1aeb5; color: var(--bad); }
+.btn.ghost { box-shadow: none; background: transparent; }
+.btn.sm { padding: 4px 10px; font-size: 12px; }
+.btn:disabled { opacity: .5; cursor: not-allowed; }
+
+.card {
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 16px; box-shadow: var(--shadow); margin-bottom: 12px;
+}
+.card.tight { padding: 12px; }
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.stack { display: flex; flex-direction: column; gap: 8px; }
+.row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.muted { color: var(--muted); }
+.divider { height: 1px; background: var(--line); margin: 12px 0; }
+
+.badge {
+  display: inline-flex; align-items: center; gap: 4px; font-size: 11px; font-weight: 600;
+  padding: 2px 8px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface-2); color: var(--ink-2);
+}
+.badge.draft { background: var(--surface); }
+.badge.review { background: var(--warn-bg); border-color: #efd29a; color: var(--warn); }
+.badge.approved { background: var(--ok-bg); border-color: #9fd49f; color: var(--ok); }
+.badge.disputed { background: var(--warn-bg); border-color: #efd29a; color: var(--warn); }
+.badge.needed { background: var(--bad-bg); border-color: #f1aeb5; color: var(--bad); }
+.badge.ai { background: var(--ai-bg); border-color: #c9c9f0; color: var(--ai); }
+.badge.info { background: var(--brand-soft); border-color: #b4d6f4; color: var(--brand); }
+.badge.block { background: var(--bad-bg); border-color: #f1aeb5; color: var(--bad); }
+
+table.data { width: 100%; border-collapse: collapse; background: var(--surface); }
+table.data th, table.data td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+table.data th {
+  font-size: 11px; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); background: var(--surface-2);
+}
+table.data tr:hover td { background: #fcfcfc; }
+
+.attention {
+  border: 1px solid #b4d6f4; background: linear-gradient(180deg, #f7fbfe, #fff);
+  border-radius: var(--radius); padding: 14px; margin-bottom: 12px;
+}
+.attention h2 { margin-bottom: 4px; }
+.suggestion {
+  border: 1px solid #c9c9f0; background: var(--ai-bg); border-radius: var(--radius); padding: 14px; margin: 12px 0;
+}
+.suggestion .meta { display: flex; justify-content: space-between; gap: 8px; align-items: center; margin-bottom: 8px; }
+.source {
+  display: flex; gap: 8px; padding: 8px 10px; border: 1px solid var(--line); border-radius: var(--radius);
+  background: var(--surface-2); font-size: 12.5px; margin: 6px 0;
+}
+.source strong { color: var(--ink); }
+.tabs { display: flex; gap: 0; border-bottom: 1px solid var(--line); margin-bottom: 12px; overflow-x: auto; }
+.tabs button {
+  background: none; border: 0; border-bottom: 2px solid transparent; padding: 10px 12px;
+  cursor: pointer; color: var(--muted); white-space: nowrap; font-weight: 600;
+}
+.tabs button.active { color: var(--ink); border-bottom-color: var(--brand); }
+.panel { display: none; }
+.panel.active { display: block; }
+.list-item {
+  display: flex; justify-content: space-between; gap: 12px; align-items: flex-start;
+  padding: 12px 0; border-bottom: 1px solid var(--line);
+}
+.list-item:last-child { border-bottom: 0; }
+.kpi { font-size: 1.5rem; font-weight: 700; color: var(--ink); }
+.kpi-label { font-size: 12px; color: var(--muted); }
+.wire {
+  border: 1px solid var(--ink-2); background: #fafafa; border-radius: var(--radius); padding: 14px;
+}
+.wire .bar { height: 10px; width: 36%; background: #d1d1d1; border-radius: 2px; margin-bottom: 12px; }
+.wire .block { height: 52px; background: #ebebeb; border-radius: 2px; margin-bottom: 10px; }
+.code {
+  font-family: ui-monospace, "Cascadia Mono", Consolas, monospace; font-size: 12px;
+  background: #1b1a19; color: #f3f2f1; padding: 12px; border-radius: var(--radius); overflow: auto; white-space: pre;
+}
+.toast {
+  position: fixed; bottom: 20px; right: 20px; background: #242424; color: #fff;
+  padding: 12px 14px; border-radius: var(--radius); z-index: 100; display: none; max-width: 340px;
+  box-shadow: 0 8px 24px rgba(0,0,0,.2);
+}
+.toast.show { display: block; }
+.modal-backdrop {
+  position: fixed; inset: 0; background: rgba(0,0,0,.4); display: none; align-items: center; justify-content: center;
+  z-index: 90; padding: 20px;
+}
+.modal-backdrop.show { display: flex; }
+.modal {
+  background: var(--surface); border-radius: 8px; max-width: 520px; width: 100%; padding: 20px;
+  border: 1px solid var(--line); box-shadow: 0 16px 40px rgba(0,0,0,.2);
+}
+.modal .acts { display: flex; justify-content: flex-end; gap: 8px; margin-top: 16px; }
+.hero {
+  background: #1b1a19; color: #f3f2f1; border-radius: 8px; padding: 36px 28px; margin-bottom: 20px;
+}
+.hero h1 { color: #fff; font-size: 1.9rem; }
+.hero p { color: #c8c6c4; max-width: 640px; }
+.choice {
+  display: block; border: 1px solid var(--line); border-radius: 8px; padding: 18px; background: var(--surface);
+  text-decoration: none; color: inherit; box-shadow: var(--shadow); height: 100%;
+}
+.choice:hover { border-color: var(--brand); text-decoration: none; }
+.choice h2 { color: var(--brand); }
+.review-bar {
+  display: none; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; padding: 8px 10px;
+  background: #fff4ce; border: 1px solid #efd29a; border-radius: var(--radius); font-size: 12px;
+}
+body.review-mode .review-bar { display: flex; }
+.overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,.35); display: none; z-index: 80; align-items: flex-start; justify-content: center; padding-top: 72px;
+}
+.overlay.show { display: flex; }
+.overlay .panel-box {
+  width: min(720px, 92vw); background: var(--surface); border-radius: 8px; border: 1px solid var(--line);
+  box-shadow: 0 16px 40px rgba(0,0,0,.2); padding: 16px;
+}
+.field { margin: 10px 0; }
+.field label { display: block; font-size: 12px; color: var(--muted); margin-bottom: 4px; }
+.field input, .field select, .field textarea {
+  width: 100%; padding: 9px 10px; border: 1px solid var(--line-strong); border-radius: var(--radius); background: #fff;
+}
+.compare {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+}
+.compare .side { border: 1px solid var(--line); border-radius: var(--radius); padding: 12px; background: var(--surface); }
+.compare .side.disputed { border-color: #efd29a; background: #fffdf5; }
+.progress {
+  height: 6px; background: var(--surface-2); border-radius: 99px; overflow: hidden; margin: 8px 0;
+}
+.progress > span { display: block; height: 100%; background: var(--brand); }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
+
+@media (max-width: 1100px) {
+  .shell, .shell.with-assistant { grid-template-columns: 1fr; }
+  .nav, .assistant { position: static; height: auto; border: 0; border-bottom: 1px solid var(--line); }
+  .grid-3, .compare { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 760px) {
+  .grid-2, .grid-3, .compare { grid-template-columns: 1fr; }
+  .topbar .search, .topbar .crumb { display: none; }
+  .main { padding: 16px; }
+}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <a class="logo" href="00_portal_home.html">CollabX</a>
+  <div class="spacer"></div>
+  <span class="crumb">Contribution · about 8 minutes</span>
+  <a class="icon" href="03_business_initiative.html">Exit</a>
+</header>
+<main class="main" style="max-width:720px;margin:0 auto;width:100%">
+  <div class="card">
+    <span class="badge info">Focused session</span>
+    <h1 style="margin-top:8px">When a claim arrives after 8 pm and no supervisor is online, what do you do?</h1>
+    <p>We ask because the written policy and overnight practice seem to disagree. Answer from your real work.</p>
+    <div class="stack">
+      <label class="card tight"><input type="radio" name="a" /> Create the claim, mark an exception, and continue without waiting</label>
+      <label class="card tight"><input type="radio" name="a" checked /> Park the claim until the morning supervisor queue</label>
+      <label class="card tight"><input type="radio" name="a" /> Call on-call informally</label>
+      <label class="card tight"><input type="radio" name="a" /> Something else</label>
+    </div>
+    <div class="field"><label>Optional detail</label>
+      <textarea>We park unless leakage risk looks high. Then we call on-call informally. The written 4 hour rule is not followed overnight.</textarea>
+    </div>
+    <div class="suggestion" id="contrib-suggest">
+      <div class="meta"><span class="badge ai">Assistant suggestion</span><span class="badge">Not approved</span></div>
+      <p style="color:var(--ink);margin:0">Draft finding: after 8 pm, claims are parked until morning unless leakage risk triggers an informal on-call contact.</p>
+      <div class="row" style="margin-top:10px">
+        <button class="btn sm primary" type="button" onclick="useDraft('contrib-suggest')">Use as draft</button>
+        <button class="btn sm" type="button" onclick="notRight('contrib-suggest')">Not right</button>
+        <button class="btn sm ghost" type="button" onclick="toast('Marked as I am not sure')">I am not sure</button>
+      </div>
+    </div>
+    <div class="divider"></div>
+    <h2>Optional scenario</h2>
+    <div class="wire">
+      <div class="bar"></div>
+      <p style="color:var(--ink)"><strong>Claim FNOL-88421</strong> arrived at 9:14 pm. Leakage risk is low. No supervisor is online.</p>
+      <div class="block"></div>
+      <div class="row">
+        <button class="btn primary" type="button" onclick="toast('You chose Park until morning')">Park until morning</button>
+        <button class="btn" type="button" onclick="toast('You chose Contact on-call')">Contact on-call</button>
+      </div>
+    </div>
+    <div class="row" style="margin-top:14px">
+      <button class="btn primary" type="button" onclick="toast('Thanks. Your answers were saved.'); location.href='05_business_understand.html'">Submit and see recap</button>
+      <button class="btn ghost" type="button" onclick="toast('Progress saved')">Save and finish later</button>
+    </div>
+  </div>
+</main>
+<div class="overlay" id="search-overlay" role="dialog" aria-label="Search">
+  <div class="panel-box">
+    <div class="row" style="justify-content:space-between">
+      <h2>Search</h2>
+      <button class="btn sm ghost" type="button" onclick="toggleSearch(false)">Close</button>
+    </div>
+    <input class="field" style="width:100%;padding:10px;border:1px solid var(--line-strong);border-radius:4px;margin:8px 0 12px" placeholder="Search initiatives, people, sources, decisions" />
+    <div class="stack">
+      <a href="05_business_understand.html"><strong>Disputed overnight rule</strong><div class="muted">Why matched: policy and interview disagree</div></a>
+      <a href="07_business_decision.html"><strong>Decision needed from Priya</strong><div class="muted">Why matched: waiting for sign-off</div></a>
+      <a href="10_developer_home.html"><strong>Delivery package for overnight exceptions</strong><div class="muted">Why matched: expected behaviour and done checks</div></a>
+    </div>
+  </div>
+</div>
+<div id="toast" class="toast" role="status"></div>
+<script>
+const MOCK = {
+  "org": "Meridian Mutual",
+  "initiative": "Overnight claim exceptions",
+  "outcome": "Cut overnight exception handling from 18 hours to 4 hours",
+  "issue": "Policy says a supervisor must approve within 4 hours. Overnight teams park claims until morning.",
+  "sponsor": "Priya Shah",
+  "ba": "Jordan Lee",
+  "engineer": "Alex Chen",
+  "participant": "Maya Ortiz",
+  "expectedBehaviour": "After 8 pm with no supervisor online, an adjuster can park a claim until morning or contact on-call when leakage risk is high.",
+  "doneCheck": "Parking a claim pauses only the internal supervisor timer. Customer response time keeps running unless an approved exception is logged."
+};
+
+function toast(msg) {
+  let t = document.getElementById("toast");
+  if (!t) {
+    t = document.createElement("div");
+    t.id = "toast";
+    t.className = "toast";
+    document.body.appendChild(t);
+  }
+  t.textContent = msg;
+  t.classList.add("show");
+  clearTimeout(t._timer);
+  t._timer = setTimeout(() => t.classList.remove("show"), 2600);
+}
+
+function switchTab(group, name, btn) {
+  document.querySelectorAll("[data-tab-group='" + group + "']").forEach((p) => {
+    p.classList.toggle("active", p.getAttribute("data-tab") === name);
+  });
+  if (btn && btn.parentElement) {
+    btn.parentElement.querySelectorAll("button").forEach((b) => b.classList.remove("active"));
+    btn.classList.add("active");
+  }
+}
+
+function openModal(id) {
+  const m = document.getElementById(id);
+  if (m) m.classList.add("show");
+}
+function closeModal(id) {
+  const m = document.getElementById(id);
+  if (m) m.classList.remove("show");
+}
+
+function useDraft(id) {
+  const el = document.getElementById(id);
+  if (el) {
+    const b = el.querySelector(".badge.ai");
+    if (b) { b.className = "badge draft"; b.textContent = "Draft"; }
+  }
+  toast("Saved as a draft. It is not approved yet.");
+}
+
+function notRight(id) {
+  toast("Marked as not right. You can edit it or ask the decision owner.");
+  const el = document.getElementById(id);
+  if (el) {
+    const b = el.querySelector(".badge");
+    if (b) { b.className = "badge disputed"; b.textContent = "Needs correction"; }
+  }
+}
+
+function denyAction(reason) {
+  toast("Blocked: " + reason);
+}
+
+function toggleSearch(force) {
+  const o = document.getElementById("search-overlay");
+  if (!o) return;
+  const show = force === true || (force !== false && !o.classList.contains("show"));
+  o.classList.toggle("show", show);
+  if (show) {
+    const input = o.querySelector("input");
+    if (input) input.focus();
+  }
+}
+
+function toggleAssistant() {
+  const shell = document.querySelector(".shell");
+  if (!shell) return;
+  shell.classList.toggle("with-assistant");
+  toast(shell.classList.contains("with-assistant") ? "Assistant opened" : "Assistant closed");
+}
+
+function setReviewState(name) {
+  document.querySelectorAll("[data-state-panel]").forEach((el) => {
+    el.hidden = el.getAttribute("data-state-panel") !== name;
+  });
+  toast("Review state: " + name);
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  if (new URLSearchParams(location.search).get("review") === "1") {
+    document.body.classList.add("review-mode");
+  }
+});
+
+document.addEventListener("keydown", (e) => {
+  if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
+    e.preventDefault();
+    toggleSearch(true);
+  }
+  if (e.key === "Escape") toggleSearch(false);
+});
+</script>
+</body>
+</html>

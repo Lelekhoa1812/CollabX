@@ -170,8 +170,9 @@ Accept: no manual hidden step lacks owner/runbook; export/import preserves 100% 
 
 ### M2.15 — Build enterprise frontend platform and design-system foundation
 
-1. Implement the product shell, routing, authentication/tenant context, permission-aware navigation, error boundary, resumable data/stream client and stable URL/deep-link contract.
-2. Build token layers and accessible foundation/semantic components from the [enterprise frontend specification](../experience/enterprise-frontend-experience.md), with documented states, keyboard/focus, screen-reader, responsive, locale and tenant-theme contracts.
+1. Implement the dual-portal product shells, routing, authentication/organisation context, permission-aware Business and Build navigation, error boundary, resumable data/stream client and stable URL/deep-link contract.
+2. Build token layers and accessible foundation/semantic components from the [enterprise frontend specification](../experience/enterprise-frontend-experience.md), with documented states, keyboard/focus, screen-reader, responsive, locale and organisation-theme contracts.
+3. Provide shared packages for status badges, source citations, assistant suggestions, confirm-before-continue dialogs and delivery-package summaries before feature surfaces land in M4.
 3. Establish Storybook-equivalent component evidence, generated API clients, test fixtures, visual snapshots and analytics event schemas with safe-field allowlists.
 4. Exercise tenant switch, stale session, multi-tab, offline/reconnect, error/retry, zoom/RTL/long text and representative device/browser matrices.
 

@@ -148,7 +148,7 @@ Output: reviewed threat/privacy/data-flow pack. Accept when no critical risk lac
 
 ### M1.13 — Validate journey prototypes and accessibility direction
 
-1. Prototype charter, evidence-first dialogue, living canvas, conflict review, linked feedback and approval journeys.
+1. Prototype initiative brief, evidence-first contribution, Understand disagreement review, Design feedback and item-level approval journeys across Business and Build portal concepts.
 2. Test keyboard, screen reader, zoom/reflow, low-bandwidth/form alternative and plain language with representative users.
 3. Measure task success/time/error, state/authority comprehension, source inspection, correction and perceived control.
 4. Revise and retest critical failures; record design-system requirements.
@@ -166,12 +166,12 @@ Output: commercial/TCO hypothesis. Accept only if a plausible value-to-cost path
 
 ### M1.15 — Execute X09 enterprise frontend benchmark and design direction
 
-1. Benchmark comparable executive, participant, analytical, approval, administration and service workflows against the [enterprise frontend specification](../experience/enterprise-frontend-experience.md), using identical task scripts rather than subjective screenshots.
-2. Produce low/high-density concepts for portfolio, engagement overview, session, analysis room, conflict, prototype, approval and administration; test navigation, status semantics, evidence access and coherent visual character.
+1. Benchmark comparable executive, participant, analytical, approval, administration and delivery workflows against the [enterprise frontend specification](../experience/enterprise-frontend-experience.md), using identical task scripts rather than subjective screenshots.
+2. Produce low/high-density concepts for Business Home, Initiative, Contribute, Understand, Design, Decide, Track, Settings, and Build Home/Workspace/Review; test navigation, status semantics, source access and coherent visual character.
 3. Run role-based first-use studies including executives, time-poor participants, BAs, engineers, approvers, administrators and people using keyboard/screen reader/zoom/low bandwidth.
-4. Freeze the Tier-A page catalogue, design principles, component/status vocabulary, supported device/locale matrix and measurable target assumptions for M2–M4.
+4. Freeze the dual-portal surface catalogue, design principles, component/status vocabulary, supported device/locale matrix and measurable target assumptions for M2–M4.
 
-Output: frontend research report, route/journey matrix and design direction. Accept when ≥90% participants complete the primary concept journey without facilitator rescue, ≥90% distinguish proposed/confirmed/approved, all critical accessibility blockers are removed, and executives identify outcome/blocker/decision in ≤5 minutes.
+Output: frontend research report, portal/journey matrix and design direction. Accept when ≥90% participants complete the primary concept journey without facilitator rescue, ≥90% distinguish draft/approved/assistant suggestion, all critical accessibility blockers are removed, and executives identify outcome/main risk/decision in ≤5 minutes.
 
 ### M1.16 — Execute X10 experience-generation and coding-agent benchmark
 
@@ -229,7 +229,7 @@ Output: immutable M1 evidence manifest and decision. Accept milestone completion
 | Safety/isolation | zero cross-tenant disclosure and unauthorised external effect |
 | Model reproducibility | 100% real-model runs have redacted manifest and intended deployment attribution |
 | Experience | no critical accessibility issue; authority/status comprehension target met |
-| Frontend direction | Tier-A route/journey/component/state matrix frozen; ≥90% unassisted concept task success |
+| Frontend direction | Dual-portal surface/journey/component/state matrix frozen; ≥90% unassisted concept task success |
 | Experience/code generation | X10 covers L1–L5 including non-UI class, hostile/brownfield fixtures; zero critical effect/loss |
 | AC-gated review | X11 feasibility pass; zero silent approve |
 | Archaeology | X12 feasibility pass or signed narrow; 100% citation integrity |

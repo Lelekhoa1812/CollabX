@@ -44,7 +44,7 @@ CollabX earns competence under evaluation; it does not claim parity with every s
 
 ## UX obligations
 
-- Parity features show evidence and metrics.
+- Parity features show sources and metrics in plain language.
 - Assist features show “draft / proposal” semantics and required human action.
 - Human-owned actions cannot be completed by agent terminal success alone.
 - Prohibited capabilities are absent from tool catalogs in production profiles.

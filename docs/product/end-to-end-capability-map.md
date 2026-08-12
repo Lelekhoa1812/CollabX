@@ -2,6 +2,8 @@
 
 Status: normative · Baseline: `design-v3` · Effective: 2026-08-12 · Owner: product council
 
+User-facing delivery of these capabilities uses the **Business** and **Build** portals defined in [enterprise frontend experience](../experience/enterprise-frontend-experience.md). Specialised former pages become tabs, drawers and modes inside those portal surfaces.
+
 This is the product boundary an implementation must satisfy. A capability is not complete until its user experience, domain model, authority, failure modes, telemetry and evaluation evidence exist. Capability 18 extends the boundary for brownfield BA on existing ERP/CRM/SAP and custom codebases; see [coding intelligence and review agent](../intelligence/coding-intelligence-and-review-agent.md).
 
 ## 1. Portfolio and engagement governance

@@ -47,7 +47,7 @@ Questionnaire definition is versioned and typed: sections, items, answer schemas
 
 Avoid biased sampling, double-barrelled/leading questions, exhaustive mandatory forms, unlabelled AI-generated follow-ups and small-group deanonymisation. Report response/non-response, sample coverage and uncertainty; do not present counts as organisational consensus.
 
-Collective clarification retains each response, role/authority, scope/time and confidence separately. The UI may show aligned, divergent and missing perspectives but never average them into approval. Material divergence routes evidence, experiment or named decision rather than another popularity poll.
+Collective clarification retains each response, role/authority, scope/time and confidence separately. The Business Understand and Contribute surfaces may show aligned, divergent and missing perspectives but never average them into approval. Material divergence routes evidence, experiment or named decision rather than another popularity poll.
 
 ## Live session protocol
 

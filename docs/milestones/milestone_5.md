@@ -206,7 +206,7 @@ Accept: zero unauthorised/duplicate effect; approval invalidates on any material
 3. Observe executive, participant, BA, engineer, approver and administrator journeys through pilot; analyse worst role/device/language/accessibility slices and shadow-workarounds.
 4. Exercise degraded model/search/connector/IdP/network states, stale sessions, multi-tab/offline drafts and frontend rollback while preserving human work.
 
-Accept: Tier-A targets in the frontend specification hold over the pilot observation window; zero critical/high accessibility/security/privacy/status defect; ≥95% recoverable errors resolve without support; no acknowledged input loss; frontend rollback meets objective.
+Accept: dual-portal targets in the frontend specification hold over the pilot observation window; zero critical/high accessibility/security/privacy/status defect; ≥95% recoverable errors resolve without support; no acknowledged input loss; frontend rollback meets objective.
 
 ### M5.19 — Pilot client prototype and repository coding-agent capability
 
@@ -256,7 +256,7 @@ Accept: at least one complete review cycle operates; stale evidence automaticall
 | Cost | capped pilot and cost attribution | ≤1% usage reconciliation variance; viable margin/TCO |
 | Portability/exit | export/offboarding rehearsal | timed clean import/export/provider/tenant exit evidence |
 | Accessibility | WCAG 2.2 AA and affected-user pilot | independent audit and defect management operating |
-| Frontend experience | Tier-A task/status/evidence/performance targets in representative pilot | sustained RUM, role/device/locale slice and rollback evidence |
+| Frontend experience | Dual-portal task/status/source/performance targets in representative pilot | sustained RUM, role/device/locale slice and rollback evidence |
 | Generated experience/code | equal-or-better correction/quality with zero patch/effect failure | continuous X10/X11/X12 requalification, client exit and action-class control |
 | Brownfield / ERP evidence | pilot connector conformance; zero unauthorised transport | continuous adapter/index assurance and IP controls |
 

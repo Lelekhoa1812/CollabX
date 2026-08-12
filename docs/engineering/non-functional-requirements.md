@@ -82,7 +82,7 @@ Measure separately by cell, tenant tier, capability, device/network, payload and
 
 ## Frontend experience quality
 
-- Role-critical journeys, page catalogue and quality targets follow the [enterprise frontend specification](../experience/enterprise-frontend-experience.md); no page ships without all applicable loading/empty/stale/denied/error/offline/recovery states.
+- Role-critical journeys, dual-portal surface catalogue and quality targets follow the [enterprise frontend specification](../experience/enterprise-frontend-experience.md); no surface ships without all applicable loading/empty/stale/denied/error/offline/recovery states. Business and Build portals are measured separately.
 - Local interaction feedback occurs within 100 ms; frontend work avoids >50 ms main-thread tasks at p75 on the declared target device unless chunked/yielded with evidence.
 - 100% critical journeys have browser E2E, keyboard and manual assistive-technology evidence; visual snapshots cover supported viewport, theme, locale and representative data state.
 - Generated L4/L5 frontends meet host PERF, security, privacy, accessibility, architectural and bundle budgets; a sandbox prototype receives no production-readiness inference.

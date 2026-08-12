@@ -26,7 +26,7 @@ The durations are estimation envelopes, not commitments. Entry dates are assigne
 | R0 | T0 | research, benchmark, high-risk spikes and provisional ADRs |
 | R1 | T1–T4 | repository, contracts, tenancy, temporal data and durable workflow foundation |
 | R2 | T5–T6 | model gateway, retrieval, context, BA cognition and semantic qualification |
-| R3 | T7–T8 | elicitation, collaboration, canvas and traceable prototypes |
+| R3 | T7–T8 | dual-portal collaboration, Understand/Design and traceable prototypes |
 | R4 | T9–T10 | baselines, delivery feedback, connectors and guarded pilot operations |
 | R5 | T11 | regional scale, reliability, compliance and qualified autonomy |
 
@@ -42,7 +42,7 @@ Deliver:
 
 - 25+ interviews across senior BAs, sponsors, SMEs, designers, engineers, risk and buyers; observational study of at least five real discovery sessions.
 - Three-domain benchmark design, rubrics, consent/de-identification protocol, initial synthetic cases and expert panel.
-- Journey prototypes for evidence-first dialogue, living canvas, conflict review and linked prototype feedback.
+- Journey prototypes for evidence-first contribution, Understand disagreement review, Design mocks and linked participant feedback.
 - X09 role/page/design-system benchmark and X10 progressive experience-generation/coding-agent benchmark, including stale/hostile repository safety and polyglot/brownfield fixtures.
 - X11 AC-gated review and X12 archaeology→BA model thin feasibility experiments; ERP-like research corpus with IP protocol.
 - X01–X06 thin experiments plus X07-A workflow feasibility; total-cost and domain-pack maintenance model.
@@ -55,7 +55,7 @@ Exit: a credible buyer/problem, measurable BA benchmark, usable experience direc
 
 Goal: create a model-independent substrate that cannot silently lose authority, provenance, time or tenant boundaries.
 
-Deliver canonical identity/tenant/engagement model; source/version/span ingestion; bitemporal knowledge item and assertion graph; authorisation/RLS; schema registry; outbox/inbox; durable workflow spike-to-production; audit/provenance; context manifest; model/tool gateway skeleton; OpenTelemetry; retention/deletion; restore and isolation harness; accessible frontend shell/design system; isolated preview/code-workspace with exact-base patch primitives; **code-index Merkle/reindex, CodeKnowledgeGraph schemas and review/archaeology receipt harness**. Run X07-B in a production-shaped environment to qualify failure recovery, deployment compatibility, history evolution and operational ownership.
+Deliver canonical identity/tenant/engagement model; source/version/span ingestion; bitemporal knowledge item and assertion graph; authorisation/RLS; schema registry; outbox/inbox; durable workflow spike-to-production; audit/provenance; context manifest; model/tool gateway skeleton; OpenTelemetry; retention/deletion; restore and isolation harness; accessible dual-portal frontend shells/design system; isolated preview/code-workspace with exact-base patch primitives; **code-index Merkle/reindex, CodeKnowledgeGraph schemas and review/archaeology receipt harness**. Run X07-B in a production-shaped environment to qualify failure recovery, deployment compatibility, history evolution and operational ownership.
 
 Provision the AWS multi-account landing zone, security/log archive, SDLC account, first three-AZ regional cell, private endpoints, key hierarchy, signed supply chain and cost controls described in the [AWS platform](../architecture/aws-platform.md). Follow the detailed [build sequence](build-sequence-and-dependency-graph.md).
 
@@ -65,7 +65,7 @@ Exit: deterministic acceptance suite proves tenant isolation, append-only proven
 
 Goal: beat a strong RAG assistant on grounded analysis before adding a broad multi-agent experience.
 
-Deliver hybrid retrieval and reranking; contradiction/time/scope handling; domain-pack branch/review/release; context compiler; bounded lead-BA graph; claim/evidence extraction; glossary/process/rule/requirement models; prompt/policy/evaluation registry; critic and repair loop; expert review workbench; experience-intent/question graph; governed coding-agent plan/patch/validate proposal loop; **Archaeologist and always-on AC-gated Reviewer cores; polyglot change-class proposals**.
+Deliver hybrid retrieval and reranking; contradiction/time/scope handling; domain-pack branch/review/release; context compiler; bounded lead-BA graph; claim/evidence extraction; glossary/process/rule/requirement models; prompt/policy/evaluation registry; critic and repair loop; expert review surfaces; experience-intent/question graph; governed coding-agent plan/patch/validate proposal loop; **Archaeologist and always-on AC-gated Reviewer cores; polyglot change-class proposals**.
 
 Exit: blinded R2 benchmark meets grounding, contradiction, temporal and requirements thresholds; X11/X12 confirmatory targets met for approved paths; correction retention passes; cost/latency budgets hold. Multi-agent implementers remain disabled unless X03 proves gains; Reviewer is always-on when approved.
 
@@ -73,7 +73,7 @@ Exit: blinded R2 benchmark meets grounding, contradiction, temporal and requirem
 
 Goal: demonstrate senior-quality discovery behaviour and materially better intent confirmation.
 
-Deliver stakeholder/authority topology; elicitation planner and question-ranking policy; live/async sessions, surveys, transcripts and coverage; complete coherent Tier-A/Tier-B frontend; canvas/conflict views; progressive mixed-format experience Q&A; coherent mock data; L0–L4 prototype graph/runtime; bounded L5 repository patch mode with AC coverage panel; **Review Agent and brownfield archaeology discovery journeys**; element-level feedback; accessibility/localisation; approval and baseline bundles.
+Deliver stakeholder/authority topology; research planner and question-ranking policy; live/async sessions, surveys, transcripts and coverage; complete coherent Business and Build portal surfaces; Understand/Design disagreement and mock views; progressive mixed-format experience Q&A; coherent mock data; L0–L4 prototype graph/runtime; bounded L5 repository patch mode with requirements coverage panel; **Build Review and code-discovery journeys**; element-level feedback; accessibility/localisation; approval and approved delivery packages.
 
 Exit: controlled user studies pass X01/X04/X05/X09/X10/X11/X12 confirmatory slices as applicable, WCAG 2.2 AA audit, stakeholder burden and trust-calibration guardrails; external messaging stays preview/approve.
 

@@ -1,8 +1,16 @@
 # Coding intelligence and review agent
 
-Status: normative · Baseline: `design-v3` · Effective: 2026-08-12 · Owner: AI and architecture councils · Companion: [experience-generation-and-coding-agent.md](experience-generation-and-coding-agent.md)
+Status: normative · Baseline: `design-v4` · Effective: 2026-08-12 · Owner: AI and architecture councils · Companion: [experience-generation-and-coding-agent.md](experience-generation-and-coding-agent.md)
 
-This document governs brownfield code archaeology, the versioned CodeKnowledgeGraph, hybrid index/reindex, multi-agent coding topology, and the **AC-gated review agent**. Progressive experience fidelity L0–L5 and exact-base patch contracts remain in the companion experience/coding document; this document extends them for polyglot and ERP/CRM/SAP-class change.
+This document governs brownfield code discovery, the versioned CodeKnowledgeGraph, hybrid index/reindex, multi-agent coding topology, and the **requirements coverage review** (also called AC-gated review in engineering contracts). Progressive experience fidelity L0–L5 and exact-base patch contracts remain in the companion experience/coding document; this document extends them for polyglot and ERP/CRM/SAP-class change.
+
+User-facing surfaces live in the Build portal:
+
+- **Delivery package (Home):** approved intent, expected behaviour, exceptions, done checks, open questions
+- **Workspace:** code discovery, plan, patch, tests, clarification
+- **Review:** requirements coverage, findings, approved exceptions, release readiness
+
+Business users see plain-language status in Track. They do not navigate archaeology, AC-gap, or agent-run chrome.
 
 ## Product promise
 

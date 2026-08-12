@@ -2,7 +2,7 @@
 
 Status: normative · Baseline: `design-v3` · Effective: 2026-08-11 · Owner: AI and architecture councils
 
-This document governs BA cognitive runs. Frontend/prototype generation and repository patching use the same bounded-agent principles plus the stricter context, tool and patch contracts in [experience generation and governed coding agent](experience-generation-and-coding-agent.md) and [coding intelligence and review agent](coding-intelligence-and-review-agent.md).
+This document governs BA cognitive runs. Business Design and Build Workspace generation use the same bounded-agent principles plus the stricter context, tool and patch contracts in [experience generation and governed coding agent](experience-generation-and-coding-agent.md) and [coding intelligence and review agent](coding-intelligence-and-review-agent.md).
 
 ## Agent topology
 
@@ -58,7 +58,7 @@ Loop:
 7. Repair within explicit iteration/cost/time limits.
 8. Return proposals, unresolved uncertainty, and recommended next question.
 
-For experience-building tasks the lead agent may delegate research/intent, experience architecture, frontend/polyglot implementer, contract/data, security, accessibility and test/visual reviews only when their inputs/outputs and merge ownership are independent. Repository/file access is never inherited merely because a child task exists. Coding Reviewer findings with severity critical and type `ac_gap`, `trace_break`, `test_weakening` or `scope_escape` are escalated to the BA lead as gate-relevant signals.
+For experience-building tasks the lead agent may delegate research/intent, experience architecture, Build Workspace frontend/polyglot implementer, contract/data, security, accessibility and test/visual reviews only when their inputs/outputs and merge ownership are independent. Repository/file access is never inherited merely because a child task exists. Coding Reviewer findings with severity critical and type `ac_gap`, `trace_break`, `test_weakening` or `scope_escape` are escalated to the BA lead as gate-relevant signals.
 
 Terminal reasons are success, needs-human, needs-evidence, policy-denied, budget-exhausted, cancelled, unsafe, or failed. “Keep thinking” is not a control strategy.
 

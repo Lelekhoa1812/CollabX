@@ -1,6 +1,6 @@
 # CollabX design corpus
 
-Status: normative · Baseline: `design-v3` · Effective: 2026-08-11 · Owner: product/architecture council
+Status: normative · Baseline: `design-v4` · Effective: 2026-08-12 · Owner: product/architecture council
 
 Read [documentation control and precedence](governance/document-control.md) before using this corpus for implementation. It identifies normative, provisional, delivery, research and historical documents and resolves authority when statements overlap.
 
@@ -9,7 +9,7 @@ Read [documentation control and precedence](governance/document-control.md) befo
 | Reader | Sequence |
 |---|---|
 | Founder/product | [Vision](product/vision.md) → [BA operating model](product/ba-operating-model.md) → [Augmentation boundary](product/augmentation-boundary.md) → [Full capability map](product/end-to-end-capability-map.md) → [Roadmap](delivery/roadmap.md) |
-| BA/product/design | [Artefacts and gates](product/artefacts-traceability-and-gates.md) → [Method engines / sufficiency](product/ba-method-engines-and-sufficiency.md) → [Process intelligence](product/process-intelligence-posture.md) → [Facilitation](product/conversation-survey-and-facilitation.md) → [Enterprise frontend](experience/enterprise-frontend-experience.md) → [Discovery/prototyping](experience/discovery-and-prototyping.md) → [Information architecture](experience/information-architecture-and-design-system.md) |
+| BA/product/design | [Artefacts and gates](product/artefacts-traceability-and-gates.md) → [Method engines / sufficiency](product/ba-method-engines-and-sufficiency.md) → [Process intelligence](product/process-intelligence-posture.md) → [Facilitation](product/conversation-survey-and-facilitation.md) → [Enterprise frontend / dual portals](experience/enterprise-frontend-experience.md) → [Information architecture](experience/information-architecture-and-design-system.md) → [Discovery/prototyping](experience/discovery-and-prototyping.md) |
 | Architect | [System architecture](architecture/system-architecture.md) → [Data model](architecture/data-and-knowledge-model.md) → [Integrations](architecture/integration-and-interoperability.md) → [AWS platform](architecture/aws-platform.md) → [AWS operations](architecture/aws-security-resilience-operations.md) |
 | AI engineer | [Agents/memory/RAG](intelligence/agents-memory-rag.md) → [Experience/coding agent](intelligence/experience-generation-and-coding-agent.md) → [Coding intelligence / review](intelligence/coding-intelligence-and-review-agent.md) → [Model-agent lifecycle](intelligence/model-agent-and-evaluation-lifecycle.md) → [Evaluation](research/evaluation-and-experiments.md) |
 | Software engineer | [Implementation blueprint](engineering/implementation-blueprint.md) → [API/event/state catalogue](engineering/api-event-and-state-catalogue.md) → [Engineering controls](engineering/contracts-observability-security.md) → [NFRs](engineering/non-functional-requirements.md) → [Verification](engineering/verification-strategy.md) |
@@ -51,14 +51,14 @@ flowchart TD
 
 | Term | Meaning |
 |---|---|
-| Engagement | Bounded body of BA work for a business change |
+| Engagement / Initiative | Bounded body of BA work for a business change; **Initiative** is the business-facing label |
 | Claim | A proposition whose status and provenance are tracked |
 | Evidence | Immutable source span or observation supporting/challenging a claim |
 | Knowledge item | Versioned concept, rule, process, requirement, decision, risk, or relationship |
 | Domain pack | Reviewed vocabulary, ontology constraints, policies, examples, tests, and elicitation patterns for a domain |
-| Work graph | Durable state machine for an engagement |
+| Work graph / Linked project record | Durable state machine for an initiative; **Linked project record** is the business-facing label |
 | Cognitive run | Bounded agent execution within one work-graph step |
-| Baseline | Approved, immutable snapshot of mutually consistent knowledge items |
+| Baseline / Approved version | Approved, immutable snapshot of mutually consistent knowledge items; **Approved version** or **Approved delivery package** is the business-facing label |
 | Sufficiency | Measured readiness for a named decision—not generic confidence |
 | CodeKnowledgeGraph | Versioned, tenant-ACL’d projection of code/config symbols and traces to requirements/tests |
-| AC-gated review | Review run that maps diffs to acceptance criteria and blocks silent approve on critical gaps |
+| AC-gated review / Requirements coverage review | Review run that maps diffs to done checks and blocks silent approve on critical gaps; **Requirements coverage review** is the Build-portal label |

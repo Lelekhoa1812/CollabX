@@ -62,5 +62,5 @@ Build CollabX differentiation: epistemic/temporal work graph, adaptive elicitati
 - OpenTelemetry trace across runtime boundaries without sensitive content.
 - RLS, S3, search/cache/queue and connector tenant-isolation red team.
 - Canonical knowledge export/import portability.
-- Enterprise frontend Tier-A/Tier-B route/state/component and X09 role-journey qualification.
+- Enterprise frontend dual-portal surface/state/component and X09 role-journey qualification.
 - Experience-intent/mock-data/context/patch contracts and X10 stale/hostile repository qualification.

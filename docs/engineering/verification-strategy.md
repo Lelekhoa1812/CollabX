@@ -36,7 +36,7 @@ Deterministic correctness and probabilistic quality are different systems. CI te
 - Real-model conformance: redacted preflight, structured outputs, error/rate-limit/cancel, routing/fallback, reproducibility and cost attribution against each qualified deployment.
 - Customer lifecycle: synthetic contract-to-provision, role training, support/escalation, plan/quota change, suspension, canonical exit and verified disposition.
 - Documentation integrity: internal/external link policy, header/registry reachability, unique IDs/task counts, terminology, code fences/Mermaid, placeholders, secret patterns and runnable-command inventory.
-- Frontend state matrix: every critical page in normal, empty, loading, partial, stale, denied, validation, conflict, error, offline and recovery states where applicable.
+- Frontend state matrix: every critical portal surface in normal, empty, loading, partial, stale, denied, validation, conflict, error, offline and recovery states where applicable.
 - Generated patch integrity: stale base, dirty/unrelated user change, path/scope escape, malformed patch, partial apply, failing test, rollback and prohibited commit/push/deploy.
 
 ## Test data

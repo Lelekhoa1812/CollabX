@@ -1,19 +1,19 @@
 # Experience generation and governed coding-agent specification
 
-Status: normative · Baseline: `design-v3` · Effective: 2026-08-12 · Owner: product design, AI and engineering councils
+Status: normative · Baseline: `design-v4` · Effective: 2026-08-12 · Owner: product design, AI and engineering councils
 
 ## Capability promise
 
-CollabX can turn governed business intent into a progressive, testable experience: journey and information architecture, mock data, wireframe, stateful frontend prototype and—only when authorised—a patch to a bounded codebase (polyglot and non-UI change classes included). It behaves as a product/design/engineering collaborator, not a one-shot site generator. Every visual or code change explains the user need, evidence, assumption, affected scenario, validation and rollback.
+CollabX can turn governed business intent into a progressive, testable experience: journey and information architecture, mock data, sketch, stateful frontend prototype and, only when authorised, a patch to a bounded codebase (polyglot and non-UI change classes included). It behaves as a product/design/engineering collaborator, not a one-shot site generator. Every visual or code change explains the user need, evidence, assumption, affected scenario, validation and rollback.
 
-Brownfield archaeology, CodeKnowledgeGraph, AC-gated review and ERP promotion paths are normative in [coding intelligence and review agent](coding-intelligence-and-review-agent.md). This document remains the L0–L5 experience and exact-base patch contract.
+Brownfield code discovery, CodeKnowledgeGraph, requirements coverage review and ERP promotion paths are normative in [coding intelligence and review agent](coding-intelligence-and-review-agent.md). This document remains the L0–L5 experience and exact-base patch contract. Portal placement is owned by the [enterprise frontend experience](../experience/enterprise-frontend-experience.md).
 
 The capability serves two separate surfaces:
 
-1. **Prototype mode:** produces disposable or versioned mock experiences in a credential-free sandbox to learn and validate intent.
-2. **Repository mode:** inspects an authorised workspace, plans and applies minimal patches through governed tools, then verifies the real application boundary.
+1. **Business Design mode:** produces disposable or versioned mock experiences in a credential-free sandbox to learn and validate intent. Lives in the Business portal Design surface, with participant tests in Contribute.
+2. **Build Workspace mode:** inspects an authorised repository, plans and applies minimal patches through governed tools, then verifies the real application boundary. Lives in the Build portal Workspace and Review surfaces.
 
-Prototype acceptance is not production-code approval. Repository mode is unavailable until code scope, branch/worktree, tool policy, data classification and human authority are explicit.
+Design acceptance is not production-code approval. Build Workspace mode is unavailable until code scope, branch/worktree, tool policy, data classification and human authority are explicit.
 
 Generated L5 changes follow the same secure-development lifecycle as human code. The [NIST Secure Software Development Framework](https://csrc.nist.gov/pubs/sp/800/218/final) is a control reference for preparing the organisation, protecting software, producing well-secured software and responding to vulnerabilities; it does not itself certify generated code.
 
@@ -42,20 +42,32 @@ Generated L5 changes follow the same secure-development lifecycle as human code.
 
 CollabX chooses the lowest fidelity that resolves the current uncertainty. Higher fidelity requires explicit rationale; visual polish does not compensate for weak task evidence.
 
-## Experience-generation workspace
+## Experience-generation surfaces
 
-The studio is one coherent workspace, not separate chat and code generators:
+Business and Build keep one coherent object chain, but they do not share one expert studio chrome.
 
-- **Brief rail:** outcome, target users, decision, constraints, success metrics, fidelity and scope.
-- **Conversation/intent panel:** one active question, rationale, answer controls, recap and open assumptions.
-- **Journey/story map:** personas/jobs, scenarios, steps, exceptions and coverage.
-- **Prototype viewport:** device/theme/locale/data-scenario selector and interactive output.
-- **Structure inspector:** routes, components, states, data, permissions, accessibility tree and trace links.
-- **Change set:** proposed visual/behaviour/code diffs grouped by rationale and impact.
-- **Validation drawer:** task, schema, browser, visual, accessibility, security, performance and evaluation results.
-- **Run controls:** current goal/plan/stage, budget, tool activity, pause/cancel/resume and required authority.
+### Business Design surface
 
-Participant testing can open a distraction-free prototype URL containing only purpose/consent, scenario, viewport, progress, feedback and exit controls.
+- Outcome, users, decision, constraints and success measures
+- Journey and scenario map
+- Interactive mock viewport with device/theme/locale/scenario controls
+- Findings list linked to expected behaviour
+- Assistant suggestions with Use as draft / Not right
+- Advanced fidelity and structure details collapsed by default
+
+### Business Contribute surface
+
+Participant testing uses a distraction-free experience with purpose, consent, scenario, progress, feedback and exit only. No Business or Build navigation.
+
+### Build Workspace surface
+
+- Delivery package context
+- Code discovery, plan, patch and tests as tabs
+- Clarification thread that cannot silently change the approved package
+- Assistant task progress with pause and cancel
+- Hand-off into Review for requirements coverage
+
+Specialist panels such as structure inspector, change set and validation results remain available as drawers for authorised users. They are not separate top-level destinations.
 
 ## Progressive intention discovery
 
