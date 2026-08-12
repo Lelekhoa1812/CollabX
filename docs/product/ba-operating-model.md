@@ -1,10 +1,10 @@
 # Senior BA operating model
 
-Status: normative · Baseline: `design-v2` · Effective: 2026-08-11 · Owner: BA practice council
+Status: normative · Baseline: `design-v3` · Effective: 2026-08-12 · Owner: BA practice council
 
 ## Engagement lifecycle
 
-The lifecycle is iterative. Each gate names a business decision and its evidence threshold.
+The lifecycle is iterative. Each gate names a business decision and its evidence threshold. Operational sufficiency, coverage-graph thresholds and enumerable G0–G7 blockers are defined in [ba-method-engines-and-sufficiency.md](ba-method-engines-and-sufficiency.md). Human vs assist vs parity boundaries are in [augmentation-boundary.md](augmentation-boundary.md). Process-mining grounding is in [process-intelligence-posture.md](process-intelligence-posture.md).
 
 ```mermaid
 stateDiagram-v2

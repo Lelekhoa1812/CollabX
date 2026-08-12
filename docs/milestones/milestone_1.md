@@ -6,15 +6,16 @@ Status: delivery control · Baseline: `design-v3` · Effective: 2026-08-11 · Ow
 
 Prove that CollabX addresses a valuable enterprise BA problem, that senior-quality behaviour can be measured, that the proposed experience is comprehensible, and that no known architecture/control flaw makes further investment irresponsible. The terminal decision is `invest`, `narrow`, `pivot`, or `stop`; completion is not presumed.
 
-Read: [vision](../product/vision.md), [BA operating model](../product/ba-operating-model.md), [capability map](../product/end-to-end-capability-map.md), [evaluation program](../research/evaluation-and-experiments.md), [technology decisions](../research/technology-decisions.md), [enterprise gap assessment](../research/enterprise-gap-assessment.md), [enterprise readiness](../governance/enterprise-readiness-model.md), [provider profiles](../engineering/model-provider-and-environment-profiles.md), and T0 in the [build sequence](../delivery/build-sequence-and-dependency-graph.md).
+Read: [vision](../product/vision.md), [BA operating model](../product/ba-operating-model.md), [capability map](../product/end-to-end-capability-map.md), [coding intelligence](../intelligence/coding-intelligence-and-review-agent.md), [BA/coding gap review](../research/ba-and-coding-intelligence-gap-review.md), [evaluation program](../research/evaluation-and-experiments.md), [technology decisions](../research/technology-decisions.md), [enterprise gap assessment](../research/enterprise-gap-assessment.md), [enterprise readiness](../governance/enterprise-readiness-model.md), [provider profiles](../engineering/model-provider-and-environment-profiles.md), and T0 in the [build sequence](../delivery/build-sequence-and-dependency-graph.md).
 
 ## Entry, governance and evidence rules
 
-- Entry: named sponsor, product/research lead, BA benchmark lead, security/privacy reviewer and budget authority; no production/customer data.
+- Entry: named sponsor, product/research lead, BA benchmark lead, coding/review benchmark lead, security/privacy reviewer and budget authority; no production/customer data.
 - Research participants receive consent, recording, withdrawal, AI-use and retention information; adverse events have an owner and stop path.
 - Primary hypotheses, metrics, slices, sample sizes, exclusions and stop rules are preregistered before result inspection.
 - Store only redacted evidence references/hashes in task dossiers; secrets and restricted research material remain in governed stores.
 - Real-model runs use `eval-real`, the configured Azure deployments and a capped budget. They cannot qualify Bedrock production.
+- Supervision: Research + AI councils; weekly evidence review; stop authority = product council.
 
 ## Existing work-package coverage
 
@@ -30,8 +31,10 @@ Read: [vision](../product/vision.md), [BA operating model](../product/ba-operati
 | M1.12 | T0.08 |
 | M1.14, M1.17 | T0.12 |
 | M1.15–M1.16 | T0.13–T0.14 |
+| M1.17–M1.19 | T0.15–T0.17 (Capability 18 / X11 / X12 research packs) |
+| M1.20 | T0.12 (decision freeze after all experiments) |
 
-All T0.01–T0.14 packages are covered.
+All T0 packages listed above are covered; new T0.15–T0.17 are added in the build sequence for coding intelligence research.
 
 ## Work plan
 
@@ -172,21 +175,49 @@ Output: frontend research report, route/journey matrix and design direction. Acc
 
 ### M1.16 — Execute X10 experience-generation and coding-agent benchmark
 
-1. Create representative tasks from vague brief through MCQ/free-form/checklist clarification, coherent mock data, L1–L4 prototype and a bounded L5 repository patch.
-2. Compare manual product/design/engineering workflow, generic model generation and CollabX’s proposed intent/context/tool/patch contracts on intention accuracy, question burden, visual quality, code correctness, traceability and reviewer effort.
-3. Red-team prompt/repository injection, stale/dirty base, path escape, unrelated-change loss, unsafe dependency/network/secret access, patch failure, specialist overlap and unauthorised commit/push/deploy.
-4. Decide eligible fidelity levels, repository/tool boundaries, multi-agent hypotheses, budgets and datasets for later qualification.
+1. Create representative tasks from vague brief through MCQ/free-form/checklist clarification, coherent mock data, L1–L4 prototype and a bounded L5 repository patch including **at least one non-UI change class** (API, rule, or config-as-code).
+2. Include brownfield/hostile fixtures: large monorepo path filters, stale/dirty base, config-as-code, and synthetic ERP-like customization layout (no real customer SAP IP).
+3. Compare manual product/design/engineering workflow, generic model generation and CollabX’s proposed intent/context/tool/patch contracts on intention accuracy, question burden, visual quality, code correctness, traceability and reviewer effort.
+4. Red-team prompt/repository injection, stale/dirty base, path escape, unrelated-change loss, unsafe dependency/network/secret access, patch failure, specialist overlap and unauthorised commit/push/deploy.
+5. Decide eligible fidelity levels, repository/tool boundaries, multi-agent hypotheses, budgets and datasets for later qualification.
 
-Output: generation/coding-agent benchmark and threat pack. Accept further investment only if the governed approach preserves 100% critical intent/trace, loses zero unrelated changes, produces zero unauthorised effect and shows a credible improvement in time or valid-correction yield over the comparison workflow.
+Output: generation/coding-agent benchmark and threat pack. Accept further investment only if the governed approach preserves 100% critical intent/trace, loses zero unrelated changes, produces zero unauthorised effect and shows a credible improvement in time or valid-correction yield over the comparison workflow. Frontend-only L5 is insufficient as the sole path.
 
-### M1.17 — Hold the R0 investment decision
+### M1.17 — Build brownfield / ERP-like research corpus
+
+1. Construct at least three packs: process-heavy, customization-heavy, integration-heavy (synthetic or consented de-identified).
+2. Include gold as-is process/rule/integration claims, stakeholder private knowledge, seeded conflicts and IP-handling protocol.
+3. Define leakage tests (secrets, customer names, cross-pack contamination).
+4. Publish pack versions and retention/destruction rules.
+
+Accept: ≥3 packs versioned; security/privacy review signed; no production ERP customer IP without contract.
+
+### M1.18 — Execute X11 AC-gated review benchmark
+
+1. Seed PRs/change sets with planted AC-gaps, trace breaks and test weakening.
+2. Baselines: human reviewer, quality-only bot, CollabX Reviewer contract.
+3. Score AC-gap recall/precision, false-positive rate, latency and silent-approve attempts.
+4. Freeze review rubric (bug/security/quality/ac_gap/trace_break/assumption_violation/test_weakening) with inter-rater agreement.
+
+Accept: feasibility recall meets preregistered threshold; **zero silent approve**; κ ≥ preregistered agreement; decide blocking policy hypotheses for M3/M4.
+
+### M1.19 — Execute X12 archaeology → BA model benchmark
+
+1. Run Archaeologist contract on corpus packs vs generic RAG vs unaided notes.
+2. Score claim precision/recall, citation integrity and steward burden estimate.
+3. Red-team invented citations, config-vs-code confusion and silent semantic promotion.
+4. Decide whether archaeology is invest/narrow for M2–M3 substrate.
+
+Accept: material precision/recall gain or honest narrow; **100%** material claims cited or UNSUPPORTED; zero silent promotion; domain-pack TCO sketch updated.
+
+### M1.20 — Hold the R0 investment decision
 
 1. Freeze results and compile evidence/limitations, not a sales narrative.
 2. Independently review metric integrity, safety/privacy, technical feasibility and commercial evidence.
-3. List passed, failed, inconclusive and contaminated hypotheses with confidence.
+3. List passed, failed, inconclusive and contaminated hypotheses with confidence—including X10/X11/X12.
 4. Sign `invest`, `narrow`, `pivot` or `stop`, plus M2 scope, budgets and accepted/provisional ADRs.
 
-Output: immutable M1 evidence manifest and decision. Accept milestone completion only when the decision is signed; an honest stop is a successful research outcome.
+Output: immutable M1 evidence manifest and decision. Accept milestone completion only when the decision is signed; an honest stop is a successful research outcome. Coding intelligence may be narrowed (e.g. git+polyglot first, SAP adapter later) but **cannot be dropped entirely** if brownfield BA remains in vision.
 
 ## Milestone success scorecard
 
@@ -199,7 +230,9 @@ Output: immutable M1 evidence manifest and decision. Accept milestone completion
 | Model reproducibility | 100% real-model runs have redacted manifest and intended deployment attribution |
 | Experience | no critical accessibility issue; authority/status comprehension target met |
 | Frontend direction | Tier-A route/journey/component/state matrix frozen; ≥90% unassisted concept task success |
-| Experience/code generation | X10 benchmark covers L1–L5, hostile repository and patch integrity; zero critical effect/loss |
+| Experience/code generation | X10 covers L1–L5 including non-UI class, hostile/brownfield fixtures; zero critical effect/loss |
+| AC-gated review | X11 feasibility pass; zero silent approve |
+| Archaeology | X12 feasibility pass or signed narrow; 100% citation integrity |
 | Decision integrity | every experiment has result, uncertainty, failure examples and action |
 
 ## Runnable validation contract
@@ -210,7 +243,7 @@ Implementation must expose stable root commands equivalent to:
 task docs:check
 task test:unit
 task eval:preflight --profile eval-real --redact
-task eval:run --experiment X01,X02,X03,X04,X05,X06,X07-A,X09,X10 --profile eval-real
+task eval:run --experiment X01,X02,X03,X04,X05,X06,X07-A,X09,X10,X11,X12 --profile eval-real
 task eval:verify-manifest --milestone M1
 ```
 
@@ -218,4 +251,4 @@ Command names may change only through the task-runner contract; milestone eviden
 
 ## Exit and handoff
 
-M2 cannot begin beyond disposable preparation until M1 produces the signed decision, accepted schema conventions, benchmark/rubric versions, threat/data classifications, provider conformance, provisional runtime decision and an approved list of unresolved risks. Failed critical safety, isolation or research-ethics evidence forces `narrow/pivot/stop`.
+M2 cannot begin beyond disposable preparation until M1 produces the signed decision, accepted schema conventions, benchmark/rubric versions, threat/data classifications, provider conformance, provisional runtime decision, coding-intelligence invest/narrow scope and an approved list of unresolved risks. Failed critical safety, isolation or research-ethics evidence forces `narrow/pivot/stop`. Kill-gate experiments for the intelligence thesis remain X01, X02, X10, X11, X12 and domain-pack TCO.

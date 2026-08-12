@@ -4,9 +4,9 @@ Status: delivery control · Baseline: `design-v3` · Effective: 2026-08-11 · Ow
 
 ## Outcome and decision
 
-Prove that approved intelligence improves real collaborative discovery: people can contribute safely, understand status/authority, correct the system, validate low-fidelity designs and publish an immutable baseline through explicit human approval. This milestone qualifies user journeys, not production operations.
+Prove that approved intelligence improves real collaborative discovery: people can contribute safely, understand status/authority, correct the system, validate low-fidelity designs, **review AC coverage on change sets**, run brownfield claim review and publish an immutable baseline through explicit human approval. This milestone qualifies user journeys, not production operations.
 
-Read: [facilitation](../product/conversation-survey-and-facilitation.md), [discovery/prototyping](../experience/discovery-and-prototyping.md), [information architecture](../experience/information-architecture-and-design-system.md), [artefacts/gates](../product/artefacts-traceability-and-gates.md), [NFRs](../engineering/non-functional-requirements.md), and T7–T9 in the [build sequence](../delivery/build-sequence-and-dependency-graph.md).
+Read: [facilitation](../product/conversation-survey-and-facilitation.md), [discovery/prototyping](../experience/discovery-and-prototyping.md), [information architecture](../experience/information-architecture-and-design-system.md), [artefacts/gates](../product/artefacts-traceability-and-gates.md), [coding intelligence](../intelligence/coding-intelligence-and-review-agent.md), [method engines](../product/ba-method-engines-and-sufficiency.md), [NFRs](../engineering/non-functional-requirements.md), and T7–T9 in the [build sequence](../delivery/build-sequence-and-dependency-graph.md).
 
 ## Entry and constraints
 
@@ -14,6 +14,7 @@ Read: [facilitation](../product/conversation-survey-and-facilitation.md), [disco
 - All AI content is visibly proposed, cited/unsupported and correctable. Confirmation and approval are exact-version human acts.
 - External invitations/messages require preview and scoped approval. Prototype sandboxes have no production data, credentials or general network.
 - Study burden, participant harm or critical accessibility defects stop the affected journey.
+- Supervision: Design + product councils; journey-level accept/reject.
 
 ## Existing work-package coverage
 
@@ -195,23 +196,32 @@ Accept: 100% material elements traced; mock totals/denominators consistent; same
 
 ### M4.18 — Deliver governed repository coding-agent mode
 
-1. Bind an explicitly authorised repository/ref/base revision/path/tool policy and compile the immutable context/instruction/repository/validation manifest.
+1. Bind an explicitly authorised repository/ref/base revision/path/tool policy and compile the immutable context/instruction/repository/validation manifest including graph snapshot and index generation.
 2. Expose inspect/plan/change-set/patch/diff/rebase/revert/test tools through the gateway; preserve dirty/unrelated work and keep commit/push/PR/deploy separately disabled unless explicitly authorised.
-3. Show file/semantic/visual deltas grouped by user need and rationale, plus assumptions, risks, tests, affected contracts and rollback before review.
-4. Exercise one production-like bounded frontend slice through exact-base patch, generated/updated tests, browser render, critic findings, bounded repair and human review.
+3. Show file/semantic/visual deltas grouped by user need and rationale, plus assumptions, risks, tests, affected contracts, **AC coverage (mapped/missing)** and rollback before review.
+4. Exercise production-like bounded slices through exact-base patch for **at least one UI and one non-UI change class**, generated/updated tests, critic/Reviewer findings, bounded repair and human review.
 
-Accept: ≥95% changed lines/files attributable to scope; zero unrelated loss/path escape/unauthorised external effect; stale base cannot silently apply; all required repository/visual/accessibility/security tests pass; reviewer understands bounded change/risk in ≤5 minutes.
+Accept: ≥95% changed lines/files attributable to scope; zero unrelated loss/path escape/unauthorised external effect; stale base cannot silently apply; all required repository/visual/accessibility/security tests pass; reviewer understands bounded change/risk in ≤5 minutes; AC coverage panel accurate on fixtures.
 
-### M4.19 — Run full frontend and experience-generation E2E qualification
+### M4.19 — Deliver Review Agent journey and brownfield discovery surfaces
 
-1. Run board-quality synthetic story from business outcome through elicited exception, evidence conflict, generated mock, repository patch proposal, scenario feedback, requirement change, approval and delivery question.
+1. Ship PR/MR or change-set review UI with inline findings, severity, AC links, waive-with-reason-code and authority checks.
+2. Ship archaeology run → claim review → domain-model proposal surfaces; users must distinguish code-observed vs inferred (≥90% study tasks).
+3. Bind intent graph ↔ code symbols ↔ tests with trace drill-down ≤20 seconds for ≥95% tasks.
+4. Run confirmatory journey studies including executive, BA, engineer and security reviewers.
+
+Accept: ≥95% seeded AC-gaps surfaced before baseline; zero critical finding dismiss without reason code; brownfield discovery comprehension target met; WCAG 2.2 AA for new surfaces.
+
+### M4.20 — Run full frontend and experience-generation E2E qualification
+
+1. Run board-quality synthetic story from business outcome through elicited exception, evidence conflict, generated mock, repository patch proposal, **AC-gated review**, scenario feedback, requirement change, approval and delivery question.
 2. Include correction, denial, model/tool failure, cancellation/resume, stale patch, mobile/keyboard/screen-reader/RTL, slow network and tenant isolation.
 3. Execute deterministic and repeated real-model suites with pinned provider, prompts, context, tools, data seed, base repository and graders; compare manual and generic-model baselines.
 4. Inspect screenshots and DOM/accessibility tree across all supported viewports/themes/locales/states, not pixel diffs alone; publish failure examples and limitations.
 
-Accept: all critical frontend/generation targets pass, zero critical security/privacy/accessibility/authority/patch issue, no fabricated metric/test, and independent product/design/engineering reviewers approve evidence rather than presentation polish.
+Accept: all critical frontend/generation/review targets pass, zero critical security/privacy/accessibility/authority/patch issue, no fabricated metric/test, and independent product/design/engineering reviewers approve evidence rather than presentation polish.
 
-### M4.20 — Hold collaboration and baseline release decision
+### M4.21 — Hold collaboration and baseline release decision
 
 1. Compile UX, accessibility, research, security, sandbox, artefact and baseline evidence.
 2. Independently audit status/authority comprehension, consent, dissent preservation and approval integrity.
@@ -234,7 +244,7 @@ task test:sandbox test:artefact-render test:baseline-signature test:authority
 task test:frontend-pages test:component-states test:visual test:responsive-locale
 task test:experience-intent test:mock-data test:code-workspace test:patch-integrity
 task eval:preflight --profile eval-real --redact
-task eval:run --experiment X01,X04,X05,X09,X10 --stage confirmatory --profile eval-real
+task eval:run --experiment X01,X04,X05,X09,X10,X11,X12 --stage confirmatory --profile eval-real
 task evidence:verify --milestone M4
 ```
 

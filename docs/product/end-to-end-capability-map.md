@@ -1,8 +1,8 @@
 # End-to-end BA-agent capability map
 
-Status: normative · Baseline: `design-v3` · Effective: 2026-08-11 · Owner: product council
+Status: normative · Baseline: `design-v3` · Effective: 2026-08-12 · Owner: product council
 
-This is the product boundary an implementation must satisfy. A capability is not complete until its user experience, domain model, authority, failure modes, telemetry and evaluation evidence exist.
+This is the product boundary an implementation must satisfy. A capability is not complete until its user experience, domain model, authority, failure modes, telemetry and evaluation evidence exist. Capability 18 extends the boundary for brownfield BA on existing ERP/CRM/SAP and custom codebases; see [coding intelligence and review agent](../intelligence/coding-intelligence-and-review-agent.md).
 
 ## 1. Portfolio and engagement governance
 
@@ -34,7 +34,7 @@ This is the product boundary an implementation must satisfy. A capability is not
 - Adaptive question planning with rationale, expected information gain and bias review.
 - Live text/voice sessions, transcription, speaker correction, facilitation and structured extraction.
 - Async interview and adaptive survey branching with autosave/resume.
-- Workshop agenda, collaborative modelling, breakout synthesis, parking lot and consensus/dissent capture.
+- Workshop agenda, collaborative modelling, breakout synthesis, parking lot and **aligned/divergent/missing perspectives** (never fabricated organisational consensus).
 - Critical-incident, laddering, Five Whys, contextual inquiry, teach-back and counterfactual techniques.
 - Fatigue, sensitivity, repetition and diminishing-return stop policies.
 - Session playback, participant confirmation/correction and unanswered-question routing.
@@ -120,8 +120,9 @@ This is the product boundary an implementation must satisfy. A capability is not
 - Implementation interpretation, deviation and assumption records.
 - Test evidence and acceptance-result ingestion.
 - Change request, impact traversal, re-estimation, decision and re-baselining.
-- Trace from business outcome to requirement/design/code work/test/release.
+- Trace from business outcome to requirement/design/code work/test/release, including CodeKnowledgeGraph symbols and review receipts.
 - Detect delivery drift, stale requirements and unimplemented critical scenarios.
+- Bind delivery diffs to AC-gated review findings (§18); unresolved critical `ac_gap` / `trace_break` blocks baseline and merge when policy requires.
 
 ## 12. Solution evaluation and organisational learning
 
@@ -179,9 +180,24 @@ This is the product boundary an implementation must satisfy. A capability is not
 - Context manifest combining scoped instructions, repository/architecture, journeys/requirements/evidence, code patterns, tools, budgets and validation.
 - Coding-agent inspect/clarify/plan/design/patch/validate/critic/repair/present lifecycle with explicit terminal reasons.
 - Structured tool gateway and patch receipts; exact-base conflict, unrelated-change preservation, rollback and no implicit commit/push/deploy.
-- Bounded research, experience, frontend, contract, security, accessibility and testing specialists only when decomposition/ablation proves benefit.
+- Polyglot and non-UI change classes (API, business rule, workflow config, integration, migration, role/security) as governed proposals—not frontend-only.
+- Bounded research, experience, frontend/polyglot implementer, contract, security, accessibility and testing specialists only when decomposition/ablation proves benefit.
 - Integrated prototype viewport, intent/Q&A, route/component/state inspector, change rationale, validation evidence and feedback trace.
 - Browser E2E, visual, accessibility, security/privacy, performance, product-study and repository-integrity qualification.
+- Hand off to Capability 18 for brownfield archaeology, CodeKnowledgeGraph, AC-gated review and ERP promotion paths.
+
+## 18. Code archaeology, review and multi-agent coding intelligence
+
+- Brownfield discovery: authorised repos and ERP/CRM/SAP config/metadata as evidence sources for as-is process, rules, integrations and permissions.
+- Versioned, tenant-ACL’d CodeKnowledgeGraph with hybrid semantic/lexical/structural retrieval and Merkle/content-hash reindex.
+- Archaeologist agent emits cited as-is claim proposals; steward/BA promotion only (no silent semantic write).
+- Multi-agent coding topology: orchestrator, planner, explorer, archaeologist, implementer, **always-on AC-gated reviewer**, security, tester.
+- Review findings typed as bug, security, quality, AC-gap, trace-break, assumption-violation, test-weakening, scope-escape, secret-risk.
+- AC coverage panel: each linked acceptance criterion mapped to files/tests changed or explicitly missing.
+- Change-class matrix with validation and promotion path (git PR vs ERP transport/CAB dual control).
+- Optioning bridge: configure vs customize vs integrate vs process-only fed by archaeology and feasibility.
+- SCM review webhooks, CI blocking statuses, exact-base patch hygiene and continuous X10/X11/X12 assurance.
+- Explicit non-goals: silent VCS/deploy/transport; unreviewed ERP writes; vendor certification claims; covert overscope scanning.
 
 ## Cross-capability quality contract
 

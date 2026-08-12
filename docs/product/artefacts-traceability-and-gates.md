@@ -44,16 +44,16 @@ flowchart LR
 
 | Gate | Absolute blockers | Authority | Output |
 |---|---|---|---|
-| G0 charter | no decision owner, outcome or permitted data purpose | sponsor + data owner | engagement charter |
-| G1 discovery ready | key stakeholder class/source absent without waiver; unsafe elicitation | BA lead | discovery plan |
-| G2 problem baseline | unresolved critical cause/scope/conflict; no outcome baseline | sponsor + SME authorities | approved problem model |
-| G3 option decision | infeasible/unassessed critical risk; comparison hides assumptions | decision owner | selected option/ADR |
-| G4 design validated | primary/exception/accessibility/security scenarios untested | product/design/risk owners | validated design |
-| G5 delivery baseline | material item untraced/untestable; missing owner/operational readiness | delegated approvers | signed baseline bundle |
-| G6 release ready | critical test/threat/data/DR/accessibility failure | release authority | release authorisation |
-| G7 value review | measures unavailable or harm unresolved | sponsor/outcome owner | enhance/retire/close decision |
+| G0 charter | no decision owner, outcome or permitted data purpose (`G0.*`) | sponsor + data owner | engagement charter |
+| G1 discovery ready | key stakeholder class/source absent without waiver; unsafe elicitation (`G1.*`) | BA lead | discovery plan |
+| G2 problem baseline | unresolved critical cause/scope/conflict; no outcome baseline (`G2.*`) | sponsor + SME authorities | approved problem model |
+| G3 option decision | infeasible/unassessed critical risk; comparison hides assumptions (`G3.*`) | decision owner | selected option/ADR |
+| G4 design validated | primary/exception/accessibility/security scenarios untested (`G4.*`) | product/design/risk owners | validated design |
+| G5 delivery baseline | material item untraced/untestable; missing owner; open critical AC-gap (`G5.*`) | delegated approvers | signed baseline bundle |
+| G6 release ready | critical test/threat/data/DR/accessibility failure; stale index when policy requires (`G6.*`) | release authority | release authorisation |
+| G7 value review | measures unavailable or harm unresolved (`G7.*`) | sponsor/outcome owner | enhance/retire/close decision |
 
-Gate calculation returns blockers, warnings, waivers and coverage dimensions—not a magic percentage. The authorised decision is a separate signed record. Waivers name the exact control, rationale, compensating control, owner, expiry and affected versions.
+Gate calculation returns blockers, warnings, waivers and coverage dimensions—not a magic percentage. Enumerable blocker IDs, coverage-graph rules and numeric thresholds live in [ba-method-engines-and-sufficiency.md](ba-method-engines-and-sufficiency.md). The authorised decision is a separate signed record. Waivers name the exact control, rationale, compensating control, owner, expiry and affected versions.
 
 ## Requirement state machine
 

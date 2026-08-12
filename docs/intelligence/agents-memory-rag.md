@@ -2,7 +2,7 @@
 
 Status: normative · Baseline: `design-v3` · Effective: 2026-08-11 · Owner: AI and architecture councils
 
-This document governs BA cognitive runs. Frontend/prototype generation and repository patching use the same bounded-agent principles plus the stricter context, tool and patch contracts in [experience generation and governed coding agent](experience-generation-and-coding-agent.md).
+This document governs BA cognitive runs. Frontend/prototype generation and repository patching use the same bounded-agent principles plus the stricter context, tool and patch contracts in [experience generation and governed coding agent](experience-generation-and-coding-agent.md) and [coding intelligence and review agent](coding-intelligence-and-review-agent.md).
 
 ## Agent topology
 
@@ -14,11 +14,13 @@ flowchart TD
   L --> D["Domain modeller"]
   L --> R["Requirements + design analyst"]
   L --> P["Prototype planner"]
+  L --> A["Code archaeologist"]
   L --> C["Independent critic / red team"]
   E --> SYN["Evidence-backed synthesis"]
   D --> SYN
   R --> SYN
   P --> SYN
+  A --> SYN
   C --> SYN
   SYN --> G{"Deterministic quality + policy gates"}
   G -->|pass| H["Human review / authority"]
@@ -27,6 +29,19 @@ flowchart TD
 ```
 
 Specialists are capabilities with input/output schemas, tool policy, budgets, evaluation suite, and version—not anthropomorphic characters. Spawn when tasks are decomposable, context should be isolated, different tools/models are warranted, or independent critique reduces correlated error. Do not spawn for simple sequential transforms or to manufacture consensus.
+
+### Coding and review specialists
+
+When an engagement authorises repository or ERP/CRM/SAP evidence access, CollabX may run a parallel coding intelligence topology (see coding-intelligence doc):
+
+| Role | Scope isolation | Default |
+|---|---|---|
+| Coding orchestrator | Cannot inherit BA lead’s full tool set; receives explicit repo/path/change-class | Per L5 / review run |
+| Planner / Explorer / Implementer / Tester / Security | Worktree-bound; no widen of ACL | Ablation-gated except Explorer readonly |
+| **Reviewer (AC-gated)** | Read-only diff + AC + standards; emits findings only | **Always-on** for material change sets |
+| Archaeologist | Read-only sources; writes **claim proposals** only | Brownfield engagements |
+
+BA↔code evidence promotion: Archaeologist and Reviewer outputs enter the work graph as proposals (`observed`/`inferred` assertions or review findings). Semantic memory and domain-pack promotion follow the same steward gates as other extractions (X08). Agents never write canonical domain state or merge/deploy/transport.
 
 ## Cognitive run state
 
@@ -43,7 +58,7 @@ Loop:
 7. Repair within explicit iteration/cost/time limits.
 8. Return proposals, unresolved uncertainty, and recommended next question.
 
-For experience-building tasks the lead agent may delegate research/intent, experience architecture, frontend, contract/data, security, accessibility and test/visual reviews only when their inputs/outputs and merge ownership are independent. Repository/file access is never inherited merely because a child task exists.
+For experience-building tasks the lead agent may delegate research/intent, experience architecture, frontend/polyglot implementer, contract/data, security, accessibility and test/visual reviews only when their inputs/outputs and merge ownership are independent. Repository/file access is never inherited merely because a child task exists. Coding Reviewer findings with severity critical and type `ac_gap`, `trace_break`, `test_weakening` or `scope_escape` are escalated to the BA lead as gate-relevant signals.
 
 Terminal reasons are success, needs-human, needs-evidence, policy-denied, budget-exhausted, cancelled, unsafe, or failed. “Keep thinking” is not a control strategy.
 

@@ -23,6 +23,11 @@ REST resources for commands/queries, SSE for durable output streams, WebSocket o
 | `/mock-data-packs` | schema/seed/scenarios/validate/version/publish |
 | `/change-sets` | propose/diff/rebase/approve/apply/revert/evidence |
 | `/build-runs` | start/status/stream/cancel/tools/validation/artefacts |
+| `/code-indexes` | bind repo/export, reindex, status, freshness, ACL diagnostics |
+| `/code-graphs` | snapshot read/query, symbol/impact traversal, diff graphs |
+| `/archaeology-runs` | start/status/stream/cancel, claim proposals, citations |
+| `/review-runs` | start/status/stream, findings, AC coverage map, CI status publish |
+| `/ac-coverage` | query mapped/missing ACs for change set or PR |
 | `/decisions` | propose/options/decide/revisit |
 | `/reviews` | queue/comment/disposition/approve/waive |
 | `/agent-runs` | start/status/stream/cancel/trace/replay-safe-inspection |
@@ -64,6 +69,7 @@ Never expose generic CRUD for authority-sensitive transitions. `POST /requiremen
 | analysis | `requirement.verified`, `decision.made`, `risk.escalated`, `option.selected` |
 | prototype | `prototype.versioned`, `scenario.observed`, `finding.confirmed` |
 | experience build | `intent.updated`, `question.answered`, `mock_data.versioned`, `change_set.proposed`, `patch.applied`, `validation.failed`, `build.completed` |
+| coding intelligence | `code_index.refreshed`, `code_index.stale`, `archaeology.completed`, `review.completed`, `ac_coverage.updated`, `finding.waived`, `transport.previewed` |
 | intelligence | `run.started`, `tool.denied`, `run.interrupted`, `proposal.produced`, `run.terminated` |
 | integration | `connection.authorised`, `sync.checkpointed`, `mapping.failed`, `connection.revoked` |
 | evaluation | `experiment.completed`, `regression.detected`, `release.approved`, `release.rolled_back` |
@@ -92,6 +98,10 @@ Consumers must be idempotent and tolerate unknown additive fields. Event names d
 | Experience project | framing → clarifying → journey_ready → prototyping → validating → baseline_ready → repository_ready/research_only/closed |
 | Change set | drafting → proposed → conflict/validating → failed/ready_for_review → approved/rejected → applied → reverted/superseded |
 | Build run | queued → inspecting → clarifying/planning → patching → validating → critic_review → repairing/waiting_human → succeeded/failed/cancelled/budget_exhausted/policy_denied |
+| Code index | bound → indexing → ready/degraded → stale → failed/revoked |
+| Archaeology run | queued → inspecting → extracting → validating → waiting_human → succeeded/failed/cancelled/policy_denied |
+| Review run | queued → loading_context → analysing → validating → publishing → succeeded/failed/cancelled/index_stale |
+| AC coverage | computing → complete/partial → blocked (critical gaps) → waived (named waiver) |
 
 Every terminal/transition definition is maintained as a shared enum/schema, not duplicated strings.
 

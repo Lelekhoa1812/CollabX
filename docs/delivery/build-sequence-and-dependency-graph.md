@@ -1,8 +1,8 @@
 # Build sequence and dependency graph
 
-Status: delivery control · Baseline: `design-v3` · Effective: 2026-08-11 · Owner: engineering delivery council · 160 numbered work packages
+Status: delivery control · Baseline: `design-v3` · Effective: 2026-08-12 · Owner: engineering delivery council · 173 numbered work packages
 
-This sequence decomposes the 48 [portfolio epics](backlog.md) into implementation evidence. The [roadmap](roadmap.md) owns outcome gates: R0 maps to T0, R1 to T1–T4, R2 to T5–T6, R3 to T7–T8, R4 to T9–T10, and R5 to T11.
+This sequence decomposes the portfolio epics into implementation evidence. The [roadmap](roadmap.md) owns outcome gates: R0 maps to T0, R1 to T1–T4, R2 to T5–T6, R3 to T7–T8, R4 to T9–T10, and R5 to T11. Capability 18 adds T0.15–T0.17, T1.15–T1.17, T6.15–T6.17, T8.18–T8.19, T10.15–T10.16 (13 packages; 160→173).
 
 ## Release trains
 
@@ -23,11 +23,11 @@ flowchart TD
 
 ## T0 — Specification and research foundation
 
-`T0.01` glossary/semantic keywords; `T0.02` capability and journey trace matrix; `T0.03` JSON Schema conventions; `T0.04` event/problem envelope; `T0.05` domain state catalogue; `T0.06` BA benchmark/rubrics; `T0.07` synthetic three-domain cases; `T0.08` threat/privacy/data classification; `T0.09` AWS Region/service/quota spike; `T0.10` X07-A workflow/cognitive replay feasibility spike; `T0.11` retrieval/storage spike; `T0.12` R0 decision and accepted or explicitly provisional ADRs; `T0.13` enterprise frontend role/page/journey/visual benchmark; `T0.14` progressive experience-generation and coding-agent benchmark/threat study.
+`T0.01` glossary/semantic keywords; `T0.02` capability and journey trace matrix; `T0.03` JSON Schema conventions; `T0.04` event/problem envelope; `T0.05` domain state catalogue; `T0.06` BA benchmark/rubrics; `T0.07` synthetic three-domain cases; `T0.08` threat/privacy/data classification; `T0.09` AWS Region/service/quota spike; `T0.10` X07-A workflow/cognitive replay feasibility spike; `T0.11` retrieval/storage spike; `T0.12` R0 decision and accepted or explicitly provisional ADRs; `T0.13` enterprise frontend role/page/journey/visual benchmark; `T0.14` progressive experience-generation and coding-agent benchmark/threat study (X10 polyglot/brownfield); `T0.15` brownfield/ERP-like research corpus and IP protocol; `T0.16` X11 AC-gated review benchmark and rubric; `T0.17` X12 archaeology→BA model benchmark.
 
 ## T1 — AWS landing zone and software supply chain
 
-`T1.01` Organizations/Control Tower/OUs/accounts; `T1.02` IAM Identity Center and break-glass; `T1.03` org CloudTrail/Config/log archive; `T1.04` delegated security services; `T1.05` network/DNS/IP plan; `T1.06` cell VPC/endpoints/egress; `T1.07` KMS hierarchy; `T1.08` build/artifact accounts and OIDC; `T1.09` ECR/SBOM/signing/scanning; `T1.10` CDK pipeline and policy tests; `T1.11` preview/integration environments; `T1.12` cost/tag/budget baseline; `T1.13` frontend shell/design-system/component/visual-test foundation; `T1.14` isolated preview/code-workspace and exact-base patch substrate.
+`T1.01` Organizations/Control Tower/OUs/accounts; `T1.02` IAM Identity Center and break-glass; `T1.03` org CloudTrail/Config/log archive; `T1.04` delegated security services; `T1.05` network/DNS/IP plan; `T1.06` cell VPC/endpoints/egress; `T1.07` KMS hierarchy; `T1.08` build/artifact accounts and OIDC; `T1.09` ECR/SBOM/signing/scanning; `T1.10` CDK pipeline and policy tests; `T1.11` preview/integration environments; `T1.12` cost/tag/budget baseline; `T1.13` frontend shell/design-system/component/visual-test foundation; `T1.14` isolated preview/code-workspace and exact-base patch substrate; `T1.15` code-index service Merkle/reindex + hybrid map storage; `T1.16` CodeKnowledgeGraph schema/contract tests; `T1.17` review-run/archaeology-run receipt replay harness.
 
 ## T2 — Identity, tenant and authority foundation
 
@@ -47,7 +47,7 @@ flowchart TD
 
 ## T6 — Senior BA analytical core
 
-`T6.01` cognitive runtime adapter; `T6.02` lead BA framing/planning; `T6.03` evidence extraction; `T6.04` domain modeller; `T6.05` current/root-cause analyst; `T6.06` outcome/future-state analyst; `T6.07` requirement/scenario/NFR analyst; `T6.08` option/feasibility/decision analyst; `T6.09` critic/counterexample; `T6.10` sufficiency/gate evaluator; `T6.11` repair/escalation/budget; `T6.12` blinded baseline qualification; `T6.13` progressive experience-question and coding-agent run graph; `T6.14` generation/coding topology ablation and real-model qualification.
+`T6.01` cognitive runtime adapter; `T6.02` lead BA framing/planning; `T6.03` evidence extraction; `T6.04` domain modeller; `T6.05` current/root-cause analyst; `T6.06` outcome/future-state analyst; `T6.07` requirement/scenario/NFR analyst; `T6.08` option/feasibility/decision analyst; `T6.09` critic/counterexample; `T6.10` sufficiency/gate evaluator; `T6.11` repair/escalation/budget; `T6.12` blinded baseline qualification; `T6.13` progressive experience-question and coding-agent run graph; `T6.14` generation/coding topology ablation and real-model qualification; `T6.15` Archaeologist cognitive core + X12 confirmatory; `T6.16` AC-gated Reviewer + hybrid coding retrieval + X11 confirmatory; `T6.17` polyglot/non-UI change-class proposal qualification.
 
 ## T7 — Collaboration and elicitation
 
@@ -55,7 +55,7 @@ flowchart TD
 
 ## T8 — Analysis workbench, prototype and artefacts
 
-`T8.01` shared workbench shell; `T8.02` evidence/conflict views; `T8.03` glossary/knowledge views; `T8.04` process/state/rule modeller; `T8.05` requirement/trace views; `T8.06` journey/service blueprint; `T8.07` prototype graph; `T8.08` sandbox renderer; `T8.09` scenario telemetry/element feedback; `T8.10` artefact/template DSL; `T8.11` document/spreadsheet/diagram render + visual QA; `T8.12` prototype/evidence UX studies; `T8.13` complete Tier-A/Tier-B enterprise frontend page/state surface; `T8.14` integrated progressive intention/Q&A and collective clarification studio; `T8.15` coherent mock-data packs and L0–L4 fidelity pipeline; `T8.16` governed repository coding-agent mode with rationale/diff/rollback; `T8.17` full frontend/generation browser/visual/accessibility/security E2E qualification.
+`T8.01` shared workbench shell; `T8.02` evidence/conflict views; `T8.03` glossary/knowledge views; `T8.04` process/state/rule modeller; `T8.05` requirement/trace views; `T8.06` journey/service blueprint; `T8.07` prototype graph; `T8.08` sandbox renderer; `T8.09` scenario telemetry/element feedback; `T8.10` artefact/template DSL; `T8.11` document/spreadsheet/diagram render + visual QA; `T8.12` prototype/evidence UX studies; `T8.13` complete Tier-A/Tier-B enterprise frontend page/state surface; `T8.14` integrated progressive intention/Q&A and collective clarification studio; `T8.15` coherent mock-data packs and L0–L4 fidelity pipeline; `T8.16` governed repository coding-agent mode with rationale/diff/rollback/AC panel; `T8.17` full frontend/generation browser/visual/accessibility/security E2E qualification; `T8.18` Review Agent journey UI (findings, AC coverage, waive reason codes); `T8.19` brownfield archaeology discovery surfaces and claim review.
 
 ## T9 — Governance and delivery bridge
 
@@ -63,9 +63,9 @@ flowchart TD
 
 ## T10–T11 — Pilot, enterprise and scale
 
-`T10.01` connector SDK; `T10.02` Microsoft/Google document source; `T10.03` Jira/Azure DevOps/GitHub work sync; `T10.04` email/calendar/session integration; `T10.05` pilot tenant onboarding; `T10.06` product/support/usage operations; `T10.07` security/accessibility/penetration; `T10.08` load/soak/cost; `T10.09` restore/DR game day; `T10.10` pilot outcome study; `T10.11` system card/control evidence; `T10.12` go/narrow/stop; `T10.13` production frontend RUM/usability/accessibility/degradation qualification; `T10.14` governed client prototype/repository coding-agent pilot.
+`T10.01` connector SDK; `T10.02` Microsoft/Google document source; `T10.03` Jira/Azure DevOps/GitHub work sync; `T10.04` email/calendar/session integration; `T10.05` pilot tenant onboarding; `T10.06` product/support/usage operations; `T10.07` security/accessibility/penetration; `T10.08` load/soak/cost; `T10.09` restore/DR game day; `T10.10` pilot outcome study; `T10.11` system card/control evidence; `T10.12` go/narrow/stop; `T10.13` production frontend RUM/usability/accessibility/degradation qualification; `T10.14` governed client prototype/repository coding-agent pilot; `T10.15` brownfield ERP/CRM/SAP read and/or process-mining connector certification; `T10.16` CAB/transport dual-control gate rehearsal.
 
-`T11.01` bridge/silo automation; `T11.02` second regional cell; `T11.03` warm-standby failover; `T11.04` domain transfer/multilingual; `T11.05` search/graph extraction decision; `T11.06` customer keys/audit export; `T11.07` connector certification; `T11.08` autonomy class rollout; `T11.09` capacity/commitments; `T11.10` compliance assurance; `T11.11` independent BA benchmark; `T11.12` scale release; `T11.13` continuous frontend/generation/coding-agent drift, topology and action-class assurance.
+`T11.01` bridge/silo automation; `T11.02` second regional cell; `T11.03` warm-standby failover; `T11.04` domain transfer/multilingual; `T11.05` search/graph extraction decision; `T11.06` customer keys/audit export; `T11.07` connector certification; `T11.08` autonomy class rollout; `T11.09` capacity/commitments; `T11.10` compliance assurance; `T11.11` independent BA benchmark; `T11.12` scale release; `T11.13` continuous frontend/generation/coding-agent/X10–X12 drift, topology and action-class assurance.
 
 ## Task evidence
 

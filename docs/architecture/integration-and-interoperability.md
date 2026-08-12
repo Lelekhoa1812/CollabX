@@ -52,11 +52,13 @@ Choose one ownership rule per field/entity: source-owned, CollabX-owned, or expl
 - Documents/files: SharePoint/OneDrive, Google Drive, S3 and secure upload; preserve remote IDs, versions, ACL snapshots and deletion.
 - Work management: Jira, Azure DevOps, GitHub, Linear; map outcomes/requirements/release items while CollabX remains semantic authority.
 - Communication: Teams/Slack/email/calendar; opt-in ingest, thread/message provenance, bot disclosure and send approval.
-- CRM/portfolio: account/project/stakeholder references and outcomes; minimise personal data.
-- Data/catalog/process: databases, APIs, data catalogues and process repositories through read-only views first.
+- CRM/portfolio: account/project/stakeholder references and outcomes; minimise personal data. CRM **customization codebases** and metadata catalogs are separate evidence adapters under code/ERP families—not portfolio sync.
+- Data/catalog/process: databases, APIs, data catalogues, process repositories and **process-mining event-log exports** through read-only views first.
 - Identity: OIDC/SAML federation and SCIM provisioning/deprovisioning; tenant mapping cannot rely on email domain alone.
 - Export: OpenAPI/AsyncAPI/JSON Schema, BPMN, CSV/XLSX, DOCX/PDF, trace manifests and audit streams.
-- Code/design workspaces: GitHub/GitLab/Azure Repos and design-system/package registries through read/patch/PR-capable adapters; bind exact repository/ref/revision, path policy and approval. Start read-only or isolated worktree; never inherit a user’s unrestricted repository or CI/deployment authority.
+- Code/design workspaces: GitHub/GitLab/Azure Repos/Bitbucket and design-system/package registries through read/patch/PR-capable adapters; bind exact repository/ref/revision, path policy and approval. Start read-only or isolated worktree; never inherit a user’s unrestricted repository or CI/deployment authority.
+- **Code index / review webhooks:** SCM push and PR webhooks drive Merkle reindex and review-run triggers; CI status checks publish AC-gated review results. Webhook payloads are untrusted; index workers validate signatures and ACL.
+- **ERP/CRM/SAP read adapters:** process/config/metadata/custom-object inventory as BA evidence (pilot-required stacks only). Writes/transports are never granted to agents by default; promotion uses distinct CAB/transport connectors with dual control when a pilot requires them.
 
 ## MCP and agent tools
 
@@ -71,6 +73,10 @@ TLS, provider signature, timestamp/replay window, body-size/type limits, source/
 Scheduled and on-demand jobs compare remote inventory/version/hash with connector ledger and canonical mappings. Outcomes: consistent, remote-ahead, local-ahead, divergent, missing, unauthorised or mapping-invalid. Reconciliation is mandatory after token restoration, webhook gap, outage, mapping upgrade and bulk change.
 
 Repository reconciliation compares the authorised base revision, inspected-file hashes, applied patch, generated artefacts and current remote ref. A changed base invalidates pending patch approval. Merge/commit/push/PR/deploy are distinct side effects with distinct receipts and authority.
+
+Code-index reconciliation compares `index_generation_id`, Merkle root and graph snapshot to the remote revision; stale indexes mark review/patch runs with `index_stale` and may block merge when policy requires freshness.
+
+ERP export reconciliation compares adapter cursor/export hash to last archaeology run; drift opens an evidence-refresh task rather than silently updating confirmed rules.
 
 ## Connector certification
 

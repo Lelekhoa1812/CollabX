@@ -1,6 +1,6 @@
 # Enterprise control framework
 
-Status: normative · Baseline: `design-v2` · Effective: 2026-08-11 · Owner: risk and security councils
+Status: normative · Baseline: `design-v3` · Effective: 2026-08-12 · Owner: risk and security councils
 
 ## Control families
 

@@ -34,6 +34,11 @@ Product council owns outcomes/scope; architecture council owns technical standar
 | Coding agent corrupts customer work | broad/stale patch overwrites unrelated change | exact-base patch, dirty-state preservation, diff/rollback and repository CI | any unrelated change loss or scope escape |
 | Generated code supply-chain/exfiltration | dependency, script or preview leaks data/credentials | pinned sandbox, no ambient credentials/network, scans and CSP | sandbox escape, unapproved network or secret exposure |
 | Multi-agent code conflict | specialists overlap or manufacture agreement | bounded scope, merge ownership, conflict reducer and ablation | unresolved overlapping semantic/code patch |
+| ERP/CRM IP leakage via archaeology | exports or index chunks leave authorised boundary | purpose ACL, redaction, egress allowlist, retention | any unauthorised IP/PII disclosure |
+| False AC-coverage | review marks ACs covered without tests/files | AC map requires symbol/test anchors; X11 | critical AC marked covered without evidence |
+| Index staleness | review/patch against obsolete graph | freshness SLO, `index_stale` block policy | merge on stale index when policy forbids |
+| Transport/CAB bypass | agent or user promotes ERP change without dual control | change-class matrix, distinct transport connector, dual authority | any unauthorised transport/deploy |
+| Review automation bias | humans rubber-stamp Reviewer output | uncertainty UX, waive reason codes, calibration study | critical defect merged with only AI approve |
 
 ## Assumption ledger
 
@@ -44,6 +49,8 @@ Product council owns outcomes/scope; architecture council owns technical standar
 | BA work can be decomposed without losing relationships | medium | X01/X03 qualitative analysis |
 | PostgreSQL suffices through pilot | medium-high | X06 load/recall tests |
 | Interactive prototypes improve intent clarity | medium | X05 |
+| AC-gated review improves requirement conformance of patches | medium | X11 |
+| Archaeology from code/config beats unaided SME as-is | medium-low | X12 |
 | Buyers value traceability enough to tolerate governance | medium | willingness-to-pay/usability study |
 | Domain learning transfers between engagements safely | low | held-out project transfer study |
 | Current Azure deployment results predict the selected AWS production route | low | replay provider-neutral release suite against Bedrock; do not assume equivalence |

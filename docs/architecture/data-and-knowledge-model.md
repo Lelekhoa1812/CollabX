@@ -1,12 +1,12 @@
 # Data and knowledge architecture
 
-Status: normative · Baseline: `design-v2` · Effective: 2026-08-11 · Owner: data and architecture councils
+Status: normative · Baseline: `design-v3` · Effective: 2026-08-12 · Owner: data and architecture councils
 
 ## Persistence strategy
 
 PostgreSQL is the transactional source of truth and initial retrieval platform; `pgvector` supports colocated exact and approximate similarity search while relational predicates enforce tenant, time, authority, and document ACL filters. Object storage holds immutable originals and derived renditions. A graph engine is a projection introduced only if measured multi-hop workloads exceed relational recursive-query performance. MongoDB is not baseline: a second operational database adds consistency and governance cost without a demonstrated access pattern.
 
-Embeddings, search indexes, graph projections, caches, summaries, and generated artefacts are rebuildable projections. They never outrank the canonical record.
+Embeddings, search indexes, graph projections (including CodeKnowledgeGraph), caches, summaries, and generated artefacts are rebuildable projections. They never outrank the canonical record.
 
 ## Core model
 
@@ -31,7 +31,42 @@ erDiagram
   APPROVAL }o--|| BASELINE : authorises
 ```
 
-Knowledge-item kinds include objective, outcome measure, capability, concept, term, actor, process, event, rule, policy, data entity, requirement, design, scenario, assumption, constraint, dependency, risk, issue, action, decision, question, integration, and test.
+Knowledge-item kinds include objective, outcome measure, capability, concept, term, actor, process, event, rule, policy, data entity, requirement, design, scenario, assumption, constraint, dependency, risk, issue, action, decision, question, integration, test, **code_symbol**, **code_module**, **config_object**, **ac_coverage**, and **review_finding**.
+
+## CodeKnowledgeGraph
+
+The CodeKnowledgeGraph is a versioned, tenant-ACL’d projection used by BA archaeology and coding/review agents. Canonical meaning of business rules and requirements remains in knowledge items; the graph supplies structural navigation and evidence anchors.
+
+```mermaid
+erDiagram
+  CODE_SNAPSHOT ||--o{ CODE_NODE : contains
+  CODE_NODE ||--o{ CODE_EDGE : relates
+  CODE_SNAPSHOT }o--|| SCM_REVISION : pins
+  CODE_NODE }o--o{ EVIDENCE_SPAN : anchors
+  CODE_NODE }o--o{ KNOWLEDGE_ITEM : traces
+  ACCEPTANCE_CRITERION }o--o{ CODE_NODE : covered_by
+  REVIEW_FINDING }o--o{ CODE_NODE : targets
+  REVIEW_FINDING }o--o{ ACCEPTANCE_CRITERION : cites
+```
+
+| Node kinds | Edge kinds |
+|---|---|
+| file, symbol, type, test, config_object, api_route, schema, erp_object, workflow_def, package | defines, references, calls, implements, tests, configures, depends_on, migrates, authorises |
+
+Each snapshot pins `scm_revision` or `erp_export_id`, `index_generation_id`, content hashes and ACL. Reindex is incremental (Merkle/content-hash). Query paths must pre-filter by tenant/path/purpose.
+
+### ERP / CRM / SAP evidence classes
+
+| Class | Examples | Ingestion |
+|---|---|---|
+| `code_customization` | ABAP/exits, plugins, custom scripts | SCM or export adapter |
+| `config_as_code` | YAML/XML/transportable config | SCM or system export |
+| `metadata_catalog` | CRM entities/fields, SAP data dictionary | read API |
+| `process_definition` | workflow templates, approval chains | read API / export |
+| `integration_contract` | BAPI/RFC/IDoc/API maps | docs + code + adapter |
+| `event_log_slice` | process-mining case/activity exports | read-only connector (Capability process intelligence) |
+
+Extracted as-is statements become assertions with modality and citations; they do not auto-confirm.
 
 ## Bitemporal and epistemic model
 
@@ -53,7 +88,9 @@ Adopt W3C PROV concepts (Entity, Activity, Agent) internally and SKOS-style pref
 
 `source_version → exact evidence span → extraction activity → assertion → reviewed item version → decision/baseline → design/prototype → test → release outcome`
 
-An evidence span stores stable source ID/version, structural anchor, character/time/page coordinates, content hash, excerpt permitted by policy, extraction method, and access label. Re-parsing never silently moves an anchor.
+Code path: `scm_revision/erp_export → code_node/span → archaeology or review activity → assertion/review_finding → AC coverage → change_set/patch → test → promotion receipt`
+
+An evidence span stores stable source ID/version, structural anchor, character/time/page/symbol coordinates, content hash, excerpt permitted by policy, extraction method, and access label. Re-parsing never silently moves an anchor.
 
 ## Enterprise semantic layer
 

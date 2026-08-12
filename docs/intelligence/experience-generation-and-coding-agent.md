@@ -1,10 +1,12 @@
 # Experience generation and governed coding-agent specification
 
-Status: normative · Baseline: `design-v3` · Effective: 2026-08-11 · Owner: product design, AI and engineering councils
+Status: normative · Baseline: `design-v3` · Effective: 2026-08-12 · Owner: product design, AI and engineering councils
 
 ## Capability promise
 
-CollabX can turn governed business intent into a progressive, testable experience: journey and information architecture, mock data, wireframe, stateful frontend prototype and—only when authorised—a patch to a bounded codebase. It behaves as a product/design/engineering collaborator, not a one-shot site generator. Every visual or code change explains the user need, evidence, assumption, affected scenario, validation and rollback.
+CollabX can turn governed business intent into a progressive, testable experience: journey and information architecture, mock data, wireframe, stateful frontend prototype and—only when authorised—a patch to a bounded codebase (polyglot and non-UI change classes included). It behaves as a product/design/engineering collaborator, not a one-shot site generator. Every visual or code change explains the user need, evidence, assumption, affected scenario, validation and rollback.
+
+Brownfield archaeology, CodeKnowledgeGraph, AC-gated review and ERP promotion paths are normative in [coding intelligence and review agent](coding-intelligence-and-review-agent.md). This document remains the L0–L5 experience and exact-base patch contract.
 
 The capability serves two separate surfaces:
 
@@ -36,7 +38,7 @@ Generated L5 changes follow the same secure-development lifecycle as human code.
 | L2 stateful mock | interactive screens, mock data, validation/errors | test behaviour/exception/recovery | integration, security or scale readiness | scenario usability results |
 | L3 contract prototype | component/state graph plus API/event schemas | align product/design/engineering | production implementation | contract/threat/accessibility review |
 | L4 sandbox thin slice | executable frontend with fake/sandbox adapters | test coded experience/performance | production service/data readiness | browser/E2E/visual/accessibility evidence |
-| L5 repository patch | bounded change in real codebase | implement approved slice | release acceptance | repository CI, review, deployment gate |
+| L5 repository patch | bounded change in real codebase (UI, API, rule, config, integration, migration, or security class) | implement approved slice | release acceptance | repository CI, **AC-gated review**, deployment/transport gate |
 
 CollabX chooses the lowest fidelity that resolves the current uncertainty. Higher fidelity requires explicit rationale; visual polish does not compensate for weak task evidence.
 

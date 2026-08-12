@@ -6,7 +6,7 @@ Status: delivery control · Baseline: `design-v3` · Effective: 2026-08-11 · Ow
 
 Deliver a model-independent, tenant-safe, recoverable substrate for identity, authority, evidence, temporal knowledge, contracts, durable workflows, audit and data lifecycle. The gate decides whether the foundation is safe enough for intelligence work; it does not claim BA competence.
 
-Read: [system architecture](../architecture/system-architecture.md), [AWS platform](../architecture/aws-platform.md), [AWS operations](../architecture/aws-security-resilience-operations.md), [data model](../architecture/data-and-knowledge-model.md), [implementation blueprint](../engineering/implementation-blueprint.md), [API/event catalogue](../engineering/api-event-and-state-catalogue.md), [verification](../engineering/verification-strategy.md), [enterprise readiness](../governance/enterprise-readiness-model.md), and T1–T4 in the [build sequence](../delivery/build-sequence-and-dependency-graph.md).
+Read: [system architecture](../architecture/system-architecture.md), [AWS platform](../architecture/aws-platform.md), [AWS operations](../architecture/aws-security-resilience-operations.md), [data model](../architecture/data-and-knowledge-model.md), [coding intelligence](../intelligence/coding-intelligence-and-review-agent.md), [implementation blueprint](../engineering/implementation-blueprint.md), [API/event catalogue](../engineering/api-event-and-state-catalogue.md), [verification](../engineering/verification-strategy.md), [enterprise readiness](../governance/enterprise-readiness-model.md), and T1–T4 in the [build sequence](../delivery/build-sequence-and-dependency-graph.md).
 
 ## Entry and delivery controls
 
@@ -14,6 +14,7 @@ Read: [system architecture](../architecture/system-architecture.md), [AWS platfo
 - Build vertical slices behind flags. Every task dossier names tenant/authority, rollback, telemetry, tests and evidence.
 - No production/customer data and no autonomous external writes. Real models are limited to provider/telemetry integration probes.
 - Critical isolation, provenance, durability, deletion or restore failure blocks the milestone and cannot be waived by schedule.
+- Supervision: Engineering + security councils; no model autonomy for external effects.
 
 ## Existing work-package coverage
 
@@ -34,9 +35,10 @@ Read: [system architecture](../architecture/system-architecture.md), [AWS platfo
 | M2.13 | T4.11–T4.12 |
 | M2.14 | T1.11–T1.12, T2.12, T3.12 |
 | M2.15–M2.16 | T1.13–T1.14 |
+| M2.18 | T1.15–T1.17 (code index, graph schema, review receipts) |
 | M2.17 | qualification across T1–T4 and expanded foundations |
 
-All T1.01–T1.14, T2.01–T2.12, T3.01–T3.12 and T4.01–T4.12 packages are covered; ranges are inclusive.
+All T1–T4 packages listed above are covered; T1.15–T1.17 added for Capability 18 substrate.
 
 ## Work plan
 
@@ -184,6 +186,15 @@ Accept: 100% foundation and semantic components pass automated accessibility plu
 
 Accept: zero path/sandbox/network/secret escape; zero unrelated-change loss across the adversarial matrix; every apply/revert has complete receipt and reproducible base; all external version-control/deployment effects remain denied.
 
+### M2.18 — Build code-index, CodeKnowledgeGraph and review-run substrate
+
+1. Implement code-index binding, Merkle/content-hash incremental reindex, lexical+vector+structural map storage and freshness diagnostics with tenant/path ACL pre-filter.
+2. Implement machine-readable CodeKnowledgeGraph node/edge schemas, bitemporal snapshot versions and contract tests.
+3. Expand tool catalog: inspect/search/LSP/diagnostics/patch-preview/review-findings; keep commit/PR/deploy/transport **disabled**.
+4. Implement append-only review-run and archaeology-run receipt schemas (model/prompt/index generation/graph snapshot IDs); frozen inputs must replay to identical receipt hash.
+
+Accept: reindex freshness meets initial SLO contract or declares measured lag; ACL isolation suite 100% on red-team; 100% tools declare schema/side-effect/receipt; zero autonomous external effect. **Explicitly not** coding competence.
+
 ### M2.17 — Hold foundation release review
 
 1. Compile test, security, accessibility-shell, migration, restore, runtime, cost and residual-risk evidence.
@@ -207,6 +218,7 @@ Accept: all zero-tolerance gates pass and release authority signs the evidence m
 | Supply chain | reproducible signed build/SBOM; zero unaccepted critical/high exploitable issue |
 | Frontend foundation | accessible component/state/visual matrix passes; zero tenant/cache/URL leak; shell performance passes |
 | Code workspace | zero sandbox/path/network/secret escape or unrelated-change loss; exact-base apply/revert receipts complete |
+| Code index / graph | freshness SLO or declared lag; zero ACL leakage; receipt replay hash stable |
 
 ## Runnable validation contract
 
@@ -217,6 +229,7 @@ task test:integration test:rls test:isolation test:authority
 task test:workflow-replay test:idempotency test:deletion test:export-roundtrip
 task test:security test:accessibility test:load test:chaos
 task test:frontend-shell test:components test:visual test:workspace-sandbox test:patch-integrity
+task test:code-index test:code-graph test:review-receipt-replay test:index-acl
 task eval:preflight --profile eval-real --redact
 task test:provider-observability --profile eval-real
 task evidence:verify --milestone M2

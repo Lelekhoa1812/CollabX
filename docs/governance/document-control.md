@@ -49,6 +49,10 @@ Within one level, the more specific document governs only within its declared sc
 | Agents/memory/RAG | `../intelligence/agents-memory-rag.md` | Normative | cognitive topology, memory, context, retrieval and tools |
 | Model/agent lifecycle | `../intelligence/model-agent-and-evaluation-lifecycle.md` | Normative | release unit, routing, guards, evaluation and drift |
 | Experience/coding agent | `../intelligence/experience-generation-and-coding-agent.md` | Normative | progressive UI generation, mock data, coding-agent context/state/tools/patches and qualification |
+| Coding intelligence / review | `../intelligence/coding-intelligence-and-review-agent.md` | Normative | CodeKnowledgeGraph, reindex, archaeology, multi-agent coding, AC-gated review, ERP change classes |
+| BA method engines / sufficiency | `../product/ba-method-engines-and-sufficiency.md` | Normative | coverage graph, G0–G7 blocker catalogue, technique engines and OOS |
+| Augmentation boundary | `../product/augmentation-boundary.md` | Normative | parity / assist / human-owned / prohibited task classes |
+| Process intelligence posture | `../product/process-intelligence-posture.md` | Normative | process-mining and conformance grounding requirements |
 | Implementation structure | `../engineering/implementation-blueprint.md` | Normative | repository, bounded contexts and coding boundaries |
 | API/events/states | `../engineering/api-event-and-state-catalogue.md` | Normative | interface style, envelopes and state vocabularies |
 | Engineering controls | `../engineering/contracts-observability-security.md` | Normative | contracts, prompts, telemetry and threat controls |
@@ -60,10 +64,11 @@ Within one level, the more specific document governs only within its declared sc
 | Risk register | `risk-register.md` | Normative | active risks and assumptions; review quarterly |
 | Technology choices | `../research/technology-decisions.md` | Provisional normative | decision candidates/status/gates; accepted ADR later supersedes row |
 | Evaluation | `../research/evaluation-and-experiments.md` | Research control | experiment IDs, methods and release gates |
+| BA/coding gap review | `../research/ba-and-coding-intelligence-gap-review.md` | Research control | BA scorecard, coding competitive synthesis, GAP-27 |
 | Roadmap | `../delivery/roadmap.md` | Delivery control | R0–R5 outcome phases and gates |
 | Milestones | `../milestones/milestone_1.md` through `milestone_5.md` | Delivery control | executable five-stage tasks, acceptance, metrics and evidence commands |
-| Portfolio backlog | `../delivery/backlog.md` | Delivery control | 48 portfolio epics mapped to trains |
-| Build sequence | `../delivery/build-sequence-and-dependency-graph.md` | Delivery control | 160 implementation work packages and dependency order |
+| Portfolio backlog | `../delivery/backlog.md` | Delivery control | 53 portfolio epics mapped to trains |
+| Build sequence | `../delivery/build-sequence-and-dependency-graph.md` | Delivery control | 173 implementation work packages and dependency order |
 | AI delivery | `../delivery/ai-implementation-playbook.md` | Delivery control | mandatory task execution protocol |
 | Sources | `../research/sources.md` | Reference | research provenance; volatile sources revalidate quarterly |
 | Gap audit | `../research/gap-and-coverage-audit.md` | Historical | `design-v2` gap snapshot; active decisions live in technology registry |

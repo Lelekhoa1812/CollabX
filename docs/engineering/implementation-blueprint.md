@@ -1,8 +1,8 @@
 # Implementation blueprint
 
-Status: normative · Baseline: `design-v3` · Effective: 2026-08-11 · Owner: engineering and architecture councils
+Status: normative · Baseline: `design-v3` · Effective: 2026-08-12 · Owner: engineering and architecture councils
 
-This document constrains future code generation. It defines dependency direction and delivery mechanics; it is not product code.
+This document constrains future code generation. It defines dependency direction and delivery mechanics; it is not product code. Coding intelligence packages implement [coding-intelligence-and-review-agent.md](../intelligence/coding-intelligence-and-review-agent.md).
 
 ## Target repository
 
@@ -15,8 +15,9 @@ collabx/
 │   ├── worker-intelligence/ # cognitive graphs, retrieval, model calls
 │   ├── worker-ingestion/    # source parsing/extraction/index projections
 │   ├── worker-render/       # sandbox dispatcher; no business credentials
-│   ├── worker-code/         # isolated repository inspect/patch/validate jobs; no implicit external effects
-│   └── worker-connectors/   # external integration adapters
+│   ├── worker-code/         # isolated repository inspect/patch/validate/review jobs; no implicit external effects
+│   ├── worker-code-index/   # Merkle reindex, hybrid map, CodeKnowledgeGraph projections
+│   └── worker-connectors/   # external integration adapters (SCM, ERP read, process-mining)
 ├── packages/
 │   ├── domain/              # pure aggregates, value types, transition rules
 │   ├── application/         # commands, queries, ports, unit of work
@@ -25,6 +26,7 @@ collabx/
 │   ├── knowledge/           # provenance, temporal, relation/impact algorithms
 │   ├── intelligence/        # framework-neutral run/tool/context interfaces
 │   ├── experience-build/    # intent, prototype graph, mock data, change-set and validation domain
+│   ├── coding-intelligence/ # archaeology, AC-gated review, change-class, graph query ports
 │   ├── evaluation/          # datasets, graders, experiment/release evidence
 │   ├── observability/       # safe telemetry conventions
 │   ├── testkit/             # factories, clocks, IDs, fake ports, invariant suites

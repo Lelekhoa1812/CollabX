@@ -4,16 +4,17 @@ Status: delivery control · Baseline: `design-v3` · Effective: 2026-08-11 · Ow
 
 ## Outcome and decision
 
-Qualify a bounded, evidence-first single-agent BA analytical core against strong RAG and human baselines. It must extract, model, challenge and propose without silently creating truth or authority. Multi-agent paths remain disabled unless ablation proves a specific benefit.
+Qualify a bounded, evidence-first single-agent BA analytical core against strong RAG and human baselines, plus archaeology and AC-gated review cognitive cores. It must extract, model, challenge and propose without silently creating truth or authority. Multi-agent implementer paths remain disabled unless ablation proves a specific benefit; **Reviewer is always-on read-only when approved**.
 
-Read: [agents/memory/RAG](../intelligence/agents-memory-rag.md), [model lifecycle](../intelligence/model-agent-and-evaluation-lifecycle.md), [provider profiles](../engineering/model-provider-and-environment-profiles.md), [data model](../architecture/data-and-knowledge-model.md), [BA model](../product/ba-operating-model.md), [evaluation program](../research/evaluation-and-experiments.md), and T5–T6 in the [build sequence](../delivery/build-sequence-and-dependency-graph.md).
+Read: [agents/memory/RAG](../intelligence/agents-memory-rag.md), [coding intelligence](../intelligence/coding-intelligence-and-review-agent.md), [model lifecycle](../intelligence/model-agent-and-evaluation-lifecycle.md), [provider profiles](../engineering/model-provider-and-environment-profiles.md), [data model](../architecture/data-and-knowledge-model.md), [BA model](../product/ba-operating-model.md), [evaluation program](../research/evaluation-and-experiments.md), and T5–T6 in the [build sequence](../delivery/build-sequence-and-dependency-graph.md).
 
 ## Entry and hard constraints
 
-- Entry: M2 foundation accepted; benchmark/rubric frozen; real-provider conformance current; model-call budget and data-purpose approval.
+- Entry: M2 foundation accepted (including code-index substrate if coding invest); benchmark/rubric frozen; real-provider conformance current; model-call budget and data-purpose approval.
 - Agents receive bounded context and return typed proposals. They cannot approve, publish, alter policy/domain packs or execute external writes.
 - No critical result may be qualified solely by an LLM grader. Hidden release cases remain inaccessible to builders.
 - A deployment/API/prompt/retrieval/policy change invalidates affected evidence and triggers rerun.
+- Supervision: AI council; per-capability approve/constrain/rework/reject.
 
 ## Existing work-package coverage
 
@@ -35,8 +36,9 @@ Read: [agents/memory/RAG](../intelligence/agents-memory-rag.md), [model lifecycl
 | M3.14, M3.17 | T5.11–T5.12, T6.12 |
 | M3.15 | T5.13–T5.14, T6.13 |
 | M3.16 | T6.14 |
+| M3.18–M3.19 | T6.15–T6.17 (archaeology, reviewer, hybrid coding retrieval) |
 
-All T5.01–T6.14 packages are covered. T5.04 tool registry is built with the structured/guard boundary and exercised throughout the agent tasks.
+All T5.01–T6.14 packages are covered; T6.15–T6.17 added for Capability 18 cognitive cores. T5.04 tool registry is built with the structured/guard boundary and exercised throughout the agent tasks.
 
 ## Work plan
 
@@ -168,7 +170,7 @@ Accept: CollabX single-agent materially beats strong RAG on preregistered critic
 
 ### M3.15 — Implement experience-intent and coding-agent cognitive core
 
-1. Implement `ExperienceIntent` and `BuildContextManifest` compilation from outcomes, users/jobs, scenarios, states, rules/permissions, routes/components, data/contracts, metrics, evidence and repository context.
+1. Implement `ExperienceIntent` and `BuildContextManifest` compilation from outcomes, users/jobs, scenarios, states, rules/permissions, routes/components, data/contracts, metrics, evidence, repository context, **code_graph_snapshot_id**, **index_generation_id** and **linked_ac_ids**.
 2. Implement progressive question candidate generation across free-form, MCQ, multi-select, checklist, rank/scale, scenario, evidence request and semantic-diff confirmation with hard rejection and fatigue/stop policy.
 3. Implement inspect/clarify/plan/design/patch/validate/critic/repair/present run states, terminal reasons, file/tool/diff budgets and approval-required transitions.
 4. Generate typed mock-data/prototype/change-set proposals only; validate exact trace, assumptions, rationale, notices/tips and no direct repository/external side effect.
@@ -177,21 +179,39 @@ Accept: ≥95% critical intent constraints captured on hidden tasks; ≥80% ques
 
 ### M3.16 — Qualify generation quality and bounded specialist topology
 
-1. Run repeated `eval-real` cases from ambiguous brief through L1–L4 and bounded L5 patch proposal using pinned context, tools, mock-data seeds and repositories.
-2. Compare lead-only, lead+independent critic and bounded research/experience/frontend/data/security/accessibility/test specialists; keep task/data/tool budgets comparable and inspect merge conflicts.
+1. Run repeated `eval-real` cases from ambiguous brief through L1–L4 and bounded L5 patch proposal using pinned context, tools, mock-data seeds and repositories—including **polyglot / non-UI change-class** proposals.
+2. Compare lead-only, lead+independent critic and bounded research/experience/frontend/polyglot/data/security/accessibility/test specialists; keep task/data/tool budgets comparable and inspect merge conflicts. **Reviewer remains always-on read-only.**
 3. Score intention/trace coverage, question burden, scenario completeness, patch precision, established-component reuse, code/build/test quality, visual/accessibility/security failures, latency/cost and reviewer comprehension.
 4. Red-team repository instruction injection, stale/dirty base, scope escape, test weakening, dependency introduction, fabricated validation and correlated specialist agreement.
 
 Accept: approved topology materially improves critical defect escape or valid-correction yield after latency/cost; 100% material changes traced; zero unrelated-change loss/scope escape/unauthorised effect; no critical result relies solely on an LLM grader.
 
+### M3.18 — Implement Archaeologist cognitive core
+
+1. Bind authorised code/config/metadata sources; load CodeKnowledgeGraph snapshot and hybrid retrieval.
+2. Emit typed as-is claim proposals (process, rule, integration, permission, debt) with citations and conflict detection.
+3. Route proposals into work-graph quarantine; forbid silent semantic/domain-pack write.
+4. Run confirmatory X12 against hidden packs; measure steward burden.
+
+Accept: X12 confirmatory targets met; 100% material claims cited or UNSUPPORTED; zero silent promotion; ACL leakage zero.
+
+### M3.19 — Implement AC-gated Reviewer and hybrid coding retrieval
+
+1. Implement Reviewer that loads diff, linked ACs, standards pack, index generation and prior comments; emit typed findings including `ac_gap` and `trace_break`.
+2. Map each AC → files/tests changed or MISSING; never auto-merge or auto-baseline.
+3. Wire hybrid retrieval (semantic+lexical+structural) into BuildContextManifest with counterevidence sampling.
+4. Run confirmatory X11; red-team false AC-coverage and index staleness.
+
+Accept: X11 confirmatory AC-gap recall/precision targets; zero silent approve; zero ACL leak; `index_stale` surfaced when freshness policy requires.
+
 ### M3.17 — Hold intelligence release decision
 
 1. Compile capability manifest, system-card draft, evaluation results, failure catalogue, cost/capacity and rollback.
 2. Have independent BA, model-risk and security reviewers inspect hidden failures and reproduce samples.
-3. Decide each capability `approve for M4`, `constrain`, `rework`, or `reject`; decide agent topology per task.
+3. Decide each capability `approve for M4`, `constrain`, `rework`, or `reject`; decide agent topology per task (**Reviewer always-on** if approved).
 4. Pin approved release and disable all unqualified paths.
 
-Accept: signed release decision with no expired/incomplete critical evidence; aggregate performance cannot offset a zero-tolerance failure.
+Accept: signed release decision with no expired/incomplete critical evidence; aggregate performance cannot offset a zero-tolerance failure. Archaeology, Reviewer and polyglot patch proposal are decided independently.
 
 ## Success metrics
 
@@ -204,8 +224,9 @@ task docs:check
 task test:unit test:property test:schema test:retrieval test:context
 task test:agent-replay test:agent-budget test:memory test:policy test:security-ai
 task eval:preflight --profile eval-real --redact
-task eval:run --suite retrieval,extraction,conflict,requirements,memory,agent,experience-codegen,safety --profile eval-real --repeat governed
+task eval:run --suite retrieval,extraction,conflict,requirements,memory,agent,experience-codegen,archaeology,ac-review,safety --profile eval-real --repeat governed
 task eval:compare --baseline strong-rag --candidate collabx-single
+task eval:run --experiment X10,X11,X12 --stage confirmatory --profile eval-real
 task evidence:verify --milestone M3
 ```
 

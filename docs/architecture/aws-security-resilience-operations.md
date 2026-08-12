@@ -1,6 +1,6 @@
 # AWS security, resilience, and operations
 
-Status: normative · Baseline: `design-v2` · Effective: 2026-08-11 · Owner: security and reliability councils
+Status: normative · Baseline: `design-v3` · Effective: 2026-08-12 · Owner: security and reliability councils
 
 ## Preventive control baseline
 

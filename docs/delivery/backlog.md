@@ -1,10 +1,10 @@
 # Portfolio epic backlog
 
-Status: delivery control · Baseline: `design-v3` · Effective: 2026-08-11 · Owner: product delivery council · 48 portfolio epics
+Status: delivery control · Baseline: `design-v3` · Effective: 2026-08-12 · Owner: product delivery council · 53 portfolio epics
 
-Each epic expresses a reviewable investment outcome. It is not an implementation task. The `T` references map the epic to one or more of the 160 work packages in the [build sequence](build-sequence-and-dependency-graph.md); detailed stories exist only while an epic is in delivery. The [roadmap](roadmap.md) owns phase entry and exit gates.
+Each epic expresses a reviewable investment outcome. It is not an implementation task. The `T` references map the epic to one or more of the 173 work packages in the [build sequence](build-sequence-and-dependency-graph.md); detailed stories exist only while an epic is in delivery. The [roadmap](roadmap.md) owns phase entry and exit gates.
 
-Identifier namespaces are deliberately distinct: `R0-nn` is research, `F-nn` foundation, `I-nn` intelligence, and `E-nn` experience/pilot. Experiment identifiers are `X01`–`X10`, including the two-stage `X07-A`/`X07-B`; they are never epic identifiers.
+Identifier namespaces are deliberately distinct: `R0-nn` is research, `F-nn` foundation, `I-nn` intelligence, and `E-nn` experience/pilot. Experiment identifiers are `X01`–`X12`, including the two-stage `X07-A`/`X07-B`; they are never epic identifiers.
 
 ## R0 research epics
 
@@ -22,6 +22,8 @@ Identifier namespaces are deliberately distinct: `R0-nn` is research, `F-nn` fou
 | R0-10 | Architecture/security spikes | X07-A workflow replay, sandbox, bitemporal graph, threat/privacy assessment | T0.08–T0.10 |
 | R0-11 | Commercial model | buyer, pricing hypothesis, human stewardship TCO, adoption constraints | T0.01, T0.12 |
 | R0-12 | R0 decision review | signed go/narrow/pivot/stop record with evidence links | T0.12 |
+| R0-13 | AC-gated review experiment X11 | AC-gap recall/precision, zero silent approve, review rubric κ | T0.16, T6.16, T8.18 |
+| R0-14 | Brownfield archaeology experiment X12 | claim precision/recall, citation integrity, steward burden, ERP-like corpus | T0.15, T0.17, T6.15, T8.19 |
 
 ## Foundation epics
 
@@ -38,7 +40,7 @@ Identifier namespaces are deliberately distinct: `R0-nn` is research, `F-nn` fou
 | F-09 | Observability/audit | end-to-end traces, redaction, metric semantics, audit integrity | T4.09–T4.10 |
 | F-10 | Data lifecycle | classification, consent, hold, retention, export, verified derived deletion | T3.12 |
 | F-11 | Resilience | backup restore, RPO/RTO evidence, queue/DLQ reconciliation | T4.11–T4.12, T10.09 |
-| F-12 | Foundation qualification | landing zone, supply chain, frontend/design system, isolated code workspace, security, performance and runbooks pass | T1.01–T1.14, T4.12 |
+| F-12 | Foundation qualification | landing zone, supply chain, frontend/design system, isolated code workspace, code-index/graph receipts, security, performance and runbooks pass | T1.01–T1.17, T4.12 |
 
 ## Intelligence epics
 
@@ -56,6 +58,7 @@ Identifier namespaces are deliberately distinct: `R0-nn` is research, `F-nn` fou
 | I-10 | Memory promotion and X08 | consent, evidence, novelty/conflict/freshness gates, poisoning/correction suite | T5.09–T5.10 |
 | I-11 | Sufficiency gates | decision-specific blockers, coverage and waivers; never auto-approval | T6.10 |
 | I-12 | Intelligence qualification | beats strong baselines on BA and experience/coding-agent critical metrics | T5.11–T5.14, T6.12–T6.14 |
+| I-13 | Archaeology + AC-gated review cores | X11/X12 confirmatory; always-on Reviewer; polyglot proposals | T6.15–T6.17 |
 
 ## Experience and pilot epics
 
@@ -66,13 +69,15 @@ Identifier namespaces are deliberately distinct: `R0-nn` is research, `F-nn` fou
 | E-03 | Elicitation planner | information-gain policy, technique choice, fatigue/consent and stop rules | T7.03 |
 | E-04 | Live/async participation | resume, recap, correction, survey, transcript, collaboration, notification, accessibility and low-bandwidth paths | T7.04–T7.07, T7.09–T7.11 |
 | E-05 | Conflict facilitation | side-by-side claims/evidence and explicit authority decision | T3.08, T7.08 |
-| E-06 | Prototype and governed coding runtime | sandboxed states/transitions/mock data/fidelity plus exact-base repository patch, no secrets/implicit effects | T8.06–T8.08, T8.15–T8.17 |
+| E-06 | Prototype and governed coding runtime | sandboxed states/transitions/mock data/fidelity plus exact-base repository patch, AC panel, no secrets/implicit effects | T8.06–T8.08, T8.15–T8.17 |
+| E-13 | Review Agent and brownfield discovery UX | AC-coverage journey, archaeology claim review, trace drill-down | T8.18–T8.19 |
 | E-07 | Element feedback trace | scenario observation links to requirement/design/evidence and impact | T8.09 |
 | E-08 | Review/approval/baseline | governed artefact rendering, separation of duties, typed waiver, e-signature, immutable bundle and semantic diff | T8.10–T8.12, T9.01–T9.04 |
 | E-09 | Delivery feedback | slicing, decisions, questions, deviations, test evidence and change impacts return to work graph | T9.05–T9.11 |
 | E-10 | Connector kit | least privilege, cursors/webhooks, mapping, reconciliation, deletion and certification | T10.01–T10.04, T11.07 |
 | E-11 | Pilot and scale operations | SLOs, frontend RUM, support, incident/DR, cost, regional scale, customer controls, capacity and analytics ready | T10.05–T10.09, T10.13, T11.01–T11.06, T11.08–T11.10, T11.13 |
 | E-12 | Pilot and scale evaluation | real outcome, frontend/generation/coding-agent quality, participant harm, efficiency, TCO and independent decision | T9.12, T10.10–T10.14, T11.11–T11.13 |
+| E-14 | Brownfield connector and transport gates | ERP/CRM/SAP read and/or process-mining certification; CAB/transport dual control | T10.15–T10.16 |
 
 ## Cross-cutting definition of done
 

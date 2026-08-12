@@ -6,7 +6,7 @@ Status: delivery control · Baseline: `design-v3` · Effective: 2026-08-11 · Ow
 
 Demonstrate measurable value and acceptable harm/cost in 2–3 governed pilots, then separately decide production and scale readiness. The stages are `pilot-ready → pilot-evaluated → production-ready → scale-qualified`; passing one never implies the next. Each capability, tenant tier, Region, connector, language/domain and autonomy action class is approved independently.
 
-Read: [roadmap R4–R5](../delivery/roadmap.md), [enterprise readiness](../governance/enterprise-readiness-model.md), [integration architecture](../architecture/integration-and-interoperability.md), [AWS operations](../architecture/aws-security-resilience-operations.md), [verification](../engineering/verification-strategy.md), [controls](../governance/enterprise-control-framework.md), [risk register](../governance/risk-register.md), and T9–T11 in the [build sequence](../delivery/build-sequence-and-dependency-graph.md).
+Read: [roadmap R4–R5](../delivery/roadmap.md), [enterprise readiness](../governance/enterprise-readiness-model.md), [integration architecture](../architecture/integration-and-interoperability.md), [coding intelligence](../intelligence/coding-intelligence-and-review-agent.md), [process intelligence](../product/process-intelligence-posture.md), [AWS operations](../architecture/aws-security-resilience-operations.md), [verification](../engineering/verification-strategy.md), [controls](../governance/enterprise-control-framework.md), [risk register](../governance/risk-register.md), and T9–T11 in the [build sequence](../delivery/build-sequence-and-dependency-graph.md).
 
 ## Entry and non-negotiable controls
 
@@ -14,6 +14,7 @@ Read: [roadmap R4–R5](../delivery/roadmap.md), [enterprise readiness](../gover
 - Pilot use stays within approved people, data, Region, provider, connectors and decisions. Consequential/prohibited classes remain disabled.
 - Customer content is not reused for training/evaluation without a separate explicit purpose and governance.
 - A critical privacy/security/authority/harm/baseline-integrity issue suspends the affected capability immediately.
+- Supervision: Service owner + release authority; staged decisions (pilot ≠ production ≠ scale).
 
 ## Existing work-package coverage
 
@@ -209,21 +210,30 @@ Accept: Tier-A targets in the frontend specification hold over the pilot observa
 
 ### M5.19 — Pilot client prototype and repository coding-agent capability
 
-1. Select at least two bounded client journeys with approved repositories/design systems, synthetic/non-sensitive test data, baseline delivery effort and explicit patch/side-effect authority.
-2. Run progressive clarification through mock/prototype validation before repository patch; preserve human alternatives, rationale, dissent, tests and exact trace.
+1. Select at least two bounded client journeys with approved repositories/design systems **and/or ERP/CRM read adapters**, synthetic/non-sensitive test data, baseline delivery effort and explicit patch/side-effect authority.
+2. Run progressive clarification through mock/prototype validation before repository patch; preserve human alternatives, rationale, dissent, tests and exact trace; run **AC-gated review** before human accept.
 3. Have client designer/engineer/security/accessibility reviewers compare change quality, review time, correction yield and regressions against their normal workflow.
 4. Rehearse rejection, stale base, unrelated dirty change, test failure, revert, model/provider failure and complete repository/artefact export/exit.
 
-Accept: equal-or-better task/visual/code quality with materially lower validated-cycle time or higher correction yield; zero unrelated-change loss, scope escape, secret/network leak or unauthorised commit/push/PR/deploy; all production repository gates and human reviews pass.
+Accept: equal-or-better task/visual/code quality with materially lower validated-cycle time or higher correction yield; zero unrelated-change loss, scope escape, secret/network leak or unauthorised commit/push/PR/deploy/transport; all production repository gates and human reviews pass; critical AC-gaps cannot be ignored without waiver.
+
+### M5.22 — Pilot brownfield connector class and CAB/transport gates
+
+1. Certify at least one brownfield stack required by the pilot (git monorepo polyglot **and/or** ERP/CRM/SAP read adapter; process-mining event-log adapter when logs exist).
+2. Implement change-class promotion path for non-git ERP: preview, dual control, freeze-window checks; agents never hold transport authority by default.
+3. Rehearse IP redaction, export/exit and adapter revocation.
+4. Measure archaeology→BA claim steward burden and AC-gated review override rates in the field.
+
+Accept: conformance suite green; least-privilege proven; zero unauthorised transport; exit/export timed gate met; residual risk accepted by service owner.
 
 ### M5.20 — Establish ongoing generation/coding-agent assurance
 
-1. Monitor question relevance/burden, intent/trace coverage, patch precision, component reuse, test/visual/accessibility/security failures, reviewer overrides, cost and topology benefit by domain/framework.
-2. Requalify on model/prompt/tool/sandbox/design-system/framework/dependency/context-policy changes; maintain hidden repositories, hostile fixtures and visual scenarios.
-3. Approve autonomy separately for inspect, transform, patch, validate, package, VCS and deploy action classes, with tenant opt-in, budgets and kill switches.
-4. Review specialist topology through ablation and retire agents/tools/dependencies that add no material value or increase conflict/risk.
+1. Monitor question relevance/burden, intent/trace coverage, patch precision, component reuse, test/visual/accessibility/security failures, reviewer overrides, **AC-gap dismissals**, cost and topology benefit by domain/framework.
+2. Requalify on model/prompt/tool/sandbox/design-system/framework/dependency/context-policy/**index** changes; maintain hidden repositories, hostile fixtures, visual scenarios and **X10/X11/X12** continuous suites.
+3. Approve autonomy separately for inspect, transform, patch, validate, package, VCS, deploy and **transport** action classes, with tenant opt-in, budgets and kill switches.
+4. Review specialist topology through ablation and retire agents/tools/dependencies that add no material value or increase conflict/risk; Reviewer remains always-on unless explicitly retired with evidence.
 
-Accept: one complete continuous review/requalification cycle passes; stale evidence blocks promotion; zero aggregate score masks a critical patch/security/accessibility failure; VCS/deploy remain human-authorised unless separately approved with canary evidence.
+Accept: one complete continuous review/requalification cycle passes; stale evidence blocks promotion; zero aggregate score masks a critical patch/security/accessibility/AC-gap failure; VCS/deploy/transport remain human-authorised unless separately approved with canary evidence.
 
 ### M5.21 — Establish continuous assurance and scale decision
 
@@ -247,7 +257,8 @@ Accept: at least one complete review cycle operates; stale evidence automaticall
 | Portability/exit | export/offboarding rehearsal | timed clean import/export/provider/tenant exit evidence |
 | Accessibility | WCAG 2.2 AA and affected-user pilot | independent audit and defect management operating |
 | Frontend experience | Tier-A task/status/evidence/performance targets in representative pilot | sustained RUM, role/device/locale slice and rollback evidence |
-| Generated experience/code | equal-or-better correction/quality with zero patch/effect failure | continuous X10 requalification, client exit and action-class control |
+| Generated experience/code | equal-or-better correction/quality with zero patch/effect failure | continuous X10/X11/X12 requalification, client exit and action-class control |
+| Brownfield / ERP evidence | pilot connector conformance; zero unauthorised transport | continuous adapter/index assurance and IP controls |
 
 ## Runnable validation contract
 
@@ -258,8 +269,8 @@ task test:security test:privacy-rights test:accessibility test:billing-reconcile
 task test:frontend-production test:visual test:experience-codegen test:patch-integrity
 task test:load test:soak test:chaos test:restore test:dr
 task eval:preflight --profile staging --redact
-task eval:run --suite release,safety,domain,locale,X09,X10,provider-failover --profile staging
-task ops:exercise --scenario sev1-ai,sev1-security,sev2-region,provider-exit
+task eval:run --suite release,safety,domain,locale,X09,X10,X11,X12,provider-failover --profile staging
+task ops:exercise --scenario sev1-ai,sev1-security,sev2-region,provider-exit,transport-deny
 task evidence:verify --milestone M5 --stage pilot
 task evidence:verify --milestone M5 --stage production
 task evidence:verify --milestone M5 --stage scale
@@ -269,4 +280,4 @@ Production commands execute only in approved accounts with change records and au
 
 ## Completion boundary
 
-M5 completes when the scale/hold/narrow/retire decisions and continuous assurance ownership are signed—not when every optional capability is built. Any capability lacking evidence remains disabled or research-only. Known limitations, expired waivers, incidents and null results remain visible in the final system/evidence card.
+M5 completes when the scale/hold/narrow/retire decisions and continuous assurance ownership are signed—not when every catalogue integration is built. Pilot-required brownfield connectors are in scope; unneeded catalogue integrations are not built for appearance. Any capability lacking evidence remains disabled or research-only. Known limitations, expired waivers, incidents and null results remain visible in the final system/evidence card.
