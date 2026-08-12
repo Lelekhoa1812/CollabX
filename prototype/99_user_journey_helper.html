@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Portal home · CollabX</title>
+<title>User journey guide · CollabX</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -771,7 +771,87 @@ body.review-mode .review-bar { display: flex; }
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
 
-<main class="main max-980 mx-auto" id="main" style="width:100%">
+<style>
+.journey-shell { max-width: 980px; margin: 0 auto; width: 100%; }
+.journey-hero {
+  background: linear-gradient(145deg, #171614 0%, #1f1e1d 55%, #151413 100%);
+  color: #f3f2f1; border-radius: var(--radius-lg); padding: 28px 24px; margin-bottom: 16px;
+}
+.journey-hero h1 { color: #fff; font-size: clamp(1.5rem, 2.2vw, 2rem); max-width: 20ch; margin-bottom: .5rem; }
+.journey-hero p { color: #c8c6c4; max-width: 62ch; margin: 0; }
+.journey-toc {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 8px;
+  margin: 12px 0 0;
+}
+.journey-toc-item {
+  display: flex; gap: 10px; align-items: flex-start; padding: 10px 12px;
+  border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface);
+  text-decoration: none; color: inherit;
+}
+.journey-toc-item:hover { border-color: var(--brand); text-decoration: none; }
+.journey-toc-item .n {
+  width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center;
+  background: var(--brand-soft); color: var(--brand); font-size: 11px; font-weight: 700; flex: 0 0 auto;
+}
+.journey-chapter { padding: 20px; scroll-margin-top: 64px; }
+.journey-chapter-head { margin-bottom: 12px; }
+.journey-num {
+  display: inline-grid; place-items: center; min-width: 34px; height: 26px; padding: 0 8px;
+  border-radius: var(--radius-pill); background: #1b1a19; color: #fff; font-weight: 700; font-size: 12px;
+}
+.journey-summary { font-size: 15px; line-height: 1.5; margin-bottom: 0; }
+.journey-block {
+  border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 14px;
+  background: var(--surface-2); margin: 12px 0;
+}
+.journey-block h3 { font-size: 13px; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); margin-bottom: 8px; }
+.journey-block ol, .journey-block ul { margin: 0; padding-left: 1.15rem; color: var(--ink); }
+.journey-block li { margin: 0 0 8px; }
+.journey-shots { display: flex; flex-direction: column; gap: 14px; margin-top: 14px; }
+.journey-shot {
+  margin: 0; border: 1px solid var(--line); border-radius: var(--radius-lg); overflow: hidden;
+  background: #fff; box-shadow: var(--shadow-1); width: 100%;
+}
+.journey-shot img {
+  display: block; width: 100%; height: auto; background: var(--surface-3);
+  border-bottom: 1px solid var(--line);
+}
+.journey-shot figcaption {
+  padding: 10px 12px; font-size: 12.5px; color: var(--muted); background: var(--surface-2);
+}
+.journey-sticky {
+  position: sticky; top: 0; z-index: 40; background: rgba(243,242,241,.94);
+  backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); padding: 10px 0; margin-bottom: 12px;
+}
+.journey-sticky .logo-mark {
+  width: 22px; height: 22px; border-radius: 6px;
+  background: linear-gradient(135deg, #0f6cbd, #5b5fc7);
+  display: inline-grid; place-items: center; font-size: 11px; font-weight: 800; color: #fff;
+}
+.journey-sticky .inner {
+  max-width: 980px; margin: 0 auto; width: 100%; padding: 0 16px;
+  display: flex; gap: 8px; flex-wrap: wrap; align-items: center; justify-content: space-between;
+}
+.journey-path {
+  display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px;
+}
+</style>
+<header class="journey-sticky">
+  <div class="inner">
+    <div class="row">
+      <a class="logo" href="00_portal_home.html" style="display:inline-flex;align-items:center;gap:8px;font-weight:700;color:var(--ink);text-decoration:none">
+        <span class="logo-mark">CX</span> CollabX
+      </a>
+      <span class="badge info"><span class="ico" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="5.25" stroke="currentColor" stroke-width="1.4"/><path d="m13.2 13.2 3.3 3.3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></span> Journey guide</span>
+    </div>
+    <div class="row">
+      <a class="btn sm primary" href="00_portal_home.html">Open prototype</a>
+      <a class="btn sm" href="#toc">Contents</a>
+      <button class="btn sm ghost" type="button" onclick="resetDemo()"><span class="ico" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M15.2 8.2A5.4 5.4 0 1 1 14 5.6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><path d="M15.5 3.8v4.2h-4.2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Reset</button>
+    </div>
+  </div>
+</header>
+<main class="main journey-shell" id="main">
   <div class="demo-banner">
   <div class="row">
     <span class="badge live"><span class="ico" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4.8 10.2 8.3 13.6 15.2 6.4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Demo</span>
@@ -782,112 +862,389 @@ body.review-mode .review-bar { display: flex; }
     <button class="btn sm ghost" type="button" onclick="resetDemo()"><span class="ico" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M15.2 8.2A5.4 5.4 0 1 1 14 5.6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><path d="M15.5 3.8v4.2h-4.2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Reset</button>
   </div>
 </div>
-  <div class="hero">
+  <div class="journey-hero">
     <div class="row mb-0">
-      <span class="badge info"><span class="ico" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="6.5" stroke="currentColor" stroke-width="1.4"/><path d="M10 9v4.2M10 6.5h.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span> Meridian Mutual demo</span>
-      <span class="badge ai"><span class="ico" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M6.2 12.8A4.3 4.3 0 0 1 10 5.5a4.3 4.3 0 0 1 3.8 7.3l.9 2.7-2.8-.8A4.3 4.3 0 0 1 6.2 12.8Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><circle cx="8.3" cy="10" r=".7" fill="currentColor"/><circle cx="11.7" cy="10" r=".7" fill="currentColor"/></svg></span> Drafts only</span>
+      <span class="badge info"><span class="ico" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="6.5" stroke="currentColor" stroke-width="1.4"/><path d="M10 9v4.2M10 6.5h.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span> Meridian Mutual</span>
+      <span class="badge draft"><span class="ico" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 16.5V4.5h.8l7.2 4.2L5.8 12.8" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M5 4.5v12" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></span> Overnight claim exceptions</span>
     </div>
-    <h1 class="mt-3">Clear overnight claim handling, with evidence and approval</h1>
-    <p>CollabX helps business and delivery teams turn disputed overnight practice into an approved path. The assistant drafts. Named people decide.</p>
-    <div class="hero-actions row">
-      <a class="btn primary" href="01_business_access.html"><span class="ico" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M8 5.75v8.5L14.75 10 8 5.75Z" fill="currentColor"/></svg></span> Start demo</a>
-      <a class="btn" href="99_user_journey_helper.html"><span class="ico" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="5.25" stroke="currentColor" stroke-width="1.4"/><path d="m13.2 13.2 3.3 3.3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></span> Journey guide</a>
-      <a class="btn" href="04_business_contribute.html"><span class="ico" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 15.5v-2.2A3.3 3.3 0 0 1 7.3 10h5.4A3.3 3.3 0 0 1 16 13.3v2.2M10 9.2a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" stroke="currentColor" stroke-width="1.4"/></svg></span> Join as participant</a>
-      <button class="btn ghost" type="button" onclick="fastForwardAgentGrowth()"><span class="ico" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 4v3M10 13v3M4 10h3M13 10h3M6.2 6.2l2.1 2.1M11.7 11.7l2.1 2.1M13.8 6.2l-2.1 2.1M8.3 11.7l-2.1 2.1" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></span> Jump ahead</button>
-      <button class="btn ghost" type="button" onclick="resetDemo()"><span class="ico" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M15.2 8.2A5.4 5.4 0 1 1 14 5.6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><path d="M15.5 3.8v4.2h-4.2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Reset</button>
-    </div>
+    <h1 class="mt-3">User journey guide</h1>
+    <p>A simple walkthrough of the CollabX prototype. Use it while exploring the product or when reviewing the story later. Each chapter has short notes, optional steps, and a full-width screenshot.</p>
   </div>
 
   <div class="card">
-    <div class="row-between">
-      <div>
-        <h2>Progress across the week</h2>
-        <p class="mb-0">Starts with policy. Ends with a confirmed preview ready for approval and delivery.</p>
+    <h2>Story path</h2>
+    <p class="text-primary mb-0">Frontline input → disagreement → preview → item-level approval → approved package → code change → blocked missing test → tracked results.</p>
+    <div class="journey-path">
+      <span class="badge info"><span class="ico" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m10 3.2 6.3 3.4v6.8L10 16.8 3.7 13.4V6.6L10 3.2Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M10 16.8V10M3.9 6.8 10 10l6.1-3.2" stroke="currentColor" stroke-width="1.4"/></svg></span> Business + Build</span>
+      <span class="badge ai"><span class="ico" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M6.2 12.8A4.3 4.3 0 0 1 10 5.5a4.3 4.3 0 0 1 3.8 7.3l.9 2.7-2.8-.8A4.3 4.3 0 0 1 6.2 12.8Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><circle cx="8.3" cy="10" r=".7" fill="currentColor"/><circle cx="11.7" cy="10" r=".7" fill="currentColor"/></svg></span> Assistant drafts</span>
+      <span class="badge approved"><span class="ico" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 10.5 8.2 13.7 15 6.3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span> People decide</span>
+    </div>
+  </div>
+
+  <div class="card" id="toc">
+    <h2>Contents</h2>
+    <p class="mb-0">Follow in order, or jump to any chapter.</p>
+    <nav class="journey-toc" aria-label="Journey chapters"><a class="journey-toc-item" href="#ch0"><span class="n">0</span><span>How to use this guide</span></a><a class="journey-toc-item" href="#ch1"><span class="n">1</span><span>Portal home</span></a><a class="journey-toc-item" href="#ch2"><span class="n">2</span><span>Access and invitation</span></a><a class="journey-toc-item" href="#ch3"><span class="n">3</span><span>Contribute</span></a><a class="journey-toc-item" href="#ch4"><span class="n">4</span><span>Understand</span></a><a class="journey-toc-item" href="#ch5"><span class="n">5</span><span>Home and Initiative</span></a><a class="journey-toc-item" href="#ch6"><span class="n">6</span><span>Design</span></a><a class="journey-toc-item" href="#ch7"><span class="n">7</span><span>Decide</span></a><a class="journey-toc-item" href="#ch8"><span class="n">8</span><span>Build delivery package</span></a><a class="journey-toc-item" href="#ch9"><span class="n">9</span><span>Workspace</span></a><a class="journey-toc-item" href="#ch10"><span class="n">10</span><span>Review</span></a><a class="journey-toc-item" href="#ch11"><span class="n">11</span><span>Track</span></a><a class="journey-toc-item" href="#ch12"><span class="n">12</span><span>End-to-end path</span></a></nav>
+  </div>
+
+  <section class="journey-chapter card" id="ch0">
+      <div class="journey-chapter-head">
+        <div class="row">
+          <span class="journey-num">0</span>
+          <span class="badge info"><span class="ico" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="6.5" stroke="currentColor" stroke-width="1.4"/><path d="M10 9v4.2M10 6.5h.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span> Overview</span>
+        </div>
+        <h2>How to use this guide</h2>
+        <p class="text-primary journey-summary">This guide walks the Meridian Mutual overnight claim exceptions story across Business and Build. The assistant drafts. Named people decide. Open each linked screen to explore the live prototype.</p>
+        <div class="row mt-2">
+          <a class="btn primary" href="00_portal_home.html"><span class="ico" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M8 5.5H5.5a1 1 0 0 0-1 1V14.5a1 1 0 0 0 1 1H13.5a1 1 0 0 0 1-1V12M11 4.5h4.5V9M9.5 10.5 15.2 4.8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Open screen</a>
+          <a class="btn ghost" href="#toc">Contents</a>
+        </div>
       </div>
-      <span class="session-phase"><span data-session-phase>listen</span> · <span data-learning-score>8%</span></span>
-    </div>
-    <div id="growth-timeline" class="growth-timeline"></div>
-    <div id="agent-before-after" class="mt-3"></div>
-  </div>
-
-  <div class="grid-2">
-    <a class="choice" href="02_business_home.html">
-      <h2><span class="ico" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 16.5V4.5h.8l7.2 4.2L5.8 12.8" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M5 4.5v12" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></span> Business</h2>
-      <p class="text-primary">For sponsors, analysts, participants, and approvers. Understand the issue, design a better path, and decide with evidence.</p>
-      <div class="row"><span class="badge info"><span class="ico" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="6.5" stroke="currentColor" stroke-width="1.4"/><path d="M10 9v4.2M10 6.5h.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span> Plain language</span><span class="badge ai"><span class="ico" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M6.2 12.8A4.3 4.3 0 0 1 10 5.5a4.3 4.3 0 0 1 3.8 7.3l.9 2.7-2.8-.8A4.3 4.3 0 0 1 6.2 12.8Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><circle cx="8.3" cy="10" r=".7" fill="currentColor"/><circle cx="11.7" cy="10" r=".7" fill="currentColor"/></svg></span> Guided</span></div>
-    </a>
-    <a class="choice" href="10_developer_home.html">
-      <h2><span class="ico" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m6.5 7-3 3 3 3M13.5 7l3 3-3 3M11.2 5.5 8.8 14.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Build</h2>
-      <p class="text-primary">For engineers and reviewers. Open the approved package, change code safely, and prove the done checks.</p>
-      <div class="row"><span class="badge info"><span class="ico" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m10 3.2 6.3 3.4v6.8L10 16.8 3.7 13.4V6.6L10 3.2Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M10 16.8V10M3.9 6.8 10 10l6.1-3.2" stroke="currentColor" stroke-width="1.4"/></svg></span> Approved package</span><span class="badge block"><span class="ico" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 4.5h7.5L15.5 7.5V15.5H5V4.5Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M12.5 4.5V7.5H15.5M7.5 10.5h5M7.5 13h3.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></span> Test checks</span></div>
-    </a>
-  </div>
-
-  <div class="card mt-4">
-    <div class="row-between">
-      <div>
-        <h2>Walkthrough</h2>
-        <p class="mb-0">Follow these seven steps. You will see a correction, a draft preview, a human decision, and a blocked merge.</p>
+      <div class="journey-block">
+        <h3>Notes</h3>
+        <ul><li>Prefer a local static server from the prototype folder so relative screenshots and links load cleanly.</li><li>Use Reset demo on any page if leftover browser state makes the story confusing.</li><li>The seven walkthrough steps on portal home match the chapters below.</li></ul>
       </div>
-      <span class="badge info"><span class="ico" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M8 5.75v8.5L14.75 10 8 5.75Z" fill="currentColor"/></svg></span> Step by step</span>
-    </div>
-    <div class="learn-meter mt-3" id="learn-meter"></div>
-    <div class="story-rail"><a class="story-step" href="04_business_contribute.html" data-demo-step="contribute">
-      <span class="n">1</span>
-      <strong>Frontline input</strong>
-      <span class="muted text-xs">Open</span>
-    </a><a class="story-step" href="05_business_understand.html" data-demo-step="understand">
-      <span class="n">2</span>
-      <strong>Compare sources</strong>
-      <span class="muted text-xs">Open</span>
-    </a><a class="story-step" href="06_business_solution.html" data-demo-step="design">
-      <span class="n">3</span>
-      <strong>Test a preview</strong>
-      <span class="muted text-xs">Open</span>
-    </a><a class="story-step" href="07_business_decision.html" data-demo-step="decide">
-      <span class="n">4</span>
-      <strong>Sign decisions</strong>
-      <span class="muted text-xs">Open</span>
-    </a><a class="story-step" href="10_developer_home.html" data-demo-step="build">
-      <span class="n">5</span>
-      <strong>Open package</strong>
-      <span class="muted text-xs">Open</span>
-    </a><a class="story-step" href="12_developer_review.html" data-demo-step="review">
-      <span class="n">6</span>
-      <strong>Block bad merge</strong>
-      <span class="muted text-xs">Open</span>
-    </a><a class="story-step" href="08_business_track.html" data-demo-step="track">
-      <span class="n">7</span>
-      <strong>See results</strong>
-      <span class="muted text-xs">Open</span>
-    </a></div>
-  </div>
-
-  <div class="grid-3 mt-3">
-    <div class="card tight inset">
-      <div class="kpi-label">Assistant</div>
-      <p class="text-primary mb-0">Finds sources, drafts findings, and prepares options.</p>
-    </div>
-    <div class="card tight inset">
-      <div class="kpi-label">People</div>
-      <p class="text-primary mb-0">Correct drafts, approve meaning, and own release.</p>
-    </div>
-    <div class="card tight inset">
-      <div class="kpi-label">Demo data</div>
-      <p class="text-primary mb-0">Meridian Mutual · overnight exceptions · target 4h</p>
-    </div>
-  </div>
+      
+      <div class="journey-shots"></div>
+    </section>
+<section class="journey-chapter card" id="ch1">
+      <div class="journey-chapter-head">
+        <div class="row">
+          <span class="journey-num">1</span>
+          <span class="badge info"><span class="ico" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="6.5" stroke="currentColor" stroke-width="1.4"/><path d="M10 9v4.2M10 6.5h.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span> Entry</span>
+        </div>
+        <h2>Portal home</h2>
+        <p class="text-primary journey-summary">Entry point for the dual-portal product. Business is for sponsors, analysts, and participants. Build is for engineers and reviewers. Both share the same overnight exceptions initiative.</p>
+        <div class="row mt-2">
+          <a class="btn primary" href="00_portal_home.html"><span class="ico" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M8 5.5H5.5a1 1 0 0 0-1 1V14.5a1 1 0 0 0 1 1H13.5a1 1 0 0 0 1-1V12M11 4.5h4.5V9M9.5 10.5 15.2 4.8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Open screen</a>
+          <a class="btn ghost" href="#toc">Contents</a>
+        </div>
+      </div>
+      <div class="journey-block">
+        <h3>Notes</h3>
+        <ul><li>Hero states the outcome: clearer overnight claim handling with evidence and approval.</li><li>Walkthrough lists the end-to-end path from frontline input to measured results.</li><li>Quick starts jump into common surfaces. Presenter guide returns here.</li></ul>
+      </div>
+      <div class="journey-block">
+            <h3>Try this</h3>
+            <ol><li>Open portal home.</li><li>Choose Business, Build, or Start demo.</li></ol>
+          </div>
+      <div class="journey-shots"><figure class="journey-shot">
+        <img src="journey-shots/01_portal_home.png" alt="Portal home" loading="lazy" />
+        <figcaption><a href="00_portal_home.html">00_portal_home.html</a> · Entry</figcaption>
+      </figure></div>
+    </section>
+<section class="journey-chapter card" id="ch2">
+      <div class="journey-chapter-head">
+        <div class="row">
+          <span class="journey-num">2</span>
+          <span class="badge info"><span class="ico" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="6.5" stroke="currentColor" stroke-width="1.4"/><path d="M10 9v4.2M10 6.5h.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span> Collect</span>
+        </div>
+        <h2>Access and invitation</h2>
+        <p class="text-primary journey-summary">Participants enter through a focused invitation rather than full enterprise navigation. The invite explains why they were asked and how answers will be used.</p>
+        <div class="row mt-2">
+          <a class="btn primary" href="01_business_access.html"><span class="ico" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M8 5.5H5.5a1 1 0 0 0-1 1V14.5a1 1 0 0 0 1 1H13.5a1 1 0 0 0 1-1V12M11 4.5h4.5V9M9.5 10.5 15.2 4.8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Open screen</a>
+          <a class="btn ghost" href="#toc">Contents</a>
+        </div>
+      </div>
+      <div class="journey-block">
+        <h3>Notes</h3>
+        <ul><li>Invitation is prepared for Maya Ortiz by Jordan Lee because policy and overnight practice disagree.</li><li>Consent, language, and larger text controls sit before the contribution session.</li><li>Assistant suggestions in the later session remain drafts only.</li></ul>
+      </div>
+      <div class="journey-block">
+            <h3>Try this</h3>
+            <ol><li>Open the Invitation tab.</li><li>Confirm consent and continue to Contribute.</li></ol>
+          </div>
+      <div class="journey-shots"><figure class="journey-shot">
+        <img src="journey-shots/02_access_invite.png" alt="Access and invitation" loading="lazy" />
+        <figcaption><a href="01_business_access.html">01_business_access.html</a> · Collect</figcaption>
+      </figure></div>
+    </section>
+<section class="journey-chapter card" id="ch3">
+      <div class="journey-chapter-head">
+        <div class="row">
+          <span class="journey-num">3</span>
+          <span class="badge info"><span class="ico" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="6.5" stroke="currentColor" stroke-width="1.4"/><path d="M10 9v4.2M10 6.5h.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span> Collect</span>
+        </div>
+        <h2>Contribute</h2>
+        <p class="text-primary journey-summary">Frontline input for overnight claim handling. The participant answers from real work. The assistant drafts a finding that is not approved.</p>
+        <div class="row mt-2">
+          <a class="btn primary" href="04_business_contribute.html"><span class="ico" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M8 5.5H5.5a1 1 0 0 0-1 1V14.5a1 1 0 0 0 1 1H13.5a1 1 0 0 0 1-1V12M11 4.5h4.5V9M9.5 10.5 15.2 4.8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Open screen</a>
+          <a class="btn ghost" href="#toc">Contents</a>
+        </div>
+      </div>
+      <div class="journey-block">
+        <h3>Notes</h3>
+        <ul><li>Core question: what happens after 8 pm when no supervisor is online.</li><li>Use as draft, Not right, and I am not sure are available on the suggestion.</li><li>Optional synthetic claim scenario uses fixture FNOL-88421.</li><li>Submitted answers carry into Understand for this browser demo.</li></ul>
+      </div>
+      <div class="journey-block">
+            <h3>Try this</h3>
+            <ol><li>Select an overnight action.</li><li>Use as draft or mark Not right.</li><li>Submit to continue.</li></ol>
+          </div>
+      <div class="journey-shots"><figure class="journey-shot">
+        <img src="journey-shots/03_contribute.png" alt="Contribute" loading="lazy" />
+        <figcaption><a href="04_business_contribute.html">04_business_contribute.html</a> · Collect</figcaption>
+      </figure><figure class="journey-shot">
+        <img src="journey-shots/04_contribute_draft.png" alt="After Use as draft — labelled draft, not approved truth." loading="lazy" />
+        <figcaption>After Use as draft — labelled draft, not approved truth.</figcaption>
+      </figure></div>
+    </section>
+<section class="journey-chapter card" id="ch4">
+      <div class="journey-chapter-head">
+        <div class="row">
+          <span class="journey-num">4</span>
+          <span class="badge info"><span class="ico" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="6.5" stroke="currentColor" stroke-width="1.4"/><path d="M10 9v4.2M10 6.5h.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span> Sort</span>
+        </div>
+        <h2>Understand</h2>
+        <p class="text-primary journey-summary">Compare sources around one issue. Policy and practice stay side by side until a decision owner resolves the disagreement.</p>
+        <div class="row mt-2">
+          <a class="btn primary" href="05_business_understand.html"><span class="ico" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M8 5.5H5.5a1 1 0 0 0-1 1V14.5a1 1 0 0 0 1 1H13.5a1 1 0 0 0 1-1V12M11 4.5h4.5V9M9.5 10.5 15.2 4.8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Open screen</a>
+          <a class="btn ghost" href="#toc">Contents</a>
+        </div>
+      </div>
+      <div class="journey-block">
+        <h3>Notes</h3>
+        <ul><li>Selected issue: four-hour supervisor rule versus overnight parking.</li><li>Sources used shows included evidence and excluded call logs waiting on consent.</li><li>Tabs cover Disagreement, Sources, People, Policy vs actual work, Options, and Shared terms.</li><li>Assistant recommendations remain drafts with Use as draft / Not right.</li></ul>
+      </div>
+      <div class="journey-block">
+            <h3>Try this</h3>
+            <ol><li>Review the disagreement pair.</li><li>Open Sources and People.</li><li>Ask the assistant about uncertainty if useful.</li></ol>
+          </div>
+      <div class="journey-shots"><figure class="journey-shot">
+        <img src="journey-shots/05_understand.png" alt="Understand" loading="lazy" />
+        <figcaption><a href="05_business_understand.html">05_business_understand.html</a> · Sort</figcaption>
+      </figure><figure class="journey-shot">
+        <img src="journey-shots/06_understand_sources.png" alt="Sources tab — freshness, consent gates, and Build-linked behaviour." loading="lazy" />
+        <figcaption>Sources tab — freshness, consent gates, and Build-linked behaviour.</figcaption>
+      </figure></div>
+    </section>
+<section class="journey-chapter card" id="ch5">
+      <div class="journey-chapter-head">
+        <div class="row">
+          <span class="journey-num">5</span>
+          <span class="badge info"><span class="ico" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="6.5" stroke="currentColor" stroke-width="1.4"/><path d="M10 9v4.2M10 6.5h.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span> Orient</span>
+        </div>
+        <h2>Home and Initiative</h2>
+        <p class="text-primary journey-summary">Day-to-day Business orientation. Home shows what needs attention. Initiative summarises status, coverage, and the recommended next step.</p>
+        <div class="row mt-2">
+          <a class="btn primary" href="02_business_home.html"><span class="ico" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M8 5.5H5.5a1 1 0 0 0-1 1V14.5a1 1 0 0 0 1 1H13.5a1 1 0 0 0 1-1V12M11 4.5h4.5V9M9.5 10.5 15.2 4.8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Open screen</a>
+          <a class="btn ghost" href="#toc">Contents</a>
+        </div>
+      </div>
+      <div class="journey-block">
+        <h3>Notes</h3>
+        <ul><li>Alerts connect participant correction, blocked merge, and sample-size limits.</li><li>My work lists short tasks with owners and effort.</li><li>Initiative keeps readiness and recent changes in one place.</li></ul>
+      </div>
+      <div class="journey-block">
+            <h3>Try this</h3>
+            <ol><li>Open Home from Business navigation.</li><li>Optionally open Initiative for coverage and history.</li></ol>
+          </div>
+      <div class="journey-shots"><figure class="journey-shot">
+        <img src="journey-shots/15_home_alerts.png" alt="Home and Initiative" loading="lazy" />
+        <figcaption><a href="02_business_home.html">02_business_home.html</a> · Orient</figcaption>
+      </figure><figure class="journey-shot">
+        <img src="journey-shots/16_initiative.png" alt="Initiative overview — status, coverage, recommended next step." loading="lazy" />
+        <figcaption>Initiative overview — status, coverage, recommended next step.</figcaption>
+      </figure></div>
+    </section>
+<section class="journey-chapter card" id="ch6">
+      <div class="journey-chapter-head">
+        <div class="row">
+          <span class="journey-num">6</span>
+          <span class="badge info"><span class="ico" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="6.5" stroke="currentColor" stroke-width="1.4"/><path d="M10 9v4.2M10 6.5h.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span> Preview</span>
+        </div>
+        <h2>Design</h2>
+        <p class="text-primary journey-summary">Test the overnight path with a simple interactive mock before production work. Findings from participant tests feed the decision brief.</p>
+        <div class="row mt-2">
+          <a class="btn primary" href="06_business_solution.html"><span class="ico" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M8 5.5H5.5a1 1 0 0 0-1 1V14.5a1 1 0 0 0 1 1H13.5a1 1 0 0 0 1-1V12M11 4.5h4.5V9M9.5 10.5 15.2 4.8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Open screen</a>
+          <a class="btn ghost" href="#toc">Contents</a>
+        </div>
+      </div>
+      <div class="journey-block">
+        <h3>Notes</h3>
+        <ul><li>Mock is labelled as a preview, not production code.</li><li>Findings show park path as clear and on-call as unofficial.</li><li>Assistant suggestion proposes a governed on-call action as a draft.</li></ul>
+      </div>
+      <div class="journey-block">
+            <h3>Try this</h3>
+            <ol><li>Try Park until morning and Contact on-call in the mock.</li><li>Review findings, then continue to Decide.</li></ol>
+          </div>
+      <div class="journey-shots"><figure class="journey-shot">
+        <img src="journey-shots/07_design.png" alt="Design" loading="lazy" />
+        <figcaption><a href="06_business_solution.html">06_business_solution.html</a> · Preview</figcaption>
+      </figure></div>
+    </section>
+<section class="journey-chapter card" id="ch7">
+      <div class="journey-chapter-head">
+        <div class="row">
+          <span class="journey-num">7</span>
+          <span class="badge info"><span class="ico" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="6.5" stroke="currentColor" stroke-width="1.4"/><path d="M10 9v4.2M10 6.5h.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span> Approve</span>
+        </div>
+        <h2>Decide</h2>
+        <p class="text-primary journey-summary">Item-by-item sign-off for meaning changes. There is no approve-all action. Unsupported claims stay excluded.</p>
+        <div class="row mt-2">
+          <a class="btn primary" href="07_business_decision.html"><span class="ico" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M8 5.5H5.5a1 1 0 0 0-1 1V14.5a1 1 0 0 0 1 1H13.5a1 1 0 0 0 1-1V12M11 4.5h4.5V9M9.5 10.5 15.2 4.8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Open screen</a>
+          <a class="btn ghost" href="#toc">Contents</a>
+        </div>
+      </div>
+      <div class="journey-block">
+        <h3>Notes</h3>
+        <ul><li>Decision owner is Priya Shah.</li><li>Brief recommends a formal overnight park path plus governed on-call, keeping the four-hour rule in business hours.</li><li>Risk dissent and overnight volume source-needed remain visible.</li><li>Signing creates an approved delivery package for Build.</li></ul>
+      </div>
+      <div class="journey-block">
+            <h3>Try this</h3>
+            <ol><li>Review before/after meaning on each item.</li><li>Sign selected items and confirm.</li><li>Open the approval receipt, then Build.</li></ol>
+          </div>
+      <div class="journey-shots"><figure class="journey-shot">
+        <img src="journey-shots/08_decide.png" alt="Decide" loading="lazy" />
+        <figcaption><a href="07_business_decision.html">07_business_decision.html</a> · Approve</figcaption>
+      </figure><figure class="journey-shot">
+        <img src="journey-shots/09_decide_signed.png" alt="Signed receipt with package version and Build handoff." loading="lazy" />
+        <figcaption>Signed receipt with package version and Build handoff.</figcaption>
+      </figure></div>
+    </section>
+<section class="journey-chapter card" id="ch8">
+      <div class="journey-chapter-head">
+        <div class="row">
+          <span class="journey-num">8</span>
+          <span class="badge info"><span class="ico" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="6.5" stroke="currentColor" stroke-width="1.4"/><path d="M10 9v4.2M10 6.5h.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span> Hand off</span>
+        </div>
+        <h2>Build delivery package</h2>
+        <p class="text-primary journey-summary">Engineers start from the approved package: outcome, expected behaviour, done checks, constraints, and open questions.</p>
+        <div class="row mt-2">
+          <a class="btn primary" href="10_developer_home.html"><span class="ico" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M8 5.5H5.5a1 1 0 0 0-1 1V14.5a1 1 0 0 0 1 1H13.5a1 1 0 0 0 1-1V12M11 4.5h4.5V9M9.5 10.5 15.2 4.8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Open screen</a>
+          <a class="btn ghost" href="#toc">Contents</a>
+        </div>
+      </div>
+      <div class="journey-block">
+        <h3>Notes</h3>
+        <ul><li>Package version matches the Business decision receipt.</li><li>Why this exists links back to the approved overnight decision and frontline correction.</li><li>Clarifications can confirm wording but do not silently change the package.</li></ul>
+      </div>
+      <div class="journey-block">
+            <h3>Try this</h3>
+            <ol><li>Switch to Build or follow Open in Build.</li><li>Read expected behaviour and done checks.</li><li>Open Workspace.</li></ol>
+          </div>
+      <div class="journey-shots"><figure class="journey-shot">
+        <img src="journey-shots/10_build_package.png" alt="Build delivery package" loading="lazy" />
+        <figcaption><a href="10_developer_home.html">10_developer_home.html</a> · Hand off</figcaption>
+      </figure></div>
+    </section>
+<section class="journey-chapter card" id="ch9">
+      <div class="journey-chapter-head">
+        <div class="row">
+          <span class="journey-num">9</span>
+          <span class="badge info"><span class="ico" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="6.5" stroke="currentColor" stroke-width="1.4"/><path d="M10 9v4.2M10 6.5h.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span> Hand off</span>
+        </div>
+        <h2>Workspace</h2>
+        <p class="text-primary journey-summary">Discover current code, plan a bounded change, draft a patch and tests, and clarify questions without changing approved meaning.</p>
+        <div class="row mt-2">
+          <a class="btn primary" href="11_developer_workspace.html"><span class="ico" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M8 5.5H5.5a1 1 0 0 0-1 1V14.5a1 1 0 0 0 1 1H13.5a1 1 0 0 0 1-1V12M11 4.5h4.5V9M9.5 10.5 15.2 4.8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Open screen</a>
+          <a class="btn ghost" href="#toc">Contents</a>
+        </div>
+      </div>
+      <div class="journey-block">
+        <h3>Notes</h3>
+        <ul><li>Discovery shows observed supervisor pending behaviour and no park overnight path yet.</li><li>Plan, Patch, Tests, and Clarification are tabs in one workspace.</li><li>Deploy remains a separate authority and is blocked in the prototype.</li></ul>
+      </div>
+      <div class="journey-block">
+            <h3>Try this</h3>
+            <ol><li>Review Discover and Plan.</li><li>Open Patch for the proposed change and receipt.</li><li>Send to review.</li></ol>
+          </div>
+      <div class="journey-shots"><figure class="journey-shot">
+        <img src="journey-shots/11_workspace.png" alt="Workspace" loading="lazy" />
+        <figcaption><a href="11_developer_workspace.html">11_developer_workspace.html</a> · Hand off</figcaption>
+      </figure><figure class="journey-shot">
+        <img src="journey-shots/12_workspace_patch.png" alt="Patch view with proposed change and receipt preview." loading="lazy" />
+        <figcaption>Patch view with proposed change and receipt preview.</figcaption>
+      </figure></div>
+    </section>
+<section class="journey-chapter card" id="ch10">
+      <div class="journey-chapter-head">
+        <div class="row">
+          <span class="journey-num">10</span>
+          <span class="badge info"><span class="ico" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="6.5" stroke="currentColor" stroke-width="1.4"/><path d="M10 9v4.2M10 6.5h.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span> Govern</span>
+        </div>
+        <h2>Review</h2>
+        <p class="text-primary journey-summary">Requirements coverage review before merge. Critical missing tests block merge. Exceptions need a named owner.</p>
+        <div class="row mt-2">
+          <a class="btn primary" href="12_developer_review.html"><span class="ico" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M8 5.5H5.5a1 1 0 0 0-1 1V14.5a1 1 0 0 0 1 1H13.5a1 1 0 0 0 1-1V12M11 4.5h4.5V9M9.5 10.5 15.2 4.8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Open screen</a>
+          <a class="btn ghost" href="#toc">Contents</a>
+        </div>
+      </div>
+      <div class="journey-block">
+        <h3>Notes</h3>
+        <ul><li>Finding REV-104 is a critical missing test against the approved done check.</li><li>Force merge is denied.</li><li>Exception requests route to the decision owner and never silently approve the change.</li></ul>
+      </div>
+      <div class="journey-block">
+            <h3>Try this</h3>
+            <ol><li>Read the coverage table and findings.</li><li>Try Force merge to see the block.</li><li>Return to Business Track or add a test draft.</li></ol>
+          </div>
+      <div class="journey-shots"><figure class="journey-shot">
+        <img src="journey-shots/13_review_blocked.png" alt="Review" loading="lazy" />
+        <figcaption><a href="12_developer_review.html">12_developer_review.html</a> · Govern</figcaption>
+      </figure></div>
+    </section>
+<section class="journey-chapter card" id="ch11">
+      <div class="journey-chapter-head">
+        <div class="row">
+          <span class="journey-num">11</span>
+          <span class="badge info"><span class="ico" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="6.5" stroke="currentColor" stroke-width="1.4"/><path d="M10 9v4.2M10 6.5h.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span> Outcomes</span>
+        </div>
+        <h2>Track</h2>
+        <p class="text-primary journey-summary">Follow delivery, clarifications, and early results from the Business view without leaving the initiative.</p>
+        <div class="row mt-2">
+          <a class="btn primary" href="08_business_track.html"><span class="ico" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M8 5.5H5.5a1 1 0 0 0-1 1V14.5a1 1 0 0 0 1 1H13.5a1 1 0 0 0 1-1V12M11 4.5h4.5V9M9.5 10.5 15.2 4.8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Open screen</a>
+          <a class="btn ghost" href="#toc">Contents</a>
+        </div>
+      </div>
+      <div class="journey-block">
+        <h3>Notes</h3>
+        <ul><li>Pilot cycle time moved from 18h to 6.2h. Target 4h is not claimed yet.</li><li>Metric notes include definition, source, and sample-size limits.</li><li>Clarification history keeps Business, Build, and assistant drafts connected.</li></ul>
+      </div>
+      <div class="journey-block">
+            <h3>Try this</h3>
+            <ol><li>Review delivery status and results.</li><li>Open linked Build review if needed.</li></ol>
+          </div>
+      <div class="journey-shots"><figure class="journey-shot">
+        <img src="journey-shots/14_track.png" alt="Track" loading="lazy" />
+        <figcaption><a href="08_business_track.html">08_business_track.html</a> · Outcomes</figcaption>
+      </figure></div>
+    </section>
+<section class="journey-chapter card" id="ch12">
+      <div class="journey-chapter-head">
+        <div class="row">
+          <span class="journey-num">12</span>
+          <span class="badge info"><span class="ico" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="6.5" stroke="currentColor" stroke-width="1.4"/><path d="M10 9v4.2M10 6.5h.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span> Summary</span>
+        </div>
+        <h2>End-to-end path</h2>
+        <p class="text-primary journey-summary">The full path in one line: frontline input → visible disagreement → preview → item-level approval → approved package → code proposal → blocked missing test → measured results with limits.</p>
+        <div class="row mt-2">
+          <a class="btn primary" href="00_portal_home.html"><span class="ico" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M8 5.5H5.5a1 1 0 0 0-1 1V14.5a1 1 0 0 0 1 1H13.5a1 1 0 0 0 1-1V12M11 4.5h4.5V9M9.5 10.5 15.2 4.8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Open screen</a>
+          <a class="btn ghost" href="#toc">Contents</a>
+        </div>
+      </div>
+      <div class="journey-block">
+        <h3>Notes</h3>
+        <ul><li>Assistant proposes and explains. People approve meaning and exceptions.</li><li>Business and Build share one overnight exceptions package.</li><li>Settings covers assistant controls and risky-change confirmation if needed later.</li></ul>
+      </div>
+      <div class="journey-block">
+            <h3>Try this</h3>
+            <ol><li>Return to portal home.</li><li>Reset demo state before the next review pass.</li></ol>
+          </div>
+      <div class="journey-shots"><figure class="journey-shot">
+        <img src="journey-shots/01_portal_home.png" alt="End-to-end path" loading="lazy" />
+        <figcaption><a href="00_portal_home.html">00_portal_home.html</a> · Summary</figcaption>
+      </figure></div>
+    </section>
 
   <div class="card">
-    <h2>Jump in</h2>
+    <h2>Related screens</h2>
     <div class="grid-3">
-      <a href="01_business_access.html">Sign in or open invite</a>
-      <a href="04_business_contribute.html">Answer as participant</a>
-      <a href="07_business_decision.html">Make a decision</a>
-      <a href="05_business_understand.html">See disagreement</a>
-      <a href="11_developer_workspace.html">Propose a change</a>
-      <a href="12_developer_review.html">Check before merge</a>
-      <a href="99_user_journey_helper.html"><strong>User journey guide</strong></a>
+      <a href="00_portal_home.html">Portal home</a>
+      <a href="09_business_admin.html">Settings</a>
+      <a href="12_developer_review.html">Review</a>
+    </div>
+    <div class="row mt-3">
+      <a class="btn primary" href="00_portal_home.html">Back to portal home</a>
+      <button class="btn ghost" type="button" onclick="resetDemo()">Reset demo state</button>
     </div>
   </div>
 </main>

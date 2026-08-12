@@ -22,6 +22,7 @@ const required = [
   "10_developer_home.html",
   "11_developer_workspace.html",
   "12_developer_review.html",
+  "99_user_journey_helper.html",
 ];
 
 const anchors = [
@@ -33,6 +34,7 @@ const anchors = [
   ["07_business_decision.html", ["Sign selected", "decision-receipt"]],
   ["10_developer_home.html", ["Package ready", "Done checks"]],
   ["12_developer_review.html", ["Merge blocked", "missing test"]],
+  ["99_user_journey_helper.html", ["User journey guide", "journey-shots/", "Story path"]],
 ];
 
 const issues = [];

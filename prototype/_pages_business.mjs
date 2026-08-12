@@ -25,6 +25,7 @@ export function buildBusinessPages({ shell, barePage, MOCK, icon, badge, demoBan
     <p>CollabX helps business and delivery teams turn disputed overnight practice into an approved path. The assistant drafts. Named people decide.</p>
     <div class="hero-actions row">
       <a class="btn primary" href="01_business_access.html">${icon("play")} Start demo</a>
+      <a class="btn" href="99_user_journey_helper.html">${icon("understand")} Journey guide</a>
       <a class="btn" href="04_business_contribute.html">${icon("contribute")} Join as participant</a>
       <button class="btn ghost" type="button" onclick="fastForwardAgentGrowth()">${icon("spark")} Jump ahead</button>
       <button class="btn ghost" type="button" onclick="resetDemo()">${icon("reset")} Reset</button>
@@ -92,6 +93,7 @@ export function buildBusinessPages({ shell, barePage, MOCK, icon, badge, demoBan
       <a href="05_business_understand.html">See disagreement</a>
       <a href="11_developer_workspace.html">Propose a change</a>
       <a href="12_developer_review.html">Check before merge</a>
+      <a href="99_user_journey_helper.html"><strong>User journey guide</strong></a>
     </div>
   </div>
 </main>`,

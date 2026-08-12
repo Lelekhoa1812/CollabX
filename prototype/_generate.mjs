@@ -8,6 +8,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import { buildBusinessPages } from "./_pages_business.mjs";
 import { buildDeveloperPages } from "./_pages_developer.mjs";
+import { buildJourneyPages } from "./_pages_journey.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -2231,6 +2232,7 @@ export { icon as ico };
 const pages = {
   ...buildBusinessPages({ shell, barePage, MOCK, icon, badge, demoBanner }),
   ...buildDeveloperPages({ shell, MOCK, icon, badge }),
+  ...buildJourneyPages({ barePage, MOCK, icon, badge, demoBanner }),
 };
 
 for (const file of fs.readdirSync(__dirname)) {
@@ -2255,6 +2257,7 @@ const required = [
   "10_developer_home.html",
   "11_developer_workspace.html",
   "12_developer_review.html",
+  "99_user_journey_helper.html",
 ];
 const missing = required.filter((f) => !pages[f]);
 if (missing.length) {
