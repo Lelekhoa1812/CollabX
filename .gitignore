@@ -4,10 +4,10 @@
 .cursor*
 .vscode*
 *task.md
-docs/~$*
+# docs/~$*
 **/.DS_Store
 
-__pycache__
+__pycache__gi
 __pycache__/
 *.pyc
 *.tsbuildinfo
