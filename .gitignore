@@ -47,6 +47,7 @@ redis-data/
 examples/*pdf
 
 _bmad*
+.codoptic*
 CONTEXT.md
 
 # Accidental / local ECS taskdef dump dir (cli --out-dir)
