@@ -42,6 +42,7 @@ postgres-data/
 redis-data/
 
 *.pptx
+!docs/commerical/*.pptx
 *.docx
 examples/*pdf
 
