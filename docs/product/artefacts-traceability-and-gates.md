@@ -1,10 +1,10 @@
 # Artefacts, traceability, and decision gates
 
-Status: normative · Baseline: `design-v3` · Effective: 2026-08-11 · Owner: product and BA councils
+Status: normative · Baseline: `design-v4` · Effective: 2026-08-19 · Owner: product and BA councils
 
 ## Canonical artefact families
 
-Artefacts are projections of canonical versioned items, not independent documents.
+Artefacts are projections of canonical versioned items, not independent documents. A PRD, DOCX or PDF is an **evidence-backed, contradiction-tested, and quantitatively prioritised projection of an approved baseline**. Templates must not use “mathematically validated PRD.” Method ranks and challenge outputs inform the baseline; they do not generate the artefact as a source of truth.
 
 | Family | Canonical contents | Required links |
 |---|---|---|
@@ -90,4 +90,4 @@ State transitions enforce actor authority, expected source version, required evi
 
 ## Baseline bundle manifest
 
-The immutable manifest contains tenant/engagement, baseline ID/version, purpose/audience, included item-version IDs and hashes, excluded/open items, decisions/waivers/approvals, source snapshot identifiers, schema/domain-pack/prompt/policy/model versions, render artefact hashes, evaluation snapshot, signature, creation/effective dates and supersession. A human-readable document is one rendering of this manifest.
+The immutable manifest contains tenant/engagement, baseline ID/version, purpose/audience, included item-version IDs and hashes, excluded/open items, decisions/waivers/approvals, source snapshot identifiers, schema/domain-pack/prompt/policy/model versions, **method-run and challenge-run versions if they informed the decision**, render artefact hashes, evaluation snapshot, signature, creation/effective dates and supersession. A human-readable document is one rendering of this manifest. Item-level dispositions (`approve` \| `reject` \| `ask_evidence` \| `leave_out` \| `accept_divergence` \| `split_scope`) live on `/decisions`; item sign-off comments live on `/reviews`. Waivers for unassessed dimensions name control, rationale, owner and expiry.

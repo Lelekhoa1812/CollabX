@@ -1,6 +1,6 @@
 # BA method engines and sufficiency operations
 
-Status: normative · Baseline: `design-v3` · Effective: 2026-08-12 · Owner: BA practice and product councils · Companions: [ba-operating-model.md](ba-operating-model.md), [artefacts-traceability-and-gates.md](artefacts-traceability-and-gates.md)
+Status: normative · Baseline: `design-v4` · Effective: 2026-08-19 · Owner: BA practice and product councils · Companions: [ba-operating-model.md](ba-operating-model.md), [artefacts-traceability-and-gates.md](artefacts-traceability-and-gates.md), [decision-intelligence-and-deliberation.md](../research/decision-intelligence-and-deliberation.md)
 
 This document turns named BA techniques and qualitative gates into **computable engines** or explicit intelligence-v1 out-of-scope declarations. Catalogue-only mentions in the capability map are insufficient for implementation.
 
@@ -63,7 +63,34 @@ Weights start as steward priors; M4/M5 recalibrate from longitudinal outcomes. T
 | G7 | `G7.NO_MEASURE` | measures unavailable | absolute |
 | G7 | `G7.HARM_OPEN` | unresolved participant/customer harm | absolute |
 
-Warnings (non-absolute) include low coverage bands, open non-critical conflicts, steward queue backlog and index lag under SLO. Gate evaluation returns `{blockers[], warnings[], waivers[], coverage}`.
+Warnings (non-absolute) include low coverage bands, open non-critical conflicts, steward queue backlog and index lag under SLO. Gate evaluation returns `{blockers[], warnings[], waivers[], coverage}`. Do **not** add a Fusion Score or collapse the five dimensions into one readiness number. `gate.evaluated` carries `{confidence, coverage, consistency, decision_readiness, approval, blockers[], warnings[], waivers[]}`.
+
+## Decision Quality elements (checklist, not a score)
+
+Six diagnostic questions map onto existing blockers. They do not become a seventh sufficiency dimension.
+
+| Element | Diagnostic | Existing blocker / rule |
+|---|---|---|
+| Frame | Named, scoped, owned? | `G0.NO_OWNER`, `G0.NO_OUTCOME`, `G0.NO_PURPOSE` |
+| Alternatives | Null/manual/process/configure/buy/build/integrate present as applicable? | M3.12 option-set rule |
+| Information | Material claims cited or `UNSUPPORTED`? Coverage sufficient? | Grounding NFR + coverage graph |
+| Values | Criteria, weights and *weight disagreement* visible? | MCDA lite dissent |
+| Reasoning | Named method ran; critic searched hidden assumptions? | method-run tag + `G3.HIDDEN_ASSUMPTION` |
+| Commitment | Signed human approval on exact versions? | Approval dimension; never inferred |
+
+A decision is blocked by its weakest element. “Good enough” means further work on that element is no longer the best use of stakeholder time.
+
+## Decision Methods port
+
+Implementation is a tagged `/agent-runs` plus knowledge-item proposals. **Do not add `/method-runs` or `/sufficiency`.** Full research rationale: [decision-intelligence-and-deliberation.md](../research/decision-intelligence-and-deliberation.md).
+
+- **Input:** `decision_id`, `gate_id`, `option_item_ids[]`, `criterion_item_ids[]`, `method` enum, `judge_set` (stakeholder IDs + authority weights), `evidence_manifest_id`
+- **Output:** `ranking[]` or `labels[]`, `sensitivity[]`, `dissent[]`, `unassessed[]`, `assumptions_open[]`, `stop_reason`, `recommendation` (`none` \| `prefer` \| `split_scope`)
+- **Invariant:** `recommendation` never writes Approval. `decide` is a separate `/decisions` command by a named human.
+- **Judges:** humans supply scores/weights/pairwise. An LLM may propose a draft score with `UNSUPPORTED` or citation; it may not silently fill a missing critical dimension. Do not average judges into approval.
+- **Engine tags:** `mcda_lite` \| `wsjf` \| `moscow` \| `assumption_map` \| `even_swaps` \| `ahp` \| `bwm` \| `catwoe_assist` \| `challenge`
+
+Options, criteria, assumption-map points, dissent and issue-tree nodes reuse existing knowledge-item kinds and relations. No new kinds. Optional TCO / cost / reversibility / risk *fields* may sit on option items; they are not an NPV or Monte Carlo suite.
 
 ## Method engines — intelligence v1
 
@@ -79,11 +106,50 @@ Each engine has: input schema, procedure steps, stop rules, output artefacts, ev
 | `job_size` | effort points or person-days |
 | `wsjf` | `(ubv + tc + rr/oe) / job_size` |
 
-Stop: refuse WSJF if any component missing without explicit estimate range. MoSCoW remains a separate labelling engine with conflict detection when Must items exceed capacity.
+Stop: refuse WSJF if any component is missing without an explicit estimate range. Bind outputs to release slices (`T9.06`), not to baseline approval.
 
-### Optioning — MCDA lite
+### Prioritisation — MoSCoW
 
-Inputs: option set (must include null/manual/process/configure/buy/build/integrate as applicable), criteria with weights, scores 0–5, sensitivity (±weight). Outputs: ranked options, tornado of weight sensitivity, dissent record. Stop: no recommendation if a critical dimension is `unassessed`.
+| Field | Definition |
+|---|---|
+| `item_id` | knowledge-item version |
+| `label` | `Must` \| `Should` \| `Could` \| `Wont` |
+| `capacity_or_timebox` | named capacity constraint |
+| `owner` | accountable stakeholder |
+
+Stop / conflict: if the Must set exceeds capacity, emit a typed conflict — do not silently squeeze. Eval: false-Must rate vs later deferrals. MoSCoW labels never become Musts automatically from an MCDA rank.
+
+### Optioning — MCDA lite (default)
+
+Inputs: options including applicable null/manual/process/configure/buy/build/integrate; criteria; per-criterion weight (human or range); scores 0–5 or `unassessed`; optional TCO / reversibility / risk fields.
+
+Steps: validate option set → collect scores per judge → do **not** average judges into approval → show aligned / divergent / missing → compute weighted rank *per judge and as a first-class dissent view* → tornado on ±weight (table, not a chart product).
+
+Stop: any *critical* criterion `unassessed` → `recommendation=none`. Outputs: ranked table, tornado table, dissent record, hidden-assumption list. Eval: M3.12 reproducibility; X14 vs AHP/BWM; automation-bias rate when LLM drafts scores. Gate: G3.
+
+### Engine — Assumption mapping
+
+Highest-value added engine. Attacks untested beliefs (`G3.HIDDEN_ASSUMPTION`), not ranking aesthetics.
+
+Inputs: selected option or problem frame; candidate assumptions from elicitation, critic or archaeology. Categories: desirability, feasibility, viability, adaptability, plus existing `constraint` / `risk` kinds. Plot: importance (decision impact) × evidence strength (`cited` / `inferred` / `none`).
+
+Steps: list “what must be true” → classify → plot → test-first the important+unknown quadrant → link each to an evidence request, prototype test or sandbox test.
+
+Stop: if an important+unknown assumption sits on a critical G3 dimension, refuse recommendation. Outputs: assumption items with valid interval, owner, expiry, test. `G3.HIDDEN_ASSUMPTION` clears only when tested or waived. Eval: recall of seeded hidden assumptions; steward time; invalidation rate after G7. Importance is human-owned; model-scored importance is a warning, not a plot axis.
+
+### Assist — Issue / hypothesis tree
+
+Inputs: root question or hypothesized cause. Steps: decompose to 3–5 branches; MECE lint; star 80/20 branches; attach evidence or `UNSUPPORTED`. Stop: do not invent consensus; divergent branches become conflicts. UI: outline / table, not a graph canvas. Gate: G2 (`G2.NO_CAUSE`). Opportunity–solution outline (outcome → opportunity → option → assumption test) is a *view* over existing items, not a new graph.
+
+### Assist — Even-swaps
+
+When: ≤5 options × ≤6 criteria and stakeholders reject composite scores. Steps: identify dominated rows → propose one explicit trade → drop a now-equal criterion → repeat. Stop: if a proposed swap has no owner or no evidence, park it. Output: eliminated options + recorded trades (the reasoning trail).
+
+### Optional — Bounded AHP / BWM
+
+When: `n ≤ 7`, a named stakeholder asks for pairwise, `method=ahp|bwm`, and X14 has not killed the method. Backend: deterministic eigenvector or BWM min-max; CI/CR or BWM consistency; geometric-mean aggregation if multiple judges **and** dissent still shown; rank-reversal check when an option is added or removed.
+
+Stop: `CR ≥ 0.1` (or BWM equivalent) → do not auto-repair into a pretty matrix; return the most inconsistent pairs to the *human* judge. An LLM may explain inconsistency; it may not silently rewrite judgments to pass CR. Never treat CR as security, validity, readiness or approval. Portfolio-scale pairwise UI remains OOS.
 
 ### Strategy — CATWOE / soft systems (assist engine)
 
@@ -101,9 +167,14 @@ Inputs: process model projection + event-log slice. Outputs: fitness, deviations
 
 | Technique | Rationale | Revisit trigger |
 |---|---|---|
-| Full AHP pairwise pairwise-matrix UI at portfolio scale | High UX burden; MCDA lite covers pilot | Portfolio pilot requests |
-| ATAM full architecture evaluation | Requires architect-led workshops beyond BA loop proof | Architecture-heavy pilot |
-| PERT probabilistic scheduling | PM-suite risk; BA loop first | After M5 delivery bridge proof |
+| Full AHP pairwise-matrix UI at portfolio scale | High UX burden and false precision; MCDA lite covers pilot | X14 pass **and** a named portfolio requester |
+| ANP, TOPSIS, PROMETHEE, RICE/ICE | Method sprawl; overlapping scores | Material evidence that MCDA lite fails a named slice |
+| Default MAFP / Nash / MCTS PRD generation | Principle 8; X03/X13; MCTS needs a verifiable reward (patches, not PRDs) | X13/X03 pass **and** a verified reward function |
+| IBIS / Dialogue Mapping canvas | PERF-06; maps become unwieldy | Never as a product canvas; typed moves stay in |
+| NPV / real options / cost Monte Carlo / PERT | Finance/PM suite creep | After M5 delivery-bridge proof |
+| ATAM full architecture evaluation | Architect-led workshops beyond BA loop proof | Architecture-heavy pilot |
 | Autonomic Kotter/ADKAR coaching bots | Manipulation/surveillance risk | Only as checklist assist with human change owner |
+| DMN executable runtime | After rule extraction is stable | Domain-pack ROI evidence |
+| Fusion Score or CR-as-firewall | Collapses five-way sufficiency; CR ≠ validity or security | Never |
 
 Named capability-map bullets for OOS techniques must link here or be removed from “complete” claims.

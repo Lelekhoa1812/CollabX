@@ -1,6 +1,6 @@
 # BA and coding intelligence gap review
 
-Status: research control · Baseline: `design-v3` · Effective: 2026-08-12 · Owner: product, AI and research councils · Supersedes: none (companion to [enterprise-gap-assessment.md](enterprise-gap-assessment.md))
+Status: research control · Baseline: `design-v4` · Effective: 2026-08-19 · Owner: product, AI and research councils · Supersedes: none (companion to [enterprise-gap-assessment.md](enterprise-gap-assessment.md))
 
 ## Purpose
 
@@ -17,7 +17,7 @@ design-v3 specifies a governed BA operating system and an L0–L5 coding collabo
 | Multi-agent coding / PR review vs requirements | Under-specified |
 | Brownfield archaeology (ERP/CRM/SAP) | Missing (SAP/ERP never mentioned; CRM = portfolio connector) |
 | Code↔requirement↔test knowledge graph | Partial trace vocabulary; not a versioned code graph with reindex |
-| Method engines (WSJF, CATWOE, MCDA, mining) | Catalogue-only or absent |
+| Method engines (WSJF, CATWOE, MCDA, mining) | Spec-deepened 2026-08-19: Decision Methods port, assumption mapping, even-swaps assist, optional bounded AHP/BWM; proof still zero |
 
 ## Product context
 
@@ -35,9 +35,9 @@ Scale 0–5: Spec / Epistemic / Eval / Impl.
 | 4 | Domain learning | 4 | 4.5 | 3 | 2 | DMN executable validation; pack ROI |
 | 5 | Strategy & problem | 2.5 | 3 | 1.5 | 1 | CATWOE/SSM; force-field |
 | 6 | Requirements & design | 3.5 | 4 | 2.5 | 2 | Event storming; IEEE 29148 schema |
-| 7 | Optioning & decisions | 2.5 | 3 | 1 | 1 | MCDA/AHP; TCO |
+| 7 | Optioning & decisions | 4 | 3.5 | 1.5 | 1 | X13/X14 not yet run; TCO fields only |
 | 8 | Interactive design | 4.5 | 4.5 | 3.5 | 2.5 | SUS/SEQ protocols |
-| 9 | Prioritisation & release | 2 | 2 | 1 | 1 | WSJF/CoD formulas |
+| 9 | Prioritisation & release | 3.5 | 3 | 1.5 | 1 | WSJF/MoSCoW field-complete; bind to T9.06 |
 | 10 | Review & baselining | 4 | 4.5 | 1.5 | 2 | SoD catalogue; waiver taxonomy |
 | 11 | Delivery bridge | 3 | 3.5 | 2 | 1.5 | Drift detectors; sync conflict rules |
 | 12 | Solution evaluation | 2.5 | 3.5 | 2.5 | 1 | Benefits realisation protocol |
@@ -94,10 +94,10 @@ Market agents review *code quality*. CollabX must review **decision readiness**:
 
 ## Residual hypotheses (evidence decisions)
 
-Senior-BA benchmark superiority; domain-pack TCO; multi-agent implementer value (Reviewer is always-on read-only); cross-domain transfer; Azure≠Bedrock qualification; ERP adapter TCO per pilot stack; AC-gated review precision/recall in field; process-mining connector yield vs steward burden; commercial WTP for governed coding+BA.
+Senior-BA benchmark superiority; domain-pack TCO; multi-agent implementer value (Reviewer is always-on read-only); classed challenge vs critic-only after cost (X13); MCDA lite vs bounded AHP/BWM (X14); NLI precision on CollabX claim language; whether assumption-mapping importance becomes dashboard theatre if model-scored; cross-domain transfer; Azure≠Bedrock qualification; ERP adapter TCO per pilot stack; AC-gated review precision/recall in field; process-mining connector yield vs steward burden; commercial WTP for governed coding+BA.
 
 ## Related normative and delivery updates
 
 - Capability map §18; agents/memory; data model CodeKnowledgeGraph; integrations; API catalogue
 - [ba-method-engines-and-sufficiency.md](../product/ba-method-engines-and-sufficiency.md); [augmentation-boundary.md](../product/augmentation-boundary.md)
-- Experiments X11, X12; risk register additions; milestones M1–M5; roadmap/backlog/build-sequence crosswalk
+- Experiments X11, X12, specified X13/X14; [decision-intelligence-and-deliberation.md](decision-intelligence-and-deliberation.md); risk register additions; milestones M1–M5; roadmap/backlog/build-sequence crosswalk

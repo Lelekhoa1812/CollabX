@@ -1,6 +1,6 @@
 # API, event, and state catalogue
 
-Status: normative · Baseline: `design-v3` · Effective: 2026-08-11 · Owner: engineering council
+Status: normative · Baseline: `design-v4` · Effective: 2026-08-19 · Owner: engineering council
 
 ## API style
 
@@ -40,7 +40,26 @@ REST resources for commands/queries, SSE for durable output streams, WebSocket o
 | `/rights-requests` | access/correct/restrict/delete/hold/export/verify |
 | `/offboarding-jobs` | suspend/export/revoke/retain/delete/certify |
 
-Never expose generic CRUD for authority-sensitive transitions. `POST /requirements/{id}:approve` is a command with policy/invariants; a generic patch to `status` is forbidden.
+Never expose generic CRUD for authority-sensitive transitions. `POST /requirements/{id}:approve` is a command with policy/invariants; a generic patch to `status` is forbidden. Do **not** add `/method-runs` or `/sufficiency`. Method execution is a tagged `/agent-runs`. Sufficiency travels on `gate.evaluated`.
+
+### `/decisions` command bodies
+
+| Command | Required fields |
+|---|---|
+| `propose` | `frame`, `owner`, `expiry_or_revisit`, `gate_id` |
+| `options` | `method` enum, item-version refs, `sensitivity[]`, `dissent[]`, `unassessed[]`, `assumptions_open[]` |
+| `decide` | named `authority`, exact item versions, per-item `disposition` (`approve` \| `reject` \| `ask_evidence` \| `leave_out` \| `accept_divergence` \| `split_scope`) |
+| `revisit` | `decision_id`, trigger (`expiry` \| `new_evidence` \| `conflict_reopened`) |
+
+`recommendation` from a method run never writes Approval. Item sign-off stays on `/reviews`; strategic choice stays on `/decisions`; conflict disposition may link both.
+
+### `/agent-runs` engine tag
+
+`engine`: `mcda_lite` \| `wsjf` \| `moscow` \| `assumption_map` \| `even_swaps` \| `ahp` \| `bwm` \| `catwoe_assist` \| `challenge`. Input includes `decision_id`, `gate_id`, `option_item_ids[]`, `criterion_item_ids[]`, `judge_set`, `evidence_manifest_id`. Output includes `ranking[]` or `labels[]`, `sensitivity[]`, `dissent[]`, `unassessed[]`, `assumptions_open[]`, `stop_reason`, `recommendation` (`none` \| `prefer` \| `split_scope`).
+
+### `gate.evaluated` payload
+
+`{confidence, coverage, consistency, decision_readiness, approval, blockers[], warnings[], waivers[]}`. Five dimensions; never a Fusion Score.
 
 ## Event envelope
 
@@ -64,9 +83,9 @@ Never expose generic CRUD for authority-sensitive transitions. `POST /requiremen
 | tenancy | `tenant.provisioned`, `membership.changed`, `residency.changed`, `tenant.offboarding_started` |
 | engagement | `engagement.framed`, `stage.changed`, `gate.evaluated`, `baseline.published`, `change.authorised` |
 | evidence | `source.received`, `source.quarantined`, `source.promoted`, `span.anchored`, `deletion.verified` |
-| knowledge | `assertion.proposed`, `item.confirmed`, `conflict.detected`, `conflict.resolved`, `domain_pack.released` |
+| knowledge | `assertion.proposed`, `item.confirmed`, `conflict.detected`, `conflict.resolved`, `conflict.reopened`, `domain_pack.released` |
 | collaboration | `session.started`, `utterance.corrected`, `question.answered`, `recap.confirmed`, `survey.completed` |
-| analysis | `requirement.verified`, `decision.made`, `risk.escalated`, `option.selected` |
+| analysis | `requirement.verified`, `decision.made`, `decision.revisited`, `risk.escalated`, `option.selected` |
 | prototype | `prototype.versioned`, `scenario.observed`, `finding.confirmed` |
 | experience build | `intent.updated`, `question.answered`, `mock_data.versioned`, `change_set.proposed`, `patch.applied`, `validation.failed`, `build.completed` |
 | coding intelligence | `code_index.refreshed`, `code_index.stale`, `archaeology.completed`, `review.completed`, `ac_coverage.updated`, `finding.waived`, `transport.previewed` |
@@ -85,7 +104,7 @@ Consumers must be idempotent and tolerate unknown additive fields. Event names d
 |---|---|
 | Source | requested → uploading → quarantined → processing → review_required/ready → superseded → retention_hold/deletion_pending → deleted |
 | Knowledge item | proposed → in_review → confirmed/contested/rejected → published → superseded/withdrawn |
-| Conflict | detected → triaged → evidence_requested/decision_required → resolved/accepted_divergence → reopened |
+| Conflict | detected → triaged → under_deliberation / evidence_requested / decision_required / dissent_recorded / deferred / scope_split_pending → resolved / accepted_divergence → reopened |
 | Agent run | queued → planning → executing ↔ waiting_tool → validating → waiting_human/repairing → succeeded/failed/cancelled/budget_exhausted/policy_denied |
 | Review | open → assigned → changes_requested/conditionally_approved/approved/rejected/expired |
 | Baseline | preparing → gate_failed/ready → approving → published → superseded/revoked |

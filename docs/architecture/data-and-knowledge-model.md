@@ -1,6 +1,6 @@
 # Data and knowledge architecture
 
-Status: normative · Baseline: `design-v3` · Effective: 2026-08-12 · Owner: data and architecture councils
+Status: normative · Baseline: `design-v4` · Effective: 2026-08-19 · Owner: data and architecture councils
 
 ## Persistence strategy
 
@@ -33,9 +33,11 @@ erDiagram
 
 Knowledge-item kinds include objective, outcome measure, capability, concept, term, actor, process, event, rule, policy, data entity, requirement, design, scenario, assumption, constraint, dependency, risk, issue, action, decision, question, integration, test, **code_symbol**, **code_module**, **config_object**, **ac_coverage**, and **review_finding**.
 
+Decision Intelligence **reuses** these kinds. Do not add option/criterion/dissent/issue-tree kinds. Options are `decision` items (or `assumption` items plus relations). Issue trees are `issue` ↔ `question` ↔ `decision`. Criteria are `assumption` / `constraint`. Dissent is a contested assertion or `risk` item. Coverage already has `conflict_seed`. Optional TCO / cost / reversibility / risk fields may sit on option items as attributes, not new kinds. Freshness is validity interval + authority + supersession + evidence strength — not a `last_modified` decay field.
+
 ## CodeKnowledgeGraph
 
-The CodeKnowledgeGraph is a versioned, tenant-ACL’d projection used by BA archaeology and coding/review agents. Canonical meaning of business rules and requirements remains in knowledge items; the graph supplies structural navigation and evidence anchors.
+The CodeKnowledgeGraph is a versioned, tenant-ACL’d projection used by BA archaeology and coding/review agents. Canonical meaning of business rules and requirements remains in knowledge items; the graph supplies structural navigation and evidence anchors. Tree-sitter is a parser adapter under this graph, not a second code graph. Archaeology-derived assumptions enter the work graph as `assumption` proposals; they do not silently become confirmed weights.
 
 ```mermaid
 erDiagram
@@ -108,7 +110,9 @@ Automatic extraction proposes pack changes in a quarantine branch. A steward rev
 
 ## Conflict and resolution
 
-Conflicts are typed: direct negation, incompatible value, scope mismatch, temporal mismatch, authority disagreement, policy-versus-practice, goal conflict, or duplicate identity. The system must first test scope/time differences before declaring contradiction. Resolution is a decision record; evidence is retained, never rewritten to simulate consensus.
+Conflicts are typed: direct negation, incompatible value, scope mismatch, temporal mismatch, authority disagreement, policy-versus-practice, goal conflict, or duplicate identity. The system must first test scope/time differences before declaring contradiction. Optional NLI / span-entailment may propose a *candidate*; typed checks create the conflict. Never auto-resolve. Never treat zero contradictions as success.
+
+Lifecycle (see API catalogue): `detected → triaged → under_deliberation | evidence_requested | decision_required | dissent_recorded | deferred | scope_split_pending → resolved | accepted_divergence → reopened`. Do not add `workshop_active`; workshops stay on `/sessions`. Escalation fires from enumerable sufficiency conditions, not a Tension Index formula. Resolution is a decision record; evidence is retained, never rewritten to simulate consensus.
 
 ## Data quality contracts
 

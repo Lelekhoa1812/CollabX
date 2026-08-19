@@ -1,6 +1,6 @@
 # Enterprise control framework
 
-Status: normative · Baseline: `design-v3` · Effective: 2026-08-12 · Owner: risk and security councils
+Status: normative · Baseline: `design-v4` · Effective: 2026-08-19 · Owner: risk and security councils
 
 ## Control families
 
@@ -17,6 +17,15 @@ Status: normative · Baseline: `design-v3` · Effective: 2026-08-12 · Owner: ri
 | Assurance | immutable evidence, control testing, audit trail, customer evidence packages, remediation |
 
 Map implementation evidence to applicable ISO 27001/27017/27018, SOC 2, NIST CSF/AI RMF, privacy and sector obligations only with qualified legal/compliance input. Documentation is not certification.
+
+Future mapping targets (M5 / legal review; not MVP architecture and not product features):
+
+- ISO/IEC 42001 AIMS
+- Australian AI Ethics Principles
+- Privacy Act 1988 and OAIC AI guidance — APP 10 is *personal information* quality, not document freshness or bitemporal business evidence
+- APRA CPG 234 / CPS 234 for APRA-regulated pilots only
+
+Do not build cryptographic attestation of every AHP matrix as a v1 differentiator. Existing provenance, signatures on baselines and audit trails are the v1 bar. Decision Methods and structured challenge are Class B/C analytical assists; they never become Class C/D autonomy to approve.
 
 ## Three lines and separation
 

@@ -1,6 +1,6 @@
 # Research-to-production roadmap
 
-Status: delivery control · Baseline: `design-v3` · Effective: 2026-08-12 · Owner: product delivery council
+Status: delivery control · Baseline: `design-v4` · Effective: 2026-08-19 · Owner: product delivery council
 
 Dates are established only through an approved release plan.
 
@@ -100,6 +100,8 @@ Initial cross-functional nucleus: product lead, principal BA/research lead, doma
 ## Dependency spine
 
 `benchmark → epistemic schema → provenance/authority → workflow/replay → retrieval/context → code-index/graph → single-agent BA → archaeology/review cores → semantic governance → elicitation UX → prototype traceability → AC-gated baseline/change → brownfield connectors/pilot → autonomy/scale`
+
+Method engines, assumption mapping and classed challenge stay on this spine: they attach to `single-agent BA → elicitation UX → baseline`. They do not start a parallel Fusion-Score / C# / Kafka / GraphRAG train.
 
 Features may explore ahead in disposable prototypes, but production dependencies follow this spine.
 

@@ -1,12 +1,14 @@
 # Milestone 2 — Trusted enterprise foundation
 
-Status: delivery control · Baseline: `design-v3` · Effective: 2026-08-11 · Owner: engineering delivery council · Maps to: R1 / T1–T4
+Status: delivery control · Baseline: `design-v4` · Effective: 2026-08-19 · Owner: engineering delivery council · Maps to: R1 / T1–T4
 
 ## Outcome and decision
 
 Deliver a model-independent, tenant-safe, recoverable substrate for identity, authority, evidence, temporal knowledge, contracts, durable workflows, audit and data lifecycle. The gate decides whether the foundation is safe enough for intelligence work; it does not claim BA competence.
 
-Read: [system architecture](../architecture/system-architecture.md), [AWS platform](../architecture/aws-platform.md), [AWS operations](../architecture/aws-security-resilience-operations.md), [data model](../architecture/data-and-knowledge-model.md), [coding intelligence](../intelligence/coding-intelligence-and-review-agent.md), [implementation blueprint](../engineering/implementation-blueprint.md), [API/event catalogue](../engineering/api-event-and-state-catalogue.md), [verification](../engineering/verification-strategy.md), [enterprise readiness](../governance/enterprise-readiness-model.md), and T1–T4 in the [build sequence](../delivery/build-sequence-and-dependency-graph.md).
+Read: [system architecture](../architecture/system-architecture.md), [AWS platform](../architecture/aws-platform.md), [AWS operations](../architecture/aws-security-resilience-operations.md), [data model](../architecture/data-and-knowledge-model.md), [coding intelligence](../intelligence/coding-intelligence-and-review-agent.md), [implementation blueprint](../engineering/implementation-blueprint.md), [API/event catalogue](../engineering/api-event-and-state-catalogue.md), [decision intelligence](../research/decision-intelligence-and-deliberation.md), [verification](../engineering/verification-strategy.md), [enterprise readiness](../governance/enterprise-readiness-model.md), and T1–T4 in the [build sequence](../delivery/build-sequence-and-dependency-graph.md).
+
+Decision Intelligence inserts below specify schemas and ports on paper so M3 can attach engines. This workstream does not bootstrap the repo, provision AWS, or implement workers. Do not add `/method-runs` or `/sufficiency`.
 
 ## Entry and delivery controls
 
@@ -50,6 +52,8 @@ All T1–T4 packages listed above are covered; T1.15–T1.17 added for Capabilit
 4. Build signed artefact, SBOM, provenance and vulnerability gates with documented exception expiry.
 
 Accept: clean-room checkout reproduces builds; domain imports no framework/cloud types; invalid/breaking schemas fail; critical/high exploitable findings block. Evidence: T0.03–T0.05/T1.08–T1.10 dossiers.
+
+Specification insert: JSON Schema sketches (in the API catalogue, not a live registry) for `/decisions` propose/options/decide/revisit bodies; `/agent-runs` `engine` enum; conflict states `under_deliberation`, `dissent_recorded`, `deferred`, `scope_split_pending`; `gate.evaluated` five-way payload. Do not add `/method-runs` or `/sufficiency`.
 
 ### M2.02 — Provision governed AWS landing zone
 
@@ -105,6 +109,8 @@ Accept: 100% authority matrix decisions match policy oracle; zero cross-tenant r
 
 Accept: all hostile fixtures remain quarantined/unindexed; anchor hash/coordinates reproduce approved spans; parser confidence routes review; no worker secrets/network escape.
 
+Specification insert: method judgments and challenge moves must cite `evidence_span` IDs. Sandbox stdout/stderr become spans with receipt hash. No `last_modified` decay field.
+
 ### M2.08 — Build bitemporal epistemic work graph
 
 1. Implement items, versions, assertions, evidence, relations, conflicts, decisions and baselines as canonical schemas.
@@ -113,6 +119,8 @@ Accept: all hostile fixtures remain quarantined/unindexed; anchor hash/coordinat
 4. Add property tests for interval overlap, supersession, concurrent edit and historical replay.
 
 Accept: 100% generated valid histories reproduce expected truth; invalid overlap/state transitions fail; every material assertion resolves to permitted evidence or `UNSUPPORTED`.
+
+Specification insert: options, criteria, assumption-map points, dissent and issue-tree nodes use **existing** knowledge-item kinds and relations. No new kinds. Validity interval + authority remain the freshness model. Bind: T3.05–T3.11 / T3.08.
 
 ### M2.09 — Implement command, event and idempotency substrate
 
@@ -123,6 +131,8 @@ Accept: 100% generated valid histories reproduce expected truth; invalid overlap
 
 Accept: no acknowledged command lost; no duplicate semantic/external effect across the complete fault matrix; consumers tolerate compatible schema evolution.
 
+Specification insert: keep `decision.made`, `option.selected`, `conflict.detected`, `conflict.resolved`, `gate.evaluated`. Document optional `decision.revisited`, `conflict.reopened`. SQS/EventBridge + outbox remains the candidate (TD-011). Kafka/RabbitMQ are not required.
+
 ### M2.10 — Qualify durable engagement runtime with X07-B
 
 1. Implement workflow namespace/security/codec, engagement lifecycle, human signals, timers, cancellation and compensation.
@@ -131,6 +141,8 @@ Accept: no acknowledged command lost; no duplicate semantic/external effect acro
 4. Compare results with M1 provisional ADR and accept, constrain or replace it.
 
 Accept: zero lost acknowledged state/duplicate effect; replay deterministic; recovery/operator objectives and cost limits pass; signed production-runtime ADR exists.
+
+Specification insert — activity names only: `RunMethodEngine`, `RunCriticOrChallenge`, `ExtractInterviewAsync`, `EscalateDecision`. Live session path stays on the conversation controller. Method/challenge runs are PERF-07.
 
 ### M2.11 — Establish audit, telemetry and privacy-safe observability
 
@@ -159,6 +171,8 @@ Accept: 100% eligible seeded derivatives removed within test SLA; held content p
 
 Accept: NFR AVL/PERF targets pass or approved targets are revised with evidence; no noisy neighbour breaches another tenant SLO; restore proves RPO/RTO using timestamps.
 
+Specification insert: AVL-05 — if models are down, evidence, editing and human Decide still work. Method/challenge outage must not block class-A paths.
+
 ### M2.14 — Rehearse customer provisioning, support and offboarding
 
 1. Provision two synthetic tenants with distinct identity, policy, Region/tier and data-retention settings.
@@ -178,6 +192,8 @@ Accept: no manual hidden step lacks owner/runbook; export/import preserves 100% 
 
 Accept: 100% foundation and semantic components pass automated accessibility plus manual keyboard/screen-reader smoke; zero tenant/cache/URL leakage; visual snapshots cover all supported theme/viewport/locale states; shell meets PERF-01 and local feedback targets.
 
+Specification insert — component vocabulary: `unassessed`, dissent-by-stakeholder, tornado table, assumption-map list, Decision Quality weak-link sentence, disposition chips (Approve / Reject / Ask for evidence / Leave out / Accept divergence / Split scope). No graph-only widgets.
+
 ### M2.16 — Build governed preview and code-workspace substrate
 
 1. Implement experience-project, context-manifest, workspace-binding, change-set, patch/tool receipt and validation-run schemas/state machines without model autonomy.
@@ -186,6 +202,8 @@ Accept: 100% foundation and semantic components pass automated accessibility plu
 4. Test malicious repository instructions, symlinks/path traversal, huge/binary files, stale base, partial patch, concurrent edit, dependency scripts, secret detection, sandbox escape and cleanup.
 
 Accept: zero path/sandbox/network/secret escape; zero unrelated-change loss across the adversarial matrix; every apply/revert has complete receipt and reproducible base; all external version-control/deployment effects remain denied.
+
+Specification insert: Technical Feasibility may later attach patch/test receipts. TD-015 remains the sandbox candidate. Do not lock Docker-in-Docker from meeting notes.
 
 ### M2.18 — Build code-index, CodeKnowledgeGraph and review-run substrate
 
@@ -196,6 +214,8 @@ Accept: zero path/sandbox/network/secret escape; zero unrelated-change loss acro
 
 Accept: reindex freshness meets initial SLO contract or declares measured lag; ACL isolation suite 100% on red-team; 100% tools declare schema/side-effect/receipt; zero autonomous external effect. **Explicitly not** coding competence.
 
+Specification insert: Tree-sitter is a parser adapter under CodeKnowledgeGraph. No second code graph. Archaeology assumptions later feed assumption mapping.
+
 ### M2.17 — Hold foundation release review
 
 1. Compile test, security, accessibility-shell, migration, restore, runtime, cost and residual-risk evidence.
@@ -204,6 +224,8 @@ Accept: reindex freshness meets initial SLO contract or declares measured lag; A
 4. Sign `accept`, `constrain/rework`, `replace architecture`, or `stop` and set M3 limits.
 
 Accept: all zero-tolerance gates pass and release authority signs the evidence manifest; code volume or CI green status alone is insufficient.
+
+Specification insert: Decision Intelligence substrate is “schemas accepted,” not “engines qualified.”
 
 ## Milestone success scorecard
 

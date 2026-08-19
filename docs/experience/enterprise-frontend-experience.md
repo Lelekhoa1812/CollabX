@@ -1,6 +1,6 @@
 # Enterprise frontend experience specification
 
-Status: normative · Baseline: `design-v4` · Effective: 2026-08-12 · Owner: product and design councils
+Status: normative · Baseline: `design-v4` · Effective: 2026-08-19 · Owner: product and design councils
 
 ## Experience promise
 
@@ -60,7 +60,7 @@ The pilot surface catalogue replaces the former Tier A / Tier B page list. Relat
 | Home | Home | Portfolio, inbox, notifications | Open top decision or task |
 | Initiative | Initiative | Engagement overview, stage summary | Continue recommended work |
 | Contribute | Contribute (task) | Session room, surveys, participant prototype | Answer, correct, submit |
-| Understand | Understand | Analysis room, evidence, conflicts, people, process vs policy, options, shared terms | Compare sources and prepare decision |
+| Understand | Understand | Analysis room, evidence, conflicts, people, process vs policy, options, shared terms, Conflict Resolution Brief | Compare sources and prepare decision |
 | Design | Design | Prototype studio, experience studio | Test a scenario and capture findings |
 | Decide | Decide | Executive brief, review/approval, approved version, change impact | Sign selected items |
 | Track | Track | Delivery bridge, clarifications, outcome evaluation | Confirm answers and follow results |
@@ -85,9 +85,9 @@ Search is a global overlay. Sources, history, hashes, run details, and model nam
 ### Sponsor five-minute decision
 
 1. Home names the decision, why now, and expected effort.
-2. Decide opens a brief with recommendation, competing option, dissent, and excluded claims.
+2. Decide opens a brief with recommendation, competing option, dissent, excluded claims, named method, `unassessed` flags, tornado table, open assumptions, and a Decision Quality weak-link sentence.
 3. One uncertain claim opens its source without leaving the brief.
-4. Sponsor approves, rejects, asks for evidence, or delegates with scope and end date.
+4. Sponsor approves, rejects, asks for more evidence, leaves out, accepts divergence, splits scope, or delegates with scope and end date. The assistant cannot sign.
 5. Receipt and delivery-package effect appear immediately.
 
 ### Participant two-minute contribution
@@ -103,7 +103,7 @@ Participants use a distraction-free Contribute experience without enterprise nav
 ### Analyst deep-work loop
 
 1. Home or Initiative identifies the highest-value unresolved issue.
-2. Understand opens that issue with disagreement, sources, people, and options as tabs.
+2. Understand opens that issue with disagreement, sources, people, and options as tabs. Options show method, per-criterion scores, `unassessed`, tornado table, dissent by stakeholder and assumption map (important+unknown first). Disagreement shows conflict type, both evidence sets, scope/time test result and any blocking SOP/code/policy node. People show the decision owner, missing perspective and “will not average.”
 3. Assistant suggests a next step with sources and uncertainty.
 4. Analyst saves a draft, corrects it, or asks the decision owner.
 5. Design tests uncertainty; Decide prepares item-level sign-off.
@@ -210,6 +210,9 @@ The shared object is an approved delivery package containing outcome, expected b
 - Evidence and Source needed labels remain visible
 - Disagreement stays symmetric until a decision owner resolves it
 - Sign-off is item by item; no approve all
+- Dispositions are Approve, Reject, Ask for more evidence, Leave out, Accept divergence, Split scope — not a single binary override
+- Tornado sensitivity is a table; issue trees are outlines; pairwise matrix canvas remains out of scope
+- The assistant cannot approve, publish a baseline, or contact stakeholders
 - Stale or changed versions cannot be signed accidentally
 - Critical missing tests block merge when policy requires it
 - Deploy, production release, and ERP transport remain separate authorities
@@ -239,7 +242,7 @@ Use one coherent overnight-exceptions story:
 1. Participant corrects overnight practice.
 2. Understand shows policy and practice side by side.
 3. Design tests park versus on-call.
-4. Decide signs selected items and excludes unsupported volume claims.
+4. Decide signs selected items, records dissent, and excludes unsupported volume claims. The PRD is a rendering of that approved package, not a generated source of truth.
 5. Build opens the same approved package.
 6. Review blocks a missing timer test.
 7. Track shows improved cycle time with sample-size limits still visible.

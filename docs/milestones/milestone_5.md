@@ -1,12 +1,14 @@
 # Milestone 5 — Guarded pilot, production readiness and controlled scale
 
-Status: delivery control · Baseline: `design-v3` · Effective: 2026-08-11 · Owner: service and product councils · Maps to: R4–R5 / remaining T9, T10–T11
+Status: delivery control · Baseline: `design-v4` · Effective: 2026-08-19 · Owner: service and product councils · Maps to: R4–R5 / remaining T9, T10–T11
 
 ## Outcome and staged decisions
 
 Demonstrate measurable value and acceptable harm/cost in 2–3 governed pilots, then separately decide production and scale readiness. The stages are `pilot-ready → pilot-evaluated → production-ready → scale-qualified`; passing one never implies the next. Each capability, tenant tier, Region, connector, language/domain and autonomy action class is approved independently.
 
-Read: [roadmap R4–R5](../delivery/roadmap.md), [enterprise readiness](../governance/enterprise-readiness-model.md), [integration architecture](../architecture/integration-and-interoperability.md), [coding intelligence](../intelligence/coding-intelligence-and-review-agent.md), [process intelligence](../product/process-intelligence-posture.md), [AWS operations](../architecture/aws-security-resilience-operations.md), [verification](../engineering/verification-strategy.md), [controls](../governance/enterprise-control-framework.md), [risk register](../governance/risk-register.md), and T9–T11 in the [build sequence](../delivery/build-sequence-and-dependency-graph.md).
+Read: [roadmap R4–R5](../delivery/roadmap.md), [enterprise readiness](../governance/enterprise-readiness-model.md), [integration architecture](../architecture/integration-and-interoperability.md), [coding intelligence](../intelligence/coding-intelligence-and-review-agent.md), [process intelligence](../product/process-intelligence-posture.md), [AWS operations](../architecture/aws-security-resilience-operations.md), [verification](../engineering/verification-strategy.md), [controls](../governance/enterprise-control-framework.md), [decision intelligence](../research/decision-intelligence-and-deliberation.md), [risk register](../governance/risk-register.md), and T9–T11 in the [build sequence](../delivery/build-sequence-and-dependency-graph.md).
+
+Inserts below specify mapping targets, cost-per-decision, field metrics and autonomy limits. This workstream does not run pilots or build connectors. Connectors and coding-agent pilots consume approved baselines; they do not replace Decide.
 
 ## Entry and non-negotiable controls
 
@@ -55,6 +57,8 @@ All remaining T9.05–T11.13 packages are covered; overlaps are deliberate where
 
 Accept: every pilot has G0 charter, baseline measures, named authorities, approved processing and signed stop/exit criteria; no critical unknown is deferred to “after launch”.
 
+Specification insert: Class C/D decisions stay human-owned. Method/challenge are Class B/C analytical assists. Prohibit using CollabX as sole eligibility/HR/legal decider.
+
 ### M5.02 — Complete change, delivery and outcome bridge
 
 1. Implement prioritisation/release slicing, RAID, actions, decisions and dependencies linked to baseline.
@@ -63,6 +67,8 @@ Accept: every pilot has G0 charter, baseline measures, named authorities, approv
 4. Ingest test/release evidence and instrument solution/outcome baselines before release.
 
 Accept: ≥95% critical outcome→requirement→scenario/design→work→test trace coverage; 100% material deviation has disposition; no stale approval survives changed content.
+
+Specification insert: WSJF/MoSCoW bind to release slices (`T9.06`). RAID/decision log stores method enum, dissent and revisit. Deviations can reopen conflicts (`conflict.reopened`) and force `decision.revisited`.
 
 ### M5.03 — Build and certify connector SDK/control plane
 
@@ -109,6 +115,8 @@ Accept: detection/declaration/containment/communication targets are met in exerc
 
 Accept: response workflow meets applicable contractual/legal target; 100% eligible derivatives accounted; canonical export independently readable; exceptions name basis/expiry.
 
+Specification insert: APP 10 mapping note — accuracy/completeness/relevance of *personal information*; interview/transcript quality; not a substitute for bitemporal business evidence.
+
 ### M5.08 — Validate metering, entitlement and unit economics
 
 1. Record immutable usage for model, retrieval, storage, rendering, connectors, support and evaluation.
@@ -117,6 +125,8 @@ Accept: response workflow meets applicable contractual/legal target; 100% eligib
 4. Calculate gross margin and cost per validated decision, stakeholder-hour saved, indexed page and engagement.
 
 Accept: usage reconciliation variance ≤1%; zero cross-tenant attribution; runaway budgets stop/queue; economic decision includes stewardship/support/assurance cost.
+
+Specification insert: cost per validated decision is a required FinOps row. Separate method/challenge tokens from chat turns.
 
 ### M5.09 — Execute production security, privacy and AI assurance
 
@@ -127,6 +137,8 @@ Accept: usage reconciliation variance ≤1%; zero cross-tenant attribution; runa
 
 Accept: zero unresolved critical/high exploitable or critical AI/privacy/accessibility issue; medium residuals have owner/expiry; independent retest confirms closure.
 
+Specification insert: map to ISO/IEC 42001, Australian AI Ethics Principles, Privacy Act 1988 / OAIC (APP 10 = personal-information quality), APRA CPG 234/CPS 234 as **mapping targets**. Documentation is not certification. No crypto-attestation-of-AHP-matrices MVP.
+
 ### M5.10 — Prove performance, fairness, capacity and graceful degradation
 
 1. Load realistic concurrent sessions, streams, autosaves, ingestion, filtered retrieval, agent fan-out, exports and webhook storms.
@@ -135,6 +147,8 @@ Accept: zero unresolved critical/high exploitable or critical AI/privacy/accessi
 4. Measure p50/p95/p99, error budgets, queue age, cost and user-visible degradation.
 
 Accept: all applicable NFRs pass; one tenant at limit does not breach another’s SLO; overload preserves acknowledged work and class-A human paths.
+
+Specification insert: PERF-02 vs PERF-07 split stands. Live interview SLO is unchanged if background method runs queue.
 
 ### M5.11 — Prove backup, AZ/Region and business continuity
 
@@ -163,6 +177,8 @@ Accept: canary stays within SLO/safety/cost guardrails; zero critical incident; 
 
 Accept: equal-or-better quality plus ≥30% stakeholder-efficiency improvement or another preregistered economic value; no critical safety/privacy harm; acceptable total cost. Report confidence/limitations—directional pilots do not prove universal causality.
 
+Specification insert — field metrics: hidden-assumption escape, unjustified recommendation, approval-confusion, steward minutes, method used vs overridden. Report worst-case slices, not averages only.
+
 ### M5.14 — Hold pilot and production go/no-go separately
 
 1. Independent BA/research, security/privacy/model-risk, SRE, accessibility and business authorities inspect evidence.
@@ -171,6 +187,8 @@ Accept: equal-or-better quality plus ≥30% stakeholder-efficiency improvement o
 4. Publish customer-facing system card, known limitations, subprocessors/model providers, accessibility status and material-change process.
 
 Accept production only with operating service, signed residual risk, rollback/kill switch and no enterprise release blocker. Pilot success alone is insufficient.
+
+Specification insert: Decision Methods and challenge each get an independent `production | constrain | rework | retire | research only` line. A pretty demo is insufficient.
 
 ### M5.15 — Add regional/tenant-tier scale only after production evidence
 
@@ -190,6 +208,8 @@ Accept: new cell/tier independently meets its contract; no global plane contains
 
 Accept: no critical slice regression or cross-organisation leakage; locale/domain limitations published; optional service has accepted ADR and rebuild/exit path.
 
+Specification insert: graph/search extraction still requires measured access-pattern evidence (X06 / this task). GraphRAG cannot skip this.
+
 ### M5.17 — Qualify progressive autonomy per action class
 
 1. Inventory action/resource/side effect/reversibility/data/risk and current approval.
@@ -198,6 +218,8 @@ Accept: no critical slice regression or cross-organisation leakage; locale/domai
 4. Canary with explicit tenant opt-in, limits, anomaly monitoring and rapid rollback.
 
 Accept: zero unauthorised/duplicate effect; approval invalidates on any material change; class C remains human-authorised and class D prohibited absent new executive/legal mandate.
+
+Specification insert: method `recommendation` and challenge halt never become autonomy to approve, publish or contact stakeholders. No silent promotion of LLM pairwise to confirmed weights.
 
 ### M5.18 — Prove production frontend experience operations
 
@@ -243,6 +265,8 @@ Accept: one complete continuous review/requalification cycle passes; stale evide
 4. Sign `scale`, `hold`, `narrow`, or `retire` per capability/tier/Region and publish evidence manifest.
 
 Accept: at least one complete review cycle operates; stale evidence automatically blocks promotion; no broad “platform approved” statement replaces scoped decisions.
+
+Specification insert: quarterly review that CR, log-probs and Fusion-Score-like aggregates have not re-entered dashboards as approval proxies.
 
 ## Pilot, production and scale scorecards
 

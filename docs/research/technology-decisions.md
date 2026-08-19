@@ -42,6 +42,8 @@ These rows govern initial spikes, not procurement or production acceptance. `Can
 - AWS is the physical deployment baseline. Non-AWS alternatives are portability/exception paths requiring explicit data-flow and residency approval, not parallel defaults.
 - Temporal selection is two-stage: X07-A/T0.10 supports a provisional foundation ADR; X07-B in R1 is required before production acceptance.
 
+Decision Intelligence footnote (2026-08-19): meeting notes proposed C# AHP workers, Kafka/RabbitMQ and GraphRAG as defaults. Those remain **rejected locks**. TD-001 (Python/TypeScript), TD-011 (SQS/EventBridge) and TD-006 (relational graph projection; extract only after measured multi-hop evidence) do **not** change status. GraphRAG, if ever, is an X06 optional projection candidate — not an accepted ADR. Bounded AHP/BWM, if ever, run behind the existing `CognitiveRuntime` / `/agent-runs` port.
+
 ## Framework challenge
 
 LangChain may supply model/tool/retriever adapters but cannot leak into domain contracts. LangGraph controls bounded cognitive state, not the engagement record. CrewAI and Semantic Kernel remain benchmark adapters until they beat the typed topology under X03 and runtime qualification. Pydantic supplies validation, not durable orchestration. No framework supplies enterprise semantics, authority, evaluation or BA competence.

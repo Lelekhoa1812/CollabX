@@ -1,6 +1,6 @@
 # Conversation, survey, and facilitation specification
 
-Status: normative · Baseline: `design-v3` · Effective: 2026-08-11 · Owner: BA practice and design councils
+Status: normative · Baseline: `design-v4` · Effective: 2026-08-19 · Owner: BA practice and design councils
 
 ## Conversation controller
 
@@ -37,6 +37,9 @@ Hard reject: leading false premise; asks beyond consent/purpose; requests known 
 - Test universals with “when does that not apply?” and scope/time.
 - Detect circular discussion and propose a decision method/owner.
 - Name conflict neutrally and show both evidence sets.
+- Live path never waits on AHP, NLI or structured challenge; those run as durable activities.
+- Six Hats is an optional human-workshop lens, not a standing AI personality.
+- Do not present an IBIS / Dialogue Mapping canvas. Typed IBIS moves appear as lists and briefs (PERF-06).
 - Give quiet/asynchronous channels equal weight.
 - Timebox; park out-of-purpose items with ownership.
 - End with model playback, corrections, open questions, decisions/actions and data-retention reminder.
@@ -53,7 +56,7 @@ Collective clarification retains each response, role/authority, scope/time and c
 
 WebSocket/SSE events include sequence, session/version, speaker, timestamp, type and idempotency key. Events: connected, consent_recorded, utterance_partial/final/corrected, question_proposed/asked/skipped, recap_proposed/confirmed/corrected, knowledge_candidate, conflict_detected, action/decision, pause/resume/end and error. Server is authoritative for ordering; clients resume from last acknowledged sequence.
 
-Audio is optional. Prefer streaming transcription without retaining raw audio; if retention is authorised, isolate encrypted audio with shorter policy. Participant can correct transcript before extraction. Never treat speaker diarisation or transcript confidence as identity proof.
+Audio is optional. Prefer streaming transcription without retaining raw audio; if retention is authorised, isolate encrypted audio with shorter policy. Participant can correct transcript before extraction. Never treat speaker diarisation or transcript confidence as identity proof. Do not lock a Kafka “2-minute audio buffer” as architecture; extraction is `ExtractInterviewAsync` on the durable workflow.
 
 ## Safety and UX recovery
 

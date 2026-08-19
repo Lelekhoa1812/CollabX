@@ -1,6 +1,6 @@
 # Evaluation and experiment program
 
-Status: research control · Baseline: `design-v3` · Effective: 2026-08-11 · Owner: research and evaluation council
+Status: research control · Baseline: `design-v4` · Effective: 2026-08-19 · Owner: research and evaluation council
 
 ## Research doctrine
 
@@ -63,14 +63,33 @@ An experiment can mature across phases without changing its hypothesis ID. Recor
 | X10 | Progressive intent/Q&A plus governed code tools outperform one-shot/manual experience generation | ambiguous briefs through L1–L5; manual, generic generator and CollabX; stale/hostile repositories; **polyglot and brownfield fixtures** | higher valid-correction/trace/patch quality at lower cycle/review time with zero critical patch/effect failure | qualify fidelity/tool/topology per task |
 | X11 | AC-gated review catches requirement gaps better than quality-only bots and matches human review on critical AC misses | seeded PRs/change sets with planted AC-gaps, trace breaks and test weakening; baselines: human reviewer, quality-only bot, CollabX Reviewer | AC-gap recall ≥ feasibility threshold (M1) then confirmatory ≥90% on hidden set; false-positive rate ≤ agreed bound; **zero silent approve**; findings cite AC IDs | enable Reviewer always-on; tune severity/blocking policy |
 | X12 | Brownfield archaeology produces cited as-is BA claims that beat unaided SME memory and generic RAG on fixture packs | synthetic/consented ERP-like, CRM-metadata and customization packs; gold process/rule/integration claims; CollabX Archaeologist vs RAG vs unaided notes | claim precision/recall material gain; **100%** material claims cited or UNSUPPORTED; zero silent semantic promotion | adopt archaeology path; size steward burden |
+| X13 | For Class C option/conflict cases, classed structured challenge reduces critical defect escape vs critic-only after cost/latency | same gold cases; conditions = single-pass, lead+critic, lead+classed challenge; matched token budget | material drop in hidden-assumption escape and unjustified-recommendation rate at acceptable cost/latency; termination without “zero contradictions = success” | enable classed challenge only on winning Class C tasks; else keep critic-only. A 3-agent JSON demo that “converged” is not a pass. Do not enable MAFP |
+| X14 | MCDA lite is non-inferior to bounded AHP/BWM on rank usefulness and cheaper in stakeholder minutes | same option sets; methods = MCDA lite, AHP n≤7, BWM; human judges; optional LLM-drafted scores as a *bias* arm | adopt only methods that beat MCDA lite on a pre-registered metric without raising approval-confusion | default if null: keep MCDA lite; AHP/BWM stay optional or OOS |
+
+X13 and X14 are **specified, not run** in this documentation workstream. They execute only in a later signed M1/M3 programme. X03 remains the specialist-spawn gate; X13 is a sibling protocol, not a replacement.
+
+### Metric dictionary (X13 / X14)
+
+Specify numerator, denominator, exclusions, unit and direction before any run. Do not add a Fusion Score SLI.
+
+| Metric | Numerator | Denominator | Exclusions | Unit / direction |
+|---|---|---|---|---|
+| Hidden-assumption recall | Seeded material assumptions found by critic or challenge | Seeded material assumptions in the gold case | Assumptions waived in gold | rate; higher better |
+| Unjustified-recommendation rate | Runs that emit `recommendation=prefer` while a critical dimension is `unassessed` or an important+unknown assumption is open | Method/challenge runs in the slice | `recommendation=none` as designed | rate; lower better |
+| Termination rate | Runs that halt with an enumerable reason (`needs-evidence`, `needs-human`, budget, repetition, no new evidence) | Runs started | Operator cancel outside protocol | rate; higher better when halt is correct |
+| Stakeholder minutes | Clock time judges spend scoring, pairwise or even-swaps | Completed method run | Facilitator setup | minutes; lower better at equal quality |
+| Rank stability | Rank unchanged under preregistered ±weight perturbation | Perturbation trials | Trials that change the option set | rate; higher better |
+| Automation bias (LLM-drafted scores) | Human-accepted LLM scores that contradict cited evidence or gold | LLM-drafted score cells | Cells humans explicitly override | rate; lower better |
+| Rank-reversal | Rank of remaining options changes when an option is added or removed | Add/remove trials | Trials that also change weights | rate; lower better |
+| Cost per validated decision | Tokens + human minutes + infra attributable to one signed `/decisions` record | Signed decisions in the window | Chat turns that never reached Decide | currency or tokens+minutes; report separately from cost per chat turn |
 
 ## Adversarial suite
 
-Include indirect prompt injection, malicious connector descriptions, poisoned memory, colluding sources, invented citations, plausible obsolete policy, scope collision, identity merge, authority spoof, Unicode/schema attacks, huge inputs, tool replay, retry storms, cancellation races, data deletion, cross-tenant nearest neighbours, emotionally coercive questioning, consensus bias, **repository instruction injection**, **stale/dirty base patch**, **index ACL leakage**, **false AC-coverage**, and **ERP export IP exfiltration**.
+Include indirect prompt injection, malicious connector descriptions, poisoned memory, colluding sources, invented citations, plausible obsolete policy, scope collision, identity merge, authority spoof, Unicode/schema attacks, huge inputs, tool replay, retry storms, cancellation races, data deletion, cross-tenant nearest neighbours, emotionally coercive questioning, consensus bias, **repository instruction injection**, **stale/dirty base patch**, **index ACL leakage**, **false AC-coverage**, **ERP export IP exfiltration**, **LLM-filled AHP matrix with pretty `CR < 0.1` that contradicts cited evidence**, **averaging-into-approval attempt**, **scope-split presented as contradiction**, **obsolete policy used as current constraint**, **challenge loop with no new evidence**, and **sandbox test cited without receipt hash**.
 
 ## Quality gates
 
-R0 research gate: corpus/rubrics, preregistered X01–X06/X09–**X12** thin feasibility results and X07-A evidence exist. R1 foundation: isolation, provenance, bitemporal versioning, contracts, frontend/code-workspace/**code-index** substrate and X07-B production qualification pass. R2 intelligence: confirmatory X02/X03/X06/X08/X10/**X11/X12** evidence and grounded bounded agent loops beat strong baselines on declared critical slices. R3 collaboration: confirmatory X01/X04/X05/X09/X10 elicitation, frontend, prototype/code-generation and **review/AC-coverage** studies pass. R4 pilot: end-to-end business, frontend, generated-change, **brownfield archaeology** outcome and safety gates pass. Production autonomy remains action-class-specific.
+R0 research gate: corpus/rubrics, preregistered X01–X06/X09–**X12** thin feasibility results and X07-A evidence exist. X13/X14 are specified in this programme; they are not an R0 execution requirement unless product council authorises a later research pack. R1 foundation: isolation, provenance, bitemporal versioning, contracts, frontend/code-workspace/**code-index** substrate and X07-B production qualification pass. R2 intelligence: confirmatory X02/X03/X06/X08/X10/**X11/X12** evidence and grounded bounded agent loops beat strong baselines on declared critical slices; X13/X14 confirmatory only if authorised. R3 collaboration: confirmatory X01/X04/X05/X09/X10 elicitation, frontend, prototype/code-generation and **review/AC-coverage** studies pass. R4 pilot: end-to-end business, frontend, generated-change, **brownfield archaeology** outcome and safety gates pass. Production autonomy remains action-class-specific.
 
 ## Scientific hygiene
 

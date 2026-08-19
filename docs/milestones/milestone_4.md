@@ -1,12 +1,14 @@
 # Milestone 4 — Collaborative discovery, validation and governed baseline
 
-Status: delivery control · Baseline: `design-v3` · Effective: 2026-08-11 · Owner: product, design and BA councils · Maps to: R3 / T7–T8 and T9.01–T9.04
+Status: delivery control · Baseline: `design-v4` · Effective: 2026-08-19 · Owner: product, design and BA councils · Maps to: R3 / T7–T8 and T9.01–T9.04
 
 ## Outcome and decision
 
 Prove that approved intelligence improves real collaborative discovery: people can contribute safely, understand status/authority, correct the system, validate low-fidelity designs, **review AC coverage on change sets**, run brownfield claim review and publish an immutable baseline through explicit human approval. This milestone qualifies user journeys, not production operations.
 
-Read: [facilitation](../product/conversation-survey-and-facilitation.md), [discovery/prototyping](../experience/discovery-and-prototyping.md), [information architecture](../experience/information-architecture-and-design-system.md), [artefacts/gates](../product/artefacts-traceability-and-gates.md), [coding intelligence](../intelligence/coding-intelligence-and-review-agent.md), [method engines](../product/ba-method-engines-and-sufficiency.md), [NFRs](../engineering/non-functional-requirements.md), and T7–T9 in the [build sequence](../delivery/build-sequence-and-dependency-graph.md).
+Read: [facilitation](../product/conversation-survey-and-facilitation.md), [discovery/prototyping](../experience/discovery-and-prototyping.md), [information architecture](../experience/information-architecture-and-design-system.md), [enterprise frontend](../experience/enterprise-frontend-experience.md), [artefacts/gates](../product/artefacts-traceability-and-gates.md), [coding intelligence](../intelligence/coding-intelligence-and-review-agent.md), [method engines](../product/ba-method-engines-and-sufficiency.md), [decision intelligence](../research/decision-intelligence-and-deliberation.md), [NFRs](../engineering/non-functional-requirements.md), and T7–T9 in the [build sequence](../delivery/build-sequence-and-dependency-graph.md).
+
+Inserts below specify Understand, Decide, Contribute and facilitation contracts. This workstream does not implement portals or change `prototype/` runtime. No new dashboard; ≤6 primary nav unchanged.
 
 ## Entry and constraints
 
@@ -50,6 +52,8 @@ All T7.01–T8.17 and baseline-readiness T9.01–T9.04 packages are covered.
 
 Accept: all critical surfaces meet WCAG 2.2 AA automated/manual checks; status meaning is consistent with schemas; no inaccessible graph-only task; no normal portal screen exposes more than six primary navigation items.
 
+Specification insert: Options / Disagreement / Decide brief field lists — method, scores, `unassessed`, tornado table, dissent, assumption map, both evidence sets, Decision Quality weak-link, dispositions. Assistant cannot approve. Conflict Resolution Brief is absorbed by these surfaces, not a new IA item.
+
 ### M4.02 — Implement stakeholder, authority and inclusion topology
 
 1. Capture role/expertise/impact/influence/authority/incentive/accessibility/language/timezone with effective dates.
@@ -58,6 +62,8 @@ Accept: all critical surfaces meet WCAG 2.2 AA automated/manual checks; status m
 4. Support secure invite, absence, expiry, anonymous channel and escalation policies.
 
 Accept: all study decisions route to a valid authority; unrepresented critical class blocks discovery readiness unless a valid waiver exists.
+
+Specification insert: `judge_set` on method runs uses this authority topology. Missing perspective blocks G1/G3 as today. Will not average judges into approval.
 
 ### M4.03 — Implement discovery planning and evidence requests
 
@@ -68,6 +74,8 @@ Accept: all study decisions route to a valid authority; unrepresented critical c
 
 Accept: independent BA can reconstruct why every planned activity exists; unsafe/out-of-purpose activity is rejected; G1 never auto-approves.
 
+Specification insert: evidence requests from important+unknown assumptions enter the source-request queue. Question techniques may include ranking/pairwise already in the facilitation spec. Hard-reject unchanged.
+
 ### M4.04 — Implement adaptive question planner/controller
 
 1. Generate typed question candidates linked to unknown/claim, technique, information gain, authority, sensitivity and stop outcome.
@@ -76,6 +84,8 @@ Accept: independent BA can reconstruct why every planned activity exists; unsafe
 4. Display concise rationale and allow skip/defer/private/source/authority routing.
 
 Accept: 100% hard-reject fixtures blocked; critical exception discovery and leading/bias thresholds meet X01 confirmatory protocol; question budget always respected.
+
+Specification insert: ranking/pairwise remain elicitation response formats. They do not launch a live AHP matrix or block the interview.
 
 ### M4.05 — Implement resilient live/async text sessions
 
@@ -86,6 +96,8 @@ Accept: 100% hard-reject fixtures blocked; critical exception discovery and lead
 
 Accept: no acknowledged response lost; resume does not repeat accepted questions; conflicts are visible; human workflow survives model outage.
 
+Specification insert: live path never blocks on AHP/NLI/challenge. Rolling transcript extraction is a durable activity (`ExtractInterviewAsync`). `conflict_detected` events stay on the session protocol. Do not specify a Kafka “2-minute audio buffer.”
+
 ### M4.06 — Implement consented voice/transcription
 
 1. Record granular consent for transcription/audio retention and allow text-only participation.
@@ -94,6 +106,8 @@ Accept: no acknowledged response lost; resume does not repeat accepted questions
 4. Apply shorter audio retention/deletion and caption/accessibility tests.
 
 Accept: 100% extracted material links to confirmed transcript version; consent withdrawal/expiry enforced; word error and critical-term error thresholds are preregistered by locale/domain.
+
+Specification insert: diarisation still ≠ identity. Extraction after correction remains a durable activity; the live path does not wait on it.
 
 ### M4.07 — Implement adaptive surveys and sampling controls
 
@@ -104,6 +118,8 @@ Accept: 100% extracted material links to confirmed transcript version; consent w
 
 Accept: branch/property tests pass; zero small-cell identity disclosure; abandonment/resume works; reports never label sample count as consensus.
 
+Specification insert: pairwise remains a *response format* for elicitation. Bounded AHP UI, if X14 ever justifies it, is a small Contribute flow — not an Understand matrix canvas.
+
 ### M4.08 — Implement workshop, canvas and conflict facilitation
 
 1. Support agenda, collaborative models, breakout synthesis, parking lot, action/decision and timebox.
@@ -113,6 +129,8 @@ Accept: branch/property tests pass; zero small-cell identity disclosure; abandon
 
 Accept: critical dissent remains visible through baseline decision; conflicts require explicit disposition; contribution channels meet inclusion requirements.
 
+Specification insert: competing claims shown symmetrically; named method/owner; no auto-resolve; no IBIS/Dialogue Mapping canvas; Six Hats optional human-workshop lens only; circular debate → decision method/owner (already facilitation behaviour).
+
 ### M4.09 — Implement Understand workspace and collaborative edit semantics
 
 1. Render sources, shared terms, temporal knowledge, process/state/rule/data, expected behaviour and why-this-exists links from canonical versions inside the Business Understand surface.
@@ -121,6 +139,8 @@ Accept: critical dissent remains visible through baseline decision; conflicts re
 4. Add search overlay with pre-ranking ACL/purpose/as-of filters and accessible result explanations.
 
 Accept: no lost semantic edit under concurrency; search leaks zero inaccessible name/content; every assistant suggestion opens its source/rationale/version.
+
+Specification insert: tab contents and list/table alternatives for Options, Disagreement, People, Policy vs actual work. Layout ≠ approval. Tornado is a table. Issue trees are outlines.
 
 ### M4.10 — Implement progressive prototype graph and sandbox
 
@@ -140,6 +160,8 @@ Accept: zero sandbox escape/network/secret access; deterministic graph/version r
 
 Accept: 100% material finding traces to exact prototype and scenario; no finding becomes approved requirement automatically; affected descendants are correctly flagged.
 
+Specification insert: prototype findings can test assumptions; they never auto-approve requirements or close `G3.HIDDEN_ASSUMPTION` without a decision or waiver.
+
 ### M4.12 — Implement artefact projections and visual QA
 
 1. Create versioned template/section-anchor DSL over canonical items.
@@ -148,6 +170,8 @@ Accept: 100% material finding traces to exact prototype and scenario; no finding
 4. Round-trip supported imports without silent canonical overwrite.
 
 Accept: semantic hashes/trace manifest match baseline; critical visual defects zero; lossy import is blocked or explicitly reviewed.
+
+Specification insert: PRD/DOCX/PDF are renderings of the signed baseline. Citation/`UNSUPPORTED` validator required. No “mathematically validated” label in templates. Promise language: evidence-backed, contradiction-tested, and quantitatively prioritised projection of an approved baseline.
 
 ### M4.13 — Implement review, approval, waiver and immutable baseline
 
@@ -158,6 +182,8 @@ Accept: semantic hashes/trace manifest match baseline; critical visual defects z
 
 Accept: content mutation invalidates pending approval; unauthorised/self-conflicted approval denied; baseline manifest is signature/hash verifiable and exactly reproducible.
 
+Specification insert: item-level dispositions; `/reviews` vs `/decisions` split; waiver taxonomy for unassessed dimensions; baseline manifest includes method-run and challenge-run versions if they informed the decision.
+
 ### M4.14 — Run confirmatory X01/X04/X05 and E2E journeys
 
 1. Test sponsor charter, facilitator discovery, SME conflict, frontline prototype, analyst evidence edit, engineer trace question, approver baseline and data-rights journeys.
@@ -166,6 +192,8 @@ Accept: content mutation invalidates pending approval; unauthorised/self-conflic
 4. Run multi-tenant/browser accessibility/security/resilience E2E and retain redacted evidence.
 
 Accept: ≥95% critical needs/exceptions discovered; ≥30% stakeholder-time improvement remains a pilot hypothesis but direction/CI is reported; trust calibration and valid-correction yield improve without material burden/anchoring; zero critical harm/accessibility/security failure.
+
+Specification insert: overnight-claims E2E is a required story (evidence → typed conflict → assumption map → MCDA dissent → critic/challenge → needs-evidence or Decide → PRD projection). Collective answers show aligned/divergent/missing, never consensus.
 
 ### M4.15 — Deliver the coherent dual-portal frontend surface
 
@@ -176,6 +204,8 @@ Accept: ≥95% critical needs/exceptions discovered; ≥30% stakeholder-time imp
 
 Accept: ≥95% critical journey completion; ≥90% first-time unassisted completion; ≥95% draft/approved/assistant-suggestion comprehension; sources found in ≤20 seconds for ≥95% tasks; WCAG 2.2 AA with zero critical/high defect; all PERF frontend targets pass; no normal portal screen exposes more than six primary navigation items.
 
+Specification insert: Understand Options/Disagreement and Decide brief absorb Conflict Resolution Brief fields. Assistant cannot approve. ≤6 primary nav unchanged.
+
 ### M4.16 — Deliver progressive intention and Q&A inside Business surfaces
 
 1. Build assistant-guided Understand and Design surfaces with brief context, intent, questions, journey, viewport, collapsed structure details, change set, validation and run progress.
@@ -184,6 +214,8 @@ Accept: ≥95% critical journey completion; ≥90% first-time unassisted complet
 4. Show why it matters, sources, uncertainty, affected linked records, validation and required next decision for every material suggestion.
 
 Accept: 100% format/branch/authority/accessibility fixtures pass; no hard-reject question; ≥80% decision-relevant question rate; users correctly explain why/what-changed/what-needs-decision in ≥90% study tasks.
+
+Specification insert: collective answers show aligned/divergent/missing, never consensus. Overnight-claims remains a required confirmatory story.
 
 ### M4.17 — Deliver coherent mock data and progressive fidelity
 
@@ -220,6 +252,8 @@ Accept: ≥95% seeded coverage gaps surfaced before approved version; zero criti
 4. Inspect screenshots and DOM/accessibility tree across all supported viewports/themes/locales/states, not pixel diffs alone; publish failure examples and limitations.
 
 Accept: all critical frontend/generation/review targets pass, zero critical security/privacy/accessibility/authority/patch issue, no fabricated metric/test, and independent product/design/engineering reviewers approve evidence rather than presentation polish.
+
+Specification insert: overnight-claims E2E required (evidence → typed conflict → assumption map → MCDA dissent → critic/challenge → needs-evidence or Decide → PRD projection). Coverage review and code-discovery consume the baseline; they do not invent it.
 
 ### M4.21 — Hold collaboration and baseline release decision
 

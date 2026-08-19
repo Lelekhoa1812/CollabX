@@ -1,12 +1,14 @@
 # Milestone 1 — Research, benchmark and decision foundation
 
-Status: delivery control · Baseline: `design-v3` · Effective: 2026-08-11 · Owner: product research council · Maps to: R0 / T0
+Status: delivery control · Baseline: `design-v4` · Effective: 2026-08-19 · Owner: product research council · Maps to: R0 / T0
 
 ## Outcome and decision
 
 Prove that CollabX addresses a valuable enterprise BA problem, that senior-quality behaviour can be measured, that the proposed experience is comprehensible, and that no known architecture/control flaw makes further investment irresponsible. The terminal decision is `invest`, `narrow`, `pivot`, or `stop`; completion is not presumed.
 
-Read: [vision](../product/vision.md), [BA operating model](../product/ba-operating-model.md), [capability map](../product/end-to-end-capability-map.md), [coding intelligence](../intelligence/coding-intelligence-and-review-agent.md), [BA/coding gap review](../research/ba-and-coding-intelligence-gap-review.md), [evaluation program](../research/evaluation-and-experiments.md), [technology decisions](../research/technology-decisions.md), [enterprise gap assessment](../research/enterprise-gap-assessment.md), [enterprise readiness](../governance/enterprise-readiness-model.md), [provider profiles](../engineering/model-provider-and-environment-profiles.md), and T0 in the [build sequence](../delivery/build-sequence-and-dependency-graph.md).
+Read: [vision](../product/vision.md), [BA operating model](../product/ba-operating-model.md), [capability map](../product/end-to-end-capability-map.md), [coding intelligence](../intelligence/coding-intelligence-and-review-agent.md), [BA/coding gap review](../research/ba-and-coding-intelligence-gap-review.md), [decision intelligence](../research/decision-intelligence-and-deliberation.md), [evaluation program](../research/evaluation-and-experiments.md), [technology decisions](../research/technology-decisions.md), [enterprise gap assessment](../research/enterprise-gap-assessment.md), [enterprise readiness](../governance/enterprise-readiness-model.md), [provider profiles](../engineering/model-provider-and-environment-profiles.md), and T0 in the [build sequence](../delivery/build-sequence-and-dependency-graph.md).
+
+Decision Intelligence inserts below specify probes, gold, metrics and invest/narrow language. They do not run interviews, `eval:run`, or product code. X13/X14 are specified-not-run unless a later signed programme authorises them.
 
 ## Entry, governance and evidence rules
 
@@ -47,6 +49,8 @@ All T0 packages listed above are covered; new T0.15–T0.17 are added in the bui
 
 Output: charter, stakeholder/authority map, `promise → metric → experiment → decision` matrix. Accept when every promise has an owner and falsification route, and no critical stakeholder class lacks a sampling plan.
 
+Specification insert: add the promise **evidence-backed, contradiction-tested, and quantitatively prioritised projection of an approved baseline** to the matrix. Map it to Capabilities 7 and 9, gates G2/G3/G5, experiments X03/X13/X14, and a kill route if method theatre beats RAG without quality. Do not claim ISO 42001 certification or a “mathematically validated PRD.”
+
 ### M1.02 — Run problem, buyer and workflow discovery
 
 1. Recruit at least 25 participants across senior BAs, sponsors, SMEs/frontline, design, engineering, risk/procurement and buyers; disclose sample imbalance.
@@ -56,10 +60,12 @@ Output: charter, stakeholder/authority map, `promise → metric → experiment �
 
 Output: de-identified evidence set, opportunity map and disconfirming findings. Accept when at least three buyer contexts show a material problem or the council narrows/stops; do not infer market size from participant enthusiasm.
 
+Specification insert — interview/observation probes (T0.01): (1) pairwise AHP vs scored MCDA vs even-swaps talk; (2) how policy-versus-practice is resolved today; (3) cost of a bad G3 decision vs extra stakeholder minutes; (4) would they accept a system that *refuses* to recommend; (5) existing WSJF/MoSCoW/AHP use. Do not treat meeting-note enthusiasm as market size.
+
 ### M1.03 — Define senior-BA competency and artefact rubrics
 
 1. Convert the six BA knowledge areas and CollabX quality rubric into observable behavioural anchors.
-2. Define critical failures: missed safety/regulatory constraint, fabricated authority/evidence, leading coercive elicitation, unresolved material contradiction and untestable baseline.
+2. Define critical failures: missed safety/regulatory constraint, fabricated authority/evidence, leading coercive elicitation, unresolved material contradiction, untestable baseline, hidden assumption shipped as fact, unjustified recommendation with an `unassessed` critical dimension, averaging dissent into approval, Fusion-Score-as-approval, and fabricated pairwise matrix with pretty CR.
 3. Calibrate at least three expert graders on shared examples and adjudicate ambiguity.
 4. Freeze rubric version and grader guide before candidate comparison.
 
@@ -74,6 +80,8 @@ Output: rubric, scoring handbook, calibration results. Accept when weighted inte
 
 Output: versioned public-synthetic smoke set and restricted gold set. Accept when every critical slice has positive/negative examples and no candidate has access to hidden answers.
 
+Specification insert: require at least one overnight-claims-style option/conflict fixture (policy-versus-practice, unsupported volume, split-rule option, weight disagreement). Gold must include options (null/process/configure as applicable), assumption map, MCDA scores with one `unassessed`, typed conflict, Decide dispositions, and PRD projection exclusions. Do not seed a “Nash equilibrium reached” success label.
+
 ### M1.05 — Implement the evaluation and metric harness specification
 
 1. Define metric numerator, denominator, exclusions, unit, direction, aggregation, slice, window and owner.
@@ -82,6 +90,8 @@ Output: versioned public-synthetic smoke set and restricted gold set. Accept whe
 4. Create a failure taxonomy separating model, retrieval, policy, data, grader, infrastructure and human-process failures.
 
 Output: evaluation protocol and schemas. Accept when an independent evaluator can reproduce a sample calculation from fixtures without interpretation.
+
+Specification insert: include the X13/X14 metric dictionary in [evaluation-and-experiments.md](../research/evaluation-and-experiments.md) — hidden-assumption recall, unjustified-recommendation rate, termination rate, stakeholder minutes, rank stability, automation-bias when LLM drafts scores, rank-reversal, cost per validated decision. Numerators/denominators/exclusions only; no harness code and no Fusion Score SLI.
 
 ### M1.06 — Validate real-model configuration and provider contract
 
@@ -92,6 +102,8 @@ Output: evaluation protocol and schemas. Accept when an independent evaluator ca
 
 Output: Azure provider conformance report. Accept with 100% schema enforcement, attributable deployment/request metadata, zero secret leakage and complete results for the preregistered probe count. Failure blocks model-dependent research, not deterministic documentation work.
 
+Specification insert: method/challenge research, if ever run, uses the existing `eval-real` profile and cannot qualify Bedrock. No C# or NLI-service probe. This milestone file does not run model probes.
+
 ### M1.07 — Execute X01 elicitation feasibility
 
 1. Compare adaptive policy, static script and expert-BA condition using randomised/order-balanced scenarios.
@@ -100,6 +112,8 @@ Output: Azure provider conformance report. Accept with 100% schema enforcement, 
 4. Analyse effect and uncertainty; record qualitative failure examples.
 
 Output: X01 feasibility decision. Accept investment only if coverage/quality is non-inferior to the expert baseline within the preregistered margin and burden does not materially worsen.
+
+Specification insert: assumption-mapping and issue-tree *assists* are elicitation/synthesis aids. They do not replace the X01 kill gate. Do not invent X01b “Six Hats interview.”
 
 ### M1.08 — Execute X02 semantic layer versus strong RAG
 
@@ -110,6 +124,8 @@ Output: X01 feasibility decision. Accept investment only if coverage/quality is 
 
 Output: X02 architecture decision evidence. Accept added semantic complexity only for material critical-slice gain at a supportable maintenance estimate.
 
+Specification insert: issue-tree assist does not replace the X02 kill gate. Semantic/temporal assets remain the hypothesis under test.
+
 ### M1.09 — Execute X03–X05 experience and topology feasibility
 
 1. X03 compares single agent, single+critic and bounded specialists using the same budgets where possible.
@@ -118,6 +134,8 @@ Output: X02 architecture decision evidence. Accept added semantic complexity onl
 4. Report quality, latency, cost, workload, accessibility and adverse effects independently.
 
 Output: three experiment decisions. Accept multi-agent or higher fidelity only when its incremental benefit exceeds preregistered cost/burden and no critical slice regresses; otherwise it remains disabled.
+
+Specification insert: X13 is a *sibling protocol* to X03 (classed challenge vs critic-only, matched token budget). A 3-agent JSON demo that “converged” is not a pass. Do not enable MAFP because debate converged. X04 remains the evidence-view vs prose test for Decide/Understand. X05 is unchanged.
 
 ### M1.10 — Execute X06 storage/retrieval feasibility
 
@@ -128,6 +146,8 @@ Output: three experiment decisions. Accept multi-agent or higher fidelity only w
 
 Output: storage/retrieval ADR evidence. Accept PostgreSQL pilot baseline only with zero isolation failures and thresholds from [vision](../product/vision.md)/[NFRs](../engineering/non-functional-requirements.md); otherwise select a bounded spike, not an untested engine.
 
+Specification insert: GraphRAG stays an X06 *optional projection* candidate, not a lock. Do not write a GraphRAG ADR as accepted. Counterevidence sampling remains required for option/conflict cases.
+
 ### M1.11 — Execute X07-A durable/cognitive runtime spike
 
 1. Implement the minimal wait-signal-interrupt-resume workflow and one bounded model activity behind ports.
@@ -136,6 +156,8 @@ Output: storage/retrieval ADR evidence. Accept PostgreSQL pilot baseline only wi
 4. Compare Temporal-compatible and credible alternative constraints, deployment, residency, cost and skills.
 
 Output: provisional runtime ADR. Accept only with no lost acknowledged state/duplicate effect in all planned failure injections and documented production qualification work for M2.
+
+Specification insert: long method/challenge runs are PERF-07 durable activities (ack, cancel/resume, progress). Live interview never waits on them. Same Temporal-or-equivalent port; no Kafka lock and no C# AHP worker.
 
 ### M1.12 — Complete architecture, threat, privacy and abuse analysis
 
@@ -146,6 +168,8 @@ Output: provisional runtime ADR. Accept only with no lost acknowledged state/dup
 
 Output: reviewed threat/privacy/data-flow pack. Accept when no critical risk lacks an in-scope control/test or explicit stop decision.
 
+Specification insert — rejected controls: `CR < 0.1` is not an injection firewall; token log-probs are not factual confidence; averaging judges is an abuse case; LLM-filled pretty AHP matrices are an adversarial fixture. APP 10 maps to *personal information* quality, not document freshness.
+
 ### M1.13 — Validate journey prototypes and accessibility direction
 
 1. Prototype initiative brief, evidence-first contribution, Understand disagreement review, Design feedback and item-level approval journeys across Business and Build portal concepts.
@@ -154,6 +178,8 @@ Output: reviewed threat/privacy/data-flow pack. Accept when no critical risk lac
 4. Revise and retest critical failures; record design-system requirements.
 
 Output: validated experience direction. Accept with 100% critical-task completion after allowed recovery, no critical accessibility blocker and ≥90% correct comprehension of `proposed/confirmed/approved` in the study sample.
+
+Specification insert: Understand Options / Disagreement and the Decide brief absorb the “Conflict Resolution Brief.” No new dashboard IA. Tornado is a table. Issue trees are outlines. Pairwise matrix canvas remains OOS. Do not implement new `prototype/` pages in this documentation workstream.
 
 ### M1.14 — Establish enterprise service and commercial hypotheses
 
@@ -164,6 +190,8 @@ Output: validated experience direction. Accept with 100% critical-task completio
 
 Output: commercial/TCO hypothesis. Accept only if a plausible value-to-cost path exists and buyers accept the required governance; otherwise narrow target segment.
 
+Specification insert: probe cost-of-bad-G3 vs extra stakeholder minutes; treat cost per validated decision as a commercial hypothesis; include governance burden of stewarding method judgments.
+
 ### M1.15 — Execute X09 enterprise frontend benchmark and design direction
 
 1. Benchmark comparable executive, participant, analytical, approval, administration and delivery workflows against the [enterprise frontend specification](../experience/enterprise-frontend-experience.md), using identical task scripts rather than subjective screenshots.
@@ -172,6 +200,8 @@ Output: commercial/TCO hypothesis. Accept only if a plausible value-to-cost path
 4. Freeze the dual-portal surface catalogue, design principles, component/status vocabulary, supported device/locale matrix and measurable target assumptions for M2–M4.
 
 Output: frontend research report, portal/journey matrix and design direction. Accept when ≥90% participants complete the primary concept journey without facilitator rescue, ≥90% distinguish draft/approved/assistant suggestion, all critical accessibility blockers are removed, and executives identify outcome/main risk/decision in ≤5 minutes.
+
+Specification insert: freeze language that Understand Options/Disagreement and Decide brief absorb Conflict Resolution Brief fields (method, scores, `unassessed`, tornado table, dissent, assumption map, both evidence sets, Decision Quality weak-link, item-level dispositions). No new dashboard.
 
 ### M1.16 — Execute X10 experience-generation and coding-agent benchmark
 
@@ -183,6 +213,8 @@ Output: frontend research report, portal/journey matrix and design direction. Ac
 
 Output: generation/coding-agent benchmark and threat pack. Accept further investment only if the governed approach preserves 100% critical intent/trace, loses zero unrelated changes, produces zero unauthorised effect and shows a credible improvement in time or valid-correction yield over the comparison workflow. Frontend-only L5 is insufficient as the sole path.
 
+Specification insert: sandbox test receipts may later *evidence* technical-feasibility claims; they do not generate PRDs. MCTS, if ever, is an X10 / Capability 18 research option only (SWE-Debate’s actual setting). Do not add SWE-Debate as a BA default.
+
 ### M1.17 — Build brownfield / ERP-like research corpus
 
 1. Construct at least three packs: process-heavy, customization-heavy, integration-heavy (synthetic or consented de-identified).
@@ -191,6 +223,8 @@ Output: generation/coding-agent benchmark and threat pack. Accept further invest
 4. Publish pack versions and retention/destruction rules.
 
 Accept: ≥3 packs versioned; security/privacy review signed; no production ERP customer IP without contract.
+
+Specification insert: archaeology assumptions later feed the assumption-mapping engine. They do not create a second code graph. Tree-sitter is a parser adapter under CodeKnowledgeGraph.
 
 ### M1.18 — Execute X11 AC-gated review benchmark
 
@@ -210,6 +244,8 @@ Accept: feasibility recall meets preregistered threshold; **zero silent approve*
 
 Accept: material precision/recall gain or honest narrow; **100%** material claims cited or UNSUPPORTED; zero silent promotion; domain-pack TCO sketch updated.
 
+Specification insert: archaeology-derived assumptions enter assumption mapping as candidate items with valid interval and owner; they never silently become confirmed weights or Musts.
+
 ### M1.20 — Hold the R0 investment decision
 
 1. Freeze results and compile evidence/limitations, not a sales narrative.
@@ -218,6 +254,8 @@ Accept: material precision/recall gain or honest narrow; **100%** material claim
 4. Sign `invest`, `narrow`, `pivot` or `stop`, plus M2 scope, budgets and accepted/provisional ADRs.
 
 Output: immutable M1 evidence manifest and decision. Accept milestone completion only when the decision is signed; an honest stop is a successful research outcome. Coding intelligence may be narrowed (e.g. git+polyglot first, SAP adapter later) but **cannot be dropped entirely** if brownfield BA remains in vision.
+
+Specification insert — Decision Intelligence invest/narrow: thicken MCDA / assumption-mapping / critic only if M1.02 / M1.04 / M1.09 evidence supports it. AHP/BWM stay optional or OOS unless X14 is authorised. MAFP, MCTS-for-PRD, C#, Kafka and GraphRAG cannot be `invest` items from meeting notes alone.
 
 ## Milestone success scorecard
 
@@ -234,6 +272,7 @@ Output: immutable M1 evidence manifest and decision. Accept milestone completion
 | AC-gated review | X11 feasibility pass; zero silent approve |
 | Archaeology | X12 feasibility pass or signed narrow; 100% citation integrity |
 | Decision integrity | every experiment has result, uncertainty, failure examples and action |
+| Decision Intelligence (specified) | X13/X14 protocols and overnight-claims gold exist; no Fusion Score / MAFP / “mathematically validated PRD” in the signed promise matrix |
 
 ## Runnable validation contract
 
@@ -244,6 +283,7 @@ task docs:check
 task test:unit
 task eval:preflight --profile eval-real --redact
 task eval:run --experiment X01,X02,X03,X04,X05,X06,X07-A,X09,X10,X11,X12 --profile eval-real
+# X13,X14 are specified; include only if a later signed programme authorises the pack
 task eval:verify-manifest --milestone M1
 ```
 

@@ -1,12 +1,14 @@
 # Milestone 3 — Grounded Senior BA intelligence core
 
-Status: delivery control · Baseline: `design-v3` · Effective: 2026-08-11 · Owner: AI and BA engineering councils · Maps to: R2 / T5–T6
+Status: delivery control · Baseline: `design-v4` · Effective: 2026-08-19 · Owner: AI and BA engineering councils · Maps to: R2 / T5–T6
 
 ## Outcome and decision
 
 Qualify a bounded, evidence-first single-agent BA analytical core against strong RAG and human baselines, plus archaeology and AC-gated review cognitive cores. It must extract, model, challenge and propose without silently creating truth or authority. Multi-agent implementer paths remain disabled unless ablation proves a specific benefit; **Reviewer is always-on read-only when approved**.
 
-Read: [agents/memory/RAG](../intelligence/agents-memory-rag.md), [coding intelligence](../intelligence/coding-intelligence-and-review-agent.md), [model lifecycle](../intelligence/model-agent-and-evaluation-lifecycle.md), [provider profiles](../engineering/model-provider-and-environment-profiles.md), [data model](../architecture/data-and-knowledge-model.md), [BA model](../product/ba-operating-model.md), [evaluation program](../research/evaluation-and-experiments.md), and T5–T6 in the [build sequence](../delivery/build-sequence-and-dependency-graph.md).
+Read: [agents/memory/RAG](../intelligence/agents-memory-rag.md), [method engines / sufficiency](../product/ba-method-engines-and-sufficiency.md), [decision intelligence](../research/decision-intelligence-and-deliberation.md), [coding intelligence](../intelligence/coding-intelligence-and-review-agent.md), [model lifecycle](../intelligence/model-agent-and-evaluation-lifecycle.md), [provider profiles](../engineering/model-provider-and-environment-profiles.md), [data model](../architecture/data-and-knowledge-model.md), [BA model](../product/ba-operating-model.md), [evaluation program](../research/evaluation-and-experiments.md), and T5–T6 in the [build sequence](../delivery/build-sequence-and-dependency-graph.md).
+
+This is the specification home for Decision Methods, critic/challenge and sufficiency. Inserts below do not implement the agent runtime or model gateway. Lead-BA default remains; specialists stay ablation-gated.
 
 ## Entry and hard constraints
 
@@ -60,6 +62,8 @@ Accept: 100% route fixtures select or deny as oracle; injected outage never choo
 
 Accept: 100% invalid outputs blocked from canonical/tool boundaries; repair never changes authority/data scope; failure is explicit and observable.
 
+Specification insert: challenge-move schema and method-output schema are prompt/tool contracts. Unknown fields rejected. Engine tags (`mcda_lite` \| `wsjf` \| `moscow` \| `assumption_map` \| `even_swaps` \| `ahp` \| `bwm` \| `catwoe_assist` \| `challenge`) are versioned with prompts.
+
 ### M3.03 — Build prompt, policy and capability release registry
 
 1. Version prompt components, schemas, tools, models/routes, policies, budgets and domain-pack compatibility.
@@ -68,6 +72,8 @@ Accept: 100% invalid outputs blocked from canonical/tool boundaries; repair neve
 4. Diff releases semantically and invalidate approvals on dependency change.
 
 Accept: no runtime prompt string lacks registry identity; exact historical capability can be reconstructed from its manifest; rollback target passes smoke suite.
+
+Specification insert: method-output and challenge-move schemas are registry identities. A prompt change that silently fills missing critical scores is a breaking change.
 
 ### M3.04 — Implement hybrid retrieval and exact benchmark
 
@@ -78,6 +84,8 @@ Accept: no runtime prompt string lacks registry identity; exact historical capab
 
 Accept: Recall@10 ≥0.95 for critical evidence and ≥0.90 for critical counterevidence on hidden set; citation precision ≥0.95; zero ACL leak; PERF-04 passes. Threshold changes require evaluation-council approval.
 
+Specification insert: option/conflict context manifests must include counterevidence, open assumptions, weight disagreement and the named method. NLI is not a retrieval substitute.
+
 ### M3.05 — Build immutable context compiler
 
 1. Compile goal, actor/authority, policies, evidence, item versions, conflicts, tools, schema and budget.
@@ -86,6 +94,8 @@ Accept: Recall@10 ≥0.95 for critical evidence and ≥0.90 for critical counter
 4. Test lost-in-context, malicious sources, stale summaries, scope collision and replay.
 
 Accept: identical pinned inputs produce the same manifest; 100% included evidence is permitted/current for query scope; critical evidence loss rate meets retrieval gate.
+
+Specification insert: method/challenge runs consume the same immutable manifest contract. Freshness remains validity interval + authority, not `last_modified` decay.
 
 ### M3.06 — Implement memory lifecycle and X08
 
@@ -105,6 +115,8 @@ Accept: 100% critical corrections retained in applicable later cases; zero unapp
 
 Accept: 100% runs terminate within declared wall/token/tool/repair budgets; cancellation stops descendants; canonical state is never directly written.
 
+Specification insert: controller halt/escalate — no `new_evidence` for two rounds; semantic repetition; budget exhausted; escalate if consecutive no-concession ≥ 3 **and** a critical conflict remains. Controller is not an Arbiter that decides. Terminal reasons already include `needs-human` / `needs-evidence`. Never “zero contradictions = success.”
+
 ### M3.08 — Implement assertion and evidence extraction
 
 1. Extract atomic claims with modality, scope/time, claimant/authority, confidence method and exact spans.
@@ -113,6 +125,8 @@ Accept: 100% runs terminate within declared wall/token/tool/repair budgets; canc
 4. Queue material candidates for professional review and capture corrections.
 
 Accept: span entailment precision ≥0.95 and material-claim recall ≥0.90 on hidden critical set; invented citation rate 0%; every missed critical claim is reviewed as release blocker.
+
+Specification insert: span-entailment remains the NLI-like *candidate* (existing ≥0.95 precision target). Candidates feed typed conflict checks; they do not auto-create conflicts.
 
 ### M3.09 — Implement domain and conflict modelling
 
@@ -123,6 +137,8 @@ Accept: span entailment precision ≥0.95 and material-claim recall ≥0.90 on h
 
 Accept: critical contradiction recall ≥0.90 and precision ≥0.90; temporal/scope correctness ≥0.95; zero auto-resolution of material conflict.
 
+Specification insert: pipeline order is counterevidence → optional NLI candidate → scope/time/authority/policy-versus-practice/referent → `conflict.detected`. Conflict SM extensions: `under_deliberation`, `dissent_recorded`, `deferred`, optional `scope_split_pending`. No `workshop_active`. No “zero contradictions = success.”
+
 ### M3.10 — Implement strategy/current-state analysis
 
 1. Frame problem versus symptom, outcome baseline and decision boundary.
@@ -131,6 +147,8 @@ Accept: critical contradiction recall ≥0.90 and precision ≥0.90; temporal/sc
 4. Propose future-state outcomes/metrics without converting assumptions into facts.
 
 Accept: expert rubric ≥human-with-generic-LLM baseline and non-inferior to strong RAG overall; no critical causal-overreach failure.
+
+Specification insert: issue-tree / hypothesis-tree **assist** (MECE lint, 3–5 branches, outline UI, `G2.NO_CAUSE`). Opportunity–solution outline is a view, not a new graph.
 
 ### M3.11 — Implement requirement, scenario, NFR and trace analysis
 
@@ -141,6 +159,8 @@ Accept: expert rubric ≥human-with-generic-LLM baseline and non-inferior to str
 
 Accept: ≥90% pass expert quality rubric, ≥95% critical scenario coverage, 100% material facts grounded/unsupported, zero critical permission/recovery omission.
 
+Specification insert: requirements stay downstream of decisions. Method ranks do not become Musts automatically. MoSCoW labels are a separate engine.
+
 ### M3.12 — Implement option, feasibility and decision support
 
 1. Include null/manual/process/configure/buy/build/integrate options as applicable.
@@ -149,6 +169,8 @@ Accept: ≥90% pass expert quality rubric, ≥95% critical scenario coverage, 10
 4. Produce decision proposal with expiry/revisit trigger; require named human authority.
 
 Accept: no option is recommended with an unassessed critical dimension; sensitivity results are reproducible; system never records human approval implicitly.
+
+Specification insert — primary Decision Methods home: thicken MCDA lite, WSJF, MoSCoW; add assumption mapping; even-swaps assist; optional bounded AHP/BWM behind the port; TCO/reversibility fields; `recommendation` never writes Approval; judges not averaged into approval; CR stop returns pairs to humans; rank-reversal check; overnight-claims is the qualification fixture. Contracts live in [ba-method-engines-and-sufficiency.md](../product/ba-method-engines-and-sufficiency.md).
 
 ### M3.13 — Implement independent critic, sufficiency and repair
 
@@ -159,6 +181,8 @@ Accept: no option is recommended with an unassessed critical dimension; sensitiv
 
 Accept: critic materially reduces critical defect escape versus single-pass in X03 with acceptable cost/latency; all runs terminate; zero auto-approval.
 
+Specification insert: classed challenge protocol (lenses invoked, IBIS-typed moves, evidence IDs) lives in [agents-memory-rag.md](../intelligence/agents-memory-rag.md). Decision Quality elements map to existing blockers, not a seventh score. Five-way sufficiency unchanged. `G3.HIDDEN_ASSUMPTION` clears only by test or waiver. Repair budget stands; no critic/repair loops. Do not default MAFP topology.
+
 ### M3.14 — Run blinded, repeated real-model qualification
 
 1. Freeze release candidate and execute deterministic suites plus repeated `eval-real` runs on development then hidden sets.
@@ -167,6 +191,8 @@ Accept: critic materially reduces critical defect escape versus single-pass in X
 4. Run adversarial safety/authority/injection/exfiltration and deployment fallback tests.
 
 Accept: CollabX single-agent materially beats strong RAG on preregistered critical grounding/conflict/temporal/requirements metrics; it is non-inferior on overall expert quality; zero isolation/authority/external-action failure.
+
+Specification insert: include X13/X14 in the qualification matrix when authorised. Adversarial additions: pretty CR vs evidence, averaging-into-approval, scope-split as contradiction, obsolete policy, challenge with no new evidence, sandbox cite without receipt.
 
 ### M3.15 — Implement experience-intent and coding-agent cognitive core
 
@@ -185,6 +211,8 @@ Accept: ≥95% critical intent constraints captured on hidden tasks; ≥80% ques
 4. Red-team repository instruction injection, stale/dirty base, scope escape, test weakening, dependency introduction, fabricated validation and correlated specialist agreement.
 
 Accept: approved topology materially improves critical defect escape or valid-correction yield after latency/cost; 100% material changes traced; zero unrelated-change loss/scope escape/unauthorised effect; no critical result relies solely on an LLM grader.
+
+Specification insert: classed challenge enabled only if X13 passes; MAFP/MCTS remain disabled. Feasibility lens may use archaeology/review receipts; Reviewer stays always-on read-only; implementer specialists remain ablation-gated.
 
 ### M3.18 — Implement Archaeologist cognitive core
 
@@ -213,6 +241,8 @@ Accept: X11 confirmatory AC-gap recall/precision targets; zero silent approve; z
 
 Accept: signed release decision with no expired/incomplete critical evidence; aggregate performance cannot offset a zero-tolerance failure. Archaeology, Reviewer and polyglot patch proposal are decided independently.
 
+Specification insert: intelligence release cannot rest on a Fusion Score. Decision Methods and challenge each get an independent `approve for M4` \| `constrain` \| `rework` \| `reject` line.
+
 ## Success metrics
 
 The task thresholds above govern. Additionally: structured-output valid-after-first-attempt ≥98%; p95 first streamed token follows PERF-05; p95 complete analytical task and cost budgets are preregistered per task; escalation is treated as a valid outcome but must be calibrated—too low suggests overconfidence and too high provides no value. Experience-generation reports critical intent/trace coverage, decision-relevant question rate, question burden, patch precision, component reuse, visual/accessibility/security failure and reviewer comprehension. Report human correction/rejection and critical-failure counts, not only averages.
@@ -227,6 +257,7 @@ task eval:preflight --profile eval-real --redact
 task eval:run --suite retrieval,extraction,conflict,requirements,memory,agent,experience-codegen,archaeology,ac-review,safety --profile eval-real --repeat governed
 task eval:compare --baseline strong-rag --candidate collabx-single
 task eval:run --experiment X10,X11,X12 --stage confirmatory --profile eval-real
+# X13,X14 confirmatory only if a later signed programme authorises the pack
 task evidence:verify --milestone M3
 ```
 

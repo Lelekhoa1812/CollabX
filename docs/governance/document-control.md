@@ -64,10 +64,11 @@ Within one level, the more specific document governs only within its declared sc
 | Risk register | `risk-register.md` | Normative | active risks and assumptions; review quarterly |
 | Technology choices | `../research/technology-decisions.md` | Provisional normative | decision candidates/status/gates; accepted ADR later supersedes row |
 | Evaluation | `../research/evaluation-and-experiments.md` | Research control | experiment IDs, methods and release gates |
+| Decision intelligence | `../research/decision-intelligence-and-deliberation.md` | Research control | Decision Methods port, assumption mapping, classed challenge and reject/retract list; conclusions remain hypotheses until X13/X14 and council accept |
 | BA/coding gap review | `../research/ba-and-coding-intelligence-gap-review.md` | Research control | BA scorecard, coding competitive synthesis, GAP-27 |
 | Roadmap | `../delivery/roadmap.md` | Delivery control | R0–R5 outcome phases and gates |
 | Milestones | `../milestones/milestone_1.md` through `milestone_5.md` | Delivery control | executable five-stage tasks, acceptance, metrics and evidence commands |
-| Portfolio backlog | `../delivery/backlog.md` | Delivery control | 53 portfolio epics mapped to trains |
+| Portfolio backlog | `../delivery/backlog.md` | Delivery control | 55 portfolio epics mapped to trains |
 | Build sequence | `../delivery/build-sequence-and-dependency-graph.md` | Delivery control | 173 implementation work packages and dependency order |
 | AI delivery | `../delivery/ai-implementation-playbook.md` | Delivery control | mandatory task execution protocol |
 | Sources | `../research/sources.md` | Reference | research provenance; volatile sources revalidate quarterly |

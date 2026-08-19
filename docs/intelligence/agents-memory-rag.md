@@ -1,6 +1,6 @@
 # Agent, memory, context, and retrieval design
 
-Status: normative · Baseline: `design-v3` · Effective: 2026-08-11 · Owner: AI and architecture councils
+Status: normative · Baseline: `design-v4` · Effective: 2026-08-19 · Owner: AI and architecture councils
 
 This document governs BA cognitive runs. Business Design and Build Workspace generation use the same bounded-agent principles plus the stricter context, tool and patch contracts in [experience generation and governed coding agent](experience-generation-and-coding-agent.md) and [coding intelligence and review agent](coding-intelligence-and-review-agent.md).
 
@@ -61,6 +61,41 @@ Loop:
 For experience-building tasks the lead agent may delegate research/intent, experience architecture, Build Workspace frontend/polyglot implementer, contract/data, security, accessibility and test/visual reviews only when their inputs/outputs and merge ownership are independent. Repository/file access is never inherited merely because a child task exists. Coding Reviewer findings with severity critical and type `ac_gap`, `trace_break`, `test_weakening` or `scope_escape` are escalated to the BA lead as gate-relevant signals.
 
 Terminal reasons are success, needs-human, needs-evidence, policy-denied, budget-exhausted, cancelled, unsafe, or failed. “Keep thinking” is not a control strategy.
+
+## Structured challenge (invoked, not resident)
+
+Default remains lead BA + independent critic. Specialists stay capabilities with schemas (Principle 8; X03). Do **not** add a new Arbiter agent that decides. Do **not** default MAFP, Nash or Prisoner’s Dilemma personalities.
+
+**Decision class** (class the *decision*, not the agent; map to control-framework A–D):
+
+- Class A routine: lint, coverage, citations — lead BA only.
+- Class B material (typical G2/G3/G5): lead + method engine + independent critic.
+- Class C contested or irreversible: classed structured challenge under this controller. Requires named authority, budget, and a Decision Quality element that is not good enough.
+- Class D prohibited: legal/HR eligibility, covert profiling, unreviewed external action — already banned.
+
+The controller may escalate class; it may not approve. Classed challenge is enabled only if X13 passes; until then critic-only remains the default.
+
+**Lenses** (invoked per run, not standing souls): Optimist / value; Constraint / risk / policy; Technical feasibility (sandbox-allowed); Counterexample / assumption. Six Hats is an optional *human-workshop* lens in facilitation, not a resident agent.
+
+**Communication:** each turn is a typed IBIS *move*, not a chat. Show moves as Understand lists and Decide briefs (PERF-06). Do not build an IBIS canvas.
+
+| Field | Values / meaning |
+|---|---|
+| `move_type` | `question` \| `position` \| `support` \| `challenge` \| `concession` \| `hidden_assumption` \| `evidence_request` \| `scope_split` |
+| `target_item_id` | existing knowledge-item version |
+| `evidence_span_ids[]` | required for material attacks |
+| `new_evidence` | boolean — did this move introduce a new span? |
+| `concession` | boolean |
+| `attack_on` | criterion / assumption / authority / feasibility / scope / time |
+
+**Controller halt / escalate** (existing cognitive-run loop):
+
+- Halt if no `new_evidence` for two rounds, or semantic repetition (same item IDs, no concession), or budget exhausted, or a core constraint is violated.
+- Escalate to human if consecutive rounds without concession ≥ 3 **and** a critical conflict remains.
+- Never declare “zero contradictions = success.”
+- Never write Approval or publish a baseline.
+
+Technical feasibility may inspect code, propose a patch, run sandbox tests and attach stdout/stderr receipts as evidence spans (Capabilities 17/18). Sandbox cites without a receipt hash are an adversarial fail. MAFP / MCTS remain research-only after X03 and X13. If MCTS is ever tried, confine it to Capability 18 patch search with sandbox rewards, not PRD writing.
 
 ## Memory taxonomy
 
